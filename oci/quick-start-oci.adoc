@@ -17,7 +17,7 @@ Die folgenden Schritte erleichtern den Einstieg.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldeinformationen und Berechtigungen hinzufügen
 [role="quick-margin-para"]
-link:add-credentials.html["Hinzufügen von Anmeldeinformationen zu einem Konto"]. Dies umfasst die Auswahl der Workload-Funktionen und die Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen.
+link:add-credentials-oci.html["Hinzufügen von Anmeldeinformationen zu einem Konto"]. Dies umfasst die Auswahl der Workload-Funktionen und die Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen.
 
 [role="quick-margin-para"]
 Auswahl der standardmäßigen link:permissions-oci.html["Ansicht, Planung und Analyse"] Berechtigungsrichtlinie.
