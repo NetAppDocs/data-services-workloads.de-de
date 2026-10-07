@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-onprem-data.html 
+keywords: use, detect, replicate, remove, on-premises, ONTAP cluster, on-premises cluster, ONTAP 
+summary: Lokale ONTAP Daten in der NetApp Workload Factory erkennen und replizieren, sodass sie als Backup in der Cloud genutzt werden können. 
+---
+= Replikation von On-Premises ONTAP Clusterdaten in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lokale ONTAP Daten in der NetApp Workload Factory erkennen und replizieren, sodass sie als Backup in der Cloud genutzt werden können.
+
+.Über diese Aufgabe
+Um Daten aus einem lokalen ONTAP Cluster zu nutzen, müssen Sie zunächst den lokalen ONTAP Cluster ermitteln. Nachdem Sie einen lokalen ONTAP Cluster ermittelt haben, können Sie die Daten für jeden der folgenden Anwendungsfälle verwenden.
+
+Anwendungsfälle::
++
+--
+* *Backup und Migration in die Cloud*: In ein FSx for ONTAP Dateisystem replizierte lokale ONTAP Volume-Daten können als Backup in der Cloud verwendet werden.
+* *Data Tiering*: Nach der Replikation können selten genutzte On-Premises-ONTAP-Volume-Daten vom SSD Storage-Tier auf das Storage-Tier des Kapazitätspools verschoben werden.
+
+
+--
+
+
+
+
+[[discover-an-on-premises-ontap-cluster]]
+== Erkennung eines lokalen ONTAP Clusters
+
+Die Erkennung eines lokalen ONTAP Clusters in NetApp Workload Factory ermöglicht die Replizierung der Daten in ein Amazon FSx for NetApp ONTAP Dateisystem.
+
+.Bevor Sie beginnen
+Vor Beginn sollte Folgendes vorhanden sein:
+
+* Ein FSx for ONTAP Dateisystem zur Replikation.
+* Eine verbundene Verbindung, die mit dem erkannten lokalen Cluster verknüpft wird. Wenn keine Verbindung vorhanden ist, ist es erforderlich, link:create-link.html["einen erstellen"^].
+* ONTAP Benutzeranmeldeinformationen mit erforderlichen Berechtigungen.
+* On-premises ONTAP Version 9.8 und höher.
+* Die Konnektivität zeigt das folgende Diagramm.
++
+image:screenshot-on-prem-connectivity.png["Screenshot, der zeigt, wie ein ONTAP Cluster vor Ort für den Managementpfad und Datenpfad mit Amazon Web Services Cloud verbunden sein sollte"]
+
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* ist *On-premises ONTAP* auszuwählen.
+. *Discover* auswählen.
+. Nach Prüfung der Voraussetzungen erfolgt die Auswahl von *Weiter*.
+. Auf der Seite „Discover ONTAP on-premises“ sind unter *Clusterkonfiguration* die folgenden Angaben erforderlich:
++
+.. *Link*: Auswahl eines Links. Der Link wird mit dem lokalen Cluster verknüpft, um eine Verbindung zwischen dem Cluster und Workload Factory herzustellen.
++
+Falls Sie noch keinen Link erstellt haben, können Sie zunächst den Anweisungen folgen und anschließend zu diesem Vorgang zurückkehren, um den Link auszuwählen.
+
+.. *Cluster-IP-Adresse*: IP-Adresse des lokalen ONTAP Clusters, der repliziert werden soll.
+.. *ONTAP-Zugangsdaten*: Bitte geben Sie Folgendes an:
++
+*** GovCloud accounts: Geben Sie die ARN mit ONTAP Zugangsdaten ein.
+*** Alle anderen Konten: Geben Sie die ONTAP-Anmeldeinformationen für den lokalen ONTAP Cluster ein. Stellen Sie sicher, dass der Benutzer über die erforderlichen Berechtigungen verfügt.
+
+
+
+
+. Mit *Discover* lässt sich der Discovery-Prozess starten.
+
+
+.Ergebnis
+Der lokale ONTAP Cluster wurde erkannt und wird nun auf der Registerkarte *On-Premises ONTAP* angezeigt.
+
+Sie können die Daten jetzt in Ihrem lokalen ONTAP Cluster anzeigen und <<Volume-Daten aus einem lokalen ONTAP Cluster replizieren,Replizieren der Daten in ein FSx for ONTAP Dateisystem>>.
+
+
+
+[[replicate-volume-data-from-an-on-premises-ontap-cluster]]
+== Volume-Daten aus einem lokalen ONTAP Cluster replizieren
+
+Volume-Daten aus einem lokalen ONTAP Cluster werden in ein FSx for ONTAP Dateisystem repliziert. Nach der Replikation können die Daten zur Anreicherung von KI-Wissensdatenbanken verwendet werden.
+
+.Bevor Sie beginnen
+* Sie müssen einen lokalen ONTAP Cluster ermitteln, um seine Volume-Daten zu replizieren.
+* Für die Replikation als Ziel ist ein verfügbares FSx for ONTAP Dateisystem erforderlich.
+* Sowohl der lokale ONTAP Cluster als auch das FSx for ONTAP Dateisystem, das Sie für die Replikationsbeziehung verwenden, müssen über eine zugeordnete Verbindung verfügen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* ist *On-premises ONTAP* auszuwählen.
+. Zum Auffinden von Volumes nach Storage VM steht in der Dropdown-Liste *Storage VM auswählen* zur Verfügung.
+. Ein oder mehrere Volumes zur Replikation auswählen und anschließend *Replizieren* wählen.
+. Auf der Seite „Replikation erstellen“ sind unter „Replikationsziel“ die folgenden Angaben erforderlich:
++
+.. *FSx for ONTAP file system*: Wählen Sie Anmeldeinformationen, Region und FSx for ONTAP file system name für das Ziel-FSx for ONTAP file system aus.
+.. *Name der Storage VM*: Die Auswahl der Storage VM erfolgt im Dropdown-Menü.
+.. *Volume-Name*: Der Ziel-Volume-Name wird automatisch im folgenden Format `{OriginalVolumeName}_copy` generiert. Sie können den automatisch generierten Volume-Namen verwenden oder einen anderen Volume-Namen eingeben.
+.. *Tiering-Daten*: Auswahl der Tiering-Richtlinie für die im Ziel-Volume gespeicherten Daten.
++
+*** *Auto*: Die Standard-Tiering-Richtlinie beim Erstellen eines Volumes mit der Workload Factory FSx for ONTAP Benutzeroberfläche. Tiering aller kalten Daten, einschließlich Benutzerdaten und Snapshots, auf das Capacity Pool Storage-Tier für einen bestimmten Zeitraum.
+*** *Nur Snapshot*: Es werden nur Snapshot-Daten auf das Storage-Tier des Capacity Pool verschoben.
+*** *None*: Alle Daten Ihres Volumes bleiben auf dem primären Storage-Tier.
+*** *Alle*: Kennzeichnet sämtliche Benutzerdaten und Snapshot-Daten als kalt und speichert sie im Storage-Tier des Kapazitätspools.
++
+Einige Tiering-Richtlinien haben eine zugehörige Mindestkühlzeit, die festlegt, wie lange, also wie viele _cooling days_, Benutzerdaten in einem Volume inaktiv bleiben müssen, damit die Daten als „kalt“ gelten und in den Capacity Pool Storage-Tier verschoben werden. Die Kühlzeit beginnt, wenn Daten auf die Festplatte geschrieben werden.
+
++
+Weitere Informationen zu Volume-Tiering-Richtlinien bietet link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^]die AWS FSx for NetApp ONTAP Dokumentation.
+
+
+
+.. *Maximale Transferrate*: Bei Auswahl von *Begrenzt* ist die maximale Transferrate in MiB/s einzugeben. Alternativ steht *Unbegrenzt* zur Auswahl.
++
+Ohne Begrenzung könnte die Netzwerk- und Applikations-Performance nachlassen. Alternativ empfehlen wir für FSx for ONTAP Dateisysteme bei kritischen Workloads, zum Beispiel solchen, die in erster Linie für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate.
+
+
+
+. Unter Replikationseinstellungen sind die folgenden Angaben erforderlich:
++
+.. *Replikationsintervall*: Hier wird die Häufigkeit ausgewählt, mit der Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
+.. *Langzeitaufbewahrung*: Optional können Snapshots für die Langzeitaufbewahrung aktiviert werden.
++
+Wenn Sie die Langzeitaufbewahrung aktivieren, können Sie eine vorhandene Richtlinie auswählen oder eine neue Richtlinie erstellen, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
+
++
+*** Für eine vorhandene Richtlinie ist *Vorhandene Richtlinie auswählen* auszuwählen, und anschließend ist die vorhandene Richtlinie im Dropdown-Menü auszuwählen.
+*** Für eine neue Richtlinie ist *Neue Richtlinie erstellen* auszuwählen, und anschließend sind die folgenden Angaben erforderlich:
++
+**** *Richtlinienname*: Geben Sie einen Richtliniennamen ein.
+**** *Snapshot-Richtlinien*: Wählen Sie in der Tabelle die Häufigkeit der Snapshot-Richtlinie und die Anzahl der aufzubewahrenden Kopien aus. Sie können mehrere Snapshot-Richtlinien auswählen.
+
+
+
+
+
+
+. *Erstellen* auswählen.
+
+
+.Ergebnis
+Die Replikationsbeziehung erscheint im Tab *Replikationsbeziehungen* im Ziel-FSx for ONTAP-Dateisystem.
+
+
+
+[[remove-an-on-premises-ontap-cluster-from-netapp-workload-factory]]
+== Entfernen eines lokalen ONTAP Clusters aus NetApp Workload Factory
+
+Bei Bedarf ist das Entfernen eines lokalen ONTAP-Clusters aus NetApp Workload Factory möglich.
+
+.Bevor Sie beginnen
+Sie müssen link:manage-replication.html["Löschen aller bestehenden Replikationsbeziehungen"] für alle Volumes im lokalen ONTAP Cluster überprüfen, bevor Sie den Cluster entfernen, damit keine fehlerhaften Beziehungen zurückbleiben.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* ist *On-premises ONTAP* auszuwählen.
+. Auswahl des lokalen ONTAP Clusters, der entfernt werden soll.
+. Im Menü „Aktionen“ ist die Option *Aus Workload Factory entfernen* auszuwählen.
+
+
+.Ergebnis
+Der lokale ONTAP Cluster wurde aus NetApp Workload Factory entfernt.

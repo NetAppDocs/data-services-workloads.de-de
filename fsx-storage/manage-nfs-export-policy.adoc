@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-nfs-export-policy.html 
+keywords: NFS, nfs, export policy, change export policy, update export policy, modify export policy 
+summary: Managen der NFS-Exportrichtlinie für ein Volume, das die Protokolltypen NFSv3 oder NFSv4.1 in NetApp Workload Factory verwendet. 
+---
+= Managen der NFS-Exportrichtlinie für ein Volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Managen der NFS-Exportrichtlinie für ein Volume, das die Protokolltypen NFSv3 oder NFSv4.1 in NetApp Workload Factory verwendet.
+
+.Über diese Aufgabe
+Das Managen der Exportrichtlinie eines Volumes umfasst das Hinzufügen von Exportrichtlinienregeln, die Client-Spezifikationen, Zugriffskontrolle, Superuser-Zugriff und die NFS-Version detailliert beschreiben. Sie können mehrere Exportrichtlinien hinzufügen und diese priorisieren.
+
+.Bevor Sie beginnen
+Festlegung der Client-Spezifikationen für die Exportrichtlinienregeln. Gültige Werte für die Client-Spezifikation sind wie folgt:
+
+* IP-Adressen
+* IP-Adressen mit Subnetzmasken
+* IP-Adressen mit Netzwerkmaske
+* Ein Netzgruppenname, dem das Zeichen „@“ vorangestellt ist
+* Ein Domainname, dem ein Punkt „.“ vorangestellt ist.
+* Hostnamen
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume aus, für das die NFS-Exportrichtlinie geändert werden soll.
+. Die Auswahl erfolgt über *Advanced actions* und anschließend *Edit NFS export policy*.
+. Auf der Seite „NFS-Exportrichtlinie bearbeiten“ sind die folgenden Angaben erforderlich:
++
+.. *Zugriffskontrolle*: Zur Auswahl stehen *Benutzerdefinierte Exportrichtlinie* oder *Vorhandene Exportrichtlinie*.
++
+Alternativ können Sie *Kein Zugriff auf das Volume* auswählen.
+
+.. *Name der Exportrichtlinie*: Optional können Sie einen Namen für die Exportrichtlinie eingeben.
+.. *Exportrichtlinienregel hinzufügen*: Die folgenden Details sind anzugeben, und die Richtlinien beginnen mit Regel Nr. 1 als Prioritätsregel:
++
+... *Client-Spezifikation*: Mehrere Werte werden durch Kommas getrennt.
+... *Zugriffskontrolle*: Im Dropdown-Menü stehen *lesen/schreiben*, *Nur lesen* und *Kein Zugriff* zur Auswahl.
+... *Superuser-Zugriff*: Auswahl von *Ja* oder *Nein*.
+... *NFS-Version*: Zur Auswahl stehen *Alle*, *NFSv3* oder *NFSv4*.
+
+
+
+
+. *Anwenden* auswählen.
+

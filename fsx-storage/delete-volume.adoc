@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-volume.html 
+keywords: delete volume, volume deletion 
+summary: Ein nicht mehr benötigtes Volume in Ihrem FSx for ONTAP Dateisystem kann gelöscht werden, um Speicherplatz freizugeben. Dieser Vorgang ist unumkehrbar. 
+---
+= Löschen eines Volumes in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ein nicht mehr benötigtes Volume in Ihrem FSx for ONTAP Dateisystem kann gelöscht werden, um Speicherplatz freizugeben. Dieser Vorgang ist unumkehrbar.
+
+.Bevor Sie beginnen
+Vor dem Löschen eines Volume ist Folgendes zu berücksichtigen:
+
+* Replikationsbeziehungen: Sie müssen link:manage-replication.html["Löschen aller bestehenden Replikationsbeziehungen"] dieses Volume überprüfen, bevor Sie es löschen, damit keine fehlerhaften Beziehungen zurückbleiben.
+* Lokale Snapshots: Alle mit diesem FSx for ONTAP Dateisystem verknüpften Snapshots werden dauerhaft gelöscht.
+* Volume backups: Die Volume-Backup-Kopien bleiben erhalten und können weiterhin verwendet werden.
+* Unveränderliche Dateien und Snapshots: Volumes, die unveränderliche Dateien und Snapshots enthalten, können erst nach Ablauf der Aufbewahrungsfrist gelöscht werden.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Das Aktionsmenü des zu löschenden Volumes auswählen.
+. Die Auswahl erfolgt über *Grundlegende Aktionen* und anschließend *Volume löschen*.
+. Im Dialogfeld „Volume löschen“ sind folgende Schritte erforderlich:
++
+.. Optional können Sie *Volume sichern* auswählen, um das Volume vor dem Löschen zu sichern.
++
+Die Sicherungskopie bleibt im Dateisystem erhalten, bis Sie sie manuell löschen.
+
+.. *Continue* ist auszuwählen.
+.. Zum Löschen des Volume ist „delete“ einzugeben.
+.. Zur Bestätigung ist *Löschen* auszuwählen.
+
+
+

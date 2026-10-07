@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: Konfigurieren Sie benutzerdefinierte Filter für das Projects-Dashboard, um Kennzahlen nach Ihrer Unternehmensstruktur wie Projekten, Teams oder Anwendungen zu organisieren. 
+---
+= Konfigurieren Sie das Projects-Dashboard in Workload Factory für EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Im Projekt-Dashboard lassen sich benutzerdefinierte Filter einrichten, um Daten so zu organisieren, dass sie den Geschäftsprozessen entsprechen, zum Beispiel nach Projekt, Team oder Kostenstelle. Dadurch werden Kosten übersichtlicher dargestellt, es lässt sich erkennen, welche Ressourcen die meiste Kapazität nutzen, und fundiertere Entscheidungen zu Budgets und Personal können getroffen werden. Wenn die Filter der Struktur Ihrer Organisation entsprechen, lassen sich die benötigten Daten schnell finden und Kapazität, Kosten sowie Leistung effizienter verwalten.
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+Um benutzerdefinierte Filter zu verwenden, AWS-Tags zu Ihren FSx for ONTAP Volumes entsprechend Ihren Anforderungen hinzufügen, wie zum Beispiel Tags für Projekte, Teams oder Geschäftsbereiche.
+
+
+
+[[configure-custom-filters]]
+== Benutzerdefinierte Filter konfigurieren
+
+
+NOTE: Nur der erste Administrator, der das Projects Dashboard öffnet, kann benutzerdefinierte Filter erstellen, ändern oder löschen. Alle anderen Benutzer, einschließlich anderer Administratoren, können die Filter nur anzeigen.
+
+.Über diese Aufgabe
+Sie können bis zu fünf benutzerdefinierte Filter mithilfe Ihrer AWS-Tags konfigurieren. Jeder Filter benötigt Folgendes: eine Filterbezeichnung, einen AWS-Tag-Schlüssel und einen Auswahltyp (einzeln oder mehrfach).
+
+Wenn Sie keine benutzerdefinierten Filter konfigurieren, stehen Ihnen die Standardfilter, Dateisystem, Volume-Typ und Zeitbereich weiterhin zur Verfügung, sodass Sie Ihre Dashboards weiterhin anzeigen und verwenden können.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Wählen Sie *Projekte* aus.
++
+Falls Sie Ihr Dashboard noch nicht konfiguriert haben, werden Sie automatisch dazu aufgefordert.
+
+. *Filter hinzufügen* auswählen.
+. Fügen Sie für jeden benutzerdefinierten Filter, den Sie erstellen möchten, die Details hinzu:
++
+** Filterbezeichnung (der Anzeigename im Dashboard)
+** AWS-Tag-Schlüsselname (der tatsächliche Tag-Schlüssel, der für Ihre Ressourcen verwendet wird)
+** Auswahltyp (Einzel- oder Mehrfachauswahl)
++
+
+NOTE: Die Filter werden im Dashboard in der von Ihnen festgelegten Reihenfolge angezeigt. Die am häufigsten verwendeten Filter sollten oben platziert werden, damit sie leichter zugänglich sind.
+
+
+
+. *Anwenden* auswählen.
++
+Sie können einen benutzerdefinierten Filter löschen, indem Sie das Papierkorbsymbol neben diesem Filter auswählen, bevor Sie Ihre Änderungen anwenden.
+
+. Um Ihre Änderungen nach dem Anwenden von Tags oder Filtern anzuzeigen, wählen Sie das Aktualisierungssymbol im Dashboard aus.
+. Die spätere Bearbeitung der Dashboard Konfiguration erfolgt über *Configure*.
+
+
+.Ergebnis
+Wenn diese Tags angewendet werden, beginnt Workload Factory mit dem Sammeln und Anzeigen der zugehörigen CloudWatch-Metriken. Das Dashboard unterstützt bei der Organisation von Ressourcen, der Nachverfolgung von Kosten und dem Filtern von Elementen entsprechend der jeweiligen Anforderungen.
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+* link:learn-project-dashboard.html["Erfahren Sie mehr über das Projects-Dashboard"]
+* link:task-use-project-dashboard.html["Nutzen Sie das Projekt-Dashboard"]
+

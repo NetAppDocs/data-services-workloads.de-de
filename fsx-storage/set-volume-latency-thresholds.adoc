@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/set-volume-latency-thresholds.html 
+keywords: latency, latency thresholds, alerts, volume latency, read latency, write latency 
+summary: Legen Sie Latenzschwellenwerte für Volumes fest, um Benachrichtigungen zu erhalten, wenn die lesen- oder schreiben-Latenz die angegebenen Werte überschreitet. 
+---
+= Legen Sie Schwellenwerte für die Volumenlatenz in der NetApp Workload Factory fest.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Legen Sie Latenzschwellenwerte für Volumes fest, um Benachrichtigungen zu erhalten, wenn die lesen- oder schreiben-Latenz die angegebenen Werte überschreitet.
+
+.Über diese Aufgabe
+Sie können Latenzschwellenwerte pro Volume konfigurieren, um die Leistung zu überwachen und Benachrichtigungen zu erhalten, wenn die Latenzwerte Ihre definierten Grenzwerte überschreiten. Workload Factory überwacht sowohl die Lese- als auch die Schreiblatenz und generiert Benachrichtigungen, sobald einer der Schwellenwerte überschritten wird.
+
+Wenn Sie Latenzschwellenwerte festlegen, überwacht Workload Factory Folgendes:
+
+* *Leseverzögerung*: Löst eine Warnung aus, wenn Lesevorgänge den angegebenen Schwellenwert in Millisekunden überschreiten.
+* *Schreiblatenz*: Löst eine Warnung aus, wenn Schreibvorgänge den angegebenen Schwellenwert in Millisekunden überschreiten.
+
+
+Die Latenzüberwachung verwendet die folgenden Standardparameter:
+
+* *IOPS-Schwellenwert*: 100 IOPS (lesen und schreiben)
+* *Zeitraum*: 10 Minuten
+
+
+Es wird eine Warnung generiert, wenn der Latenzschwellenwert überschritten und der IOPS-Schwellenwert innerhalb des angegebenen Zeitraums erreicht wird.
+
+
+NOTE: Sie können Latenzereignisse anzeigen und Benachrichtigungen erhalten, ohne eine Linkverbindung zu haben. Um jedoch Ereignisse zu analysieren und KI-gestützte Erkenntnisse und Empfehlungen zu erhalten, müssen Sie link:create-link.html["Stellen Sie über einen Link eine Verbindung zum Dateisystem her."^].
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü des Volumes aus, für das Latenzschwellenwerte festgelegt werden sollen.
+. Wählen Sie *Alerts actions* und anschließend *Latenzschwelle festlegen*.
+. Konfigurieren Sie im Dialogfeld „Latenzschwelle festlegen“ Folgendes:
++
+.. *Leselatenz*: Geben Sie den Schwellenwert in Millisekunden (ms) für Lesevorgänge ein.
+.. *Schreiblatenz*: Geben Sie den Schwellenwert in Millisekunden (ms) für Schreibvorgänge ein.
+
+
+. Wählen Sie *Speichern*, um die Latenzschwellenwerte anzuwenden.
+
+
+.Ergebnis
+Workload Factory überwacht das Volume und generiert Warnmeldungen, wenn die Lese- oder Schreiblatenz die konfigurierten Schwellenwerte überschreitet. Sie können Latenzereignisse aus der link:analyze-events.html["Analysebildschirm"] einsehen.
+
+.Verwandte Informationen
+* link:analyze-events.html["Analysieren Sie FSx for ONTAP-Ereignisse in NetApp Workload Factory"]
+* link:manage-volume-capacity.html["Anpassen der Volumenkapazität in Workload Factory"]
+

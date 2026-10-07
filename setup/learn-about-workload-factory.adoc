@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: setup/learn-about-workload-factory.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes, Oracle Cloud Infrastructure NetApp Storage Service 
+summary: NetApp Workload Factory ist eine leistungsstarke Plattform für das Lebenszyklusmanagement, die Ihnen dabei hilft, Ihre Workloads mithilfe von Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes und Oracle Cloud Infrastructure NetApp Storage Service zu optimieren. 
+---
+= Informationen zu NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory ist eine leistungsstarke Plattform für das Lebenszyklusmanagement, die Ihnen dabei hilft, Ihre Workloads mithilfe von Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes und Oracle Cloud Infrastructure NetApp Storage Service zu optimieren.
+
+Ein Workload umfasst eine Kombination aus Ressourcen, Code und Services oder Applikationen, die einem bestimmten Geschäftsziel dienen. Dies kann von einer kundenorientierten Applikation bis hin zu einem Backend-Prozess reichen. Workloads können eine Teilmenge der Ressourcen innerhalb eines einzelnen AWS-Kontos umfassen oder sich über mehrere Konten erstrecken.
+
+
+
+[[features]]
+== Features
+
+Die Workload Factory Plattform bietet folgende Hauptfunktionen.
+
+Flexible und kostengünstige Storage:: Storage-Systeme in der Cloud erkennen, einsetzen und managen. Ihr Cloud Storage Anbieter stellt Ihnen den vollen Funktionsumfang von ONTAP als nativen Managed Service zur Verfügung und sorgt so für ein konsistentes Hybrid Cloud Erlebnis.
+Migration lokaler vSphere Umgebungen zu VMware Cloud on AWS:: Der VMware Cloud on AWS Migration Advisor ermöglicht die Analyse Ihrer aktuellen VM-Konfigurationen in On-Premises vSphere Umgebungen, die Erstellung eines Plans zum Einsetzen empfohlener VM-Layouts in VMware Cloud on AWS und die Verwendung angepasster Amazon FSx for NetApp ONTAP Dateisysteme als externe Datenspeicher.
+Verwaltung des Datenbanklebenszyklus:: Erkennung von Datenbank-Workloads und Analyse von Kosteneinsparungen mit Amazon FSx for NetApp ONTAP; Nutzung von Storage- und Applikationsvorteilen bei der Migration von SQL server-Datenbanken zu FSx for ONTAP Storage; Einsatz von SQL servern, Datenbanken und Datenbankklonen, die Best Practices der Anbieter implementieren; Verwendung eines Infrastructure as Code-Co-Piloten zur Automatisierung von Vorgängen; sowie kontinuierliche Überwachung und Optimierung von SQL server-Umgebungen zur Verbesserung von Performance, Verfügbarkeit, Schutz und Kosteneffizienz.
+
+
+Ask Me AI Assistant:: Sie können dem KI-Assistenten Fragen zur Verwaltung und zum Betrieb Ihrer Storage-Systeme stellen. Mithilfe des Model Context Protocol (MCP) kommuniziert Ask Me sicher mit externen Umgebungen und fragt API-Tools ab, um Antworten bereitzustellen, die auf Ihre spezifische Storage-Umgebung zugeschnitten sind.
+
+
+
+NOTE: Kontoadministratoren können KI-Funktionen aktivieren oder deaktivieren. Wenn ein Administrator sie deaktiviert, steht der Ask Me KI-Assistent nicht zur Verfügung. link:../admin/manage-genai-features.html["Informationen zur Verwaltung von KI-Funktionen"].
+
+
+
+[[supported-cloud-providers]]
+== Unterstützte Cloud-Anbieter
+
+Mit Workload Factory können Sie Cloud Storage managen und Workload-Funktionen in Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes und Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) nutzen.
+
+
+
+[[security]]
+== Sicherheit
+
+Sicherheit für NetApp Workload Factory hat für NetApp höchste Priorität. NetApp Workload Factory hat link:https://trust.netapp.com/["SOC2 Type 1 Compliance, SOC2 Type 2 Compliance und HIPAA Compliance"^] erhalten.
+
+
+
+[[cost]]
+== Kosten
+
+Workload Factory ist kostenlos nutzbar. Die Kosten, die Sie an Ihren Cloud-Anbieter zahlen, hängen von den Storage- und Workload-Services ab, die Sie einsetzen möchten. Dazu gehören die Kosten für Storage-Systeme, Infrastruktur, Services und mehr.
+
+
+
+[[how-workload-factory-works]]
+== Wie Workload Factory funktioniert
+
+Workload Factory umfasst eine webbasierte Konsole, die über die SaaS-Schicht bereitgestellt wird, ein Konto, Berechtigungsrichtlinien, die den Zugriff auf Ihre Cloud-Umgebung steuern, die Konnektivität zwischen Workload Factory und Ihren Cloud-Konten und vieles mehr.
+
+
+
+[[software-as-a-service]]
+=== Software-as-a-Service
+
+Workload Factory ist über die link:https://console.netapp.com["NetApp Console"^] zugänglich. Diese SaaS-Lösung ermöglicht Ihnen den automatischen Zugriff auf die neuesten Funktionen, sobald sie veröffentlicht werden, sowie den einfachen Wechsel zwischen Ihren Workload Factory Konten und Links.
+
+
+
+[[sign-up-and-access-management]]
+=== Registrierung und Zugriffsverwaltung
+
+Für die Nutzung von NetApp Console ist eine Anmeldung mit Ihren NetApp Support Site Zugangsdaten oder die Erstellung eines NetApp Console Logins erforderlich. Der erste Benutzer wird zum Unternehmensadministrator und verwaltet Benutzerkonten und Berechtigungen. Rollen können später aktualisiert und weitere Administratoren hinzugefügt werden.
+
+* link:sign-up-and-log-in.html["Es wird erläutert, wie Sie sich bei NetApp Console registrieren und anmelden."]
+* link:https://docs.netapp.com/us-en/console-setup-admin/concept-identity-and-access-management.html["Informationen zu NetApp Console Identity Access Management"^]
+
+
+
+
+[[permissions]]
+=== Berechtigungen
+
+Workload Factory bietet flexible Berechtigungsrichtlinien, mit denen Sie den Zugriff auf Ihre Cloud-Umgebung präzise steuern und Workload Factory auf Grundlage Ihrer IT-Richtlinien schrittweise Vertrauensstufen zuweisen können.
+
+link:learn-about-permissions.html["Weitere Informationen zu den Berechtigungsrichtlinien von Workload Factory"]
+
+
+
+[[codebox-automation]]
+=== Codebox Automatisierung
+
+Codebox ist ein Co-Pilot für Infrastructure as Code (IaC), der Entwickler und DevOps-Ingenieure bei der Generierung des benötigten Codes für alle von Workload Factory unterstützten Vorgänge unterstützt. Zu den Codeformaten gehören die Workload Factory REST API, CLIs von Cloud-Anbietern, Terraform und mehr.
+
+Codebox schafft einen klaren Weg zur Bereitschaft für die Ausführung und bietet gleichzeitig einen Automatisierungskatalog für eine schnelle künftige Wiederverwendung.
+
+Der Codebox Bereich zeigt den IaC an, der durch einen bestimmten Job Flow Vorgang generiert und mit einem grafischen Assistenten oder einer dialogorientierten Chat-Oberfläche abgeglichen wird. Codebox unterstützt zur einfachen Navigation und Analyse die Farbcodierung und die Suche, erlaubt jedoch keine Bearbeitung. Der IaC kann nur kopiert oder im Automation Catalog gespeichert werden.
+
+link:../admin/codebox-automation.html["Weitere Informationen zu Codebox"]
+
+
+
+[[well-architected-workloads]]
+=== Gut konzipierte Workloads
+
+Workload Factory unterstützt Sie bei der Wartung und dem Betrieb zuverlässiger, sicherer, effizienter und kostengünstiger Storage- und Datenbankkonfigurationen, die mit dem AWS Well-Architected Framework übereinstimmen. Workload Factory scannt täglich FSx for ONTAP Dateisysteme sowie SQL Server- und Oracle-Datenbankbereitstellungen, um Einblicke in potenzielle Fehlkonfigurationen zu liefern, und empfiehlt entweder manuelle oder automatisierte Maßnahmen zur Behebung von Problemen.
+
+link:../admin/well-architected-workloads.html["Weitere Informationen zu gut strukturierten Workloads"]
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== Tools zur Verwendung von NetApp Workload Factory
+
+Sie können NetApp Workload Factory mit den folgenden Tools verwenden:
+
+* *NetApp Console*: NetApp Console bietet eine hybride Benutzeroberfläche, sodass Sie Workload Factory zusammen mit anderen NetApp Datenservices verwenden können.
+* *Ask Me*: Mit dem KI-Assistenten Ask Me können Sie Fragen stellen und mehr über Workload Factory erfahren, ohne die NetApp Console zu verlassen.
+* *CloudShell CLI*: Workload Factory umfasst eine CloudShell CLI zum Managen und Betreiben von AWS- und NetApp Umgebungen über verschiedene Konten hinweg mit einer einzigen browserbasierten CLI.
+* *REST API*: Mit den Workload Factory REST APIs können Sie Ihre Storage-Systeme und andere Ressourcen einsetzen und managen.
+* *NetApp Terraform provider*: Mit Terraform lassen sich Infrastruktur-Workflows erstellen und managen, die in NetApp Console for Workload Factory generiert werden.
+
+
+
+
+[[rest-apis]]
+=== REST-APIs
+
+Workload Factory ermöglicht Ihnen die Optimierung, Automatisierung und den Betrieb Ihrer Cloud Storage-Systeme für bestimmte Workloads. Jeder Workload stellt eine zugehörige REST-API bereit. Zusammen bilden diese Workloads und APIs eine flexible und erweiterbare Entwicklungsplattform, die Sie zur Verwaltung Ihrer Storage-Systeme verwenden können.
+
+Die Verwendung der Workload Factory REST APIs bietet mehrere Vorteile:
+
+* Die APIs wurden auf Basis der REST-Technologie und aktueller Best Practices entwickelt. Zu den Kerntechnologien gehören HTTP und JSON.
+* Die Workload Factory Authentifizierung basiert auf dem OAuth2-Standard. NetApp nutzt die Service-Implementierung von Auth0.
+* Die webbasierte Konsole von Workload Factory verwendet dieselben zentralen REST-APIs, sodass zwischen den beiden Zugriffspfaden Konsistenz besteht.
+
+
+link:https://console.workloads.netapp.com/api-doc["Anzeige der Workload Factory REST API-Dokumentation"^]

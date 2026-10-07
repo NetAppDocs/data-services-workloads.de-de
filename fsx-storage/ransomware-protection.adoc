@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/ransomware-protection.html 
+keywords: ransomware, arp, autonomous protection, protect, security, detect, detection, restore, recover, threat, attack, suspect, anti-ransomware, entropy, abnormal volume activity, anti-ransomware, extension conformity, ransomware protection strategy 
+summary: 'NetApp Autonomous Ransomware Protection mit KI (ARP/AI) nutzt Workload-Analyse in NAS- und SAN-Umgebungen, um ungewöhnliche Aktivitäten zu erkennen und davor zu warnen, die auf einen möglichen Ransomware-Angriff hindeuten.' 
+---
+= Schützen Sie Ihre FSx for ONTAP Daten mit NetApp Autonomous Ransomware Protection mit KI.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Schützen Sie Ihre Daten mit NetApp Autonomous Ransomware Protection mit KI (ARP/AI). Es werden Aktivitäten in NAS (NFS/SMB) und SAN-Umgebungen überwacht, um ungewöhnliches Verhalten zu erkennen, das auf einen Ransomware-Angriff hindeuten könnte. Wenn eine Bedrohung erkannt wird, erstellt ARP/AI automatisch neue unveränderliche Snapshots, sodass Ihre Daten wiederhergestellt werden können.
+
+.Über diese Aufgabe
+ARP/AI dient zum Schutz vor Denial-of-Service-Angriffen, bei denen Angreifer Daten zurückhalten, bis ein Lösegeld gezahlt wird. ARP/AI bietet Echtzeit-Ransomware-Erkennung auf der Grundlage von:
+
+* Identifizierung der eingehenden Daten als verschlüsselt oder im Klartext.
+* Analysen, die Folgendes erkennen:
++
+** **Entropie**: Eine Bewertung der Zufälligkeit von Daten in einer Datei (wird sowohl in NAS als auch in SAN Umgebungen verwendet)
+** **Dateierweiterungstypen**: Eine Erweiterung, die nicht dem normalen Erweiterungstyp entspricht (nur in NAS-Umgebungen verwendet)
+** **Datei-IOPS**: Ein Anstieg ungewöhnlicher Volumenaktivität mit Datenverschlüsselung (wird nur in NAS-Umgebungen verwendet)
+
+
+
+
+ARP/AI kann die Ausbreitung der meisten Ransomware-Angriffe bereits nach der Verschlüsselung einer geringen Anzahl von Dateien erkennen, automatisch Maßnahmen zum Schutz der Daten ergreifen und Sie darüber informieren, dass ein mutmaßlicher Angriff stattfindet.
+
+Die ARP/AI-Funktion wird automatisch entsprechend der ONTAP Version aktualisiert, mit der Amazon FSx for NetApp ONTAP ausgeführt wird, sodass Sie keine manuellen Aktualisierungen vornehmen müssen.
+
+Lern- und Aktivmodi:: Das Verhalten von ARP/AI hängt vom Protokoll und vom Volume-Typ ab:
++
+--
+* *NAS Volumes (NFS/SMB)*: ARP/AI ist sofort nach der Aktivierung aktiv. Es nutzt ein vortrainiertes KI-Modell, um Ransomware-Bedrohungen umgehend zu erkennen.
+* *SAN Volumes (ab ONTAP 9.17.1)*: ARP/AI bietet sofortigen Schutz, auch während der ersten Evaluierungsphase. Während dieses 2- bis 4-wöchigen Zeitraums lernt das System die normale Verschlüsselungsaktivität und legt Alarmschwellen fest. Gleichzeitig überwacht es weiterhin Ihre Daten, erkennt Bedrohungen und sendet Warnmeldungen.
+* *Aktiver Modus*: Wenn der aktive Modus aktiviert ist, erstellt FSx for ONTAP ARP/AI-Snapshots, um Ihre Daten zu schützen, wenn eine mögliche Bedrohung erkannt wird.
+
+
+--
+
+
+Wenn das System eine Dateierweiterung als ungewöhnlich kennzeichnet, sollte die Warnung überprüft werden. Auf die Warnung kann reagiert werden, um die Daten zu schützen, oder sie kann als Fehlalarm markiert werden, falls die Aktivität erwartet wird.
+
+Wenn Sie eine Warnung als Fehlalarm markieren, aktualisiert das System seine Warnungseinstellungen. Wenn beispielsweise eine neue Dateierweiterung eine Warnung auslöst und Sie diese als Fehlalarm markieren, erhalten Sie beim nächsten Auftreten dieser Dateierweiterung keine Warnung.
+
+Nicht unterstützte Konfigurationen:: Die folgenden Konfigurationen unterstützen die Verwendung von ARP/AI nicht.
++
+--
+* NVMe Volumes
+* iSCSI Volumes mit ONTAP Versionen vor 9.17.1
+
+
+--
+
+
+
+
+[[enable-arpai-for-a-file-system-or-a-volume]]
+== Aktivierung von ARP/AI für ein Dateisystem oder ein Volume
+
+Durch die Aktivierung von ARP/AI für ein Dateisystem werden automatisch alle aktuellen und neuen NAS Volumes (NFS/SMB) geschützt. Ab ONTAP 9.17.1 werden auch SAN Volumes (iSCSI) unterstützt. ARP/AI kann auch für bestimmte Volumes aktiviert werden.
+
+Wenn ARP/AI nach der Aktivierung einen tatsächlichen Angriff erkennt, erstellt Workload Factory automatisch eine Snapshot-Richtlinie. Diese Richtlinie kann bis zu sechs Snapshots alle vier Stunden erstellen. Jeder Snapshot ist für 2-5 Tage gesperrt.
+
+.Bevor Sie beginnen
+Um ARP/AI für ein Dateisystem oder ein Volume zu aktivieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+[role="tabbed-block"]
+====
+.Aktivierung von ARP/AI für ein Dateisystem
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* wählen Sie *Inventory* und anschließend im Aktionsmenü des Dateisystems zum Aktivieren von ARP/AI *Manage* aus.
+. Unter Information erfolgt die Auswahl des Stiftsymbols neben *Autonomous Ransomware Protection*. Das Stiftsymbol erscheint neben dem Pfeil, wenn sich der Mauszeiger über der Zeile *Autonomous Ransomware Protection* befindet.
+. Auf der Seite NetApp Autonomous Ransomware Protection with AI (ARP/AI) sind folgende Schritte auszuführen:
++
+.. Aktivierung oder Deaktivierung der Funktion.
+.. *Automatische Snapshot-Erstellung*: Auswahl der maximalen Anzahl der aufzubewahrenden Snapshots und des Zeitintervalls zwischen den Snapshot-Erstellungen. Standardmäßig sind 6 Snapshots alle 4 Stunden festgelegt.
+.. *Unveränderliche Snapshots*: Hier werden die Standardaufbewahrungsdauer in Stunden und die maximale Anzahl an Tagen ausgewählt, für die unveränderliche Snapshots aufbewahrt werden sollen. Diese Option wird aktiviert, um sicherzustellen, dass Snapshots erst nach Ablauf der angegebenen Aufbewahrungsdauer gelöscht oder geändert werden können.
+.. *Erkennung*: Optional können Sie einen oder mehrere der folgenden Parameter auswählen, um automatisch nach Anomalien zu suchen und sie zu erkennen.
+
+
+. Zum Fortfahren ist die Annahme der Erklärung erforderlich.
+. Mit *Anwenden* werden die Änderungen gespeichert.
+
+
+--
+.Aktivierung von ARP/AI für ein Volume
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Im Aktionsmenü des Volumes die Option zum Aktivieren von ARP/AI auswählen, dann *Data protection actions* und anschließend *Manage ARP/AI*.
+. Im Dialogfeld „Manage ARP/AI“ gehen Sie wie folgt vor:
++
+.. Aktivierung oder Deaktivierung der Funktion.
+.. *Erkennung*: Optional können Sie einen oder mehrere der folgenden Parameter auswählen, um automatisch nach Anomalien zu suchen und sie zu erkennen.
+
+
+. Zum Fortfahren ist die Annahme der Erklärung erforderlich.
+. Mit *Anwenden* werden die Änderungen gespeichert.
+
+
+--
+====
+
+
+[[validate-ransomware-attacks]]
+== Validierung von Ransomware-Angriffen
+
+Feststellung, ob es sich bei einem Angriff um einen Fehlalarm oder einen echten Ransomware-Vorfall handelt.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* erfolgt zunächst die Auswahl von *Inventar* und anschließend die des Dateisystems, für das die Validierung auf Ransomware-Angriffe erfolgen soll.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Volumes*.
+. Auf der Kachel *Autonomous Ransomware Protection* erfolgt die Auswahl von *Analyze attacks*.
+. Anhand des heruntergeladenen Berichts zu den Angriffsereignissen lässt sich prüfen, ob Dateien oder Ordner kompromittiert wurden, und anschließend feststellen, ob ein Angriff stattgefunden hat.
+. Wenn kein Angriff stattgefunden hat, können Sie in der Tabelle für das entsprechende Volume *Fehlalarm* und anschließend *Schließen* auswählen.
+. Falls ein Angriff erfolgt ist, wählen Sie in der Tabelle für das Volume *Real attack* aus. Das Dialogfeld „Restore compromised volume data“ wird geöffnet. Sie können sofort mit <<Daten nach einem Ransomware-Angriff wiederherstellen,Ihre Daten wiederherstellen>> fortfahren oder *Close* auswählen und später zurückkehren, um den Wiederherstellungsprozess abzuschließen.
+
+
+
+
+[[recover-data-after-a-ransomware-attack]]
+== Daten nach einem Ransomware-Angriff wiederherstellen
+
+Wenn das System einen möglichen Angriff erkennt, erstellt und sperrt es eine Momentaufnahme des Volumes zu diesem Zeitpunkt.
+
+Falls der Angriff später bestätigt wird, können Sie die betroffenen Dateien oder das gesamte Volume aus dem Snapshot wiederherstellen.
+
+Gesperrte Snapshots können erst nach Ablauf der Aufbewahrungsfrist gelöscht werden. Wenn sich der Angriff später als Fehlalarm herausstellt, wird der gesperrte Snapshot gelöscht.
+
+Da das System die betroffenen Dateien und den Zeitpunkt des Angriffs identifiziert, ist es möglich, nur die betroffenen Dateien aus verfügbaren Snapshots wiederherzustellen, anstatt das gesamte Volume wiederherzustellen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* erfolgt die Auswahl von *Inventory* und anschließend des Dateisystems, für das Daten wiederhergestellt werden sollen.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Volumes*.
+. Auf der Kachel *Autonomous Ransomware Protection* erfolgt die Auswahl von *Analyze attacks*.
+. Wenn ein Angriff stattgefunden hat, erfolgt in der Tabelle für das entsprechende Volume die Auswahl von *Echter Angriff*.
+. Im Dialogfeld „Daten eines kompromittierten Volumes wiederherstellen“ sind die Anweisungen zum Wiederherstellen auf Dateiebene oder auf Volume-Ebene zu befolgen. In den meisten Fällen werden Dateien und nicht ein gesamtes Volume wiederhergestellt.
+. Nach Abschluss der Wiederherstellung kann *Schließen* ausgewählt werden.
+
+
+.Ergebnis
+Die kompromittierten Daten wurden wiederhergestellt.

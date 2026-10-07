@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: oci/permissions-oci.html 
+keywords: Oracle Cloud Infrastructure NetApp Storage Service,oci nss, permissions, actions 
+summary: Um die Funktionen und Services von NetApp Workload Factory zu nutzen, müssen Sie Berechtigungen erteilen, damit Workload Factory Operationen in Ihrer Cloud-Umgebung durchführen kann. 
+---
+= OCI NetApp Storage Service Berechtigungen für NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die für das Managen von Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS)-Ressourcen mit NetApp Workload Factory erforderlichen Berechtigungen werden überprüft.
+
+
+
+[[how-workload-factory-uses-oci-netapp-storage-service-permissions]]
+== Wie Workload Factory die Berechtigungen von OCI NetApp Storage Service nutzt
+
+Wenn Sie eine mandantenübergreifende Richtlinie erstellen, die die Workload Factory Identität in Ihren Mandanten zulässt, ruft Workload Factory die OCI APIs als diese NetApp-Identität auf, und OCI prüft jede Anfrage anhand der Berechtigungen, die Sie erteilt haben.
+
+Sie geben weder Benutzerpasswörter noch API-Schlüssel weiter. Der Zugriff besteht nur, solange Ihre Richtlinie aktiv ist.
+
+
+
+[[cross-tenancy-trust]]
+== Mandantenübergreifende Vertrauensstellung
+
+NetApp betreibt die `workload-factory-OCI-SN` Gruppe in einem OCI-Mandanten von NetApp. Sie richten im Root Compartment des Mandanten eine mandantenübergreifende Richtlinie ein, die dieser Gruppe einen begrenzten, expliziten Satz von Berechtigungen in Ihrem Mandanten gewährt. Jeder OCI API-Aufruf wird pro Anfrage anhand dieser Vereinbarung geprüft; Sie können sie jederzeit prüfen und widerrufen.
+
+
+
+[[oci-netapp-storage-service-tenancy]]
+=== OCI NetApp Storage Service Mandant
+
+Der Standard-Mandant für OCI NSS ist das Stamm-Compartment Ihres OCI-Mandanten.
+
+Optionalerweise können Sie, wenn Sie das Prinzip der minimalen Berechtigungen anwenden möchten, in jeder Zeile „in tenancy“ durch „in compartment“ <name> ersetzen.
+
+
+
+[[iam-policies-for-oci-nss]]
+== IAM-Richtlinien für OCI NSS
+
+Workload Factory greift erst dann auf Ihren Mandanten in Oracle Cloud Infrastructure (OCI) zu, wenn Sie eine mandantenübergreifende Richtlinie hinzufügen, die den Workload Factory Service zulässt.
+
+Diese Richtlinie wird im Root-Compartment Ihres Mandanten erstellt. Die Richtlinie führt die genauen Berechtigungen auf, die Workload Factory verwenden darf. Jede API-Anfrage wird dagegen geprüft. Die Richtlinie kann in der OCI Console eingesehen und jederzeit widerrufen werden, um den Zugriff zu beenden.
+
+Folgende Berechtigungsrichtlinie ist verfügbar.
+
+* *Anzeigen, planen und analysieren*: Anzeige von Ressourcen des OCI NetApp Storage Service, Informationen zum Systemstatus, Bereitstellung einer fundierten Analyse für Ihre Systeme und Aufzeigen von Einsparpotenzialen.
+
+
+Die erforderlichen Richtlinien:
+
+.Berechtigungsrichtlinien für OCI NetApp Storage Service
+[%collapsible]
+====
+[role="tabbed-block"]
+=====
+.Anzeigen, planen und analysieren
+--
+[source, text]
+----
+Define tenancy NetAppWF as ocid1.tenancy.oc1..<>
+Define group NetAppOpsWF as ocid1.group.oc1..<>
+Admit group NetAppOpsWF of tenancy NetAppWF to inspect tenancies in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read compartments in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read instance-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read metrics in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read log-content in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to use virtual-network-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read file-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to manage functions-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read log-groups in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-storage-pool in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-svm in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-work-request in tenancy
+----
+--
+=====
+====

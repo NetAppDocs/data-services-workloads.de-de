@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: admin/troubleshoot-custom-dashboards-fsx.html 
+keywords: troubleshooting, dashboard errors, dashboard issues, failed creation, failed to load, dashboard not loading 
+summary: Häufig auftretende Probleme mit benutzerdefinierten Dashboards, einschließlich Einrichtungsfehlern, Problemen beim Laden von Daten und Zugriffsproblemen. 
+---
+= Fehlerbehebung bei benutzerdefinierten Dashboards in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Diese Informationen helfen bei der Behebung häufiger Probleme, die beim Erstellen oder Verwenden benutzerdefinierter Dashboards auftreten können.
+
+
+
+[[dashboard-creation-failed]]
+== Dashboard Erstellung fehlgeschlagen
+
+**Problem:** Beim Erstellen eines Dashboards wird die Fehlermeldung „Failed to understand request and generate code“ angezeigt.
+
+**Ursache:** Das System konnte Ihre Anfrage nicht verstehen oder die Visualisierung anhand Ihrer Eingabe nicht erstellen.
+
+**Lösung:** Folgendes kann versucht werden:
+
+* Formulieren Sie Ihre Anfrage mit klareren Details dazu, was Sie überwachen möchten.
+* Mit einer der Beispielaufforderungen in link:create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"] kann begonnen werden.
+* Komplexe Überwachungsanforderungen können in mehrere einfachere Dashboards unterteilt werden.
+* Die Arbeitslasten, Metriken, Zeitbereiche oder Dimensionen, die verfolgt werden sollen, können angegeben werden.
+
+
+
+
+[[dashboard-failed-to-load-data]]
+== Das Dashboard konnte keine Daten laden
+
+**Problem:** Das Dashboard wurde erstellt, aber beim Laden der Daten werden Fehler angezeigt.
+
+**Ursache:** Dies geschieht üblicherweise aufgrund von Berechtigungsproblemen oder nicht verfügbaren Datenquellen.
+
+**Lösung:**
+
+* **Berechtigungen prüfen:** Stellen Sie sicher, dass Ihr Workload Factory-Konto Lesezugriff auf die vom Dashboard verwendeten Workloads und Ressourcen hat. Die Berechtigungsanforderungen sind in link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["AWS Anmeldeinformationen und Berechtigungen"] zu finden.
+* **Anmeldeinformationen überprüfen:** Bestätigen Sie, dass Ihre AWS-Anmeldeinformationen gültig sind und nicht abgelaufen sind. Details sind unter link:../fsx-storage/add-credentials.html["AWS-Anmeldeinformationen hinzufügen"] verfügbar.
+
+
+
+
+[[dashboard-not-loading-or-loading-slowly]]
+== Dashboard lädt nicht oder lädt nur langsam
+
+**Problem:** Das Dashboard lädt langsam oder einige Widgets werden nicht angezeigt.
+
+**Ursache:** Langsame Ladezeiten können durch Netzwerkprobleme, große Datenmengen oder vorübergehende Serviceverzögerungen verursacht werden.
+
+**Lösung:**
+
+* **Überprüfen Sie Ihre Internetverbindung:** Es sollte sichergestellt sein, dass Ihre Internetverbindung stabil ist.
+* **Aktualisieren Sie Ihren Browser:** Die Seite kann neu geladen werden, um zu prüfen, ob das Dashboard korrekt geladen wird.
+* **Browser-Cache und Cookies löschen:** Dies kann dazu beitragen, Ladeprobleme zu beheben, die durch veraltete oder beschädigte Daten verursacht werden.
+* **Warten und erneut versuchen:** Wenn das Problem weiterhin besteht, einige Minuten abwarten und es dann erneut versuchen.
+
+
+
+
+[[missing-dashboards]]
+== Fehlende Dashboards
+
+**Problem:** Ein von Ihnen erstelltes Dashboard wird nicht mehr im Dashboard-Katalog aufgeführt.
+
+**Ursache:** Ein anderer Benutzer in Ihrem Workload Factory-Konto hat sie möglicherweise gelöscht.
+
+**Lösung:**
+
+* Stellen Sie sicher, dass Sie im richtigen Workload Factory Konto angemeldet sind.
+* Fragen Sie andere Benutzer Ihres Kontos, ob jemand das Dashboard gelöscht hat.
+* Falls erforderlich kann das Dashboard anhand der ursprünglichen Anforderungen neu erstellt werden.
+
+
+Alle Benutzer eines Workload Factory Kontos können benutzerdefinierte Dashboards anzeigen und löschen. Bei der Verwaltung gemeinsam genutzter Dashboards ist eine Abstimmung mit Ihrem Team erforderlich.
+
+
+
+[[additional-help]]
+== Weitere Hilfe
+
+Falls weiterhin Probleme mit benutzerdefinierten Dashboards auftreten, enthält link:../get-help.html["Hilfe erhalten"] Informationen zur Kontaktaufnahme mit dem NetApp Support.

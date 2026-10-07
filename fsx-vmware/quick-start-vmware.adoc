@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/quick-start-vmware.html 
+keywords: quick start 
+summary: Erste Schritte mit dem VMware migration advisor, um Ihre aktuelle Infrastruktur mithilfe von Amazon FSx for ONTAP als externe NFS-Datenspeicher in VMware Cloud on AWS zu migrieren. 
+---
+= Schnellstart für die Migration zu VMware Cloud on AWS mithilfe des VMware workloads migration advisor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Erste Schritte mit dem VMware migration advisor, um Ihre aktuelle Infrastruktur mithilfe von Amazon FSx for ONTAP als externe NFS-Datenspeicher in VMware Cloud on AWS zu migrieren.
+
+Bevor Sie beginnen, sollten Sie mit dem link:../fsx-storage/permissions-reference-fsx.html["Berechtigungen für FSx for ONTAP für NetApp Workload Factory"^] vertraut sein.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldung bei Workload Factory
+[role="quick-margin-para"]
+Sie müssen link:../setup/sign-up-and-log-in.html["ein Konto bei Workload Factory einrichten"^] und sich bei der NetApp Console anmelden.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Hinzufügen von Anmeldeinformationen und Berechtigungen
+[role="quick-margin-para"]
+Die Auswahl des Produkts link:../fsx-storage/permissions-reference-fsx.html["Berechtigungsrichtlinien"], das Ihren Anforderungen entspricht.
+
+[role="quick-margin-para"]
+Wenn Sie keine Berechtigungen erteilen, können Sie Workload Factory for Databases verwenden, um teilweise fertiggestellte Codebeispiele zu kopieren.
+
+[role="quick-margin-para"]
+Wenn Sie Berechtigungen erteilen möchten, müssen Sie link:../fsx-storage/add-credentials.html["Anmeldeinformationen manuell zu einem Konto hinzufügen"], einschließlich der Auswahl von Workload-Funktionen wie Databases und AI sowie der Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen.
+
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Informationen zum Hinzufügen von Anmeldeinformationen und Berechtigungen"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"] Hochladen von VM Inventardaten
+[role="quick-margin-para"]
+Im Planungszentrum können Sie Inventardetails zu Ihrer aktuellen VM-Umgebung hochladen. Zum Erfassen Ihrer aktuellen VM-Konfiguration und zum Hochladen der Daten in das Planungszentrum stehen das Datenerfassungsskript, RVTools oder NetApp Data Infrastructure Insights zur Verfügung.
+
+[role="quick-margin-para"]
+link:upload-vm-inventory.html["So laden Sie VM-Inventardaten hoch"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"] Erstellung eines Deployment-Plans mit dem VMware migration advisor
+[role="quick-margin-para"]
+Im VMware migration advisor lassen sich die VMs auswählen, die mithilfe eines Amazon FSx for ONTAP Dateisystems als externe NFS Datastores in die neue VMware Cloud on AWS Infrastruktur migriert werden sollen. Vor dem Speichern des Plans können noch einige Änderungen vorgenommen werden.
+
+[role="quick-margin-para"]
+link:launch-onboarding-advisor.html["Es wird erläutert, wie der VMware migration advisor zum Erstellen eines Deployment-Plans verwendet wird."].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Fünf"]Einsetzen des empfohlenen FSx for ONTAP Dateisystems
+[role="quick-margin-para"]
+Sie setzen das neue FSx for ONTAP Dateisystem ein, das die Datenspeicher für Ihre VMs in Ihrer VMware Cloud on AWS Infrastruktur bereitstellt.
+
+[role="quick-margin-para"]
+link:deploy-fsx-file-system.html["Informationen dazu, wie Sie Ihr neues Dateisystem FSx for ONTAP einsetzen"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Sechs"] Verbindung Ihrer FSx for ONTAP Dateisysteme mit VMware Cloud on AWS
+[role="quick-margin-para"]
+Ihr Software-Defined Data Center (SDDC) bietet Netzwerkoptionen für die Verbindung mit dem FSx for ONTAP Dateisystem durch Nutzung der VPC Peering Funktion, um die Netzwerkkonnektivität auf die externen NFS Storage-Volumes zu erweitern.
+
+[role="quick-margin-para"]
+link:connect-sddc-to-fsx.html["Informationen zum Verbinden Ihrer FSx for ONTAP Dateisysteme"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sieben"] Migration von Daten von Ihren alten Systemen auf Ihre neuen FSx for ONTAP Dateisysteme
+[role="quick-margin-para"]
+Zum Verschieben Ihrer Daten vom Storage Ihrer alten virtuellen Maschinen auf die mit Ihren neuen virtuellen Maschinen verbundenen FSx for NetApp ONTAP volumes eignet sich ein externes Tool wie VMware HCX (Hybrid Cloud Extension).
+
+[role="quick-margin-para"]
+link:migrate-data.html["Weitere Informationen zur Migration Ihrer Daten"].

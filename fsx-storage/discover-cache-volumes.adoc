@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/discover-cache-volumes.html 
+keywords: discover cache volume, FlexCache technology, ONTAP FlexCache, FSx for ONTAP volume 
+summary: Sie können Cache-Volumes, die mit Cache-Beziehungen verknüpft sind, entdecken und anzeigen, ohne die NetApp Workload Factory Konsole zu verlassen. 
+---
+= Cache-Volumes in NetApp Workload Factory erkennen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Ermittlung und Anzeige von Cache Volumes, die mit Cache-Beziehungen verknüpft sind, ist möglich, ohne die NetApp Workload Factory Konsole zu verlassen. Cache-Beziehungen werden auch als ONTAP FlexCache Beziehungen bezeichnet. Workload Factory erkennt vorhandene Cache-Beziehungen mithilfe der FlexCache Technologie, der Remote-Caching-Funktion von NetApp ONTAP, die den Datenzugriff beschleunigt und WAN-Latenz, Bandbreite und Kosten für leseintensive Workloads reduziert, insbesondere wenn Clients wiederholt auf dieselben Daten zugreifen müssen.
+
+link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-flexcache.html["Weitere Informationen zur Datenreplikation mit FlexCache."^]
+
+.Über diese Aufgabe
+Die Link-Zuordnung ist erforderlich, um Cache-Beziehungen zu ermitteln.
+
+Eine Cache-Beziehung kann zwischen Volumes auf zwei ONTAP Systemen bestehen, beispielsweise zwischen einem FSx for ONTAP Dateisystem und einem Cloud Volumes ONTAP System. Auch innerhalb eines einzelnen FSx for ONTAP Dateisystems kann eine Cache-Beziehung zwischen verschiedenen Volumes bestehen.
+
+.Bevor Sie beginnen
+Vor Beginn sind folgende Punkte zu beachten.
+
+* Sie müssen eine Verknüpfung herstellen, um Cache-Beziehungen in einem Dateisystem zu ermitteln. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+* Es muss eine bestehende Cache-Beziehung vorliegen.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* wird die Registerkarte *Cache relationships* ausgewählt.
+. Ihre Cache-Volumes sind in der Tabelle aufgeführt. Die Tabelle enthält folgende Informationen zu jedem Cache-Volume:
++
+** *Ursprungscluster*: Der Ursprungs- oder Quellcluster der FlexCache Beziehung.
+** *Ursprungs-Volume*: Das Ursprungs- oder Quell-Volume der FlexCache Beziehung.
+** *Ursprungs Storage VM*: Die Ursprungs- oder Quell-Storage VM des Volumes.
+** *Cache Volume*: Das Cache- oder Ziel-Volume der FlexCache Beziehung.
+** *Cache storage VM*: Die Cache- oder Ziel-Storage-VM des Volumes.
+** *Status*: Der Status der FlexCache Beziehung.
+** *Verfügbarer Storage im Cache*: Die Menge des verfügbaren Storage auf dem Cache Volume.
+** *Cache-Dateisystem*: Das Dateisystem des Cache-Volumes.
+** *Schreibmodi*: Der Schreibmodus der FlexCache Beziehung.
+** *DR Cache*: Gibt an, ob die FlexCache Beziehung ein Disaster-Recovery-Cache (DR-Cache) ist.
+** *Exportrichtlinie*: Die Exportrichtlinie des Cache-Volumes.
+
+
+
+
+.Verwandte Informationen
+link:manage-cache-volumes.html["Verwalten von Cache Volumes"^]

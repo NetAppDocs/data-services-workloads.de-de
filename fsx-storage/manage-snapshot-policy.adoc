@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshot-policy.html 
+keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
+summary: Die Verwaltung von Snapshot-Richtlinien für FSx for ONTAP Volumes in Workload Factory. Eine Snapshot-Richtlinie definiert, wie das System Snapshots für ein Volume erstellt. 
+---
+= Verwalten von Snapshot-Richtlinien für Volumes in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Verwaltung von Snapshot-Richtlinien für FSx for ONTAP Volumes in Workload Factory. Eine Snapshot-Richtlinie definiert, wie das System Snapshots für ein Volume erstellt.
+
+Snapshot-Verwaltungsvorgänge wie das Zuweisen, Ändern und Löschen von Snapshot-Richtlinien für Volumes in einem FSx for ONTAP Dateisystem werden auf der Ebene der Storage VM verwaltet. Snapshot-Richtlinien können von einer einzelnen Storage VM oder von allen Storage VMs gemeinsam genutzt werden.
+
+Für einige Verwaltungsaufgaben ist es erforderlich, eine Verknüpfung mit dem FSx for ONTAP Dateisystem herzustellen. link:../setup/links-overview.html["Informationen zu Workload Factory Links"^].
+
+Standardmäßig ist jedes Volume der  `default`Snapshot-Richtlinie des Dateisystems zugeordnet. Wir empfehlen, diese Richtlinie für die meisten Workloads zu verwenden.
+
+
+
+[[assign-a-snapshot-policy-to-a-volume]]
+== Zuweisung einer Snapshot-Richtlinie zu einem Volume
+
+Sie können einem einzelnen Volume eine Snapshot-Richtlinie zuweisen, um geplante Snapshots für das Volume zu erstellen.
+
+.Bevor Sie beginnen
+Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zuzuweisen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im Aktionsmenü des Dateisystems, das das Volume enthält, dem Sie eine Snapshot-Richtlinie zuweisen möchten, ist *Manage* auszuwählen.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Storage VMs*.
+. Auf der Registerkarte *Speicher-VMs* wird im Aktionsmenü der Storage VM, die das mit geplanten Snapshots zu schützende Volume enthält, *Erweiterte Aktionen* und anschließend *Snapshot-Richtlinien verwalten* ausgewählt.
+. Auf der Seite „Snapshot-Richtlinienverwaltung“ erfolgt die Auswahl von *Richtlinie dem Volume zuweisen* über das Aktionsmenü der Snapshot-Richtlinie.
+. Im Dialogfeld „Snapshot-Richtlinie zuweisen“ erfolgt die Auswahl einer Snapshot-Richtlinie für das Volume sowie die Überprüfung des Richtlinienzeitplans.
++
+Wenn die Richtlinie unveränderliche Snapshots enthält und Sie sie verwenden möchten, müssen Sie die Erklärung akzeptieren.
+
+. *Assign* ist auszuwählen.
+
+
+.Ergebnis
+Die Snapshot-Richtlinie ist dem Volume zugewiesen.
+
+
+
+[[change-a-snapshot-policy]]
+== Ändern einer Snapshot-Richtlinie
+
+Sie können den Namen, den Zeitplan und die Anzahl der aufzubewahrenden Kopien der Snapshot-Richtlinie ändern sowie unveränderliche Snapshots aktivieren oder deaktivieren. Die gemeinsame Nutzung von Richtlinien über Storage VMs hinweg kann nicht aktiviert oder deaktiviert werden. Diese Option ist nur bei der Erstellung der Snapshot-Richtlinie verfügbar.
+
+.Bevor Sie beginnen
+Um vorhandene Snapshot-Richtlinien anzuzeigen, muss ein Link zugeordnet werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im Dateisystem erfolgt die Auswahl des Aktionsmenüs und anschließend von *Verwalten*.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Storage VMs*.
+. Auf der Registerkarte *Speicher-VMs* wird im Aktionsmenü der Storage VM, die das mit geplanten Snapshots zu schützende Volume enthält, *Erweiterte Aktionen* und anschließend *Snapshot-Richtlinien verwalten* ausgewählt.
+. Auf der Seite zur Snapshot-Richtlinienverwaltung ist im Menü „Aktionen“ für die zu ändernde Snapshot-Richtlinie *Bearbeiten* auszuwählen.
+. Im Dialogfeld „Snapshot-Richtlinie bearbeiten“ können die erforderlichen Änderungen an der Snapshot-Richtlinie vorgenommen werden.
+. *Anwenden* auswählen.
+
+
+.Ergebnis
+Die Snapshot-Richtlinie wurde aktualisiert.
+
+
+
+[[enable-immutable-snapshots]]
+== Aktivierung unveränderlicher Snapshots
+
+Snapshots sperren, damit sie während der Aufbewahrungsfrist nicht gelöscht werden.
+
+.Bevor Sie beginnen
+Sie müssen eine Verknüpfung herstellen, um unveränderliche Snapshots zu aktivieren. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Die Auswahl erfolgt im Aktionsmenü des Volumes, für das Snapshots gesperrt werden sollen.
+. Die Auswahl erfolgt über *Datenschutzaktionen*, *Snapshots* und anschließend *Snapshot unveränderlich machen*.
+. Im Dialogfeld „Snapshot unveränderlich erstellen“ erfolgt Folgendes:
++
+.. *Snapshot-Name*: Auswahl des zu sperrenden Snapshots.
+.. Die *Aufbewahrungsfrist* wird in Stunden, Tagen, Monaten oder Jahren festgelegt.
+.. Die Aussage akzeptieren.
+
+
+. *Anwenden* auswählen.
+
+
+.Ergebnis
+Der Volume Snapshot ist nun gesperrt.
+
+
+
+[[enable-long-term-snapshot-retention-in-netapp-workload-factory]]
+== Langfristige Snapshot-Aufbewahrung in NetApp Workload Factory aktivieren
+
+In NetApp Workload Factory können Sie Snapshots zur Langzeitaufbewahrung aktivieren, wodurch Sie bestimmte Snapshots für die langfristige Notfallwiederherstellung replizieren können.
+
+Die Langzeitaufbewahrung ermöglicht den Weiterbetrieb von Geschäftsservices auch im Falle eines vollständigen Standortausfalls und unterstützt das transparente Failover von Anwendungen mithilfe einer sekundären Kopie.
+
+Die gleichen Schritte gelten auch für das Aktivieren und Bearbeiten von Snapshots zur Langzeitaufbewahrung.
+
+Wenn ein lokaler ONTAP Cluster das Ziel der Replikationsbeziehung ist, wird das Ändern von Snapshots für die Langzeitaufbewahrung nicht unterstützt.
+
+
+NOTE: Die Bearbeitung der Langzeitaufbewahrung ist beim Replizieren von Storage-VM-Daten und Konfigurationseinstellungen nicht möglich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* wählen Sie zunächst *Inventory* und anschließend im Aktionsmenü des zu aktualisierenden Dateisystems *Manage* aus.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ können Sie das Aktionsmenü des Zeitplans der Replikationsbeziehung auswählen, der geändert werden soll.
+. Die Option *Langzeitspeicherung bearbeiten* auswählen.
+. Im Dialogfeld „Langzeitaufbewahrung bearbeiten“ können Sie Snapshots für die Langzeitaufbewahrung aktivieren oder deaktivieren.
+. Wenn Sie Snapshots für die langfristige Aufbewahrung deaktivieren, wird dieser Vorgang durch Auswahl von *Apply* abgeschlossen.
+. Wenn Sie Snapshots für die Langzeitaufbewahrung aktivieren, können Sie entweder eine bestehende Richtlinie auswählen oder eine neue Richtlinie erstellen.
++
+.. Zur Verwendung einer bestehenden Richtlinie erfolgt die Auswahl im Dropdown-Menü.
+.. Für die Erstellung einer neuen Richtlinie sind folgende Angaben erforderlich:
++
+... *Richtlinienname*: Geben Sie einen Richtliniennamen ein.
+... *Snapshot-Richtlinien*: Auswahl einer oder mehrerer Snapshot-Richtlinien.
+... *Zu behaltende Kopien*: Anzahl der Snapshot-Kopien, die auf dem Zieldateisystem beibehalten werden sollen.
+
+
+
+
+. *Anwenden* auswählen.
+
+
+
+
+[[remove-a-snapshot-policy-from-a-volume]]
+== Eine Snapshot-Richtlinie von einem Volume entfernen
+
+Eine Snapshot-Richtlinie kann von einem Volume entfernt werden, wenn keine Snapshots des Volumes mehr benötigt werden oder wenn eine Snapshot-Richtlinie gelöscht werden soll, die mehreren Volumes zugewiesen ist. Um <<Löschen einer Snapshot-Richtlinie,eine Snapshot-Richtlinie löschen>>, muss eine solche Richtlinie, die mehr als einem Volume zugewiesen ist, manuell aus allen Volumes entfernt werden.
+
+.Bevor Sie beginnen
+Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zu entfernen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* wählen Sie zunächst *Inventory* und anschließend im Aktionsmenü des zu aktualisierenden Dateisystems *Manage* aus.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Storage VMs*.
+. Auf der Registerkarte *Speicher-VMs* wird im Aktionsmenü der Storage VM, die das mit geplanten Snapshots zu schützende Volume enthält, *Erweiterte Aktionen* und anschließend *Snapshot-Richtlinien verwalten* ausgewählt.
+. Auf der Seite „Snapshot-Richtlinienverwaltung“ erfolgt die Auswahl von *Richtlinie dem Volume zuweisen* über das Aktionsmenü der Snapshot-Richtlinie.
+. Im Dialogfeld „Snapshot-Richtlinie zuweisen“ entfernt die Auswahl von *Keine* die Snapshot-Richtlinie.
+. *Assign* ist auszuwählen.
+
+
+.Ergebnis
+Das Volume hat keine Snapshot-Richtlinie mehr.
+
+
+
+[[delete-a-snapshot-policy]]
+== Löschen einer Snapshot-Richtlinie
+
+Eine Snapshot-Richtlinie kann gelöscht werden, wenn sie nicht mehr benötigt wird.
+
+Wenn eine Snapshot-Richtlinie mehreren Volumes zugewiesen ist, müssen Sie manuell <<Eine Snapshot-Richtlinie von einem Volume entfernen,es entfernen>> von allen Volumes löschen, um die Snapshot-Richtlinie zu löschen. Alternativ können Sie <<Zuweisung einer Snapshot-Richtlinie zu einem Volume,eine andere Snapshot-Richtlinie zuweisen>> für die Volumes tun.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü *FSx for ONTAP* wählen Sie zunächst *Inventory* und anschließend im Aktionsmenü des zu aktualisierenden Dateisystems *Manage* aus.
+. In der Dateisystemübersicht erfolgt die Auswahl der Registerkarte *Storage VMs*.
+. Die Auswahl erfolgt auf der Registerkarte *Storage VMs* im Aktionsmenü der Storage VM mit der zu löschenden Snapshot-Richtlinie: zuerst *Advanced actions*, dann *Manage snapshot policies*.
+. Auf der Seite für die Snapshot-Richtlinienverwaltung erfolgt das Löschen über das Aktionsmenü der entsprechenden Snapshot-Richtlinie durch Auswahl von *Löschen*.
+. Im Dialogfeld „Löschen“ erfolgt das Löschen der Richtlinie über *Löschen*.
+

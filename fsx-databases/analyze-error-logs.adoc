@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/analyze-error-logs.html 
+keywords: analyze error logs, errors, error severity, Microsoft SQL Server error logs, Oracle database error logs, smart analysis, Agentic AI 
+summary: Analyse von Fehlerprotokollen innerhalb von Workload Factory for Databases. 
+---
+= Fehlerprotokolle in der NetApp Workload Factory für Datenbanken analysieren
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mit dem intelligenten Fehlerprotokollanalysator lassen sich Fehlerprotokolle von Microsoft SQL Server und Oracle Datenbanken automatisch interpretieren, sodass Probleme schnell identifiziert und behoben werden können. Die Agentic AI-basierte Analyse erfordert eine Integration mit Amazon Bedrock.
+
+
+
+[[about-this-task]]
+== Über diese Aufgabe
+
+Die Analyse und Behebung von Fehlerprotokollen tragen zur Aufrechterhaltung von Systemstatus und Performance von SQL Server Instanzen und Oracle Datenbanken bei. Die effektive Interpretation von Fehlerprotokollen erfordert sorgfältige Analyse und Fachkenntnisse. Manuelle Überwachung, Fehlererkennung und Ursachenanalyse sind zeitaufwendig und fehleranfällig. Diese Herausforderungen können die Problemlösung verzögern, Ausfallzeiten verlängern und zu betrieblichen Ineffizienzen führen. Der intelligente Fehlerprotokollanalysator begegnet diesen Herausforderungen mit folgenden wesentlichen Vorteilen:
+
+* Intelligente Gruppierung: Fehler werden intelligent nach Einzigartigkeit, Schweregrad und Kategorie konsolidiert, wodurch der Prozess der Fehlerbehebung vereinfacht und schnellere, effektivere Lösungen ermöglicht werden.
+* KI-gestützte Untersuchung: KI analysiert Fehler proaktiv und liefert klare, umsetzbare Erkenntnisse, die die Problemidentifizierung beschleunigen, ohne tiefgreifende Fachkenntnisse zu erfordern.
+* Fehleranreicherung: Ergänzt Fehlerprotokolle um externe Verweise und bietet so kontextbezogene Klarheit, um das Verständnis und die Entscheidungsfindung zu verbessern.
+* Bewährte Verfahren zur Fehlerbehebung: Bietet maßgeschneiderte Empfehlungen zur Behebung von Problemen bei SQL Server-Workloads, die auf FSx for ONTAP ausgeführt werden, und ermöglicht es Benutzern aller Erfahrungsstufen, Probleme sicher zu lösen.
+
+
+Wenn Sie den Fehlerprotokollanalysator verwenden, behalten Sie die volle Kontrolle über Ihre Umgebung und profitieren gleichzeitig von fortschrittlicher KI-Analyse.
+
+Um den Fehlerprotokollanalysator zu verwenden, müssen Sie Amazon Bedrock aktivieren, das von Workload Factory verwendete Modell auswählen, einen privaten Endpunkt zur Verbindung mit Amazon Bedrock erstellen, Berechtigungen hinzufügen und eine Unternehmenslizenz erstellen.
+
+link:https://aws.amazon.com/bedrock/pricing/["Preise für Amazon Bedrock"^]
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und die KI-Analyse kann nicht genutzt werden. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"^].
+
+
+
+[[data-privacy-and-security]]
+=== Datenschutz und Datensicherheit
+
+Diese Funktion gewährleistet Datenschutz und Datensicherheit durch folgende Maßnahmen:
+
+.Datenhoheit
+Protokolldaten und Aggregationen verbleiben innerhalb Ihres AWS-Kontos und werden über einen privaten VPC-Endpunkt (Amazon Bedrock) übertragen, wodurch eine Offenlegung im öffentlichen Internet ausgeschlossen ist.
+
+.Kein KI-Training
+Kundendaten werden nicht zum Trainieren oder Verbessern von Modellen verwendet. Amazon Bedrock verarbeitet Protokolle in Echtzeit, trainiert aber nicht mit Ihren Daten. Die Ergebnisse werden nur zu Referenzzwecken in Ihrer Umgebung gespeichert. Weitere Details enthält die link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Amazon Bedrock Datenschutzdokumentation"^].
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+Um den Fehlerprotokollanalysator verwenden zu können, müssen Sie folgende Voraussetzungen erfüllen:
+
+* Sie müssen link:../fsx-storage/add-credentials.html["Berechtigungen für _Ansicht, Planung und Analyse_ erteilen"^] in Ihrem AWS-Konto, um einen neuen Datenbank-Host in Workload Factory zu erstellen.
+* link:../fsx-databases/register-instance.html["Registrierung von Ressourcen"^] in Workload Factory.
+* Folgende Voraussetzungen müssen ebenfalls erfüllt sein. Im Rahmen der Schritte zur Analyse von Protokollfehlern werden Sie aufgefordert, diese Voraussetzungen zu erfüllen.
++
+** *Amazon Bedrock Aktivierung*
++
+Amazon Bedrock ist erforderlich, damit der auf dem SQL Server- oder Oracle-Host von Workload Factory ausgeführte KI-Agent eine nahtlose Verbindung zu Bedrock herstellen und KI-basierte Erkenntnisse für die identifizierten Fehlerprotokolle abrufen kann.
+
+** *Netzwerk*
++
+Der Amazon Bedrock VPC endpoint gewährleistet die private Kommunikation Ihres SQL Server- oder Oracle-Hosts mit den Amazon Bedrock APIs und verhindert die Erreichbarkeit über das öffentliche Internet. Der Amazon Bedrock VPC endpoint muss dem Subnetz des SQL Server- oder Oracle-Hosts zugeordnet sein (Beispiel: vpce-050cb2f33a1380ffd).
+
+** *AWS IAM Berechtigungen*
++
+Für die EC2-Instanzprofilrolle, die dem SQL Server- oder Oracle-Host zugeordnet ist, und für die AWS-Anmeldeinformationen, die mit Workload Factory verknüpft sind, sind die folgenden Berechtigungen erforderlich.
+
++
+*** EC2-Instanzprofilrolle mit der Berechtigung "bedrock:InvokeModel"
++
+Diese Berechtigung ermöglicht es der EC2-Instanz auf dem entsprechenden SQL Server oder Oracle Host, Bedrock Modelle für die proaktive Fehleranalyse und Hinweise zur Fehlerbehebung aufzurufen. Dieses Profil gewährleistet zudem einen sicheren KI-Zugriff für maßgeschneiderte Erkenntnisse.
+
+*** AWS-Anmeldeinformationen, die mit Workload Factory verknüpft sind: Berechtigungen "bedrock:GetFoundationModelAvailability" und "bedrock:ListInferenceProfiles"
++
+Diese Berechtigungen überprüfen die Verfügbarkeit und Konfiguration des Modells in der Region des SQL Server oder Oracle Hosts und gewährleisten eine zuverlässige, regionsspezifische Performance.
+
+
+
+** *Oracle Benutzerberechtigung*
++
+Die folgende Berechtigung gewährt Lesezugriff auf erweiterte Diagnosewarnungen und ermöglicht so die Extraktion von Fehler-/Trace-Details aus Protokollen zur KI-gestützten Mustererkennung und -behebung: `V$DIAG_ALERT_EXT`. Diese Berechtigung ist nur für Oracle Datenbanken erforderlich.
+
+
+
+
+
+
+
+[[analyze-error-logs]]
+== Fehlerprotokolle analysieren
+
+Mit der Workload Factory console lassen sich SQL Server-Fehlerprotokolle analysieren.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. Im Menü Datenbanken wird *Inventar* ausgewählt.
+. Im Inventar erfolgt die Auswahl von *Microsoft SQL Server* oder *Oracle* als Typ der Datenbank-Engine.
+. Auf der Registerkarte „Instanzen“ können Sie die spezifische SQL Server Instanz oder Oracle Datenbank, die Sie analysieren möchten, suchen und dann im Menü *Fehler untersuchen* auswählen.
+. Auf der Registerkarte *Fehleruntersuchung* sind die folgenden Voraussetzungen wie in der Konsole beschrieben zu erfüllen:
++
+** Amazon Bedrock
+** Netzwerk: Privater Endpunkt für Amazon Bedrock
+** Berechtigungen für die EC2-Instanzprofilrolle
+** Anmeldeinformationen im Zusammenhang mit Workload Database Management (wlmdb)
+
+
+. Wenn die Voraussetzungen erfüllt sind, steht mit *Investigate now* der Fehlerprotokollanalysator zur Verfügung, um Einblicke in Ihre SQL Server-Fehlerprotokolle zu gewinnen.
++
+Nach dem Scan zeigt die Konsole Fehler an und bietet damit einen umfassenden Überblick über die vom Smart Fehlerprotokollanalysator erkannten Probleme.
+
+. Mit Filtern können Sie die angezeigten Fehler anhand von Kriterien wie Schweregrad, Zeitrahmen und Fehlercode oder anhand infrastrukturorientierter Tags wie Compute, Storage, Netzwerk und Sicherheit eingrenzen.
+. Eine Überprüfung der detaillierten Fehlerinformationen, einschließlich der ursprünglichen Fehlermeldung, der KI-basierten Erklärung und der vorgeschlagenen Schritte zur Behebung der Fehler, ist möglich.
+

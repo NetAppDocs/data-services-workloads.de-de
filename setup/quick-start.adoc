@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: setup/quick-start.html 
+keywords: quick start 
+summary: Der Einstieg in Workload Factory erfolgt durch die Registrierung und die Erstellung eines Kontos in der NetApp Console sowie durch das Hinzufügen von Anmeldedaten des Cloud-Anbieters, damit Workload Factory Ihre Ressourcen direkt managen und Ihre Workloads optimieren kann. 
+---
+= Schnellstart für NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory ist für Benutzer als Cloud-Datendienst über NetApp Console zugänglich. Der Einstieg in Workload Factory erfolgt durch die Registrierung und die Erstellung eines Kontos in NetApp Console sowie durch das Hinzufügen von Anmeldeinformationen für den Cloud-Provider, damit Workload Factory Ihre Ressourcen direkt managen und Ihre Workloads optimieren kann.
+
+Bevor Sie beginnen, sollten Sie mit link:learn-about-workload-factory.html["Workload Factory"] vertraut sein.
+
+
+
+[[sign-up-and-log-in-to-workload-factory-from-netapp-console]]
+== Registrierung und Anmeldung bei Workload Factory über die NetApp Console
+
+link:sign-up-and-log-in.html["Registrierung und Anmeldung bei Workload Factory über die NetApp Console"]
+
+Im nächsten Schritt erfolgt der Einstieg über den Link *Quick start* Ihres Cloud-Providers.
+
+
+
+[[get-started-with-amazon-fsx-for-netapp-ontap]]
+== Erste Schritte mit Amazon FSx for NetApp ONTAP
+
+link:../fsx-storage/quick-start-fsx.html["Schnellstart für Amazon FSx for NetApp ONTAP"]
+
+
+
+[[get-started-with-oci-netapp-storage-service]]
+== Erste Schritte mit OCI NetApp Storage Service
+
+link:../oci/quick-start-oci.html["Schnellstart für OCI NetApp Storage Service"]
+
+
+
+[[get-started-with-google-cloud-netapp-volumes]]
+== Erste Schritte mit Google Cloud NetApp Volumes
+
+link:../gcnv/quick-start-gcnv.html["Schnellstart für Google Cloud NetApp Volumes"]

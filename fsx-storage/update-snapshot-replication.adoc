@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/update-snapshot-replication.html 
+keywords: update snapshot data, replication 
+summary: Snapshot-Daten, die zwischen Quell- und Ziel-Volumes in einer Replikationsbeziehung übertragen werden, lassen sich jederzeit manuell aktualisieren. 
+---
+= Replikations-Snapshot-Daten in NetApp Workload Factory aktualisieren
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Eine Replikationsbeziehung verfügt über einen festgelegten Replikationszeitplan, aber Sie können die zwischen Quell- und Ziel-Volumes übertragenen Snapshot-Daten in NetApp Workload Factory jederzeit manuell aktualisieren.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Wählen Sie in *FSx for ONTAP* das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Verwalten*.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ das Aktionsmenü der zu aktualisierenden Replikationsbeziehung auswählen.
+. Die Option *Jetzt aktualisieren* auswählen.
+. Im Dialogfeld „Aktualisieren“ ist *Jetzt aktualisieren* zu wählen.
+

@@ -1,0 +1,219 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-replication.html 
+keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
+summary: Replikationsbeziehungen in NetApp Workload Factory verwalten. 
+---
+= Verwalten Sie Ihre Replikationsbeziehungen in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Verwalten Sie Ihre Replikationsbeziehungen in NetApp Workload Factory. Sie können Replikationsbeziehungen zwischen Quell- und Ziel-Volumes anhalten, fortsetzen, umkehren, stoppen und löschen. Außerdem können Sie den Replikationszeitplan des Quell-Volumes ändern und die maximale Transferrate für Ihre Replikationsbeziehungen begrenzen.
+
+
+
+[[change-the-replication-schedule-of-a-source-volume]]
+== Änderung des Replikationszeitplans eines Quell-Volumes
+
+Änderung des Replikationszeitplans des Quell-Volumes in einer Replikationsbeziehung in NetApp Workload Factory.
+
+Die Häufigkeit der Übertragung von Snapshots vom Quell-Volume auf das replizierte Volume richtet sich nach den erforderlichen Recovery Point Objectives (RPOs).
+
+Wenn ein lokaler ONTAP Cluster das Ziel der Replikationsbeziehung ist, kann der Replikationszeitplan nicht geändert werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ können Sie das Aktionsmenü des Zeitplans der Replikationsbeziehung auswählen, der geändert werden soll.
+. Die Auswahl erfolgt über *Replikationsintervall bearbeiten*.
+. Im Dialogfeld „Replikationsintervall bearbeiten“ lässt sich die Häufigkeit der Snapshot-Übertragung vom Quell-Volume auswählen. Zur Auswahl stehen die folgenden Häufigkeiten:
++
+** Alle 5 Minuten
+** Stündlich
+** Alle 8 Stunden
+** Täglich
+** Wöchentlich
+
+
+. *Anwenden* auswählen.
+
+
+
+
+[[limit-the-max-transfer-rate-of-a-replication-relationship]]
+== Begrenzung der maximalen Transferrate einer Replikationsbeziehung
+
+Die Begrenzung der maximalen Transferrate ist optional, aber empfehlenswert. Ohne eine Begrenzung könnten die Netzwerk- und Applikations-Performance sinken.
+
+Alternativ empfehlen wir für kritische Workloads, beispielsweise solche, die primär für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate für FSx for ONTAP Dateisysteme.
+
+.Bevor Sie beginnen
+Dabei ist zu berücksichtigen, wie viel Bandbreite für die Replikation zugewiesen werden soll.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ ist das Aktionsmenü der Replikationsbeziehung auszuwählen, für die die maximale Transferrate begrenzt werden soll.
+. Danach erfolgt die Auswahl von *Maximale Transferrate bearbeiten*.
+. Im Dialogfeld „Maximale Transferrate bearbeiten“ wird *Begrenzt* ausgewählt und das maximale Übertragungslimit in MB/s eingegeben.
++
+Alternativ können Sie *Unbegrenzt* auswählen.
+
+. *Anwenden* auswählen.
+
+
+
+
+[[manually-update-snapshot-data-in-a-replication-relationship]]
+== Snapshot-Daten in einer Replikationsbeziehung manuell aktualisieren
+
+Eine Replikationsbeziehung verfügt über einen festgelegten Replikationszeitplan, aber Sie können die zwischen Quell- und Ziel-Volumes übertragenen Snapshot-Daten in NetApp Workload Factory jederzeit manuell aktualisieren.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ das Aktionsmenü der zu aktualisierenden Replikationsbeziehung auswählen.
+. Wählen Sie *Aktualisieren*.
+. Im Dialogfeld „Aktualisieren“ wählen Sie *Aktualisieren* aus.
+
+
+
+
+[[pause-a-replication-relationship]]
+== Replikationsbeziehung unterbrechen
+
+Durch das Anhalten einer Replikationsbeziehung werden geplante Replikationsaktualisierungen vom Quell-Volume zum Ziel-Volume beendet. Das Ziel-Volume wechselt von schreibgeschützt zu lesen/schreiben. Beide Volumes verwenden weiterhin den neuesten Replikations-Snapshot als neue Basis für die spätere Resynchronisierung.
+
+.Bevor Sie beginnen
+Wenn Sie eine laufende Übertragung anhalten, bleibt die Übertragung davon unberührt, und die Beziehung wechselt bis zum Abschluss der Übertragung in den Status „Quiescing“. Wenn die aktuelle Übertragung abbricht, ist sie nun eine zukünftige Übertragung und wird nicht neu gestartet.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ können Sie im Aktionsmenü die Replikationsbeziehung auswählen, die angehalten werden soll.
+. *Pause (Quiesce)* ist auszuwählen.
+. Im Dialogfeld *Beziehung stilllegen* wählen Sie die Option *Stilllegen*.
+
+
+.Ergebnis
+Die Beziehung wird angehalten, und ihr Status lautet „Pausiert“.
+
+
+
+[[resume-a-paused-replication-relationship]]
+== Eine pausierte Replikationsbeziehung fortsetzen
+
+Wenn Sie eine Replikationsbeziehung wiederherstellen, werden alle Änderungen am Ziel-Volume, die während der Unterbrechung der Replikation vorgenommen wurden, gelöscht. Das Ziel-Volume wechselt vom lesen/schreiben in den Nur-Lese-Modus und empfängt wieder Aktualisierungen vom Quell-Volume im geplanten Replikationsintervall.
+
+
+NOTE: Alle Daten, die zwischen der letzten Datenreplizierung und dem Zeitpunkt, zu dem das ursprüngliche Quell-Volume deaktiviert wird, auf das ursprüngliche Quell-Volume geschrieben werden, bleiben nicht erhalten.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ erfolgt die Auswahl der fortzusetzenden Replikationsbeziehung über das Aktionsmenü.
+. *Resume* wird ausgewählt.
+. Im Dialogfeld „Resume relationship“ *Resume* auswählen.
+
+
+.Ergebnis
+Die Beziehung wird fortgesetzt, und ihr Status wird als "Replicated" angezeigt.
+
+
+
+[[reverse-a-replication-relationship]]
+== Umkehrung einer Replikationsbeziehung
+
+Eine Replikationsbeziehung umkehren, sodass das Ziel-Volume zum Quell-Volume wird.
+
+Folgende umgekehrte Operationen werden unterstützt:
+
+* Zwei FSx für ONTAP Dateisysteme
+* Ein FSx for ONTAP Dateisystem und ein lokales ONTAP System
+
+
+Nachdem Sie die Replikation angehalten und Änderungen am Ziel-Volume vorgenommen haben, können Sie diese Änderungen zurück auf das Quell-Volume replizieren. Dieser Vorgang ist in einem Disaster-Recovery-Szenario üblich, in dem Sie eine Zeit lang auf dem Ziel-Volume arbeiten und anschließend die Rollen der Volumes wechseln möchten.
+
+Wenn Sie eine Replikation umkehren und fortsetzen, werden die Quell- und Zielrollen Ihrer Volumes vertauscht; das Ziel-Volume wird zum neuen Quell-Volume und das Quell-Volume zum neuen Ziel-Volume. Der Umkehrvorgang überschreibt außerdem den Inhalt des neuen Ziel-Volumes mit dem Inhalt des neuen Quell-Volumes. Wenn Sie eine Replikation zweimal umkehren, stellt sich die ursprüngliche Replikationsrichtung wieder her.
+
+[]
+====
+HINWEIS:
+
+* Alle Daten, die zwischen der letzten Datenreplizierung und dem Zeitpunkt, zu dem das ursprüngliche Quell-Volume deaktiviert wird, auf das ursprüngliche Quell-Volume geschrieben werden, bleiben nicht erhalten.
+* Die umgekehrte Replikation ist beim Replizieren von Storage-VM-Daten und Konfigurationseinstellungen nicht verfügbar.
+
+
+====
+.Bevor Sie beginnen
+Es ist wichtig, dass Sie die aktuelle und zukünftige Rolle Ihrer Quell- und Ziel-Volumes kennen, da Änderungen auf dem neuen Ziel-Volume durch das neue Quell-Volume überschrieben werden. Bei falscher Verwendung kann es zu unbeabsichtigtem Datenverlust kommen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ ist das Aktionsmenü der Replikationsbeziehung auszuwählen, die umgekehrt werden soll.
+. Die Auswahl erfolgt über *Reverse relationship*.
+. Im Dialogfeld „Beziehung umkehren“ erfolgt die Auswahl der Option *Umkehren*.
+
+
+
+
+[[stop-a-replication-relationship]]
+== Eine Replikationsbeziehung beenden
+
+Eine Replikationsbeziehung in NetApp Workload Factory wird beendet. Geplante Replikationsaktualisierungen vom Quellvolume zum Ziel-Volume werden dadurch angehalten. Das Ziel-Volume wechselt von schreibgeschützt zu lesen/schreiben.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ können Sie das Aktionsmenü der Replikationsbeziehung auswählen, die beendet werden soll.
+. *Break* auswählen.
+. Im Dialogfeld „Replikation unterbrechen“ wird die Option *Unterbrechen* ausgewählt.
+
+
+.Ergebnis
+Der Replikationsstatus des Volumes ändert sich in *Broken*. Das Ziel-Volume wird beschreibbar.
+
+
+
+[[delete-a-replication-relationship]]
+== Eine Replikationsbeziehung löschen
+
+Löschen einer Replikationsbeziehung in NetApp Workload Factory. Beim Löschen einer Replikationsbeziehung wird die Replikationsbeziehung zwischen dem Quell- und dem Ziel-Volume entfernt. Nach dem Löschen der Replikationsbeziehung existieren beide Volumes weiterhin unabhängig voneinander mit den aktuell enthaltenen Daten.
+
+Wenn Sie eine Replikationsbeziehung löschen, löscht FSx for ONTAP auch die gemeinsamen Replikations-Snapshots des Quell- und Ziel-Volume.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. In *Inventory* wird das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Manage* ausgewählt.
+. Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
+. Auf der Registerkarte „Replikationsbeziehungen“ ist das Aktionsmenü der zu löschenden Replikationsbeziehung auszuwählen.
+. Wählen Sie *Delete*.
+. Im Dialogfeld „Beziehung löschen“ ist *Löschen* auszuwählen.
+

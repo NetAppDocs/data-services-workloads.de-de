@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/calculate-evs-savings.html 
+keywords: vm workloads, deploy fsx, deploy storage for vms, evs, savings, calculate, tco, regions 
+summary: So lässt sich berechnen, wie viel Sie durch die Verwendung von Amazon EVS mit FSx for ONTAP sparen können. 
+---
+= Einsparungen für Amazon Elastic VMware Service mit NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie erhalten einen Überblick über potenzielle Einsparungen bei der Migration Ihrer VMware-Workloads zu Amazon Elastic VMware Service (EVS). Der Kostenrechner ermöglicht den Vergleich der Kosten für die Nutzung von Amazon EVS mit und ohne Amazon FSx for NetApp ONTAP als Storage.
+
+Wenn der Kostenrechner ermittelt, dass der kostengünstigste Storage FSx for ONTAP ist, können Sie eine detaillierte Bewertung erstellen, die einen Migrationsplan bereitstellt, den Sie vor der Verwendung prüfen können. Anschließend können Sie mit der Codebox Infrastructure-as-Code-Vorlagen generieren.
+
+
+
+[[explore-savings-for-evs-environments]]
+== Einsparpotenziale für EVS-Umgebungen
+
+Mit den folgenden Schritten lassen sich mögliche Einsparungen bei einer geplanten Migration in eine Amazon EVS-Umgebung ermitteln.
+
+
+NOTE: Vor dem Fortfahren bietet der Haftungsausschluss am unteren Rand des Einsparungsrechners weitere Informationen dazu, wie die Preisschätzungen berechnet werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *VMware* auszuwählen.
++
+Das Planungszentrum ist zu sehen.
+
+. Im VMware-Menü erfolgt die Auswahl von *Einsparmöglichkeiten entdecken*. Der Einsparungsrechner wird angezeigt.
++
+Im Bereich *Umgebungseinstellungen* können Sie Ihre EVS Deployment-Region auswählen und die TCO- und Einsparungsprognosen entsprechend anpassen.
+
+. Für die Berechnung der Einsparungen dient die Dropdown-Liste *Region* zur Auswahl der EVS Deployment Region.
+. Mit den folgenden Schiebereglern lassen sich bei Bedarf Echtzeitberechnungen der Einsparungen für die von Ihnen gewählten Werte anzeigen. Bei Verwendung einer Tastatur sind mit den Pfeiltasten kleinere Anpassungen möglich:
++
+** *Erforderliche physische CPU (Anzahl)*
+** *Erforderlicher physischer Speicher (GiB)*
+** *Erforderlicher VM Storage (TiB)*
+
+
+. Unter *EVS-Abrechnungsplan* erfolgt die Auswahl des von Ihnen genutzten Plans.
+. Führen Sie einen der folgenden Schritte aus:
++
+** Zur Verwendung des Migrationsberaters link:launch-migration-advisor-evs-manual.html["einen Deployment-Plan erstellen"] für eine Amazon EVS Umgebung ist *Plan EVS migration* auszuwählen.
+** Die Option *Schließen* schließt den TCO-Rechner.
+
+
+

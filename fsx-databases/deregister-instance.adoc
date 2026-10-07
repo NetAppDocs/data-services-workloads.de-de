@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/deregister-instance.html 
+keywords: Microsoft SQL Server instance, PostgreSQL server instance, Oracle database, deregister instance, unregister instance, remove instance 
+summary: Eine Ressource wird abgemeldet, wenn Sie keine Ressourcen mehr über die Workload Factory Konsole einsetzen oder überwachen möchten. 
+---
+= Eine Ressource in NetApp Workload Factory für Datenbanken abmelden
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie können eine Ressource, z. B. eine Microsoft SQL Server Instanz oder eine Oracle Datenbank, abmelden, wenn Sie über die NetApp Workload Factory Konsole keine Ressourcen mehr einsetzen oder überwachen möchten. Das Abmelden von Ressourcen entfernt auch die von der Instanz genutzte Storage-Kapazität von FSx for ONTAP.
+
+Sie können die Ressource erneut registrieren.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. Im Menü Datenbanken wird *Inventar* ausgewählt.
+. Im Inventar erfolgt die Auswahl des Engine-Typs: *Microsoft SQL Server*, *Oracle* oder *PostgreSQL*.
+. Die Ressource, die abgemeldet werden soll, ist zu suchen, das Aktionsmenü auszuwählen und anschließend *Abmelden* zu wählen.
+

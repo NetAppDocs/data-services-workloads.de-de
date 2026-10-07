@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sandbox-clone.html 
+keywords: create, clone, sandbox 
+summary: Erstellung eines Sandbox-Klons in NetApp Workload Factory für Datenbanken. 
+---
+= Erstellung eines Sandbox-Klons in NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Das Erstellen eines Sandbox-Klons einer Datenbank in NetApp Workload Factory for Databases ermöglicht die Verwendung des Klons für Entwicklung, Tests, Integration, Analysen, Schulungen, Qualitätssicherung und mehr, ohne die Quelldatenbank zu verändern.
+
+.Über diese Aufgabe
+Ein Sandbox-Klon wird aus dem aktuellsten Snapshot der Quelldatenbank erstellt. Er kann auf demselben Microsoft SQL Server wie die Quelldatenbank oder auf einem anderen Microsoft SQL Server geklont werden, sofern beide dasselbe FSx for ONTAP-Dateisystem verwenden.
+
+.Bevor Sie beginnen
+Bevor Sie einen Sandbox-Klon erstellen, müssen Sie die folgenden Voraussetzungen erfüllen.
+
+* *Anmeldeinformationen und Berechtigungen*: Es müssen link:../fsx-storage/add-credentials.html["AWS-Kontoanmeldeinformationen und Berechtigungen für _Operationen und Behebungen_"^] vorhanden sein, um einen Sandbox-Klon in Workload Factory zu erstellen.
++
+Alternativ können Sie die Codebox verwenden, um eine teilweise ausgefüllte Vorlage zu kopieren oder eine fertige Vorlage zu erstellen, sodass Sie den Sandbox-Klon außerhalb der Workload Factory mithilfe der REST-API erstellen können link:../admin/codebox-automation.html["Weitere Informationen zur Codebox Automatisierung"^].
+
+* *Microsoft SQL Server*: Sie benötigen einen verwalteten Microsoft SQL Server in Workload Factory for Databases zum Hosten des neuen Sandbox-Klons.
+* *AWS Systems Manager*: Es muss sichergestellt sein, dass die  `NT Authority\SYSTEM` Benutzerrechte im Microsoft SQL Host über AWS Systems Manager aktiviert sind.
+* *Quelldatenbank*: Sie benötigen eine für den Klon verfügbare Quelldatenbank.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. Unter Databases die Registerkarte *Sandboxes* auswählen.
+. Im Reiter „Sandboxes“ ist *Neue Sandbox erstellen* auszuwählen.
+. Auf der Seite „Neue Sandbox erstellen“ sind unter „Datenbankquelle“ folgende Angaben erforderlich:
++
+.. *Quelldatenbank-Host*: Auswahl des Quelldatenbank-Hosts.
+.. *Quell-Datenbankinstanz*: Auswahl der Quell-Datenbankinstanz.
+.. *Quelldatenbank*: Auswahl der Datenbank, die geklont werden soll.
+
+
+. Unter „Datenbankziel“ sind folgende Angaben erforderlich:
++
+.. *Ziel-Datenbankhost*: Der für den Sandbox-Klon ausgewählte Zieldatenbankhost befindet sich in derselben VPC und weist dasselbe FSx for ONTAP Dateisystem wie der Quellhost auf.
+.. *Zieldatenbankinstanz*: Auswahl der Zieldatenbankinstanz für den Sandbox-Klon.
+.. *Zieldatenbank*: Eingabe eines Namens für den Sandbox-Klon.
+
+
+. *Einbinden*: Beim Klonen einer SQL-Datenbank mit mehreren Daten- und/oder Protokolldateien klont Workload Factory alle Dateien unter dem automatisch zugewiesenen oder definierten Laufwerksbuchstaben.
++
+Wählen Sie eine der folgenden Optionen:
+
++
+.. *Automatische Montagepunktzuweisung*
+.. *Definition des Mountpunktpfads*
++
+Zum Definieren des Mountpunktpfads sind die folgenden Angaben erforderlich:
+
++
+*** Eingabe des Laufwerksbuchstabens für den Datendateipfad.
+*** Der Laufwerksbuchstabe für den Pfad der Protokolldatei ist anzugeben.
+
+
+
+
+. *Tag definieren*: Auswahl eines Tags zur Definition des Sandbox-Klons.
+. Klicken Sie auf *Create*.
+
+
+Zum Überprüfen des Fortschritts des Auftrags dient die Registerkarte *Auftragsüberwachung*.

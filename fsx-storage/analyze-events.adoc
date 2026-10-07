@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/analyze-events.html 
+keywords: analyze events, events, FSx for ONTAP events, EMS, troubleshoot FSx for ONTAP, latency 
+summary: Analysieren Sie Ereignisse innerhalb der NetApp Workload Factory für FSx für ONTAP. 
+---
+= Analysieren Sie FSx for ONTAP-Ereignisse in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Identifizieren und beheben Sie Dateisystemprobleme von FSx for ONTAP schnell mit dem intelligenten Ereignisanalysator in NetApp Workload Factory. Der Ereignisanalysator extrahiert und analysiert automatisch FSx for ONTAP Event Management System (EMS)- und Latenzereignisse und nutzt dabei Agentic AI mit Amazon Bedrock-Integration.
+
+
+
+[[about-this-task]]
+== Über diese Aufgabe
+
+Speicheradministratoren reagieren auf FSx for ONTAP-Ereignisse oft erst nach Kundenbeschwerden oder durch die Pflege benutzerdefinierter Skripte und Alarme. Dieser reaktive Ansatz kann die Effizienz verringern, die Problemlösung verzögern und Ausfallzeiten erhöhen.
+
+Der Ereignisanalysator extrahiert automatisch die folgenden Ereignistypen aus FSx for ONTAP-Dateisystemen:
+
+* *EMS-Ereignisse*: Fehler-, Alarm- und Notfallereignisse aus dem ONTAP Event Management System.
+* *Latenzereignisse*: Lese- und Schreiblatenzereignisse. Latenzereignisse können ohne eine Linkverbindung angezeigt werden.
+
+
+Mit der Amazon Bedrock-Integration verwendet Workload Factory KI, um Ereignisse zu analysieren und umsetzbare Erkenntnisse bereitzustellen, damit die Integrität und Leistung Ihrer FSx for ONTAP File Systems erhalten bleibt.
+
+Zu den wichtigsten Vorteilen gehören:
+
+* Erweiterte Fehlerbehebung: KI identifiziert, analysiert und liefert automatisch Erkenntnisse zur Behebung von FSx for ONTAP EMS- und Latenzereignissen, wodurch manuelle Untersuchungszeit reduziert wird.
+* Bewährte Vorgehensweise zur Fehlerbehebung: Der Ereignisanalysator liefert klare, umsetzbare Schritte zur Behebung von FSx for ONTAP EMS- und Latenzereignissen.
+
+
+Bei der Verwendung des Ereignisanalysators haben Sie die volle Kontrolle über Ihre Umgebung, während Sie von fortschrittlichen KI-Analysen profitieren.
+
+Damit Workload Factory Ereignisse analysieren kann, müssen Sie Amazon Bedrock aktivieren, das Modell auswählen, das Workload Factory verwendet, einen privaten Endpunkt zur Verbindung mit Amazon Bedrock erstellen, Berechtigungen hinzufügen und eine Enterprise-Lizenz erstellen.
+
+link:https://aws.amazon.com/bedrock/pricing/["Preise für Amazon Bedrock"^]
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und die KI-Analyse kann nicht genutzt werden. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"^].
+
+
+
+[[data-privacy-and-security]]
+=== Datenschutz und Datensicherheit
+
+Ihr Datenschutz und Ihre Sicherheit werden geschützt durch:
+
+* *Datenhoheit*: Alle Daten und Aggregationen verbleiben innerhalb Ihres AWS-Kontos und werden über einen privaten VPC-Endpunkt (Amazon Bedrock) kommuniziert, ohne öffentliche Internetverbindung.
+* *Kein KI-Training*: Kundendaten werden nicht zum Trainieren oder Verbessern von Modellen verwendet. Amazon Bedrock verarbeitet Ereignisse in Echtzeit, trainiert aber nicht mit Ihren Daten. Ergebnisse werden nur in Ihrer Umgebung gespeichert.
+
+
+Weitere Einzelheiten finden Sie unter link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Amazon Bedrock Datenschutzdokumentation"^].
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+Um Latenzereignisse anzuzeigen, sind die folgenden Schritte erforderlich:
+
+* link:add-credentials.html["Berechtigungen für _Ansicht, Planung und Analyse_ erteilen"^] in Ihrem AWS-Konto.
+* link:create-link.html["Verbindung zum Dateisystem über einen Link herstellen"^].
+
+
+Um EMS- und Latenzereignisse zu analysieren und KI-gestützte Erkenntnisse und Empfehlungen zu erhalten, stellen Sie Folgendes sicher:
+
+* Sie haben link:add-credentials.html["_Berechtigungen für Operationen und Fehlerbehebung_"^] in Ihrem AWS-Konto.
+* Du hast link:create-link.html["über einen Link mit dem Dateisystem verbunden"^].
+* Port 22 (SSH) ist in der Sicherheitsgruppe geöffnet, die Ihrem FSx for ONTAP file system zugeordnet ist.
+
+
+Zusätzliche Anforderungen (das System fordert Sie während der Ereignisanalyse dazu auf):
+
+* *Amazon Bedrock Aktivierung*
++
+Konfigurieren Sie die Amazon Bedrock APIs für jedes AWS-Konto. Die Amazon Bedrock APIs werden verwendet, um Einblicke in FSx for ONTAP-Ereignisse zu gewinnen.
+
++
+Empfohlenes Modell: `anthropic.claude-sonnet-4-20250514-v1:0`. Geben Sie den ARN des Inferenzprofils für Ihre ausgewählte Region an.
+
+* *Link zu Workload Factory*
++
+Erstellen und verknüpfen Sie einen Link mit einem FSx for ONTAP-Dateisystem, um KI-gestützte Ereignisanalysen zu ermöglichen. Ein Link stellt eine Vertrauensbeziehung zwischen Workload Factory und einem oder mehreren FSx for ONTAP-Dateisystemen her und nutzt AWS Lambda.
+
++
+link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+* *AWS IAM Berechtigungen*
++
+Fügen Sie der mit der Workload Factory IAM-Rolle verknüpften Richtlinie die folgenden Berechtigungen hinzu.
+
++
+** `bedrock:InvokeModel`
+** `bedrock:InvokeModelWithResponseStream`
++
+Diese Berechtigungen ermöglichen Workload Factory, Bedrock-Modelle zur Fehleruntersuchung und Anleitung zur Behebung aufzurufen. Dieses Profil gewährleistet außerdem sicheren KI-Zugriff für maßgeschneiderte Erkenntnisse.
+
++
+Fügen Sie außerdem die folgenden Berechtigungen für die mit Workload Factory verknüpften AWS credentials hinzu:
+
+** `bedrock:GetInferenceProfile`
+** `bedrock:ListInferenceProfiles`
++
+Diese Berechtigungen bestätigen die Verfügbarkeit des Modells.
+
+
+
+
+
+
+
+[[view-and-analyze-events-for-fsx-for-ontap]]
+== Ereignisse für FSx für ONTAP anzeigen und analysieren
+
+Verwenden Sie die Workload Factory-Konsole, um EMS- und Latenzereignisse für FSx for ONTAP-Dateisysteme anzuzeigen und zu analysieren.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im Menü „Storage“ erfolgt die Auswahl von *Analysis*.
+. Wählen Sie im Analysebildschirm die AWS-Konten, Anmeldeinformationen und Regionen aus, die die FSx for ONTAP-Dateisysteme enthalten, die Sie anzeigen möchten.
++
+Es werden nur FSx for ONTAP-Dateisysteme angezeigt, die Ereignisse enthalten.
+
+. Wählen Sie das FSx for ONTAP-Dateisystem aus, das Sie anzeigen möchten.
++
+Die Ereignistabelle zeigt alle Ereignisse für dieses Dateisystem an.
+
+. Prüfen Sie die Ereignisdetails in der Tabelle.
+. Um Ereignisse zu analysieren, gehen Sie wie folgt vor:
++
+** Um mehrere Ereignisse zu analysieren, wählen Sie die Kontrollkästchen neben den Ereignissen aus und wählen Sie dann *Analysieren* in der Tabelle.
+** Um ein Ereignis zu analysieren und Erkenntnisse im Seitenbereich anzuzeigen, wählen Sie den Ereignisnamen aus und wählen Sie dann im Bereich *Analysieren* aus. Die Erkenntnisse und Empfehlungen werden im Bereich angezeigt.
+** Um ein einzelnes Ereignis aus der Tabelle zu analysieren, wählen Sie in der Ereigniszeile *Analysieren* aus und anschließend den Ereignisnamen, um die Erkenntnisse und Empfehlungen anzuzeigen.
++
+Falls erforderlich, sind die Einrichtungsvoraussetzungen für die KI-Analyse anhand der Anweisungen auf dem Bildschirm zu vervollständigen, um fehlende Voraussetzungen zu erfüllen.
+
+
+
+
+
+.Verwandte Informationen
+* link:set-volume-latency-thresholds.html["Legen Sie Schwellenwerte für die Volumenlatenz in Workload Factory fest."]
+

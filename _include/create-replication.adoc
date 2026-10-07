@@ -1,0 +1,97 @@
+= 
+:allow-uri-read: 
+
+
+. *Anwendungsfall*: Für die Replikation ist einer der folgenden Anwendungsfälle auszuwählen. Je nach ausgewähltem Anwendungsfall füllt Workload Factory das Formular mit empfohlenen Werten gemäß Best Practices aus. Die empfohlenen Werte können übernommen oder beim Ausfüllen des Formulars geändert werden.
++
+** Künstliche Intelligenz (KI) und maschinelles Lernen (ML): Replizieren Sie Ihre lokalen ONTAP-Daten zu FSx for ONTAP und erstellen Sie S3-Zugriffspunkte, um das Training von KI und ML in der Cloud zu unterstützen
+** Migration: überträgt Ihre Daten in das Zieldateisystem FSx for ONTAP
++
+*Replikation der Speicher-VM-Konfiguration*: Optional können Sie die Replikation der Speicher-VM-Daten und -Konfigurationseinstellungen für eine einzelne Speicher-VM auswählen. Bei der Migration von Daten und Einstellungen müssen alle Volumes innerhalb der letzten 24 Stunden repliziert und anschließend gleichzeitig umgeschaltet werden.
+
++
+Die Tiering-Richtlinie für alle Volumes entspricht standardmäßig der Tiering-Richtlinie des Quell-Volumes, was für Migrationsanwendungsfälle empfohlen wird.
+
++
+Während der Migration greifen Clients auf Daten des Quell-ONTAP-Dateisystems zu. Nach der Umstellung sind die Volumes über die Ziel-FSx for ONTAP-Dateisystem-IP-Adressen verfügbar. Aktualisieren Sie alle Clients oder Ressourcen, die noch die alte IP-Adresse verwenden.
+
+** Hot Disaster Recovery: gewährleistet hohe Verfügbarkeit und schnelle Wiederherstellung kritischer Workloads im Katastrophenfall
+** Kalt- oder Archiv-Disaster-Recovery:
++
+*** Kalte Notfallwiederherstellung: verwendet längere Wiederherstellungszeitvorgaben (RTO) und Wiederherstellungspunktvorgaben (RPO), um die Kosten zu senken
+*** Archiv: repliziert Daten für Langzeit-Storage und Compliance
+
+
+** Sonstige
++
+Darüber hinaus bestimmt die Auswahl des Anwendungsfalls die Replikationsrichtlinie oder die SnapMirror Richtlinie (ONTAP). Die zur Beschreibung von Replikationsrichtlinien verwendeten Begriffe stammen aus link:https://docs.netapp.com/us-en/ontap/data-protection/default-protection-policies-concept.html["ONTAP 9 Dokumentation"^].
+
++
+*** Für Migrationen und andere Zwecke heißt die Replikationsrichtlinie _MirrorAllSnapshots_. _MirrorAllSnapshots_ ist eine asynchrone Richtlinie zum Spiegeln aller Snapshots und des zuletzt aktiven Dateisystems.
+*** Für die Hot-, Cold- oder Archiv-Notfallwiederherstellung wird die Replikationsrichtlinie als _MirrorAndVault_ bezeichnet. _MirrorAndVault_ ist eine asynchrone Vault-Richtlinie für die Spiegelung des neuesten aktiven Dateisystems sowie täglicher und wöchentlicher Snapshots.
++
+Für alle Anwendungsfälle gilt: Wenn Sie Snapshots für die langfristige Aufbewahrung aktivieren, ist die Standardreplikationsrichtlinie _MirrorAndVault_.
+
+
+
+
+
+. *FSx for ONTAP file system*: Wählen Sie Anmeldeinformationen, Region und FSx for ONTAP file system name für das Ziel-FSx for ONTAP file system aus.
+. *Name der Speicher-VM*: Wählen Sie die Speicher-VM aus. Die von Ihnen ausgewählte Speicher-VM ist das Ziel für alle ausgewählten Volumes in dieser Replikationsbeziehung.
++
+Wenn die Namen der Quell- und Ziel-Storage-VMs identisch sind, erstellen wir einen Dateisystemalias für die Ziel-Storage-VM-Namen, um Peering-Konflikte zu vermeiden.
+
+. *Volume-Name*: Der Ziel-Volume-Name wird automatisch im folgenden Format `{OriginalVolumeName}_copy` generiert. Sie können den automatisch generierten Volume-Namen verwenden oder einen anderen Volume-Namen eingeben.
+. *Tiering-Richtlinie*: Die Tiering-Richtlinie für die im Ziel-Volume gespeicherten Daten wird ausgewählt. Standardmäßig wird die für den ausgewählten Anwendungsfall empfohlene Tiering-Richtlinie verwendet.
++
+_Balanced (Auto)_ ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes mit der Workload Factory Konsole. Weitere Informationen zu Volume-Tiering-Richtlinien finden sich in link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] der AWS FSx for NetApp ONTAP Dokumentation. Zu beachten ist, dass Workload Factory in der Workload Factory Konsole anwendungsfallbasierte Namen für Tiering-Richtlinien verwendet und die FSx for ONTAP Tiering-Richtliniennamen in Klammern aufführt.
+
++
+Wenn Sie den Migrations-Anwendungsfall ausgewählt haben, kopiert Workload Factory automatisch die Tiering-Richtlinie des Quellvolumes auf das Ziel-Volume. Sie können die Option zum Kopieren der Tiering-Richtlinie deaktivieren und eine Tiering-Richtlinie auswählen, die für das zur Replikation ausgewählte Volume gilt.
+
+. *Maximale Transferrate*: *Begrenzt* auswählen und das maximale Transferlimit in MB/s eingeben. Alternativ *Unbegrenzt* auswählen.
++
+Ohne eine Begrenzung können die Netzwerk- und Applikation Performance sinken. Alternativ empfehlen wir für kritische Workloads, beispielsweise solche, die primär für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate für FSx for ONTAP file systems.
+
++
+.. Unter Replikationseinstellungen sind die folgenden Angaben erforderlich:
+
+
+. *Replikationsbeziehung initialisieren*: Wählen Sie, ob die Replikationsbeziehung direkt nach ihrer Erstellung oder später initialisiert werden soll. Beachten Sie, dass die Initialisierung zeitaufwändig sein kann, und Sie möchten den Basistransfer möglicherweise außerhalb der Spitzenzeiten durchführen.
++
+Um die Initialisierung später manuell durchzuführen, beachten Sie die Anweisungen in <<Schritt 2: Replikationsbeziehung initialisieren,Schritt 2: Replikationsbeziehung initialisieren>>.
+
+. *Replikationsintervall*: Hier wird die Häufigkeit ausgewählt, mit der Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
+. *Langzeitaufbewahrung*: Optional können Snapshots für die Langzeitaufbewahrung aktiviert werden. Die Langzeitaufbewahrung ermöglicht den Weiterbetrieb von Geschäfts-Services auch bei einem vollständigen Standortausfall und unterstützt Applikationen dabei, mithilfe einer sekundären Kopie transparent ein Failover durchzuführen.
++
+Replikationen ohne Langzeitaufbewahrung verwenden die Richtlinie _MirrorAllSnapshots_. Durch Aktivieren der Langzeitaufbewahrung wird der Replikation die Richtlinie _MirrorAndVault_ zugewiesen.
+
++
+Wenn Sie die Langzeitaufbewahrung aktivieren, können Sie eine vorhandene Richtlinie auswählen oder eine neue Richtlinie erstellen, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
+
++
+
+NOTE: Für die Langzeitarchivierung sind übereinstimmende Quell- und Zielbezeichnungen erforderlich. Auf Wunsch kann Workload Factory fehlende Bezeichnungen für Sie erstellen.
+
++
+** *Eine bestehende Richtlinie auswählen*: Wählen Sie eine bestehende Richtlinie aus.
+** *Neue Richtlinie erstellen*: Geben Sie einen *Richtliniennamen* an.
+
+
+. *Unveränderliche Snapshots*: Optional. Die Auswahl von *Enable immutable snapshots* verhindert, dass im Rahmen dieser Richtlinie erstellte Snapshots während des Aufbewahrungszeitraums gelöscht werden.
++
+** Die *Aufbewahrungsfrist* wird in Stunden, Tagen, Monaten oder Jahren festgelegt.
+** *Snapshot-Richtlinien*: Wählen Sie in der Tabelle die Häufigkeit der Snapshot-Richtlinie und die Anzahl der aufzubewahrenden Kopien aus. Sie können mehrere Snapshot-Richtlinien auswählen.
+
+
+. *S3-Zugriffspunkt*: Optional können Sie einen S3-Zugriffspunkt anbinden, um auf FSx for ONTAP-Dateisystemdaten zuzugreifen, die sich auf NFS- oder SMB/CIFS-Volumes befinden, über die AWS S3-APIs. Nur der Dateizugriffstyp wird unterstützt. Folgende Details sind anzugeben:
++
+** *Name des S3 access point*: Geben Sie den Namen des S3 access point ein.
+** *Benutzer*: Wählen Sie einen vorhandenen Benutzer mit Zugriff auf das Volume aus oder erstellen Sie einen neuen Benutzer.
+** *Benutzertyp*: Wählen Sie *UNIX* oder *Windows* als Benutzerart.
+** *Netzwerkkonfiguration*: Wählen Sie *Internet* oder *Virtual private cloud (VPC)*. Die Wahl des Netzwerktyps bestimmt, ob der Zugriffspunkt über das Internet erreichbar ist oder auf eine bestimmte VPC beschränkt ist.
+** *Inventartabelle aktivieren*: Wenn Sie die Inventartabelle für das Volume aktivieren, generiert das System Metadaten für alle Objekte, die über den S3-Zugriffspunkt zugänglich sind, und es fallen AWS S3-Anfragekosten an. Weitere Informationen finden Sie unter link:https://aws.amazon.com/s3/pricing/["Amazon S3 Preisdokumentation"^].
+
+
+. *S3 access point tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+

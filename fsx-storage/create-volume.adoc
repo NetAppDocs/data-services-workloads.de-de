@@ -1,0 +1,257 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-volume.html 
+keywords: create volume, FSx for ONTAP volume 
+summary: Nach dem Einrichten Ihres FSx for ONTAP Dateisystems können Sie in Workload Factory FSx for ONTAP Volumes erstellen. 
+---
+= Erstellung eines FSx for ONTAP Volume in Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Nach der Einrichtung Ihres FSx for ONTAP Dateisystems ist es in Workload Factory möglich, FSx for ONTAP Volumes als virtuelle Ressourcen zur Gruppierung Ihrer Daten zu erstellen.
+
+
+
+[[about-this-task]]
+== Über diese Aufgabe
+
+FSx for ONTAP Volumes gruppieren Daten virtuell, bestimmen, wie Daten gespeichert werden, und legen die Art des Zugriffs auf Ihre Daten fest. Volumes verbrauchen keine Dateisystem-Storage-Kapazität. Die Daten, die in einem Volume gespeichert sind, verbrauchen in erster Linie SSD-Storage. Abhängig von der Tiering-Richtlinie des Volumes können die Daten auch Capacity Pool Storage verbrauchen. Die Größe eines Volumes wird bei der Erstellung festgelegt und kann später geändert werden.
+
+Für Ihre Volumes kommen möglicherweise die folgenden Protokolle zum Einsatz:
+
+* SMB/CIFS: Dateispeicherprotokoll für Windows-Betriebssysteme
+* NFS: Dateispeicherprotokoll für Unix-Betriebssysteme
+* iSCSI: Blockspeicherprotokoll
+
+
+S3-Endpunkte können an ein FSx for ONTAP Volume angebunden werden. Mithilfe eines S3-Zugriffspunkts können Sie über die AWS S3 APIs auf Dateidaten zugreifen, die sich auf SMB/CIFS- oder NFS-Volumes befinden. Dadurch können Sie Ihre vorhandenen Daten mit GenAI, ML und Analysen aus AWS Services integrieren, die S3-Zugriffspunkte unterstützen.
+
+
+
+[[details-for-volume-settings]]
+=== Details zu den Volume-Einstellungen
+
+.Unveränderliche Dateien
+Diese Funktion, auch bekannt als SnapLock, ist standardmäßig deaktiviert. Die Aktivierung unveränderlicher Dateien verhindert das Löschen oder Überschreiben von Daten für einen festgelegten Zeitraum. Die Aktivierung dieser Funktion ist nur bei der Volume-Erstellung möglich. Nachdem die Funktion aktiviert wurde, kann sie nicht mehr deaktiviert werden. Dies ist eine Premium-Funktion für FSx for ONTAP, für die zusätzliche Kosten anfallen. Weitere Informationen dazu finden sich unter link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/how-snaplock-works.html["Wie SnapLock funktioniert"^] in der Dokumentation zu Amazon FSx for NetApp ONTAP.
+
+* *Aufbewahrungsmodi*: Sie können zwischen zwei Aufbewahrungsmodi wählen - _Enterprise_ oder _Compliance_.
++
+** Im _Enterprise_-Modus kann ein Administrator für unveränderliche Dateien oder SnapLock eine Datei während ihrer Aufbewahrungsfrist löschen.
+** Im _Compliance_-Modus kann eine WORM-Datei erst nach Ablauf ihrer Aufbewahrungsfrist gelöscht werden. Ebenso kann das unveränderliche Volume erst gelöscht werden, nachdem die Aufbewahrungsfristen aller darin enthaltenen Dateien abgelaufen sind.
+
+
+* *Aufbewahrungsdauer*: Die Aufbewahrungsdauer hat zwei Einstellungen: _Aufbewahrungsrichtlinie_ und _Aufbewahrungszeiträume_. Die _Aufbewahrungsrichtlinie_ legt fest, wie lange Dateien in einem unveränderlichen WORM-Zustand aufbewahrt werden. Sie können eine eigene Aufbewahrungsrichtlinie angeben oder die Standard-Aufbewahrungsrichtlinie (nicht angegeben) verwenden, die 30 Jahre beträgt. Die minimalen und maximalen _Aufbewahrungszeiträume_ definieren den zulässigen Zeitraum für das Sperren von Dateien.
++
+
+NOTE: Auch nach Ablauf der Aufbewahrungsfrist können Sie eine WORM-Datei nicht mehr ändern. Sie können sie nur löschen oder eine neue Aufbewahrungsfrist festlegen, um den WORM-Schutz wieder zu aktivieren.
+
+* *Autocommit*: Sie haben die Möglichkeit, die Autocommit-Funktion zu aktivieren. Die Autocommit-Funktion überführt eine Datei auf einem SnapLock Volume in den WORM-Status, wenn die Datei für die Dauer des Autocommit-Zeitraums nicht geändert wurde. Die Autocommit-Funktion ist standardmäßig deaktiviert. Die Dateien, für die Autocommit verwendet werden soll, müssen sich auf einem SnapLock Volume befinden.
+* *Privilegiertes Löschen*: Ein SnapLock Administrator kann das privilegierte Löschen auf einem SnapLock Enterprise Volume aktivieren, um das Löschen einer Datei vor Ablauf ihrer Aufbewahrungsfrist zu ermöglichen. Diese Funktion ist standardmäßig deaktiviert.
+* *Volume-Append-Modus*: Vorhandene Daten in einer WORM-geschützten Datei können nicht geändert werden. Unveränderliche Dateien ermöglichen jedoch die Aufrechterhaltung des Schutzes vorhandener Daten mithilfe von WORM-anhängbaren Dateien. Beispielsweise können Protokolldateien generiert oder Audio- oder Videostreaming-Daten bewahrt werden, während Daten inkrementell in diese Dateien geschrieben werden. link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append["Weitere Informationen zum Volume-append-Modus"^] in der Amazon FSx for NetApp ONTAP Dokumentation.
+
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+Vor dem Erstellen eines Volumes sind die folgenden Voraussetzungen zu beachten:
+
+* Sie benötigen ein FSx for ONTAP Dateisystem in der Workload Factory Konsole.
+* Sie müssen über eine Storage VM verfügen.
+* Für den Protokollzugriff ist Folgendes erforderlich:
++
+** Um den Zugriff auf das Volume zu konfigurieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+** Sie müssen den Zugriff für das von Ihnen gewählte Protokoll konfigurieren, entweder SMB/CIFS, NFS oder iSCSI.
+
+
+
+
+
+
+[[create-a-volume]]
+== Erstellen Sie ein Volumen
+
+Sie können ein Volume mithilfe der folgenden in der Codebox verfügbaren Tools erstellen: REST API, CloudFormation und Terraform. link:../admin/use-codebox.html#how-to-use-codebox["Informationen zur Verwendung von Codebox für die Automatisierung"].
+
+
+NOTE: Wenn Sie Terraform aus Codebox verwenden, werden im kopierten oder heruntergeladenen Code  `fsxadmin` und  `vsadmin` Passwörter ausgeblendet. Sie müssen die Passwörter erneut eingeben, wenn Sie den Code ausführen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. *Volume erstellen* auswählen.
+. Auf der Seite „Volume erstellen“ werden unter „Allgemeine Details“ die folgenden Angaben gemacht:
++
+.. *Volume-Name*: Ein Name für das Volume.
+.. *Name der Storage VM*: Optional können Sie einen Namen für die Storage VM eingeben.
+.. *Volume-Stil*: Auswahl von *FlexVol* oder *FlexGroup* Volume.
++
+*** Ein _FlexVol Volume_ ist eine Art von logischem Speicher in ONTAP, mit dem Sie Daten verwalten können. FlexVol Volumes können zwischen Aggregaten oder Knoten innerhalb derselben Storage Virtual Machine (SVM) verschoben werden, ohne den Client-Zugriff zu unterbrechen. Der FlexVol Volume-Stil ist standardmäßig ausgewählt.
+*** Ein FlexGroup-Volume ist ein horizontal skalierbarer NAS-Container, der hohe Leistung sowie automatische Lastverteilung und Skalierbarkeit bietet. Es besteht aus mehreren Mitgliedsvolumes (Bestandteilen), die als zugrundeliegende FlexVol Volumes den Datenverkehr transparent teilen.
+
+
+.. *Volumengröße*: Hier werden die Volumengröße und die Einheit angegeben.
++
+Optional können Sie die automatische Vergrößerung des Volumes aktivieren. Diese Option ist verfügbar, wenn Sie *Dateizugriff* als Volume-Zugriffstyp auswählen.
+
++
++ FlexGroup Volume hängt die Größe vom Anzahl der Bestandteile ab und erfordert 100 GiB pro Bestandteil.
+
+.. *Automatische Volume-Erweiterung*: Optional lässt sich die automatische Volume-Erweiterung aktivieren, um die Kapazität des Volumes automatisch zu erweitern, bis das Volume die maximale Größe erreicht. Diese Funktion trägt einem steigenden Datenaufkommen Rechnung und gewährleistet einen unterbrechungsfreien Betrieb.
++
+Die maximale Größe und Einheit für das Volumenwachstum werden angegeben. Die maximale Wachstumsgröße darf nicht kleiner als die aktuelle Volumengröße sein.
+
+.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+
+
+. Unter „Zugriff“ (nur für Dateisysteme mit zugehörigen Verknüpfungen) sind die folgenden Details erforderlich:
++
+.. *Zugriffstyp*: Zur Auswahl stehen *Dateizugriff* oder *Blockzugriff*. Zusätzliche Felder zur Konfiguration des Volume-Zugriffs unterscheiden sich je nach Auswahl.
++
+*** *Dateizugriff*: Mehrere autorisierte Benutzer und Geräte erhalten über SMB/CIFS-, NFS- oder Dualprotokolle (SMB/NFS) Zugriff auf das Volume.
++
+Die folgenden Felder sind auszufüllen, um den Dateizugriff auf das Volume einzurichten.
+
+
+
+.. *NFS-Exportrichtlinie*: Folgende Angaben sind für die Bereitstellung des NFS-Zugriffs erforderlich:
++
+... *Zugriffskontrolle*: Im Dropdown-Menü kann eine *Benutzerdefinierte Exportrichtlinie*, eine *Vorhandene Exportrichtlinie* oder *Kein Zugriff auf das Volume* ausgewählt werden.
+... *Name der Exportrichtlinie*:
++
+Wenn eine benutzerdefinierte Exportrichtlinie ausgewählt wurde, erfolgt die Auswahl eines vorhandenen Richtliniennamens im Dropdown-Menü.
+
++
+Bei Auswahl einer bestehenden Exportrichtlinie ist ein neuer Richtlinienname erforderlich.
+
+... *Exportrichtlinienregel hinzufügen*: Optional können Sie für eine benutzerdefinierte Exportrichtlinie Exportrichtlinienregeln zur Richtlinie hinzufügen.
+
+
+.. *SMB/CIFS-Freigabe*: Folgendes ist anzugeben:
++
+... *Name*: Hier wird der Name der SMB/CIFS-Freigabe eingegeben, um Zugriff bereitzustellen.
+... *Berechtigungen*: „Vollzugriff“, „Lesen/Schreiben“, „Lesen“ oder „Kein Zugriff“ auswählen und anschließend die Benutzer oder Gruppen durch ein Semikolon ( ; ) getrennt eingeben. Bei Benutzern oder Gruppen muss die Groß-/Kleinschreibung beachtet werden, und die Domäne des Benutzers muss im Format „domain\username“ angegeben werden.
+
+
+.. *Sicherheitsstil*: Bei Dual-Protokoll-Volumes kommt entweder der UNIX- oder der NTFS-Sicherheitsstil zum Einsatz. UNIX ist der Standard-Sicherheitsstil für Dual-Protokoll-Volumes. Ausführliche Informationen zur Benutzerzuordnung in diesem Zusammenhang finden Sie im AWS-Blogartikel link:https://aws.amazon.com/blogs/storage/enabling-multiprotocol-workloads-with-amazon-fsx-for-netapp-ontap["Ermöglichung von Multiprotokoll-Workloads mit Amazon FSx for NetApp ONTAP"^].
++
+*** *Blockzugriff*: ermöglicht Hosts, auf denen kritische Geschäftsanwendungen ausgeführt werden, den Zugriff auf das Volume über das iSCSI-Protokoll. Der Blockzugriff ist nur verfügbar, wenn das Dateisystem-Scale-Out-Deployment maximal sechs HA-Paare umfasst.
++
+Zum Einrichten des Blockzugriffs auf das Volume sind die folgenden Felder auszufüllen.
+
++
+.... *iSCSI Konfiguration*: Die folgenden Details sind erforderlich, um iSCSI für den Blockzugriff auf das Volume zu konfigurieren.
++
+..... Zur Auswahl stehen *Neue Initiatorgruppe erstellen* oder *Vorhandene Initiatorgruppe zuordnen*.
+..... Die Auswahl des *Host operating system* erfolgt im Dropdown-Menü.
+..... Eingabe eines *Namens der Initiatorgruppe* für eine neue Initiatorgruppe.
+..... Unter Host-Initiatoren lassen sich ein oder mehrere iSCSI Qualified Names (IQNs) als Host-Initiatoren hinzufügen.
+
+
+
+
+
+
+.. *S3-Zugriffspunkt*: Optional können Sie einen S3-Zugriffspunkt anbinden, um auf FSx for ONTAP-Dateisystemdaten zuzugreifen, die sich auf NFS- oder SMB/CIFS-Volumes befinden, über die AWS S3-APIs. Nur der Dateizugriffstyp wird unterstützt. Folgende Details sind anzugeben:
++
+*** *Name des S3 access point*: Geben Sie den Namen des S3 access point ein.
+*** *Benutzer*: Wählen Sie einen vorhandenen Benutzer mit Zugriff auf das Volume aus oder erstellen Sie einen neuen Benutzer.
+*** *Benutzertyp*: Wählen Sie *UNIX* oder *Windows* als Benutzerart.
+*** *Netzwerkkonfiguration*: Wählen Sie *Internet* oder *Virtual private cloud (VPC)*. Die Wahl des Netzwerktyps bestimmt, ob der Zugriffspunkt über das Internet erreichbar ist oder auf eine bestimmte VPC beschränkt ist.
+*** *Inventartabelle aktivieren*: Wenn Sie die Inventartabelle für das Volume aktivieren, generiert das System Metadaten für alle Objekte, die über den S3-Zugriffspunkt zugänglich sind, und es fallen AWS S3-Anfragekosten an. Weitere Informationen finden Sie unter link:https://aws.amazon.com/s3/pricing/["Amazon S3 Preisdokumentation"^].
+
+
+.. *S3 access point tags*: Optional können Sie bis zu 50 Tags hinzufügen oder entfernen.
+
+
+. Unter „Effizienz und Schutz“ sind folgende Details anzugeben:
++
+.. *Speichereffizienz*: Standardmäßig aktiviert. Mit dieser Option lässt sich die Funktion deaktivieren.
++
+ONTAP erreicht Storage-Effizienz durch Deduplizierung und Komprimierung. Deduplizierung entfernt doppelte Datenblöcke. Die Datenkomprimierung komprimiert die Datenblöcke, um den erforderlichen physischen Storage zu reduzieren.
+
+.. *Snapshot-Richtlinie*: Hier wird die Snapshot-Richtlinie ausgewählt, mit der die Häufigkeit und Aufbewahrungsdauer von Snapshots festgelegt werden.
++
+Im Folgenden sind die Standardrichtlinien von AWS aufgeführt. Vorhandene Snapshot-Richtlinien werden angezeigt, wenn link:create-link.html["einen Link verknüpfen"].
+
++
+`default`:: Diese Richtlinie erstellt automatisch Snapshots nach folgendem Zeitplan, wobei die ältesten Snapshot-Kopien gelöscht werden, um Platz für neuere Kopien zu schaffen:
++
+--
+*** Maximal sechs stündliche Momentaufnahmen, die fünf Minuten nach der vollen Stunde erstellt werden.
+*** Maximal zwei tägliche Schnappschüsse, aufgenommen von Montag bis Samstag jeweils 10 Minuten nach Mitternacht.
+*** Maximal zwei wöchentliche Snapshots, die jeden Sonntag um 0:15 Uhr erstellt werden.
++
+
+NOTE: Die Snapshot-Zeitpunkte basieren auf der Zeitzone des Dateisystems, die standardmäßig auf koordinierte Weltzeit (UTC) eingestellt ist. Informationen zum Ändern der Zeitzone finden Sie link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["Anzeige und Einstellung der Systemzeitzone"^] in der NetApp Supportdokumentation.
+
+
+
+--
+`default-1weekly`:: Diese Richtlinie funktioniert auf die gleiche Weise wie die `default` vorherige Richtlinie, mit der Ausnahme, dass sie nur eine Momentaufnahme aus dem Wochenplan beibehält.
+`none`:: Diese Richtlinie erstellt keine Snapshots. Sie können diese Richtlinie Volumes zuweisen, um zu verhindern, dass automatisch Snapshots erstellt werden.
+
+
+.. *Tiering-Richtlinie*: Auswahl der Tiering-Richtlinie für die im Volume gespeicherten Daten.
++
+_Balanced (Auto)_ ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes mit der Workload Factory Konsole. Weitere Informationen zu Volume-Tiering-Richtlinien finden sich in link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] der AWS FSx for NetApp ONTAP Dokumentation. Zu beachten ist, dass Workload Factory in der Workload Factory Konsole anwendungsfallbasierte Namen für Tiering-Richtlinien verwendet und die FSx for ONTAP Tiering-Richtliniennamen in Klammern aufführt.
+
+.. *Unveränderliche Dateien*: Durch Aktivieren der Funktion für unveränderliche Dateien werden die Dateien in diesem Volume dauerhaft in einen unveränderlichen WORM-Zustand (write-once-read-many) versetzt. Folgende Details sind erforderlich:
++
+... Zum Aktivieren von *Unveränderliche Dateien mit SnapLock* auswählen.
+... Wählen Sie das Kontrollkästchen aus, um zuzustimmen und fortzufahren.
+... Wählen Sie *Enable*.
+... *Aufbewahrungsmodus*: Auswahl des Modus *Enterprise* oder *Compliance*.
+... *Aufbewahrungszeitraum*:
++
+**** Auswahl der Aufbewahrungsrichtlinie:
++
+***** *Nicht spezifiziert*: Legt die Aufbewahrungsrichtlinie auf 30 Jahre fest.
+***** *Zeitraum angeben*: Hier wird die Anzahl der Sekunden, Minuten, Stunden, Tage, Monate oder Jahre eingegeben, um eine eigene Aufbewahrungsrichtlinie festzulegen.
+
+
+**** Auswahl der minimalen und maximalen Aufbewahrungsfristen:
++
+***** *Minimum*: Die Anzahl der Sekunden, Minuten, Stunden, Tage, Monate oder Jahre zum Festlegen der Mindestaufbewahrungsdauer.
+***** *Maximum*: Anzahl der Sekunden, Minuten, Stunden, Tage, Monate oder Jahre zum Festlegen der maximalen Aufbewahrungsdauer.
+
+
+
+
+... *Autocommit*: Aktiviert oder deaktiviert Autocommit. Wenn Sie Autocommit aktivieren, geben Sie den Autocommit-Zeitraum an.
+... *Privilegiertes Löschen*: Deaktiviert oder aktiviert. Wenn privilegiertes Löschen aktiviert ist, kann ein SnapLock Administrator eine Datei löschen, bevor deren Aufbewahrungsfrist abläuft.
+... *Volume-Anfügemodus*: Deaktiviert oder aktiviert. Ermöglicht das Hinzufügen neuer Inhalte zu WORM-Dateien.
+
+
+.. *ARP/AI*: NetApp Autonomous Ransomware Protection with AI (ARP/AI) ist standardmäßig aktiviert, wenn ein Link mit dem Dateisystem verknüpft ist. link:ransomware-protection.html["Weitere Informationen zu ARP/KI"]. Voraussetzung zum Fortfahren ist die Zustimmung zu der Erklärung.
++
+Wenn die Funktion nicht verfügbar ist, liegt das aus einem der folgenden Gründe vor:
+
++
+*** Es ist kein Link mit dem Dateisystem verknüpft. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+*** Volumes mit unveränderlichen Dateien und Volumes mit dem NVMe-Protokoll werden für ARP/AI nicht unterstützt. iSCSI Volumes werden ab ONTAP 9.17.1 unterstützt.
+*** Das Dateisystem verfügt bereits über eine ARP/AI-Richtlinie.
+
+
+
+
+. Geben Sie unter „Erweiterte Konfiguration“ die folgenden Details ein. Die Felder in diesem Abschnitt unterscheiden sich je nach gewähltem Volume-Stil.
++
+.. *Verbindungspfad*: Hier wird der Speicherort im Namespace der Storage VM angegeben, an dem das Volume eingehängt wird. Der Standard-Verbindungspfad ist `/<volume-name>`.
+.. *Aggregatname*: Nur für FlexVol volumes. Wählen Sie das Aggregat aus, das das neue Volume aufnehmen soll.
+.. *Aggregatliste*: Nur für FlexGroup Volumes. Hinzufügen oder Entfernen von Aggregaten. Die Mindestanzahl an Aggregaten beträgt eins.
+.. *Anzahl der Bestandteile*: Nur für FlexGroup Volumes. Eingabe der Anzahl der Bestandteile pro Aggregat. Pro Bestandteil werden 100 GiB benötigt.
+
+
+. *Erstellen* auswählen.
+
+
+.Verwandte Informationen
+* link:manage-volume-capacity.html["Anpassen der Volumenkapazität in Workload Factory"]
+* link:change-tiering-policy.html["Ändern der Volume-Tiering-Richtlinie in Workload Factory"]
+* link:manage-s3-access-points.html["Verwalten von S3-Zugriffspunkten in Workload Factory"]
+

@@ -1,0 +1,65 @@
+= 
+:allow-uri-read: 
+
+
+. Auf der Seite „FSx for ONTAP Dateisystem erstellen“ erfolgt die Auswahl von *Quick create*.
++
+Sie können auch eine gespeicherte Konfiguration laden.
+
+. Unter „Allgemeine Dateisystemkonfiguration“ sind folgende Angaben erforderlich:
++
+.. *AWS-Anmeldeinformationen*: Hier können Sie AWS-Anmeldeinformationen in Workload Factory hinzufügen oder ohne Anmeldeinformationen fortfahren.
+.. *Dateisystemname*: Feld für die Eingabe eines Namens für das Dateisystem.
+.. *Region & VPC*: Auswahl der Region und der VPC für das Dateisystem.
+.. *Deployment-Typ*: Auswahl eines Deployment-Typs.
++
+*** Single Availability Zone (Single-AZ) Deployment: stellt Verfügbarkeit durch die Überwachung von Hardwareausfällen und den automatischen Austausch von Infrastrukturkomponenten im Fehlerfall bereit. Erreicht eine hohe Ausfallsicherheit durch die automatische Replikation Ihrer Daten innerhalb einer Verfügbarkeitszone, um sie vor Komponentenausfällen zu schützen.
++
+Diese Konfiguration wird für High-Performance-Workloads empfohlen oder wenn Workloads zunächst klein beginnen und schrittweise auf einen Durchsatz von 72 GB/s und 2,4 Millionen IOPS skalieren.
+
+*** Deployment mit mehreren Availability Zones (Multi-AZ): gewährleistet die kontinuierliche Verfügbarkeit von Daten, selbst wenn eine Availability Zone nicht verfügbar ist. Ein Multi-AZ-Dateisystem ist für geschäftskritische Produktions-Workloads konzipiert, die eine hohe Verfügbarkeit gemeinsam genutzter ONTAP Dateidaten erfordern und Storage mit integrierter Replikation über Availability Zones hinweg benötigen.
++
+Diese Konfiguration mit einem einzelnen HA-Paar wird für Workloads empfohlen, die einen Durchsatz von bis zu 6 GB/s oder 200.000 IOPS erfordern.
+
+
+
+.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+
+
+. Unter *Dateisystemdetails* sind die folgenden Angaben erforderlich:
++
+.. *SSD Storage-Kapazität*: Hier lassen sich die Speicherkapazität und die Einheit der Speicherkapazität angeben.
++
+*** Bei Bereitstellungen der ersten Generation kann die Kapazität nach der Erstellung des Dateisystems nicht mehr verringert werden.
+*** Bei Deployments der zweiten Generation können Sie die Kapazität nach der Erstellung des Dateisystems erhöhen.
+
+
+.. *ONTAP-Zugangsdaten*: Optional. In diesem Schritt werden Ihr ONTAP-Benutzername und Ihr Passwort eingegeben. Das Passwort kann jetzt oder später festgelegt werden.
++
+Falls der von Ihnen angegebene Benutzer nicht der fsxadmin-Benutzer ist und Sie später das fsxadmin-Passwort zurücksetzen müssen, können Sie dies über die AWS-Konsole tun.
+
+.. *SMB/CIFS-Einrichtung*: Optional. Wenn Sie das SMB/CIFS-Protokoll für den Zugriff auf Volumes verwenden möchten, müssen Sie Active Directory für die Storage VM während der Dateisystemerstellung konfigurieren. Für die Storage VM, die für dieses Dateisystem erstellt wird, sind die folgenden Details erforderlich.
++
+... *Active Directory-Domäne für den Beitritt*: Eingabe des vollqualifizierten Domainnamens (FQDN) für das Active Directory.
+... *DNS-IP-Adressen*: Es können bis zu drei durch Kommas getrennte DNS-IP-Adressen eingegeben werden.
+... *SMB Server NetBIOS-Name*: Der SMB Server NetBIOS-Name des Active Directory-Computerobjekts, das für Ihre Storage VM erstellt werden soll. Dies ist der Name dieser Storage VM im Active Directory.
+... *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
++
+Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+
+... *Passwort*: Das Passwort für das Dienstkonto eingeben.
+... *Abteilung*: Optional können Sie den Namen der Abteilung eingeben, in der Sie das Computerkonto für FSx for ONTAP erstellen möchten. Die OU ist der eindeutige Pfadname der Abteilung, mit der Sie das Dateisystem verknüpfen möchten.
+... *Delegierte Administratorengruppe*: Optional können Sie den Namen der Gruppe in Ihrem Active Directory eingeben, die Ihr Dateisystem verwalten kann.
++
+Wenn Sie AWS Managed Microsoft AD verwenden, müssen Sie eine Gruppe wie AWS Delegated FSx Administrators, AWS Delegated Administrators oder eine benutzerdefinierte Gruppe mit delegierten Berechtigungen für die Abteilung angeben.
+
++
+Wenn Sie einem selbstverwalteten AD beitreten, verwenden Sie den Namen der Gruppe in Ihrem AD. Die Standardgruppe ist `Domain Admins`.
+
+
+
+
+
+. In der *Zusammenfassung* lässt sich die von Ihnen definierte Konfiguration überprüfen. Bei Bedarf können Sie jetzt vor dem Speichern oder Erstellen des Dateisystems jede Einstellung ändern.
+. Speichern oder Erstellen des Dateisystems.
+

@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/version-projects.html 
+keywords: snapshot, clone, project, protect, API, version, versions, versioning 
+summary: Versionen Ihrer EDA-Projekte lassen sich mithilfe von Snapshots und Klonen managen. 
+---
+= Versionen von Workload Factory für EDA-Projekte verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Arbeiten Sie mit verschiedenen Versionen Ihrer EDA-Projekte, indem Sie direkt in Workload Factory bedarfsgesteuerte Snapshots und Klone erstellen. Snapshots und Klone eines Projekts werden im Dateisystem gespeichert, das dem Projekt bei seiner Erstellung zugeordnet war. Sie können Snapshots und Klone auch mit dem  https://console.workloads.netapp.com/api-doc["Workload Factory REST-API"^] verwalten.
+
+
+
+[[create-a-snapshot-of-a-project]]
+== Erstellen einer Snapshot-Kopie eines Projekts
+
+Sie können einen Snapshot eines Projekts erstellen, indem Sie diese Schritte befolgen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ wählen Sie image:icon-action.png["die Optionstaste"] für das Projekt aus, von dem Sie einen Snapshot erstellen möchten.
+. Im daraufhin angezeigten Menü erfolgt die Auswahl von *Snapshot erstellen*.
+. Im Dialogfeld *Snapshot erstellen* wählen Sie einen Namen für den Snapshot aus und dann *Erstellen*.
+
+
+
+
+[[create-a-clone-of-a-project]]
+== Einen Klon eines Projekts erstellen
+
+Das Klonen eines EDA-Projekts aus einem Snapshot erfolgt in diesen Schritten. Wenn Sie einen Klon erstellen, wird ein neues bearbeitbares Volume erstellt, das den Klon enthält.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ wählen Sie image:icon-action.png["die Optionstaste"] für das Projekt aus, das Sie klonen möchten.
+. Im daraufhin angezeigten Menü können Sie *Create a clone* auswählen.
+. Gehen Sie im Dialogfeld *Klon erstellen* wie folgt vor:
++
+.. Einen Namen für den Klon eingeben.
++
+Der Standardname für den Klon ist der Projektname mit einem Suffix aus dem aktuellen Datum und der aktuellen Uhrzeit.
+
+.. Es ist ein Snapshot auszuwählen, der als Basis für den Klon verwendet werden soll.
+.. *Erstellen* auswählen.
+
+
+
+
+.Ergebnis
+Workload Factory erstellt einen neuen Klon des Projekts, und der Klon erscheint als neues Projekt auf der Seite „Projekte“.

@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: get-help.html 
+keywords: help, ticket, open support case, support, netapp support, technical support, call support, phone number, open ticket, web ticket, open an issue, NetApp Console 
+summary: 'NetApp bietet Unterstützung für die NetApp Console auf verschiedene Weise. Umfangreiche kostenlose Selbsthilfeoptionen stehen 24x7 zur Verfügung, wie zum Beispiel Knowledgebase (KB)-Artikel und ein Community-Forum. Die Support-Registrierung umfasst technischen Remote-Support über Web-Ticketing.' 
+---
+= Hilfe zu NetApp Console Cloud-Services
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp bietet Unterstützung für NetApp Console und dessen Cloud-Services auf vielfältige Weise. Umfangreiche kostenlose Selbsthilfeoptionen wie Knowledge Base (KB)-Artikel und ein Community-Forum stehen rund um die Uhr zur Verfügung. Die Support-Registrierung umfasst technischen Remote-Support über Web-Ticketing.
+
+
+
+[[get-support-for-a-cloud-provider-file-service]]
+== Support für einen Dateidienst eines Cloud-Anbieters erhalten
+
+Technische Unterstützung im Zusammenhang mit dem Dateidienst eines Cloud-Anbieters, seiner Infrastruktur oder einer Lösung, die diesen Dienst nutzt, finden Sie in der Dokumentation des jeweiligen Produkts.
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+Um technischen Support speziell für NetApp und dessen Speicherlösungen und Datendienste zu erhalten, nutzen Sie die unten beschriebenen Supportoptionen.
+
+
+
+[[use-self-support-options]]
+== Selbsthilfeoptionen verwenden
+
+Diese Optionen stehen Ihnen kostenlos 24 Stunden am Tag, 7 Tage die Woche zur Verfügung:
+
+* Dokumentation
++
+Die NetApp Console-Dokumentation, die Sie gerade ansehen.
+
+* https://kb.netapp.com/Cloud/BlueXP["Wissensdatenbank"^]
++
+Durchsuchen Sie die NetApp Wissensdatenbank, um hilfreiche Artikel zur Fehlerbehebung zu finden.
+
+* http://community.netapp.com/["Communities"^]
++
+Tritt der NetApp Console-Community bei, um laufende Diskussionen zu verfolgen oder neue zu starten.
+
+
+
+
+
+[[create-a-case-with-netapp-support]]
+== Einen Fall beim NetApp Support erstellen
+
+Zusätzlich zu den oben genannten Selbsthilfeoptionen können Sie nach der Aktivierung des Supports mit einem NetApp Support-Spezialisten zusammenarbeiten, um etwaige Probleme zu lösen.
+
+.Bevor Sie beginnen
+* Um die Funktion *Fall erstellen* nutzen zu können, müssen Sie zunächst Ihre NetApp Support Site-Anmeldeinformationen mit Ihrem Console-Login verknüpfen. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-user-credentials.html["Erfahren Sie, wie Sie die mit Ihrem Console-Login verknüpften Anmeldeinformationen verwalten."^].
+* Wenn Sie einen Fall für ein ONTAP System mit Seriennummer eröffnen, muss Ihr NSS-Konto mit der Seriennummer dieses Systems verknüpft sein.
+
+
+.Schritte
+. In der NetApp Console wählen Sie *Hilfe > Support*.
+. Auf der Seite *Ressourcen* steht unter Technischer Support eine der verfügbaren Optionen zur Auswahl:
++
+.. *Kontaktieren Sie uns* kann ausgewählt werden, wenn ein Telefongespräch mit einer Ansprechperson gewünscht ist. Eine Weiterleitung erfolgt auf eine Seite auf netapp.com, auf der die Telefonnummern aufgeführt sind, die angerufen werden können.
+.. *Fall erstellen* auswählen, um ein Ticket bei einem NetApp Support-Spezialisten zu eröffnen:
++
+*** *Dienst*: Wählen Sie den Dienst aus, dem das Problem zugeordnet ist. Zum Beispiel *NetApp Console*, wenn es sich um ein technisches Supportproblem mit Workflows oder Funktionen innerhalb der Console handelt.
+*** *System*: Falls zutreffend, wählen Sie *Cloud Volumes ONTAP* oder *On-Prem* und anschließend die zugehörige Arbeitsumgebung aus.
++
+Die Liste der Systeme befindet sich im Geltungsbereich der Console-Organisation und des Console-Agenten, den Sie im oberen Banner ausgewählt haben.
+
+*** *Fallpriorität*: Die Priorität des Falls kann auf Niedrig, Mittel, Hoch oder Kritisch gesetzt werden.
++
+Weitere Details zu diesen Prioritäten werden angezeigt, wenn der Mauszeiger über das Informationssymbol neben dem Feldnamen gehalten wird.
+
+*** *Problembeschreibung*: Eine detaillierte Beschreibung des Problems, einschließlich aller relevanten Fehlermeldungen oder durchgeführten Schritte zur Fehlerbehebung.
+*** *Weitere E-Mail-Adressen*: Zusätzliche E-Mail-Adressen können eingegeben werden, um eine andere Person auf dieses Problem aufmerksam zu machen.
+*** *Anhang (optional)*: Bis zu fünf Anhänge können einzeln hochgeladen werden.
++
+Anhänge sind auf 25 MB pro Datei beschränkt. Die folgenden Dateierweiterungen werden unterstützt: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx und csv.
+
+
+
+
+
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["Ein Screenshot des Formulars „Fall erstellen“, mit dem Sie einen Fall beim NetApp Support erstellen können."]
+
+
+
+.Nachdem Sie fertig sind
+Es erscheint ein Pop-up mit Ihrer Support-Fallnummer. Ein NetApp Support-Spezialist prüft Ihren Fall und meldet sich in Kürze bei Ihnen.
+
+Für eine Historie Ihrer Supportfälle kann *Einstellungen > Zeitleiste* ausgewählt und nach Aktionen mit dem Namen „Supportfall erstellen“ gesucht werden. Eine Schaltfläche ganz rechts ermöglicht das Erweitern der Aktion, um Details anzuzeigen.
+
+Es ist möglich, dass beim Versuch, einen Fall zu erstellen, die folgende Fehlermeldung angezeigt wird:
+
+„Sie sind nicht berechtigt, einen Case für den ausgewählten Service zu erstellen.“
+
+Dieser Fehler kann bedeuten, dass das NSS-Konto und das zugehörige Unternehmen nicht mit dem Unternehmen übereinstimmen, das für die NetApp Console-Konto-Seriennummer (z. B. 960xxxx) oder die Seriennummer der Arbeitsumgebung als Unternehmen der Registrierung geführt ist. Hilfe ist über eine der folgenden Optionen erhältlich:
+
+* Einen nicht-technischen Fall einreichen unter https://mysupport.netapp.com/site/help[]
+
+
+
+
+[[manage-your-support-cases]]
+== Verwalten Sie Ihre Supportfälle
+
+Sie können aktive und abgeschlossene Supportfälle direkt in der Console einsehen und verwalten. Die mit Ihrem NSS-Konto und Ihrem Unternehmen verknüpften Fälle lassen sich verwalten.
+
+Dabei ist Folgendes zu beachten:
+
+* Das Fallmanagement-Dashboard oben auf der Seite bietet zwei Ansichten:
++
+** Die Ansicht auf der linken Seite zeigt die Gesamtzahl der in den letzten 3 Monaten über das von Ihnen angegebene NSS-Benutzerkonto eröffneten Fälle.
+** Die Ansicht auf der rechten Seite zeigt die Gesamtzahl der in den letzten 3 Monaten auf Unternehmensebene eröffneten Fälle basierend auf Ihrem NSS-Benutzerkonto.
+
+
++
+Die Ergebnisse in der Tabelle spiegeln die Fälle wider, die sich auf die von Ihnen ausgewählte Ansicht beziehen.
+
+* Sie können Spalten Ihrer Wahl hinzufügen oder entfernen und den Inhalt von Spalten wie Priorität und Status filtern. Andere Spalten bieten lediglich Sortierfunktionen.
++
+Die folgenden Schritte enthalten weitere Details.
+
+* Auf Ebene einzelner Fälle besteht die Möglichkeit, Fallnotizen zu aktualisieren oder einen Fall zu schließen, der sich noch nicht im Status „Abgeschlossen“ oder „Vorläufig abgeschlossen“ befindet.
+
+
+.Schritte
+. In der NetApp Console wählen Sie *Hilfe > Support*.
+. Wählen Sie *Fallmanagement* aus und fügen Sie gegebenenfalls Ihr NSS-Konto zur Console hinzu.
++
+Die Seite *Fallverwaltung* zeigt offene Fälle an, die mit dem NSS-Konto verknüpft sind, das Ihrem Console-Benutzerkonto zugeordnet ist. Dies ist dasselbe NSS-Konto, das oben auf der Seite *NSS management* angezeigt wird.
+
+. Optional können die in der Tabelle angezeigten Informationen geändert werden:
++
+** Unter *Fälle der Organisation* auf *Anzeigen* auswählen, um alle mit Ihrem Unternehmen verknüpften Fälle anzuzeigen.
+** Der Datumsbereich kann geändert werden, indem entweder ein genauer Datumsbereich oder ein anderer Zeitraum ausgewählt wird.
+** Der Inhalt der Spalten filtern.
+** Ändern Sie die in der Tabelle angezeigten Spalten, indem Sie image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["Das Plus-Symbol, das in der Tabelle erscheint"] auswählen und dann die Spalten wählen, die Sie anzeigen möchten.
+
+
+. Verwalten Sie einen bestehenden Fall, indem Sie image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["Ein Symbol mit drei Punkten, das in der letzten Spalte der Tabelle erscheint"]eine der verfügbaren Optionen auswählen:
++
+** *Fall ansehen*: Vollständige Details zu einem bestimmten Fall anzeigen.
+** *Fallnotizen aktualisieren*: Zusätzliche Details zu Ihrem Problem können angegeben oder *Dateien hochladen* ausgewählt werden, um bis zu fünf Dateien anzuhängen.
++
+Anhänge sind auf 25 MB pro Datei beschränkt. Die folgenden Dateierweiterungen werden unterstützt: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx und csv.
+
+** *Fall schließen*: Geben Sie Einzelheiten dazu an, warum Sie den Fall schließen, und wählen Sie *Fall schließen* aus.
+
+
+

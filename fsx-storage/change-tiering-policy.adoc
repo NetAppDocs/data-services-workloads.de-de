@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/change-tiering-policy.html 
+keywords: tiering policy, change tier, change tiers, tier policy update 
+summary: Die Tiering-Richtlinie in NetApp Workload Factory dient zur Neuzuweisung von Daten vom primären High-Performance-Storage-Tier auf den sekundären Kapazitätspool-Storage-Tier. 
+---
+= Ändern der Tiering-Richtlinie eines Volumes in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In NetApp Workload Factory können Sie die Tiering-Richtlinie ändern, um Daten automatisch vom primären Hochleistungs-Storage-Tier auf das sekundäre Kapazitätspool-Storage-Tier neu zuzuweisen.
+
+.Über diese Aufgabe
+Sie können die Tiering-Richtlinie eines Volumes jederzeit ändern. Die Tiering-Richtlinie ist pro Volume definiert.
+
+Die Entscheidung, wo Ihre Daten gespeichert werden, hat Auswirkungen auf Ihre Kosteneinsparungen.
+
+FSx for ONTAP verfügt über zwei Storage-Tiers zum Speichern von Volumendaten:
+
+* *SSD Storage-Tier*: Dieses primäre Storage-Tier ist für die Daten vorgesehen, auf die Sie am häufigsten zugreifen, auch bekannt als _heiße_ Daten. Das Speichern von Daten auf dem primären Storage-Tier ist teurer als auf dem sekundären Storage-Tier.
+* *Storage-Tier für Kapazitätspools*: Dieser sekundäre Storage-Tier ist für archivierte Daten oder selten abgerufene Daten vorgesehen, auch als _kalte_ Daten bezeichnet.
+
+
+Weitere Informationen zu Storage-Tiers finden Sie in link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html#storage-tiers["Verwaltung der Storage-Kapazität"^]AWS für FSx for NetApp ONTAP Dokumentation.
+
+.Bevor Sie beginnen
+Die verfügbaren Tiering-Richtlinien sollten vor dem Ändern der Tiering-Richtlinie überprüft werden.
+
+* *Ausgewogen (Automatisch)*: Standardmäßige Tiering-Richtlinie beim Erstellen eines Volumes über die Benutzeroberfläche. Häufig genutzte Daten verbleiben im SSD Storage-Tier, selten genutzte Daten und Snapshots werden nach Ablauf der Abkühlphase in das Kapazitätspool Storage-Tier verschoben. Empfohlen für allgemeine primäre Workloads.
+* *Kostenoptimiert (Alle)*: Lagert alle Snapshots und Daten in den Storage-Tier des Kapazitätspools aus. Empfohlen für sekundäre Ziele.
+* *Leistungsoptimiert (nur Snapshots)*: Tiers speichern nur Snapshot-Daten im Storage-Tier des Kapazitätspools. Empfohlen für Workloads mit niedriger Latenz, wie z. B. unternehmenskritische Datenbanken.
+* *Keine*: Behält die Volumendaten im SSD Storage-Tier und verhindert, dass sie in das Kapazitätspool Storage-Tier verschoben werden.
+
+
+Einige Tiering-Richtlinien haben eine zugehörige Mindestkühlzeit, die festlegt, wie lange, also wie viele _cooling days_, Benutzerdaten in einem Volume inaktiv bleiben müssen, damit die Daten als „kalt“ gelten und in den Capacity Pool Storage-Tier verschoben werden. Die Kühlzeit beginnt, wenn Daten auf die Festplatte geschrieben werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer* > *FSx for ONTAP*.
+. Wählen Sie das Aktionsmenü des Volumes aus, für das die Tiering-Richtlinie geändert werden soll.
+. Die Auswahl erfolgt zunächst über *Advanced actions* und dann über *Change tiering policy*.
+. Auf der Seite „Tiering-Richtlinie ändern“ kann die Tiering-Richtlinie des Quell-Volumes kopiert oder eine der folgenden Tiering-Richtlinien ausgewählt werden:
++
+** *Ausgeglichen (Auto)*: Anzahl der Kühltage eingeben.
+** *Kostenoptimiert (Alle)*
+** *Leistungsoptimiert (nur Snapshots)*: Anzahl der Kühltage eingeben.
+** *Keine*
+
+
+. *Anwenden* auswählen.
+

@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/split-cloned-volume.html 
+keywords: split clone volume, FlexVol volume 
+summary: Durch das Trennen eines Klon FlexVol volume von seinem übergeordneten Volume wird der Klon zu einem normalen lesen/schreiben FlexVol volume. 
+---
+= Aufteilen eines geklonten Volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trennen eines geklonten FlexVol Volumes von seinem übergeordneten Volume, um den Klon in ein normales lesen/schreiben FlexVol Volume in NetApp Workload Factory umzuwandeln.
+
+Die Daten sind während der Aufteilung sowohl auf dem Klon als auch auf dem übergeordneten System zugänglich. Der Aufteilungsprozess aktualisiert lediglich Metadaten und erfordert nur minimale IO. Es werden keine Datenblöcke kopiert.
+
+.Über diese Aufgabe
+Der Vorgang der Klonteilung umfasst Folgendes:
+
+* Neue Snapshot-Kopien des FlexClone Volumes können während des Split-Vorgangs nicht erstellt werden.
+* Ein FlexClone volume kann nicht vom übergeordneten Volume getrennt werden, wenn es Teil einer Datensicherungsbeziehung ist.
+* Wenn das FlexClone Volume während eines laufenden Aufteilungsvorgangs offline genommen wird, wird der Aufteilungsvorgang ausgesetzt; wenn das FlexClone Volume wieder online geschaltet wird, setzt sich der Aufteilungsvorgang fort.
+* Nach der Aufteilung benötigen sowohl das übergeordnete FlexVol Volume als auch der Klon den vollen Speicherplatz, der durch ihre Volume-Garantien bestimmt wird.
+* Nachdem ein FlexClone volume von seinem übergeordneten Volume getrennt wurde, können die beiden nicht wieder zusammengeführt werden.
+
+
+.Bevor Sie beginnen
+Vor dem Aufteilen eines geklonten Volume ist Folgendes zu beachten:
+
+* Um ein geklontes Volume aufzuteilen, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+* Das FlexClone volume muss online sein, wenn der Split-Vorgang beginnt.
+* Das übergeordnete Volume muss online sein, damit die Aufteilung erfolgreich ist.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü des Volumes mit dem zu trennenden geklonten Volume aus.
+. Auszuwählen sind *Datenschutzaktionen* und anschließend *Geklontes Volume aufteilen*.
+. Im Dialogfeld „Volume teilen“ ist die Option *Löschen* auszuwählen.
+
+
+.Ergebnis
+Der Klon des Volumes ist aufgeteilt und erscheint auf der Registerkarte „Volumes“.

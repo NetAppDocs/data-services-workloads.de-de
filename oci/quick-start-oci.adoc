@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: oci/quick-start-oci.html 
+keywords: Oracle Cloud Infrastructure NetApp Storage Service, oci nss, netapp, quick, get started, install, deploy, setup, launch, requirements, prerequisites, credentials, permissions, policy 
+summary: Mit Oracle Cloud Infrastructure NetApp Storage Service in NetApp Workload Factory können Sie in nur wenigen Schritten loslegen. 
+---
+= Schnellstart für Oracle Cloud Infrastructure NetApp Storage Service in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Der Einstieg in Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) erfolgt durch das Hinzufügen von Anmeldeinformationen und Berechtigungen, das Erstellen einer Verknüpfung bei Bedarf sowie das Erstellen oder Erkennen eines Storage-Systems.
+
+Die folgenden Schritte erleichtern den Einstieg.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldeinformationen und Berechtigungen hinzufügen
+[role="quick-margin-para"]
+link:add-credentials.html["Hinzufügen von Anmeldeinformationen zu einem Konto"]. Dies umfasst die Auswahl der Workload-Funktionen und die Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen.
+
+[role="quick-margin-para"]
+Auswahl der standardmäßigen link:permissions-oci.html["Ansicht, Planung und Analyse"] Berechtigungsrichtlinie.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Link erstellen
+[role="quick-margin-para"]
+Dieser Schritt ist optional. Für einige Verwaltungsaufgaben in der NetApp Console ist ein NetApp Workload Factory Link erforderlich. Ein _Link_ nutzt OCI Functions, um eine Vertrauensbeziehung und Konnektivität zu Ihren OCI NSS Systemen herzustellen.
+
+[role="quick-margin-list"]
+* link:../setup/links-overview.html["Informationen dazu, wann ein Console Agent oder Link für die OCI NSS-Verwaltung erforderlich ist"]
+* link:create-link.html["Informationen zum Erstellen eines Links"^]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"] OCI NetApp Storage Service-System erkennen oder hinzufügen
+[role="quick-margin-para"]
+Zu Beginn des Managements Ihrer OCI NSS-Ressourcen in Workload Factory wird ein Storage-Pool ermittelt. Im link:https://console.netapp.com["NetApp Console"^] finden Sie unter *Storage* und dann unter *Management* den Eintrag *Discoverable systems*. link:create-discover-systems.html["Informationen zum Erkennen eines OCI NSS Storage-Systems"].
+
+.Was kommt als Nächstes
+Mit einem Storage Pool in Ihrem Storage Inventar können Sie Ihre OCI NSS-Ressourcen managen.

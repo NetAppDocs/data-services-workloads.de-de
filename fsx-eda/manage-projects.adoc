@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/manage-projects.html 
+keywords: EDA, electronic design automation, project, projects, manage project, create project, edit project, delete project 
+summary: EDA-Projekte in NetApp Workload Factory for EDA managen. 
+---
+= EDA-Projekte in Workload Factory für EDA verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+EDA-Projekte können verwaltet werden, um zu steuern, wie Ihr Code und Ihre Artefakte für jedes Projekt in NetApp Workload Factory for EDA gemanagt werden.
+
+
+
+[[create-a-project]]
+== Ein Projekt erstellen
+
+Sie können ein neues EDA-Projekt erstellen, um die Datenschutzfunktionen Ihres FSx for ONTAP Dateisystems für Ihren Code und Ihre Artefakte zu nutzen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Wählen Sie *Projekt hinzufügen* aus.
+. Auf der Seite „Projekt erstellen“ sind folgende Angaben erforderlich:
++
+.. *Projektname*: Einen Namen für das Projekt eingeben.
+.. *Beschreibung*: Eine Beschreibung für das Projekt eingeben.
+.. *Dateisystem*: Folgendes ist anzugeben:
++
+... *Anmeldeinformationen*: Wählen Sie die zu verwendenden Amazon AWS-Anmeldeinformationen aus. EDA verwendet diese Anmeldeinformationen, um FSx for ONTAP-Dateisysteme zu ermitteln, die Sie mit diesem Projekt verwenden können, und um Klone und Snapshots von Projekten zu erstellen.
+... *Region*: Wählen Sie die Region aus, in der sich dieses FSx for ONTAP-Dateisystem befindet.
+... *FSx for ONTAP-Dateisystem*: Wählen Sie ein FSx for ONTAP-Dateisystem aus, das mit diesem Projekt verwendet werden soll.
++
+Sie können nur Dateisysteme auswählen, die mit einem Link konfiguriert sind. link:../setup/links-overview.html["Weitere Informationen zu Links"^].
+
+... *Volume auswählen*: Auswahl eines Volumes, auf dem das Projekt gespeichert wird; EDA verwendet dieses Volume als Software-Repository.
++
+Sie können nur Volumes auswählen, die als NFS-Freigabe konfiguriert sind.
+
+
+
+.. *Betriebsrichtlinien*: Grenzwerte für Projektklone:
++
+... *Maximale Aufbewahrungsdauer in Tagen*: Hier kann die maximale Anzahl von Tagen festgelegt werden, für die ein Klon aufbewahrt werden soll. Nach Ablauf dieser Anzahl von Tagen entfernt Workload Factory den Klon.
+... *Maximale Anzahl von Klonen pro Benutzer oder Gruppe*: Die maximale Anzahl von Klonen eingeben, die für einen Benutzer oder eine Gruppe bereitgestellt werden können.
+... *Maximale Klongröße in GiB*: Hier wird die maximale Größe eines Projektklons in GiB eingegeben.
+
+
+.. *Zugriffsrichtlinien*: Explizite Gewährung des Projektzugriffs an bestimmte Benutzer oder Gruppen:
++
+... *Geltungsbereich der Richtliniendurchsetzung*: Mit der Eingabe einzelner IP-Adressen oder IP-Adressbereiche lässt sich der Projektzugriff auf genau diese IP-Adressen oder Bereiche beschränken.
++
+Beispiel: `172.16.0.0/24`
+
+... *Benutzer- oder Gruppenkennungen*: Mit der Eingabe von Benutzer- oder Gruppenkennungen lässt sich der Projektzugriff auf diese Benutzer oder Gruppen beschränken.
++
+Beispiel: `User1234`
+
+
+
+
+
+. *Erstellen* auswählen.
+
+
+.Ergebnis
+Das Projekt wurde erstellt und erscheint in der Projektliste auf der Projektseite.
+
+
+
+[[view-existing-projects]]
+== Vorhandene Projekte anzeigen
+
+Sie können bestehende Projekte anzeigen, die in NetApp Workload Factory for EDA erstellt wurden, indem Sie diese Schritte ausführen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ sind die vorhandenen Projekte aufgelistet.
+
+
+
+
+[[edit-a-project]]
+== Ein Projekt bearbeiten
+
+Sie können die Einstellungen eines Projekts jederzeit bearbeiten.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ wählen Sie für das Projekt, das Sie bearbeiten möchten, image:icon-action.png["die Optionstaste"] und anschließend *Bearbeiten* aus.
+. Alle erforderlichen Änderungen an der Projektkonfiguration vornehmen.
+. *Speichern* auswählen.
+
+
+
+
+[[view-a-projects-workspaces]]
+== Arbeitsbereiche eines Projekts anzeigen
+
+Ein Klon oder Snapshot eines Projekts wird als Arbeitsbereich bezeichnet. Wenn Sie einen Arbeitsbereich erstellen, wird dieser so lange gespeichert, wie es die Betriebsrichtlinie des Projekts zulässt. Vorhandene Arbeitsbereiche für ein Projekt können mit den folgenden Schritten angezeigt werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ wird ein Projekt ausgewählt und *Anzeigen* ausgewählt.
+. Der Status und die Details aller Arbeitsbereiche für dieses Projekt werden angezeigt.
+. Wenn für einen Arbeitsbereich Benachrichtigungen oder Warnungen angezeigt werden, sehen Sie den Grund, wenn Sie den Mauszeiger über das Benachrichtigungs- oder Warnsymbol bewegen.
+
+
+
+
+[[delete-a-project]]
+== Ein Projekt löschen
+
+Sie können ein Projekt löschen, wenn es nicht mehr erforderlich ist, indem Sie diese Schritte befolgen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *EDA*.
+. Hier wird *CI/CD* ausgewählt.
+. Die Option *Zur Projektseite* auswählen.
+. Auf der Seite „Projekte“ wählen Sie für das Projekt, das Sie löschen möchten, image:icon-action.png["die Optionstaste"] aus.
+. Wählen Sie *Delete*.
+. Im Bestätigungsdialog erfolgt die Auswahl von *Löschen*.
+
+
+.Ergebnis
+Das Projekt wird gelöscht, und der gesamte zugehörige Code sowie alle Artefakte werden aus dem Volume gelöscht. Snapshots und Klone des Projekts bleiben erhalten.

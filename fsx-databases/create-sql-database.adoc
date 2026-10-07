@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sql-database.html 
+keywords: create, database, creation, Microsoft SQL 
+summary: Erstellung einer Microsoft SQL-Datenbank mit NetApp Workload Factory for Databases. 
+---
+= Erstellen einer Microsoft SQL Datenbank in NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durch das Erstellen einer neuen Microsoft SQL Datenbank können Sie die Ressource in NetApp Workload Factory for Databases managen.
+
+.Über diese Aufgabe
+Bei der Erstellung der Datenbank werden im FSx for ONTAP Dateisystem zwei neue Volumes erstellt, die aus unabhängigen LUNs bestehen und Daten- und Protokolldateien für die Datenbank hosten. Die Datenbankdateien in der neuen Datenbank sind thin-provisioniert und belegen nur wenige MB der der neuen Datenbank insgesamt zugewiesenen Größe.
+
+Wenn Sie Storage für die Datenbank trennen möchten, können Sie dies mithilfe eines virtuellen Mountpunkts tun. Der virtuelle Mountpunkt ermöglicht es Ihnen, Datenbanken auf wenigen gemeinsamen Laufwerken auf dem Host zu konsolidieren.
+
+Zum Erstellen einer Datenbank in workload factory sind die Berechtigungen _Anzeigen, Planen und Analysieren_ erforderlich. Alternativ können Sie eine teilweise ausgefüllte Codevorlage kopieren oder herunterladen, um den Vorgang außerhalb von workload factory abzuschließen. link:../fsx-storage/permissions-reference-fsx.html["Informationen zu den Berechtigungen von Workload Factory"^], um zu entscheiden, welchen Modus Sie verwenden möchten.
+
+
+NOTE: Microsoft SQL Servers, die das SMB-Protokoll verwenden, unterstützen keine Datenbankerstellung.
+
+.Bevor Sie beginnen
+Folgende Voraussetzungen sind zu erfüllen, bevor eine neue Datenbank erstellt wird.
+
+* *Anmeldeinformationen und Berechtigungen*: Sie müssen link:../fsx-storage/add-credentials.html["AWS-Kontoanmeldeinformationen und Berechtigungen für _Operationen und Behebungen_"^] besitzen, um eine neue Datenbank in Workload Factory zu erstellen.
++
+Alternativ lässt sich die Codebox verwenden, um eine Vorlage zu kopieren, sodass Sie mithilfe der REST API eine Datenbank außerhalb von workload factory einsetzen können. link:../admin/codebox-automation.html["Weitere Informationen zur Codebox Automatisierung"^].
+
+* *Windows-Host*: Sie müssen auf dem Microsoft SQL Server über genügend Laufwerksbuchstaben verfügen, um neue Laufwerke für die neue Datenbank zu erstellen, wenn Sie den Modus _Quick create_ verwenden.
+* *Microsoft SQL Server*: Voraussetzung ist ein verwalteter Microsoft SQL Server in workload factory for Databases zum Hosten der neuen Datenbank.
+* *AWS Systems Manager*: Es muss sichergestellt sein, dass die  `NT Authority\SYSTEM` Benutzerrechte im Microsoft SQL Host über AWS Systems Manager aktiviert sind.
+
+
+
+
+[[create-a-database]]
+== Erstellen einer Datenbank
+
+In Workload Factory kann diese Aufgabe mit den Deployment-Modi _Quick create_ oder _Advanced create_ abgeschlossen werden.
+
+[role="tabbed-block"]
+====
+.Schnellerstellung
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. Im Menü Datenbanken wird *Inventar* ausgewählt.
+. Im Inventar wird *Microsoft SQL Server* als Typ der Datenbank-Engine ausgewählt.
+. Auswahl eines Datenbankservers mit einer verwalteten SQL server Instanz, in dem die Datenbank erstellt wird.
+. Anschließend erfolgt im Aktionsmenü der verwalteten Instanz die Auswahl von *Benutzerdatenbank erstellen*.
+. Auf der Seite „Benutzerdatenbank erstellen“ sind unter „Datenbankinformationen“ die folgenden Angaben zu machen:
++
+.. *Datenbankname*: Namen für die Datenbank eingeben.
+.. *Sortierung*: Auswahl einer Sortierung für die Datenbank. Die Standardsortierung "SQL_Latin1_General_CP1_CI_AS" auf Microsoft SQL Server ist ausgewählt.
+
+
+. Unter Dateieinstellungen sind die folgenden Angaben erforderlich:
++
+.. *Dateieinstellungsmodus*: Auswahl von *Schnell erstellen*.
+.. *Dateinamen & Pfad*:
++
+*** *Name der Datendatei*: Name der Datendatei eingeben.
+*** *Name der Protokolldatei*: Eingabe des Namens der Protokolldatei.
+
+
+.. *Dateigrößen*: Eingabe der Datengröße und der Protokollgröße für die Datenbank.
+
+
+. Klicken Sie auf *Create*.
++
+Alternativ können Sie, wenn Sie eine dieser Standardeinstellungen jetzt ändern möchten, den *Dateieinstellungsmodus* in *Erweiterte Erstellung* ändern.
+
+
+
+--
+.Erweiterte Erstellung
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. Im Menü Datenbanken wird *Inventar* ausgewählt.
+. Im Inventar wird *Microsoft SQL Server* als Typ der Datenbank-Engine ausgewählt.
+. Auswahl eines Datenbankservers mit einer verwalteten SQL server Instanz, in dem die Datenbank erstellt wird.
+. Anschließend erfolgt im Aktionsmenü der verwalteten Instanz die Auswahl von *Benutzerdatenbank erstellen*.
+. Die Auswahl fällt auf *Create user database*.
+. Auf der Seite „Benutzerdatenbank erstellen“ sind unter „Datenbankinformationen“ die folgenden Angaben zu machen:
++
+.. *Datenbankname*: Namen für die Datenbank eingeben.
+.. *Sortierung*: Auswahl der Sortierung für die Datenbank. Die Standardsortierung "SQL_Latin1_General_CP1_CI_AS" auf Microsoft SQL Server ist ausgewählt.
+
+
+. Unter Dateieinstellungen sind die folgenden Angaben erforderlich:
++
+.. *Modus für Dateieinstellungen*: *Advanced create* auswählen.
+.. *Dateinamen & Pfad*:
++
+... *Datendatei*: Auswahl eines Laufwerksbuchstabens und Eingabe des Namens der Datendatei.
++
+Optional kann das Kontrollkästchen für *Virtual mount point* aktiviert werden.
+
+... *Protokolldatei*: Auswahl eines Laufwerksbuchstabens und Eingabe des Namens der Protokolldatei.
++
+Optional kann das Kontrollkästchen für *Virtual mount point* aktiviert werden.
+
+
+
+.. *Dateigrößen*: Eingabe der Datengröße und der Protokollgröße für die Datenbank.
+
+
+. Klicken Sie auf *Create*.
+
+
+--
+====
+Wenn Sie den Datenbank-Host erstellt haben, können Sie den Fortschritt des Auftrags auf der Registerkarte *Job monitoring* überprüfen.

@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: admin/create-custom-dashboard-fsx.html 
+keywords: create dashboard, custom dashboard, AI dashboard, dashboard creation, personalized dashboard 
+summary: Ein individuelles Dashboard mit KI-gestützten Abfragen ermöglicht die Überwachung der wichtigsten Aspekte Ihrer Arbeitslasten und betrieblichen Prioritäten. 
+---
+= Ein benutzerdefiniertes Dashboard in NetApp Workload Factory erstellen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Individuelle Dashboards lassen sich erstellen, indem in einfacher Sprache beschrieben wird, was überwacht werden soll. Die KI unterstützt bei der Einrichtung, sodass die Dashboards zu den jeweiligen Workloads und Prioritäten passen.
+
+.Über diese Aufgabe
+Benutzerdefinierte Dashboards nutzen einen KI-gestützten Dialog, um zu verstehen, was Sie visualisieren möchten. Ihre Überwachungsanforderungen werden in natürlicher Sprache beschrieben, und das System stellt klärende Fragen, damit das Dashboard Ihren Anforderungen entspricht.
+
+Nach der Erstellung kann das Dashboard aktualisiert werden, um die aktualisierten Daten anzuzeigen.
+
+Beachten Sie, dass benutzerdefinierte Dashboards standardmäßig schreibgeschützt sind und keine Änderungen an Ihren Speicher- oder Workload-Konfigurationen vornehmen können.
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und das Erstellen von Dashboards ist nicht möglich. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:manage-genai-features.html["Informationen zur KI-Administration"].
+
+
+
+[[create-a-dashboard]]
+== Ein Dashboard erstellen
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü der NetApp Console erfolgt die Auswahl über *Workloads* > *Workloads Overview* > *Custom dashboards*.
++
+Wenn dies Ihr erstes Dashboard ist, sehen Sie einen leeren Bildschirm mit Beispielaufforderungen, die Ihnen den Einstieg erleichtern. Es besteht die Möglichkeit, *Aufforderung kopieren* auszuwählen, um eine Beispielaufforderung in das Textfeld des KI-Dialogs zu übernehmen.
+
+. *Neues Dashboard erstellen* auswählen.
+. Im KI-Dialog wird beschrieben, was überwacht werden soll.
++
+Beschreiben Sie es in einfachen Worten. Die KI stellt einige Fragen, um Ihre Bedürfnisse besser zu verstehen.
+
+. Wählen Sie image:arrow.png["Das Menüsymbol wird verwendet, um Dashboards zu generieren., width=18"].
+. Antworten auf die klärenden Fragen der KI.
++
+Die KI bittet Sie möglicherweise, aus mehreren Optionen auszuwählen, um Ihre Bedürfnisse besser zu verstehen. Jede Frage wird beantwortet und *Weiter* ausgewählt, oder *Überspringen* wird gewählt, um optionale Fragen zu überspringen.
+
+. Nachdem Sie alle Fragen beantwortet haben, *Weiter* auswählen, um Ihr Dashboard zu erstellen.
+
+
+Ihr Dashboard wird erstellt. Dies kann einen Moment dauern.
+
+.Ergebnis
+Ihr benutzerdefiniertes Dashboard wurde erstellt und dem Dashboard Katalog hinzugefügt. Standardmäßig ist das Dashboard privat und nur für Sie sichtbar. Die Sichtbarkeit kann auf öffentlich geändert werden, wenn eine Freigabe für andere Benutzer Ihres Workload Factory Kontos gewünscht ist. link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
+
+Sie erhalten eine Benachrichtigung, sobald Ihr Dashboard fertig ist. Falls es nicht erstellt werden kann, erhalten Sie eine Benachrichtigung mit einem Link, um es erneut zu versuchen. link:configure-notifications.html["Informationen zur Konfiguration von Benachrichtigungen"].
+
+.Was kommt als Nächstes
+Nach der Erstellung können Sie:
+
+* Die Dashboard-Sichtbarkeit kann geändert werden, sodass sie mit dem Team geteilt wird.
+* Dashboard-Daten werden aktualisiert, damit die neuesten Informationen angezeigt werden.
+* Dashboards, die nicht mehr benötigt werden, können gelöscht werden.
+* Dashboard-Details anzeigen, einschließlich des Erstellers und des Zeitpunkts der letzten Aktualisierung
+
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+* link:manage-custom-dashboards-fsx.html["Eigene benutzerdefinierte Dashboards verwalten"]
+* link:troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
+

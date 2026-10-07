@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: setup/links-overview.html 
+keywords: links, accounts, connectivity, 
+summary: Eine Workload Factory Verbindung stellt eine Vertrauensbeziehung und Konnektivität zwischen einem Workload Factory Konto und einem oder mehreren Cloud Storage-Systemen her. 
+---
+= Informationen zu NetApp Workload Factory-Links
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Eine NetApp Workload Factory Verknüpfung stellt eine Vertrauensbeziehung und Konnektivität zwischen einem Workload Factory Konto und einem oder mehreren Cloud Storage-Systemen her. Dadurch können Sie bestimmte Funktionen des Storage-Systems direkt über ONTAP REST API Aufrufe überwachen und managen, die über die API Ihres Cloud-Anbieters nicht verfügbar sind.
+
+Für den Einstieg in Workload Factory benötigen Sie keinen Link, aber in einigen Fällen müssen Sie einen Link erstellen, um alle Funktionen und Workload-Funktionen von Workload Factory freizuschalten.
+
+
+
+[[why-links-are-beneficial]]
+== Warum Links von Vorteil sind
+
+Links sind vorteilhaft, da sie Workload Factory die Durchführung von Operationen ermöglichen, die über die API Ihres Cloud-Anbieters nicht nativ verfügbar sind. Links ermöglichen erweiterte ONTAP Funktionen und Automatisierung, was das Management Ihrer Cloud Storage-Systeme verbessert.
+
+Hier sind einige Vorteile der Verwendung von Links:
+
+* Mit dieser Verbindung kann die NetApp Console ONTAP Befehle direkt an Ihr Cloud Storage-System senden, wodurch erweiterte ONTAP Funktionen verfügbar werden, die über das hinausgehen, was Ihr Cloud-Anbieter nativ anbietet.
+* Links nutzen entfernte serverlose Funktionen, um Code als Reaktion auf Ereignisse auszuführen. Dieser serverlose Ansatz beseitigt die Abhängigkeit von einer Instanz, die in Ihrer VPC läuft.
+
+
+
+
+[[how-links-work]]
+== Wie Links funktionieren
+
+Links nutzen serverlose Remote-Computing Services wie AWS Lambda und Oracle Cloud Infrastructure Functions. Diese Services führen Code als Reaktion auf Ereignisse aus und managen die dafür benötigten Rechenressourcen. Die von Ihnen erstellten Links sind Teil Ihres NetApp Kontos und mit dem entsprechenden Cloud-Anbieterkonto verknüpft.
+
+Nachdem Sie einen Link erstellt haben, können Sie ihn mit einem oder mehreren Cloud Storage-Systemen verknüpfen. Jedes Cloud Storage-System kann nur mit einem Link im selben NetApp Konto verknüpft werden. Wenn Sie mehrere NetApp Konten haben, kann ein einzelnes Cloud Storage-System unter verschiedenen NetApp Konten mit zusätzlichen Links verknüpft werden.
+
+Sie erstellen und verknüpfen Links auf der Seite „Links“ in der NetApp Console für Ihre Cloud-Storage-Systeme.
+
+Sie können Links mithilfe von Anmeldedaten authentifizieren, die im Anmeldedatenservice von Workload Factory gespeichert sind, oder mit dem Anmeldedatenservice Ihres Cloud-Anbieters. Workload Factory unterstützt das Ändern von Authentifizierungsmodi nicht.
+
+
+
+[[costs]]
+== Kosten
+
+Für jede Transaktion, die der serverlose Compute-Service Ihres Cloud-Anbieters durchführt, fallen Gebühren an. Da der Service als Vermittler zwischen den beiden Systemen fungiert, entstehen Kosten sowohl beim Senden einer Anfrage an die ONTAP REST API im Dateisystem als auch beim Zurücksenden der Antwort an Workload Factory.
+
+* link:https://aws.amazon.com/lambda/pricing/["Weitere Informationen zu den Kosten im Zusammenhang mit der Nutzung von AWS Lambda."^]
+* link:https://www.oracle.com/cloud/cloud-native/functions/["Weitere Informationen zu den Kosten im Zusammenhang mit der Nutzung von Oracle Cloud Infrastructure Functions"^]
+
+
+
+
+[[when-a-link-is-required]]
+== Wenn ein Link erforderlich ist
+
+Workload Factory benötigt eine Verbindung, um bestimmte Informationen anzuzeigen und einige Aufgaben auszuführen. Wenn Sie versuchen, einen Vorgang auszuführen, der eine Verbindung erfordert, und Sie dem Cloud Storage-System keine Verbindung zugeordnet haben, benachrichtigt Workload Factory Sie darüber, dass der Vorgang eine Verbindung erfordert.
+
+Zu den Funktionen, die eine Verknüpfung erfordern, gehören:
+
+* Status gut konzipierter Konfigurationen von Cloud-Storage-Systemen für proaktive Wartung, Zuverlässigkeit und Kosten-Leistungs-Optimierung
+* ONTAP EMS Ereignisüberwachung und Alarmierung
+* NetApp Autonomous Ransomware Protection (ARP/AI)
+* Verbesserte ganzheitliche Transparenz der Kapazität über Cloud Storage Systeme hinweg
+* Datenreplizierung, Verwaltung und Überwachung von Volumes und Storage-VMs
+* Bereitstellung und Verwaltung von SMB/CIFS-Freigaben und NFS-Exportrichtlinien
+* Verwaltung von iSCSI-Volumes auf einem Cloud Storage-System
+* Erstellung und Verwaltung von Snapshot-Richtlinien für benutzerdefinierte Schutz-SLA
+* Verbesserungen im Inode-Management für automatisches Kapazitätsmanagement
+* Automatisches Volumenwachstum für elastische Skalierung
+* Klonerstellung und -verwaltung für die sofortige, direkte Datenklonierung
+* Anzeige zusätzlicher Metriken direkt aus Ihrem Cloud Storage-System, z. B. der Systemversion
+* Anzeige der Details zu Speicher-VMs und Cluster-LIFs, einschließlich Rollen, Endpunkten, Knoten, IP-Adressen und Status
+
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+Informationen zum Erstellen und Verknüpfen von Links für:
+
+* link:../fsx-storage/create-link.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/create-link.html["OCI NetApp Storage Service"]
+

@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, Amazon FSx for NetApp ONTAP, FSx for ONTAP, recommendation, recommendations 
+summary: NetApp Workload Factory analysiert Amazon FSx for NetApp ONTAP-Dateisystemkonfigurationen regelmäßig, um festzustellen, ob Konfigurationsprobleme vorliegen. 
+---
+= Konfigurationsanalyse für FSx for ONTAP Dateisysteme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory analysiert Amazon FSx for NetApp ONTAP-Dateisystemkonfigurationen regelmäßig, um festzustellen, ob Konfigurationsprobleme vorliegen. Werden Probleme gefunden, zeigt Workload Factory an, worin die Probleme bestehen, und erklärt, was geändert werden muss, damit Ihr Dateisystemspeicher optimale Leistung, Kosteneffizienz und die Einhaltung bewährter Verfahren erreicht.
+
+Zu den wichtigsten Fähigkeiten gehören:
+
+* Tägliche Konfigurationsanalyse
+* Automatische Best-Practice-Validierungen
+* Proaktive Beobachtbarkeit
+* Erkenntnisse in die Praxis umsetzen
+* AWS Well-Architected Framework Berater
+
+
+
+
+[[how-it-works]]
+== So funktioniert es
+
+Workload Factory analysiert täglich Ihre Workloads, die auf unterstützten Cloud-Speichersystem-Bereitstellungen ausgeführt werden. Die Analyse liefert den Status einer Well-Architected-Architektur, Erkenntnisse und Empfehlungen.
+
+Nach Abschluss der täglichen Analyse werden die Konfigurationen im Well-architected Dashboard für die Bereitstellung als „optimiert“ oder „nicht optimiert“ angezeigt. Konfigurationsprobleme sind nach Kategorie sowie in einer Liste mit Problemen und Empfehlungen zu finden. Empfehlungen zu den Konfigurationsproblemen können überprüft werden. Workload Factory kann einige Probleme automatisch beheben, andere erfordern manuelle Eingriffe. In diesem Fall stellt Workload Factory detaillierte Anweisungen bereit, um die empfohlenen Änderungen umzusetzen.
+
+Sie können die Analyse von Konfigurationen, die für Ihre Umgebungen nicht relevant sind, ausblenden. Dadurch werden unnötige Warnmeldungen und ungenaue Optimierungsergebnisse vermieden.
+
+Es besteht auch die Möglichkeit, benutzerdefinierte Regeln in einfacher Sprache zu erstellen, um Ihre Umgebungen anhand der Standards Ihres Unternehmens und der NetApp Best Practices zu validieren. Regeln können mit einem Probelauf getestet und anschließend für die Ausführung in Ihren Umgebungen terminiert werden. link:learn-custom-rules.html["Weitere Informationen zu benutzerdefinierten Regeln"^].
+
+
+
+[[why-it-matters]]
+== Warum es wichtig ist
+
+Workload Factory wendet Best Practices auf große Storage-, Datenbank- und VMware-Umgebungen an, indem kontinuierliche Bewertungen mit Empfehlungseinblicken und Fehlerbehebungen kombiniert werden. Automatisierte Korrekturen reduzieren menschliche Fehler, gewährleisten einheitliches Management und erhalten Leistung und Zuverlässigkeit über Ihre Workload-Infrastrukturen hinweg.
+
+
+
+[[analysis-requirements]]
+== Analyseanforderungen
+
+Für eine vollständige Dateisystemanalyse sind die folgenden Schritte erforderlich:
+
+* Stellen Sie eine Verknüpfung her. Die Verknüpfungskonnektivität ermöglicht es Workload Factory, alle Dateisystemkonfigurationen wie Datenschutz und Leistung zu analysieren.
++
+link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^].
+
+* Gewähren Sie _view, planning, and analysis_-Berechtigungen in Ihrem AWS-Konto.
++
+link:add-credentials.html["Erfahren Sie, wie Sie einem AWS-Konto Berechtigungen erteilen"^].
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== Bewährte Verfahren und Empfehlungen für Speicher-Workloads
+
+Das gut strukturierte Dashboard bewertet Speicherkonfigurationen anhand der ONTAP Best Practices und des AWS Well-Architected Framework. Die Bewertung empfiehlt außerdem Verbesserungen und Fehlerbehebungen.
+
+Die gut strukturierte Analyse kategorisiert Konfigurationen in den folgenden Säulen des Rahmenwerks: _Zuverlässigkeit_, _Sicherheit_, _operative Exzellenz_, _Kostenoptimierung_ und _Leistungseffizienz_.
+
+
+
+[[reliability]]
+=== Zuverlässigkeit
+
+Zuverlässigkeit gewährleistet, dass Arbeitslasten ihre beabsichtigten Funktionen korrekt und konsistent erfüllen, selbst wenn es zu Störungen kommt.
+
+* *Volume Backups*
++
+Die Sicherung Ihrer Volumes unterstützt die Einhaltung von Aufbewahrungs- und Compliance-Anforderungen. Verwenden Sie Volume-Backups, um automatisierte Backups und Aufbewahrung für Ihre Daten einzurichten.
+
+* *Snapshot Policy*
++
+Lokale Snapshots für effiziente Datensicherung und schnelle Wiederherstellung einplanen. Snapshots sind sofortige, zeitpunktgenaue Abbilder Ihrer Volumes. Diese Empfehlung gilt nicht für Datenbankumgebungen.
+
+* *Applikationskonsistente Snapshots*
++
+Für Datenbankumgebungen empfiehlt sich die Verwendung applikationskonsistenter Snapshots mit NetApp SnapCenter, um präzise und zuverlässige Momentaufnahmen Ihrer Volume-Daten zu einem bestimmten Zeitpunkt zu erstellen. Dadurch laufen Ihre Anwendungen reibungslos und Ihre Daten bleiben sicher. SnapCenter vereinfacht die Erstellung von Backups und unterstützt die schnelle und korrekte Wiederherstellung von Daten, wodurch Ausfallzeiten reduziert und Ihre wichtigsten Workloads geschützt werden.
+
+* *Regionenübergreifende Replikation*
++
+Die regionsübergreifende Replikation stellt sicher, dass Ihre Daten in eine andere AWS-Region repliziert werden, was eine erhöhte Datenbeständigkeit und Verfügbarkeit bietet. Die Einrichtung der regionsübergreifenden Replikation unterstützt Notfallwiederherstellung und Compliance.
+
+* *SSD-Kapazitätsreserve*
++
+Die SSD-Speicherebene sollte eine Auslastung von maximal 80 % nicht überschreiten. Dies kann sich auf Lese- und Schreibvorgänge auf Ihrer Kapazitätspool-Speicherebene auswirken und die Durchsatzkapazität Ihres Dateisystems beeinträchtigen. Wenn die Kapazität erschöpft ist, werden Datenvolumes schreibgeschützt. Dienste, die versuchen, neue Daten zu schreiben, schlagen ebenfalls fehl.
+
+* *Replikationsrichtlinienbezeichnungen*
++
+Die Snapshot-Richtlinienbezeichnungen des Quellvolumes und die Replikationsrichtlinienbezeichnungen müssen übereinstimmen, um die Datenzuverlässigkeit zu gewährleisten.
+
+* *Dateiobjektkapazität*
++
+Um die Speicherkapazitätsgrenze des Volumes nicht zu erreichen, sollte der Schwellenwert für die Dateikapazität erhöht werden. Eine geringe Dateikapazität (Inodes) verhindert das Schreiben weiterer Daten auf das Volume. Workload Factory empfiehlt, die Dateikapazitätsauslastung unter 80 % zu halten, um die Erstellung neuer Dateien zu ermöglichen.
+
+
+
+
+
+[[security]]
+=== Sicherheit
+
+Sicherheit betont den Schutz von Daten, Systemen und Vermögenswerten durch Risikobewertungen und Risikominderungsstrategien.
+
+* *Schutz vor Ransomware (ARP/AI)*
++
+NetApp Autonomous Ransomware Protection mit KI (ARP/AI) hilft, Ihre Volumes vor Ransomware-Bedrohungen zu schützen. Workload Factory empfiehlt, ARP/AI für alle Volumes zu aktivieren.
+
+* *Nicht autorisierter iSCSI-Volume-Zugriff*
++
+Volumes, die Anwendungsdaten über iSCSI bereitstellen, sollten nicht gleichzeitig NAS-Zugriff ermöglichen. Workload Factory empfiehlt, iSCSI-Volumes von der Verwendung anderer Protokolle auszuschließen.
+
+
+
+
+
+[[operational-excellence]]
+=== Operative Exzellenz
+
+Operative Exzellenz konzentriert sich auf die Bereitstellung der optimalsten Architektur und des größten Geschäftswerts.
+
+* *Automatisches Kapazitätsmanagement*
++
+Automatisches Kapazitätsmanagement sollte aktiviert werden, um regelmäßig sicherzustellen, dass die SSD-Ebene den Schwellenwert nicht überschreitet.
+
+* *Freier Volumenkapazitätsspielraum*
++
+Die Volume-Auslastung sollte unter 80 % gehalten werden, um potenzielle Auswirkungen auf das lesen/schreiben von Anwendungen zu vermeiden. Die Kapazität kann manuell oder mit der automatischen Vergrößerung des Volumens erhöht werden.
+
+* *FlexCache Schreibmodus*
++
+Für optimale Leistung sollte der Schreibmodus der Cache-Beziehung am besten an Ihre Arbeitslast angepasst werden. Der Write-Around-Modus bietet eine bessere Leistung bei leseintensiven Arbeitslasten mit kleinen Dateien, während der Write-Back-Modus eine bessere Leistung bei schreibintensiven Arbeitslasten mit großen Dateien bietet.
+
+* *FlexCache Replika-Größe*
++
+Automatische Größenanpassung und Scrubbing auf Cache-Volumes sorgen für eine optimale Größe und richten den Cache auf häufig genutzte Daten aus, was eine maximale Effizienz ermöglicht.
+
+* *Für den Host sichtbare Kapazitätsberichterstattung*
++
+Die host-sichtbare Kapazitätsberichterstattung ermöglicht eine bessere Transparenz der Speichernutzung auf Volume-Ebene.
+
+* *Betriebssystem (OS) Typ*
++
+Bestätigen Sie, dass der Wert für den Betriebssystemtyp (OS) der ONTAP LUN mit dem Partitionierungsschema des Betriebssystems übereinstimmt, um eine E/A-Ausrichtung zu erreichen. Eine fehlerhafte Konfiguration kann die Leistung verringern.
+
+* *Speicherplatzmanagement für Blockgeräte*
++
+Blockgerätespeicher-Einstellungen für von Datenbank-Hostinstanzen verwendete LUNs konfigurieren, um Schreibfehler zu vermeiden und die Speichereffizienz auf FSx for ONTAP zu verbessern. Diese Konfiguration gilt für die empfohlene Kombination von Einstellungen für Thin-Provisioned Volumes: Speicherplatzreservierung, Speicherplatzzuweisung und fraktionelle Reserve.
+
+* *Thin Provisioning*
++
+Thin Provisioning für FSx for ONTAP Volumes, die Datenbankinstanzen hosten, konfigurieren. Mit diesem Ansatz kann mehr logische Daten gespeichert werden, als physisch verfügbar sind.
+
+
+
+
+
+[[cost-optimization]]
+=== Kostenoptimierung
+
+Kostenoptimierung hilft Ihnen, den größtmöglichen Nutzen für Ihr Unternehmen zu erzielen und gleichzeitig die Kosten niedrig zu halten.
+
+* *Kalte Datenauslagerung*
++
+Cold-Data-Tiering aktivieren, um die Auslastung der SSD-Speicher-Tier zu reduzieren. Eine Tiering-Richtlinie auf jedes Volume anwenden, das auf allgemeine Datenspeicherung ausgerichtet ist. Für Datenbank-Volumes Cold-Data-Tiering dort aktivieren, wo es angemessen ist. FSx for ONTAP scannt die Daten kontinuierlich nach kalten Daten und verschiebt diese ohne Unterbrechung in die Capacity Pool-Tier.
+
+* *Speichereffizienzen*
++
+Speichereffizienzmaßnahmen wie Verdichtung, Komprimierung und Deduplizierung ermöglichen eine optimierte Speicherauslastung und eine Reduzierung der Kosten der SSD-Ebene.
+
+* *Ablauf der Backups*
++
+Alle manuell erstellten Backups von gelöschten Volumes sowie alle Backups, die älter als zwei Wochen sind, sollten gelöscht werden. Diese Backups verfallen nicht automatisch, können die Kosten erhöhen und die Komplexität steigern, wenn sie nicht mehr für SLA oder Wiederherstellung benötigt werden.
+
+* *Ablauf der Snapshot*
++
+Alte oder manuell erstellte Snapshots, die nicht mehr benötigt werden, können gelöscht werden. Das Entfernen dieser Snapshots kann Kosten senken und die Datenmenge reduzieren, insbesondere wenn sie nicht für die SLA oder Wiederherstellungsanforderungen erforderlich sind.
+
+* *Inaktive Blockgeräte*
++
+Wenn ein Blockgerät sieben Tage lang nicht verwendet wird, empfiehlt es sich, die Blockgerätedaten zu archivieren oder das ungenutzte Blockgerät zu löschen, um Kosten zu senken.
+
+* *Überdimensionierte SSD-Kapazität*
++
+Überschüssige SSD-Kapazität verursacht unnötige Kosten. Die SSD-Ebene kann reduziert werden, während ein freier Speicherplatzpuffer von 20 % beibehalten wird. Der Vorgang kann Stunden bis Tage dauern, und während dieser Zeit werden keine anderen Dateisystemoperationen unterstützt.
+
+* *Inaktive NAS-Volumes*
++
+Die Konfigurationsanalyse identifiziert NAS Volumes, die nicht aktiv genutzt werden, und schlägt vor, die Volumes zu löschen oder zu archivieren, um Kosten zu reduzieren.
+
+
+
+
+
+[[performance-efficiency]]
+=== Performance-Effizienz
+
+Leistungseffizienz trägt dazu bei, dass Ihre Speicherressourcen effektiv genutzt werden und Arbeitslasten optimal ausgeführt werden.
+
+* *FlexGroup Volumes-Ausgleich*
++
+Rebalancieren Sie Ihre FlexGroup Volumes, um die Effizienz zu verbessern. Nach dem Scale-out kann die Kapazitäts- und Arbeitslastverteilung innerhalb des Volumes ungleichmäßig werden.
+
+* *FlexVol Volumes-Ausgleich*
++
+Rebalancieren Sie Ihre FlexVol Volumes, um die Effizienz zu verbessern. Nach dem Scale-out kann die Kapazitäts- und Arbeitslastverteilung innerhalb des Volumes ungleichmäßig werden.
+
+
+
+.Was kommt als Nächstes
+link:improve-configurations.html["Gut strukturierte Dateisystemkonfigurationen implementieren"]

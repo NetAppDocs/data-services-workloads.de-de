@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-file-system.html 
+keywords: file system, delete file system, file system deletion 
+summary: Um ein Dateisystem in NetApp Workload Factory zu löschen, müssen Sie zuerst alle Volumes, storage VMs oder Replikationsbeziehungen löschen, die mit dem Dateisystem verknüpft sind. 
+---
+= Löschen eines Dateisystems in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um ein Dateisystem in NetApp Workload Factory zu löschen, müssen Sie zuerst alle Volumes, storage VMs oder Replikationsbeziehungen löschen, die mit dem Dateisystem verknüpft sind.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* erfolgt die Auswahl des Aktionsmenüs des FSx for ONTAP Dateisystems, das gelöscht werden soll.
+. Auswahl von *Manage*.
+. Auf der Registerkarte *Übersicht* ist das Menü „Aktionen“ auszuwählen.
+. Wählen Sie *Delete*.
+. Im Dialogfeld „FSx for ONTAP Dateisystem löschen“ erfolgt die Eingabe des Namens des zu löschenden FSx for ONTAP Dateisystems.
+. Zur Bestätigung ist *Löschen* auszuwählen.
+

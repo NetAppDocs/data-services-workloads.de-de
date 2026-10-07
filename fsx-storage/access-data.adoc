@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/access-data.html 
+keywords: access data, mount point, mount volumes, mount clients, on-premises 
+summary: Sie können von Ihrem lokalen Netzwerk aus auf Ihre FSx for ONTAP Dateisysteme zugreifen, indem Sie Volumes für NAS-Clients und iSCSI-LUNs für SAN-Clients einbinden. 
+---
+= Zugriff auf Ihre FSx for ONTAP Dateisystemdaten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie können von Ihrem lokalen Netzwerk aus auf Ihre FSx for ONTAP Dateisysteme zugreifen, indem Sie Volumes für NAS-Clients und iSCSI-LUNs für SAN-Clients einbinden.
+
+link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html["Zugriff auf Daten"^] Die Amazon FSx for NetApp ONTAP Dokumentation enthält Themen dazu, wie Sie auf Daten zugreifen können, als Referenz.
+
+Der Mountpunkt für Volumes kann auch in NetApp Workload Factory abgerufen werden.
+
+
+
+[[get-mount-point-for-volumes-in-netapp-workload-factory]]
+== Abrufen des Mountpunkts für Volumes in NetApp Workload Factory
+
+Der Mountpunkt eines Volumes wird benötigt, um eine Freigabe auf einer CIFS-Freigabe oder einem NFS-Client einzubinden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer* > *FSx for ONTAP*.
+. Wählen Sie das Aktionsmenü für das Volume, dann *Grundlegende Aktionen* und anschließend *Einbindungsbefehl anzeigen*.
+. Im Dialogfeld „Mount-Befehl“ kann *Copy* ausgewählt werden, um den Befehl für den NFS-Mountpunkt oder die CIFS-Freigabe zu kopieren. Anschließend erfolgt die Eingabe des kopierten Befehls im Terminal.
+. *Schließen* auswählen.
+
+
+
+
+[[connect-to-nas-clients]]
+== Verbindung zu NAS-Clients herstellen
+
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/attach-linux-client.html["Einbinden eines Volumes auf Linux-Clients"^]
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/attach-windows-client.html["Einbinden eines Volumes auf Windows Clients"^]
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/attach-mac-client.html["Einbinden eines Volumes auf macOS Clients"^]
+
+
+
+
+[[connect-to-san-clients]]
+== Verbindung zu SAN-Clients herstellen
+
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/mount-iscsi-luns-linux.html["Einbinden einer iSCSI LUN auf Linux-Clients"^]
+* link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/mount-iscsi-windows.html["Einbinden einer iSCSI-LUN auf Windows-Clients"^]
+

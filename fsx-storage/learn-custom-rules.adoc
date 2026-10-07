@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/learn-custom-rules.html 
+keywords: custom rules, byor, bring your own rules, fsx, ontap, well architected, organizational standards 
+summary: Es wird erläutert, wie eigene Architekturregeln definiert und verwaltet werden können, um Organisationsstandards gemeinsam mit den NetApp Best Practices durchzusetzen. 
+---
+= Informationen zu benutzerdefinierten Regeln in der NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mit benutzerdefinierten Regeln lassen sich im Well-architected Dashboard eigene Architekturstandards sowie NetApp Best Practices festlegen, überprüfen und durchsetzen.
+
+
+
+[[overview]]
+== Überblick
+
+Mit dem Errichter können benutzerdefinierte Best-Practice-Regeln in einfacher Sprache erstellt werden. Diese Regeln werden für alle Ihre Ressourcen überprüft.
+
+Individuelle Regeln helfen Ihnen, die Standards, Risikogrenzen und betrieblichen Anforderungen Ihrer Organisation durchzusetzen, Aspekte, die generische Anbieterregeln möglicherweise nicht vollständig abdecken.
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, ist der Rule builder nicht verfügbar und Sie können keine benutzerdefinierten Regeln erstellen. link:../admin/manage-genai-features.html["Informationen zur Verwaltung von KI-Funktionen"^].
+
+
+
+[[how-custom-rules-work]]
+== Funktionsweise benutzerdefinierter Regeln
+
+Benutzerdefinierte Regeln nutzen einen KI-gestützten Prozess, der Ihre Anweisungen in natürlicher Sprache in klare, strukturierte Regeln umwandelt. Die KI fungiert als Übersetzer und Prüfer. Es wird eine Regel vorgeschlagen, erläutert, wie die Anfrage verstanden wurde, und um Zustimmung gebeten, bevor die Regel gespeichert oder eingeplant wird.
+
+Dieser Prozess stellt sicher, dass:
+
+* Die Regellogik ist klar definiert und auf Fehler überprüft.
+* Es wird kein Freiformcode ausgeführt
+* Sie können genau sehen, was bewertet wird, bevor Sie die Regel genehmigen
+
+
+
+
+[[limitations]]
+== Einschränkungen
+
+Für benutzerdefinierte Regeln gelten folgende Einschränkungen:
+
+* Automatische Korrekturen sind nicht verfügbar. Nicht konforme Ressourcen sind anhand der bereitgestellten Anleitung selbst zu korrigieren.
+* Jede Regel kann nur einen Ressourcentyp prüfen. Um mehrere Ressourcentypen zu prüfen, sind separate Regeln zu erstellen.
+* Das kürzeste Auswertungsintervall beträgt 1 Stunde, um übermäßiges Scannen zu vermeiden.
+* Regeln haben nur Lesezugriff und können keine Änderungen an Ihrer Umgebung vornehmen.
+
+
+
+
+[[rule-definition-model]]
+== Regeldefinitionsmodell
+
+Jede benutzerdefinierte Regel besteht aus den folgenden Komponenten:
+
+Regelname:: Ein benutzerdefinierter Name für die Regel.
+Beschreibung:: Ihre Begründung, warum diese Regel für Ihre Organisation wichtig ist.
+Ressourcentyp:: Die auszuwertende FSx-Ressource (Dateisystem, Volume oder Cache). Derzeit ein Ressourcentyp pro Regel.
+Terminplaner:: Wie oft die Regel ausgewertet wird (mindestens 1 Stunde, Standard 24 Stunden).
+Bedingungslogik:: Die zu prüfenden Kriterien.
+Bewertungsumfang:: Welche Ressourcen werden bewertet (alle relevanten Ressourcen im Geltungsbereich).
+Sanierungslogik:: Manuelle Anleitung zum Umgang mit nicht konformen Ressourcen.
+
+
+
+
+[[rule-lifecycle]]
+== Regellebenszyklus
+
+Benutzerdefinierte Regeln durchlaufen die folgenden Zustände:
+
+Entwurf:: Es wird eine Regel erstellt. Es findet keine Auswertung statt.
+Trockenlauf:: Einmalige Auswertung zur Vorschau, welche Ressourcen betroffen wären. Wird zur Validierung vor der Terminplanung verwendet.
+Geplant (Aktiviert):: Die Regel ist aktiv und wird gemäß dem festgelegten Zeitplan ausgeführt.
+Deaktiviert:: Die Regel ist pausiert, aber nicht gelöscht. Kann wieder aktiviert werden.
+Gelöscht:: Die Regel wurde dauerhaft entfernt.
+
+
+
+
+[[custom-rule-examples]]
+== Beispiele für benutzerdefinierte Regeln
+
+Die folgenden Beispiele veranschaulichen gängige benutzerdefinierte Regeln:
+
+*Schutz des Produktionsvolumens*:: „Alle Volumes mit dem Tag ‚Prod‘ müssen über eine Snapshot-Richtlinie verfügen.“
++
+--
+Diese Regel erstellt automatisch Snapshots zum Schutz der Produktionsvolumina gemäß den Unternehmensanforderungen.
+
+--
+*Archivvolumen Tiering*:: „Allen Volumes mit dem Tag ‚Archive‘ sollte die Tiering-Richtlinie auf ‚All‘ gesetzt sein.“
++
+--
+Diese Regel senkt die Kosten, indem archivierte Daten automatisch in kostengünstigeren Speicher verschoben werden.
+
+--
+*Namensstandards für Dateisysteme*:: „Alle Dateisysteme müssen der Namenskonvention 'fsx-{environment}-{application}' folgen.“
++
+--
+Diese Regel validiert, dass Dateisysteme den organisatorischen Namenskonventionen entsprechen, was eine einfachere Verwaltung und Kostenverteilung ermöglicht.
+
+--
+
+
+
+
+[[what-to-do-next]]
+== Nächste Schritte
+
+link:create-custom-rule.html["Eine benutzerdefinierte Regel erstellen"]

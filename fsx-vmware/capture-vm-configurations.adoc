@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/capture-vm-configurations.html 
+keywords: vm workloads, capture vm details 
+summary: Sie können das Migration advisor VM collector script oder RVTools verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es wird empfohlen, das Migration advisor VM collector script zu verwenden, da es sowohl VM-Konfigurations- als auch Performance-Daten für die präziseste Planung erfasst. 
+---
+= Erfassung Ihrer VM-Konfigurationen vor der Migration zu VMware Cloud mit VMware Workloads
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie können das Migration advisor VM collector script oder RVTools verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es wird empfohlen, das Migration advisor VM collector script zu verwenden, da es sowohl VM-Konfigurations- als auch Performance-Daten für die präziseste Planung erfasst.
+
+[role="tabbed-block"]
+====
+.Verwendung des VM-Collector-Skripts des Migration Advisor
+--
+Das NetApp Migration advisor VM collector script sammelt VM-Konfigurationsinformationen aus Ihrem vCenter, ähnlich wie RVTools. Es erfasst jedoch aktuelle VM-Performance-Daten, um tatsächliche IOPS- und Durchsatzstatistiken für Lesen/Schreiben bereitzustellen.
+
+Zum Kopieren des VM-Collector-Skripts des Migration advisor aus dem Codebox-Fenster ist der Start des Migration advisor erforderlich.
+
+.Bevor Sie beginnen
+Das System, auf dem Sie das Collector-Skript ausführen, muss folgende Anforderungen erfüllen:
+
+* Microsoft PowerShell 7.0 oder höher muss installiert sein. Unter  https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4["Microsoft PowerShell Dokumentation"^] finden Sie Informationen, falls PowerShell installiert werden muss.
+* VMware PowerCLI muss installiert sein. Das https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.install.doc/GUID-F02D0C2D-B226-4908-9E5C-2E783D41FE2D.html["VMware PowerCLI Dokumentation"^] enthält Informationen, falls PowerCLI installiert werden muss.
+* Die SSL-Zertifikatsprüfung muss deaktiviert sein.
+* PowerShell muss die Ausführung unsignierter Skripte ermöglichen.
+
+
+Wenn Sie langfristige Statistiken von Ihren VMs erfassen möchten (tägliche Statistiken), müssen Sie in der vSphere Managementkonsole (VMware-Managementumgebung) Statistiken auf Level 3 oder höher aktiviert haben.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *VMware* auszuwählen.
++
+Das Planungszentrum ist zu sehen.
+
+. Im VMware-Menü erfolgt die Auswahl von *Bewerten und planen* und anschließend von *Migration zu VMware Cloud on AWS*.
++
+Die Hauptseite des VMware migration advisor wird angezeigt.
+
+. Die Auswahl erfolgt über *Plan and create VMC*.
+. Anschließend erfolgt die Auswahl von *Let's start!*. Sie können festlegen, dass diese Seite nicht mehr angezeigt werden soll, indem Sie das Kontrollkästchen aktivieren.
+. Nacheinander sind die Optionen *Neuen Deployment-Plan erstellen*, *Migrationsberater VMware Data Collector verwenden* und *Weiter* auszuwählen.
++
+Die Seite *Vorbereitung der VMware Cloud on AWS Migration* wird angezeigt.
+
+. Im Codebox-Fenster können Sie entweder image:button-download-codebox.png["die Download-Schaltfläche"] auswählen, um das Migration advisor VM collector script (mit dem Namen "list-vms.ps1") auf dem Zielsystem zu speichern, oder image:button-copy-codebox.png["die Kopiertaste"] auswählen, um das Skript zu kopieren, damit es auf dem entsprechenden System eingefügt werden kann.
+. Mit den folgenden Schritten lassen sich die Konfigurationen Ihrer aktuellen VMs erfassen:
++
+.. Die Anmeldung erfolgt bei dem System, auf dem Sie den Datensammler heruntergeladen haben und auf dem PowerShell sowie PowerCLI installiert sind.
+.. Die Verbindung zu Ihrem VMware vCenter Server erfolgt durch Ausführen des folgenden Befehls:
++
+[source, console]
+----
+Connect-VIServer -server <server_IP>
+----
++
+Anstelle von <server_IP> ist die IP-Adresse oder der Hostname Ihres VMware-Servers anzugeben.
+
+.. Zum Ausführen des heruntergeladenen Datenerfassungsskripts ist die Datenerfassungsoption für „tägliche“ oder „stündliche“ VM-Statistiken anzugeben.
++
+[source, console]
+----
+./list-vms.ps1 -isLongTermDataCollectionEnabled <true | false>
+----
++
+Dabei gilt:
+
++
+*** *true* erfasst IOPS- und Durchsatzdaten der letzten 24 Stunden in 5-Minuten-Intervallen
+*** *false* erfasst IOPS- und Durchsatzdaten der letzten Stunde in 20-Sekunden-Intervallen.
+
+
+
+
+
+
+.Ergebnis
+Das Skript erstellt im aktuellen Arbeitsverzeichnis eine CSV-Datei mit dem Namen `list-vms-yyyy-MM-dd-HH-mm-ss.csv`. Die CSV-Datei enthält eine Liste aller VMs und ihrer Eigenschaften sowie deren IOPS- und Durchsatzdaten.
+
+--
+.Verwendung der RVTools Software
+--
+RVTools ist eine Windows Applikation, die mit VCenter und ESX server (5.x bis 8.0) interagiert, um Informationen über Ihre virtuellen VMware-Umgebungen zu erfassen. Sie sammelt Informationen über VMs, CPU, Arbeitsspeicher, Festplatten, Cluster, ESX-Hosts, Datastores und mehr. Sie können diese Informationen in eine xlsx-Datei exportieren, um sie mit dem Migrationsberater zu verwenden.
+
+link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Weitere Informationen zu RVTools"^]
+
+.Schritte
+. Herunterladen und Installieren von RVTools 4.4.2 oder höher im link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools Website"^]
+. RVTools wird gestartet, und die Anmeldung beim Ziel VCenter Server erfolgt.
++
+Damit werden Informationen zu diesem VCenter Server erfasst.
+
+. Der Export Ihrer VMware-Informationen in eine xlsx- oder xls-Datei ist möglich.
++
+Einzelheiten enthält das Kapitel „Befehlszeilenparameter“ in der link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools-Dokumentation im Abschnitt „Ressourcen“"^].
+
+
+
+.Ergebnis
+Die xlsx- oder xls-Datei, die Ihre Ergebnisse enthält, wird in Ihrem Arbeitsverzeichnis gespeichert.
+
+--
+====
+.Was kommt als Nächstes?
+link:launch-onboarding-advisor.html["Erstellung eines VMware Cloud on AWS Deployment-Plans mithilfe des Migrationsberaters"].

@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: gcnv/improve-configurations.html 
+keywords: improve configurations, optimize configurations, implement best practices, well-architected storage pool, Google Cloud NetApp Volumes, GCNV 
+summary: Workload factory scannt Google Cloud NetApp Volumes Konfigurationen und liefert Erkenntnisse und Empfehlungen, um operative Exzellenz zu ermöglichen. 
+---
+= Gut strukturierte Google Cloud NetApp Volumes Konfigurationen implementieren
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mit den Erkenntnissen und Empfehlungen aus der Konfigurationsanalyse lässt sich NetApp nutzen, um Best Practices für Ihre Google Cloud NetApp Volumes Speicherpools, die auf Google Cloud Storage laufen, umzusetzen. Der gut konzipierte Status kann einfach überprüft werden, Informationen zu Problemen mit den Konfigurationen stehen zur Verfügung, und es werden Empfehlungen gegeben, um die Architektur von Speicherpools zu verbessern, die nicht auf Zuverlässigkeit, Sicherheit, Leistung und Kosten optimiert sind.
+
+link:configuration-analysis.html["Informationen zur Konfigurationsanalyse und zum Well-Architected-Status."]
+
+
+
+[[about-this-task]]
+== Über diese Aufgabe
+
+NetApp analysiert Google Cloud NetApp Volumes Speicherpool-Bereitstellungen in Google Cloud täglich. Die tägliche Analyse liefert den Well-Architected-Status sowie Einblicke und Empfehlungen, um Konfigurationsprobleme nachvollziehen zu können, damit die Speicherpools den Best Practices entsprechen.
+
+Nach Abschluss der täglichen Analyse zeigt das Dashboard die Gesamtzahl der Ressourcen mit Well-Architected-Status, die Anzahl der Ressourcen in einem kritischen Zustand und die Anzahl der Ressourcen in einem Warnzustand an. Die Konfigurationen werden nach den Säulen des Well-Architected-Frameworks kategorisiert: Zuverlässigkeit, operative Exzellenz, Kostenoptimierung, Leistungseffizienz und Sicherheit. Das Dashboard enthält außerdem eine Tabelle, in der alle Konfigurationen, der Well-Architected-Status dieser Konfigurationen, der Schweregrad, die Kategorie, der Ressourcentyp (Volume oder Speicherpool), betroffene Ressourcen und die Option zum Anzeigen der Empfehlung aufgeführt sind, wenn die Konfiguration nicht optimiert ist.
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+* Sie müssen link:https://console.netapp.com/add-working-environment/choose-type["einen Google Cloud NetApp Volumes Storage-Pool hinzufügen"] zur NetApp Console wechseln, um den Status der gut strukturierten Konfiguration und Empfehlungen für Konfigurationsprobleme anzuzeigen.
+
+
+
+
+[[view-recommendations-for-configuration-issues]]
+== Empfehlungen zu Konfigurationsproblemen anzeigen
+
+Nach Abschluss der täglichen Analyse können Sie Empfehlungen zu Konfigurationsproblemen einsehen. Empfehlungen erläutern bewährte Vorgehensweisen und potenzielle Risiken nicht optimierter Konfigurationen. Es besteht außerdem die Möglichkeit, eine CSV-Datei mit den Empfehlungen herunterzuladen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com/home["NetApp Console"^] an.
+. Wählen Sie im NetApp Console-Menü die Option *Workloads* und dann *Well-architected* aus.
+. Im Dashboard „Well-architected“ kann für jede Konfiguration die Option *Ansicht* ausgewählt werden.
++
+Optional können Sie eine CSV-Datei mit den Empfehlungen für alle Konfigurationen herunterladen.
+
+. Die Empfehlung wird überprüft.
+
+
+
+
+[[dismiss-a-configuration-analysis]]
+== Konfigurationsanalyse verwerfen
+
+Eine Konfigurationsanalyse für einen Google Cloud NetApp Volumes Speicherpool oder für ausgewählte Volumes wird gestoppt. Die Analyse kann bei Bedarf erneut gestartet werden.
+
+[role="tabbed-block"]
+====
+.Eine Konfigurationsanalyse für einen Speicherpool verwerfen
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com/home["NetApp Console"^] an.
+. Wählen Sie im NetApp Console-Menü die Option *Workloads* und dann *Well-architected* aus.
+. Im Dashboard „Well-architected“ kann für jede Konfiguration die Option *Ansicht* ausgewählt werden.
+. Suchen Sie unter Configurations die Konfiguration, die nicht auf Ihre Umgebung zutrifft, und wählen Sie dann *Dismiss*.
+. Im Dialogfeld „Konfiguration verwerfen“ *Verwerfen* auswählen, um die Konfigurationsanalyse zu beenden.
+
+
+--
+.Eine Konfigurationsanalyse für ein Volume abbrechen
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com/home["NetApp Console"^] an.
+. Wählen Sie im NetApp Console-Menü die Option *Workloads* und dann *Well-architected* aus.
+. Im Dashboard „Well-architected“ kann für jede Konfiguration die Option *Ansicht* ausgewählt werden.
+. Unter „Konfigurationen“ die Konfiguration für die ausgewählten Volumes zum Verwerfen identifizieren und dann *Anzeigen* auswählen.
+. Die Volumes, die aus der Konfigurationsanalyse ausgeschlossen werden, identifizieren.
++
+** Für ein Volume: das Menü „Aktionen“ auswählen und dann *Volume ausblenden* auswählen.
+** Für mehrere Volumes: Die Volumes auswählen und dann neben *Bulk action* auf *Dismiss* klicken.
+
+
+. *Verwerfen* auswählen, um die Analyse für die Konfiguration zu beenden.
+. Im Dialogfeld „Volumes verwerfen“ *Verwerfen* auswählen, um zu bestätigen.
+
+
+--
+====
+.Ergebnis
+Die Konfigurationsanalyse stoppt für den Speicherpool oder die ausgewählten Volumes.
+
+Sie können die Analyse jederzeit reaktivieren.
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== Eine verworfene Konfigurationsanalyse reaktivieren
+
+Eine verworfene Konfigurationsanalyse kann jederzeit reaktiviert werden. Eine oder mehrere Konfigurationen können zur Reaktivierung ausgewählt werden.
+
+[role="tabbed-block"]
+====
+.Eine Konfigurationsanalyse für einen Speicherpool reaktivieren
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com/home["NetApp Console"^] an.
+. Wählen Sie im NetApp Console-Menü die Option *Workloads* und dann *Well-architected* aus.
+. Wählen Sie *Verworfene Konfigurationen* aus.
+. Die gewünschte Konfiguration auswählen und *Reaktivieren* wählen.
+
+
+--
+.Eine Konfigurationsanalyse für ein Volumen reaktivieren
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com/home["NetApp Console"^] an.
+. Wählen Sie im NetApp Console-Menü die Option *Workloads* und dann *Well-architected* aus.
+. Wählen Sie *Verworfene Konfigurationen* aus.
+. Das/die zu reaktivierende(n) Volumen wird/werden anhand der Konfigurationsanalyse identifiziert.
++
+** Für ein Volume: Wählen Sie das Aktionsmenü und dann *Volume reaktivieren*.
+** Für mehrere Volumes: Die Volumes auswählen und dann neben *Massenaktion* auf *Reaktivieren* klicken.
+
+
+
+
+--
+====
+.Ergebnis
+Das System reaktiviert die Konfigurationsanalyse. Täglich findet eine neue Analyse statt.

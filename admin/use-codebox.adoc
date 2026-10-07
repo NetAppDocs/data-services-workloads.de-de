@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: admin/use-codebox.html 
+keywords: codebox, automation, cloudformation, rest api, aws cli, permissions 
+summary: Mit Codebox können Sie den Code generieren, der zur Ausführung aller von NetApp Workload Factory unterstützten Vorgänge erforderlich ist. 
+---
+= Verwendung von Codebox für die Automatisierung in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mit Codebox können Sie den Code generieren, der zur Ausführung aller von NetApp Workload Factory unterstützten Operationen benötigt wird. Sie können Code generieren, der mithilfe von Workload Factory REST APIs, der AWS CLI und AWS CloudFormation genutzt und ausgeführt werden kann.
+
+Codebox ist auf die Berechtigungsrichtlinien der Workload Factory abgestimmt, indem die entsprechenden Daten im Code auf Grundlage der im Workload Factory Konto für jeden Benutzer bereitgestellten AWS-Berechtigungen eingefügt werden. Der Code kann wie eine Vorlage verwendet werden, in der Sie fehlende Informationen (z. B. Anmeldeinformationen) ergänzen oder bestimmte Daten vor der Ausführung anpassen können.
+
+
+
+[[how-to-use-codebox]]
+== Verwendung von Codebox
+
+Während Sie in den Benutzeroberflächenassistenten in der NetApp Console Werte eingeben, können Sie sehen, wie die Daten in Codebox bei jedem ausgefüllten Feld aktualisiert werden. Wenn der Assistent abgeschlossen ist, aber bevor unten auf der Seite die Schaltfläche *Create* ausgewählt wird, kann in Codebox image:button-copy-codebox.png["die Kopiertaste"] zum Kopieren ausgewählt werden, um den zum Erstellen Ihrer Konfiguration erforderlichen Code zu erfassen. Dieser Screenshot aus dem Erstellen eines neuen Microsoft SQL Server zeigt beispielsweise die Assistenteneingaben für VPC und Availability Zones sowie die entsprechenden Einträge in Codebox für eine REST API Implementierung.
+
+image:screenshot-codebox-example1.png["Ein Screenshot zur Erstellung eines Microsoft SQL Server in der Benutzeroberfläche sowie der entsprechenden Einträge für VPC und Verfügbarkeitszonen in Codebox."]
+
+Bei einigen Codeformaten können Sie auch die Download-Schaltfläche auswählen, um den Code in einer Datei zu speichern und auf ein anderes System zu übertragen. Bei Bedarf können Sie den Code nach dem Download bearbeiten, um ihn an andere AWS-Konten anzupassen.
+
+
+
+[[use-cloudformation-code-from-codebox]]
+== Verwendung von CloudFormation Code aus Codebox
+
+Sie können den von Codebox generierten CloudFormation Code kopieren und anschließend den Amazon Web Services CloudFormation Stack in Ihrem AWS-Konto starten. CloudFormation führt die Aktionen aus, die Sie in der Workload Factory-Benutzeroberfläche definiert haben.
+
+Die Schritte zur Verwendung des CloudFormation Codes können unterschiedlich sein, je nachdem, ob Sie ein FSx for ONTAP Dateisystem einsetzen, Kontoanmeldedaten erstellen oder andere Workload Factory Aktionen durchführen.
+
+Der Code in einer CloudFormation-generierten YAML-Datei läuft aus Sicherheitsgründen nach 7 Tagen ab.
+
+.Bevor Sie beginnen
+* Sie benötigen Anmeldeinformationen, um sich bei Ihrem AWS account anzumelden.
+* Um einen CloudFormation Stack verwenden zu können, benötigen Sie die folgenden Benutzerberechtigungen:
++
+[%collapsible]
+====
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:CreateStack",
+                "cloudformation:UpdateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStacks",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeChangeSet",
+                "cloudformation:ExecuteChangeSet",
+                "cloudformation:ListStacks",
+                "cloudformation:ListStackResources",
+                "cloudformation:GetTemplate",
+                "cloudformation:ValidateTemplate",
+                "lambda:InvokeFunction",
+                "iam:PassRole",
+                "iam:CreateRole",
+                "iam:UpdateAssumeRolePolicy",
+                "iam:AttachRolePolicy",
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+----
+====
+
+
+.Schritte
+. Nachdem Sie in NetApp Console die gewünschte Operation definiert haben, erfolgt das Kopieren des Codes in die Codebox.
+. Nach Auswahl von *Weiterleiten zu CloudFormation* wird die Seite „Weiterleiten zu CloudFormation“ angezeigt.
+. Anmeldung bei der AWS Management Console in einem weiteren Browserfenster.
+. Auf der Seite „Weiterleiten zu CloudFormation“ wählen Sie *Weiter* aus.
+. Die Anmeldung sollte bei dem AWS-Konto erfolgen, in dem der Code ausgeführt werden soll.
+. Auf der Seite „Quick create stack“ unter „Capabilities“ die Option *Ich bestätige, dass AWS CloudFormation möglicherweise ...* auswählen.
+. *Create stack* auswählen.
+. Der Fortschritt lässt sich über AWS oder Workload Factory verfolgen.
+
+
+
+
+[[use-rest-api-code-from-codebox]]
+== Verwendung von REST API-Code aus Codebox
+
+Sie können die mit Codebox generierten Workload Factory REST APIs verwenden, um Ihre FSx for ONTAP Dateisysteme und andere AWS Ressourcen einzusetzen und zu managen.
+
+Sie können die APIs von jedem Host ausführen, der curl unterstützt und über eine Internetverbindung verfügt.
+
+Beachten Sie, dass die Authentifizierungstoken in Codebox ausgeblendet sind, aber beim Kopieren und Einfügen des API-Aufrufs eingefügt werden.
+
+.Schritte
+. Nachdem Sie die gewünschte Operation mit NetApp Console definiert haben, können Sie den API-Code in der Codebox kopieren.
+. Der Code kann in Ihr Hostsystem eingefügt und dort ausgeführt werden.
+
+
+
+
+[[use-aws-cli-code-from-codebox]]
+== AWS CLI-Code aus Codebox verwenden
+
+Sie können die von Codebox generierte Amazon Web Services CLI verwenden, um Ihre FSx for ONTAP Dateisysteme und andere AWS-Ressourcen einzusetzen und zu managen.
+
+.Schritte
+. Nachdem Sie mit NetApp Console den gewünschten Vorgang definiert haben, steht die AWS CLI in der Codebox zum Kopieren bereit.
+. Anmeldung bei der AWS Management Console in einem weiteren Browserfenster.
+. Der Code kann nun eingefügt und ausgeführt werden.
+
+
+
+
+[[use-terraform-from-codebox]]
+== Terraform aus Codebox verwenden
+
+Mit Terraform können Sie Ihre FSx for ONTAP Dateisysteme und andere AWS-Ressourcen einsetzen und managen.
+
+.Bevor Sie beginnen
+* Sie benötigen ein System, auf dem Terraform installiert ist (Windows/Mac/Linux).
+* Sie benötigen Anmeldeinformationen, um sich bei Ihrem AWS account anzumelden.
+
+
+.Schritte
+. Nachdem Sie mit NetApp Console den gewünschten Vorgang definiert haben, steht der Terraform-Code in der Codebox zum Herunterladen bereit.
+. Das heruntergeladene Skriptarchiv sollte auf das System kopiert werden, auf dem Terraform installiert ist.
+. Nach dem Entpacken der ZIP-Datei sind die Schritte in der Datei README.md zu befolgen.
+

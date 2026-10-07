@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshots.html 
+keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
+summary: Das Bearbeiten der Snapshot-Einstellungen, das Aktivieren des Verzeichniszugriffs und das Löschen von Snapshots dienen dazu, Ihre Snapshots und den Datenschutz in Workload Factory zu managen. 
+---
+= Snapshots eines FSx for ONTAP Volume managen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Das Bearbeiten der Snapshot-Einstellungen, das Aktivieren des Verzeichniszugriffs und das Löschen von Snapshots dienen dazu, Ihre Snapshots und den Datenschutz in Workload Factory zu managen.
+
+
+
+[[edit-a-snapshot]]
+== Eine Momentaufnahme bearbeiten
+
+Sie können den Namen, die Bezeichnung und die Aufbewahrungsdauer eines Snapshots bearbeiten. Falls der Snapshot noch nicht unveränderlich ist, können Sie ihn unveränderlich machen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume mit dem Snapshot aus, das bearbeitet werden soll.
+. Die Auswahl erfolgt über *Datenschutzmaßnahmen* und anschließend *Snapshots verwalten*.
+. Auf der Seite „Snapshots verwalten“ steht im Aktionsmenü des zu bearbeitenden Snapshots die Option *Bearbeiten* zur Verfügung.
+. Im Dialogfeld „Snapshot bearbeiten“ können Sie Folgendes bearbeiten:
++
+.. Den Namen ändern.
+.. Die Bezeichnung ändern.
+.. Die Aufbewahrungsfrist ändern.
+.. Optional: *Diesen Snapshot unveränderlich machen*, damit der Snapshot während des Aufbewahrungszeitraums nicht gelöscht werden kann.
++
+Wenn der Snapshot bereits unveränderlich ist, können Sie diese Einstellung nicht bearbeiten.
+
++
+Die Aussage zu unveränderlichen Snapshots akzeptieren.
+
+
+
+. *Anwenden* auswählen.
+
+
+
+
+[[access-a-snapshot]]
+== Zugriff auf eine Momentaufnahme
+
+Durch Aktivieren des Zugriffs auf das Snapshot-Verzeichnis erhalten Benutzer die Möglichkeit, selbstständig auf Snapshots zuzugreifen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume mit dem Snapshot aus, auf das zugegriffen werden soll.
+. Die Auswahl erfolgt über *Datenschutzmaßnahmen* und anschließend *Snapshots verwalten*.
+. Auf der Seite „Manage snapshots“ lässt sich im Aktionsmenü des gewünschten Snapshots *Access* auswählen.
+. Im Dialogfeld „Snapshot-Zugriff“ ermöglicht die Auswahl von *Zugriff auf das Snapshot-Verzeichnis aktivieren* den Zugriff auf diesen Volume-Snapshot und alle Snapshots des Volumes.
++
+** Für NFS Volumes: Unter *NFS access path* ist der NFS-Pfad für den Snapshot zu sehen.
+** Für SMB/CIFS Volumes: Unter *SMB access path* ist der SMB-Pfad für den Snapshot zu sehen.
+
+
+. Den Zugriffspfad kopieren.
+. *Anwenden* auswählen.
+
+
+
+
+[[restore-data-from-a-snapshot]]
+== Daten aus einem Snapshot wiederherstellen
+
+Sie haben die Möglichkeit, Daten aus einem Snapshot in ein vorhandenes Volume oder in ein neues Volume wiederherzustellen.
+
+link:use-snapshots.html["Wiederherstellung eines Volumes aus einem Snapshot"]
+
+
+
+[[delete-a-snapshot]]
+== Einen Snapshot löschen
+
+Durch das Löschen eines Snapshot wird Speicherplatz frei.
+
+Unveränderliche Snapshots können erst nach Ablauf der Aufbewahrungsfrist gelöscht werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume mit dem zu löschenden Snapshot aus.
+. Die Auswahl erfolgt über *Datenschutzmaßnahmen* und anschließend *Snapshots verwalten*.
+. Auf der Seite „Snapshots verwalten“ erfolgt die Auswahl von *Löschen* im Aktionsmenü des zu löschenden Snapshots.
+. Im Dialogfeld „Snapshot löschen“ ist „delete“ einzugeben.
+. *Löschen* auswählen, um den Löschvorgang zu bestätigen.
+
+
+.Verwandte Informationen
+* link:use-snapshots.html["Erstellen Sie einen Snapshot"]
+* link:use-snapshots.html["Erstellen einer Snapshot-Richtlinie"]
+* link:use-snapshots.html["Wiederherstellung eines Volumes aus einem Snapshot"]
+

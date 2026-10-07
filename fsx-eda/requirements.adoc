@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/requirements.html 
+keywords: Builders, FSx, project, projects. eda, electronic design automation, requirements, setup, Workload Factory 
+summary: Vor der Nutzung von NetApp Workload Factory für EDA ist sicherzustellen, dass NetApp Workload Factory und AWS ordnungsgemäß eingerichtet sind. Dazu gehören Ihre AWS-Anmeldeinformationen, ein bereitgestelltes FSx for ONTAP Dateisystem und weitere Voraussetzungen. 
+---
+= Workload Factory für EDA-Anforderungen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vor der Verwendung von NetApp Workload Factory für EDA sollten NetApp Workload Factory und AWS ordnungsgemäß eingerichtet sein. Dazu gehören Ihre AWS-Anmeldeinformationen, ein bereitgestelltes FSx for ONTAP-Dateisystem und weitere Voraussetzungen.
+
+Workload Factory-Anmeldung und -Konto:: Sie müssen link:../setup/sign-up-and-log-in.html["bei NetApp Console registrieren und anmelden."]
+AWS Anmeldeinformationen und Berechtigungen:: Sie müssen AWS-Zugangsdaten mit lesen/schreiben-Berechtigungen zu Workload Factory hinzufügen, was bedeutet, dass Sie Workload Factory für EDA im Modus _lesen/schreiben_ verwenden werden.
+
+
+Die Berechtigungen _Basic_ und _Read-only_ werden derzeit nicht unterstützt.
+
+
+NOTE: Für die Nutzung der Latenzüberwachungsfunktion, die CloudWatch-Metriken zur Analyse der Volumenleistung erfasst, werden auch AWS-Anmeldeinformationen benötigt. Benachrichtigungen über Latenzereignisse sind verfügbar, wenn die Benachrichtigungseinstellungen in den Workload Factory Einstellungen konfiguriert sind. Eine optionale KI-Analyse für komplexe Latenzszenarien ist verfügbar, wenn die von NetApp verwaltete KI-Analyse aktiviert ist. link:learn-latency-monitoring.html["Erfahren Sie mehr über Latenzüberwachung"].
+
+link:../fsx-storage/add-credentials.html["Informationen zum Hinzufügen von AWS-Anmeldeinformationen zu Workload Factory."]
+
+FSx for ONTAP Dateisystem:: Sie benötigen mindestens ein FSx for ONTAP Dateisystem:
++
+--
+* EDA verwendet das Dateisystem zum Speichern der Projekte und Arbeitsbereiche, die Sie erstellen.
++
+Dieses FSx for ONTAP Dateisystem muss FlexVol Volumes verwenden. FlexGroup Volumes werden nicht unterstützt.
+
+* Sie müssen die AWS-Region, die VPC und das Subnetz kennen, in dem sich das AWS FSx for ONTAP Dateisystem befindet.
+* Sie benötigen mindestens ein Volume im Dateisystem mit folgender Konfiguration:
++
+** Das Volume muss als NFS-Freigabe konfiguriert sein.
+** Das Dateisystem muss mit einem Link konfiguriert werden. link:../setup/links-overview.html["Weitere Informationen zu Links"].
+
+
+* Zu berücksichtigen sind die Tag-Schlüssel/Wert-Paare, die auf die AWS-Ressourcen angewendet werden sollen, die Teil dieses Deployment sind (optional).
++
+link:../fsx-storage/create-discover-systems.html["Informationen zum Erkennen oder Erstellen von FSx for ONTAP Dateisystemen."]
+
+
+
+--
+

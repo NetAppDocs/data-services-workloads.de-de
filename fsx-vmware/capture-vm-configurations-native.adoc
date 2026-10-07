@@ -1,0 +1,146 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/capture-vm-configurations-native.html 
+keywords: vm workloads, capture vm details 
+summary: Sie können das Migration advisor VM collector script oder RVTools verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es wird empfohlen, das Migration advisor VM collector script zu verwenden, da es sowohl VM-Konfigurations- als auch Performance-Daten für die präziseste Planung erfasst. 
+---
+= Erfassung Ihrer VM-Konfigurationen vor der Migration von VMware-Workloads zu Amazon EC2
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie können das Skript „Migration advisor VM data collector“, RVTools oder NetApp Data Infrastructure Insights verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es empfiehlt sich, das Skript „Migration advisor VM data collector“ oder Data Infrastructure Insights zu verwenden, da diese Optionen sowohl VM-Konfigurations- als auch Performance-Daten erfassen und damit die genaueste Planung ermöglichen.
+
+[role="tabbed-block"]
+====
+.Verwendung von RVTools (Schnellbewertung)
+--
+RVTools ist eine Windows Applikation, die mit VCenter und ESX server (5.x bis 8.0) interagiert, um Informationen über Ihre virtuellen VMware-Umgebungen zu erfassen. Sie sammelt Informationen über VMs, CPU, Arbeitsspeicher, Festplatten, Cluster, ESX-Hosts, Datastores und mehr. Sie können diese Informationen in eine xlsx-Datei exportieren, um sie mit dem Migrationsberater zu verwenden.
+
+link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Weitere Informationen zu RVTools"^]
+
+.Schritte
+. RVTools 4.4.2 oder höher kann von link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools Website"^] heruntergeladen und installiert werden.
+. RVTools wird gestartet, und die Anmeldung beim Ziel VCenter Server erfolgt.
++
+Damit werden Informationen zu diesem VCenter Server erfasst.
+
+. Der Export Ihrer VMware-Informationen in eine xlsx- oder xls-Datei ist möglich.
++
+Einzelheiten enthält das Kapitel über „Befehlszeilenparameter“ in der link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools Dokumentation"^].
+
+
+
+.Ergebnis
+Die xlsx- oder xls-Datei, die Ihre Ergebnisse enthält, wird in Ihrem Arbeitsverzeichnis gespeichert.
+
+--
+.Verwendung des Migration advisor VM collector script (detaillierte Planung)
+--
+Das Skript NetApp Migration advisor VM collector sammelt VM-Konfigurationsinformationen aus Ihrem vCenter, ähnlich wie RVTools, erfasst jedoch aktuelle VM-Performance-Daten, um tatsächliche Lese- und Schreib-IOPS sowie Durchsatzstatistiken bereitzustellen. Das Skript kann in einem von zwei Modi verwendet werden:
+
+* Stündliche Datenerfassung
+* Tägliche Datenerfassung
+
+
+Zum Kopieren des VM-Collector-Skripts des Migration advisor aus dem Codebox-Fenster ist der Start des Migration advisor erforderlich.
+
+.Bevor Sie beginnen
+Das System, auf dem Sie das Collector-Skript ausführen, muss folgende Anforderungen erfüllen:
+
+* Microsoft PowerShell 7.0 oder höher muss installiert sein. Unter  https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4["Microsoft PowerShell Dokumentation"^] finden Sie Informationen, falls PowerShell installiert werden muss.
+* VMware PowerCLI muss installiert sein. Das https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.install.doc/GUID-F02D0C2D-B226-4908-9E5C-2E783D41FE2D.html["VMware PowerCLI Dokumentation"^] enthält Informationen, falls PowerCLI installiert werden muss.
+* Die SSL-Zertifikatsprüfung muss deaktiviert sein.
+* PowerShell muss die Ausführung unsignierter Skripte ermöglichen.
+
+
+Wenn Sie langfristige Statistiken von Ihren VMs erfassen möchten (tägliche Statistiken), müssen Sie in der vSphere Managementkonsole (VMware-Managementumgebung) Statistiken auf Level 3 oder höher aktiviert haben.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *VMware* auszuwählen.
++
+Das Planungscenter wird angezeigt. Im Planungscenter können Sie Ihre VM-Inventardaten hochladen, zuvor hochgeladene Inventardaten einsehen und eine Migration mit beliebigen VM-Inventardatensätzen planen und anschließend *Migration to AWS native compute* auswählen. Der Startbildschirm des VMware Migration Advisor wird angezeigt.
+
++
+Die Informationen geben Aufschluss über die Vorteile des Migrationsberaters.
+
+. Sobald Sie bereit sind, können Sie *Let's start* auswählen.
+. Die Auswahl erfolgt über die Kachel *Detaillierte Planung* und anschließend über *Weiter*.
++
+Das Fenster Codebox wird auf der rechten Seite der Seite angezeigt.
+
+. Im Codebox-Fenster steht entweder image:button-download-codebox.png["die Download-Schaltfläche"] zum Speichern des Datenerfassungsskripts des Migration Advisor (mit dem Namen "list-vms.ps1") auf dem Zielsystem oder image:button-copy-codebox.png["die Kopiertaste"] zum Kopieren des Skripts zur Verfügung, damit es auf dem entsprechenden System eingefügt werden kann.
+. Mit den folgenden Schritten lassen sich die Konfigurationen Ihrer aktuellen VMs erfassen:
++
+.. Die Anmeldung erfolgt bei dem System, auf dem Sie den Datensammler heruntergeladen haben und auf dem PowerShell sowie PowerCLI installiert sind.
+.. Die Verbindung zu Ihrem VMware vCenter Server erfolgt durch Ausführen des folgenden Befehls:
++
+[source, console]
+----
+Connect-VIServer -server <server_IP>
+----
++
+Anstelle von <server_IP> ist die IP-Adresse oder der Hostname Ihres VMware-Servers anzugeben.
+
+.. Beim Ausführen des heruntergeladenen Datenerfassungsskripts ist die Datenerfassungsoption für stündliche oder tägliche VM-Statistiken anzugeben.
++
+[source, console]
+----
+./list-vms.ps1 -PerformanceStatisticsTimePeriod <LastHour | LastDay>
+----
++
+Dabei gilt:
+
++
+*** *LastHour* erfasst IOPS- und Durchsatzdaten der letzten 1 Stunde in 20-Sekunden-Intervallen.
+*** *LastDay* erfasst IOPS- und Durchsatzdaten der letzten 24 Stunden in 5-Minuten-Intervallen.
+
+
+
+
++
+Optional können Sie das Datenerfassungsskript auch ohne Angabe von Optionen ausführen; dadurch können Sie den Datenerfassungszeitraum im interaktiven Menü auswählen.
+
+
+
+.Ergebnis
+Das Skript erzeugt im aktuellen Arbeitsverzeichnis eine komprimierte Datei mit einem Zeitstempel im Namen. Die .zip-Datei enthält eine Liste aller VMs und ihrer Eigenschaften sowie deren IOPS- und Durchsatzdaten.
+
+--
+.Verwendung von NetApp Data Infrastructure Insights (detaillierte Planung)
+--
+NetApp Data Infrastructure Insights ist ein Tool zur Überwachung von Cloud-Infrastrukturen, das Ihnen Transparenz in Ihre gesamte Infrastruktur bietet. Sie müssen die temporäre API-Kommunikation zwischen dem Migrationsberater und Data Infrastructure Insights aktivieren, damit der Migrationsberater Informationen über Ihre VMware-Infrastruktur erfassen kann.
+
+https://docs.netapp.com/us-en/data-infrastructure-insights/["Weitere Informationen zu Data Infrastructure Insights"^]
+
+.Schritte
+. Sie können sich bei Ihrem Data Infrastructure Insights Konto anmelden.
+. Im seitlichen Navigationsmenü ist *Admin* auszuwählen.
+. Im daraufhin angezeigten Menü ist *API Access* auszuwählen.
+. Die Auswahl von *+ API-Zugriffstoken* erfolgt im Reiter *API-Zugriffstoken*.
++
+Das Dialogfeld „Create an API Access Token“ wird angezeigt.
+
+. Für das API-Token sind ein Name und eine Beschreibung anzugeben.
+. Unter *Für welche Art von APIs wird dieses Token verwendet?* ist eine der folgenden Optionen auszuwählen:
++
+** Akquisitionseinheit
+** Vermögenswerte
+** Datenerfassung
+
+
+. Unter *Berechtigungen* erfolgt die Auswahl von *Nur lesen*.
+. Unter *Token expires in* erfolgt die Auswahl der Zeitspanne, für die das API-Token gültig sein soll.
+. Das Kontrollkästchen *Automatische Tokenrotation für Kubernetes* muss deaktiviert sein.
+. *Speichern* auswählen.
+. Dann erfolgt die Auswahl von *Copy API Access Token*.
+. Für die spätere Verwendung mit dem Workload Factory migration advisor sollte dieses Token gespeichert werden.
+
+
+--
+====
+.Was kommt als Nächstes?
+link:launch-onboarding-advisor-native.html["Erstellung eines Amazon EC2 Deployment-Plans mithilfe des Migrationsberaters"].

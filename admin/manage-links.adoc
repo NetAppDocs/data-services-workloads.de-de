@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-links.html 
+keywords: links, accounts, lambda, creating, associating, disassociating, deleting, editing 
+summary: In NetApp Workload Factory können Sie die mit Ihrem Konto verknüpften Links anzeigen, Passwörter für die Link-Authentifizierung aktualisieren und einen Link entfernen. 
+---
+= Links der NetApp Workload Factory verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sie können Links verwalten, die Ihrem Workload Factory Konto zugeordnet sind. Sie können Links anzeigen, die einem FSx for ONTAP Dateisystem oder einem OCI NetApp Storage Service (OCI NSS) System zugeordnet sind, Passwörter für die Linkauthentifizierung angeben und Links aus NetApp Console entfernen.
+
+link:../setup/links-overview.html["Weitere Informationen zu Links."]
+
+
+
+[[view-the-links-associated-with-your-account]]
+== Anzeigen der mit Ihrem Konto verknüpften Links
+
+Sie können die Links anzeigen, die aktuell mit Ihrem Konto verknüpft sind.
+
+.Schritte
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] *Administration* > *Links*.
++
+Bestehende Links erscheinen auf der Seite „Links“.
+
+. Die mit einem Link verknüpften Storage-Systeme werden über die Schaltfläche *View* im Abschnitt Zugehörige Ressourcen angezeigt.
+. Falls Sie den Amazon Resource Name (ARN) für den Link benötigen, können Sie das Symbol _copy_ neben dem ARN-Feld auswählen.
+
+
+
+
+[[edit-a-link]]
+== Einen Link bearbeiten
+
+Ein Link kann über die NetApp Console nicht bearbeitet werden. Wenn eine Änderung an einem Link erforderlich ist, muss ein neuer Link erstellt und dann Ihrem Storage-System zugeordnet werden.
+
+
+NOTE: Die Netzwerkkonfiguration von AWS Lambda oder Oracle Cloud Functions (z. B. VPC, Subnetze und Sicherheitsgruppen) kann über die Konsole Ihres Cloud-Anbieters bearbeitet werden, und die Änderungen werden in Links oder in der Benutzeroberfläche zur Functions-Verwaltung angezeigt; diese Änderungen können jedoch zu Verbindungsproblemen zwischen AWS Lambda oder Oracle Cloud Functions und ONTAP führen und werden daher nicht empfohlen.
+
+
+
+[[authenticate-a-link]]
+== Einen Link authentifizieren
+
+Die Authentifizierung eines Links erfolgt durch Angabe eines Administratorbenutzerkennworts für Workload Factory Anmeldeinformationen oder eines Secrets aus AWS Secrets Manager oder Oracle Vault.
+
+* Für AWS Secrets Manager werden entweder der Name des Secrets oder eine AWS Secrets Manager Secret ARN benötigt, um den Link mit einem FSx for ONTAP Dateisystem zu verbinden.
++
+
+NOTE: AWS Secrets Manager wird bei Verwendung eines Console Agenten nicht unterstützt.
+
+* Für Oracle Vault ist die OCID des Vault-Geheimnisses anzugeben, um die Verknüpfung mit einem OCI NetAApp Storage Service System herzustellen.
+
+
+
+NOTE: Pro Link wird nur ein Authentifizierungsverfahren unterstützt. Wenn beispielsweise die Link-Authentifizierung mit AWS Secrets Manager ausgewählt wird, kann das Authentifizierungsverfahren später nicht mehr geändert werden.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* das Aktionsmenü des Dateisystems auswählen, dem ein Link zugeordnet werden soll, und anschließend *Verwalten* auswählen.
+. In der Dateisystemübersicht *Link authentifizieren* auswählen.
+. Auf der Seite „Authentifizierungslink“ ein Authentifizierungsverfahren auswählen:
++
+** *Workload Factory*: Die Eingabe des Passworts erfolgt zweimal.
+** *AWS Secrets Manager*: der Secret ARN.
+
+
+. *Anwenden* auswählen.
+
+
+--
+.OCI NetApp Storage Service
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage* > *OCI NetApp Storage Service* ist auszuwählen.
+. Im *OCI NetApp Storage Service* ist für den Storage-Pool, dem eine Verknüpfung zugeordnet werden soll, das Aktionsmenü und anschließend *Verwalten* auszuwählen.
+. In der Übersicht des Storage-Pools erfolgt die Auswahl von *Link authentifizieren*.
+. Auf der Seite „Authentifizierungslink“ ein Authentifizierungsverfahren auswählen:
++
+** *Workload Factory*: Die Eingabe des Passworts erfolgt zweimal.
+** *OCI Vault*: die OCID des Secrets eingeben.
+
+
+. *Anwenden* auswählen.
+
+
+--
+====
+.Ergebnis
+Die Verbindung ist authentifiziert, und Sie können erweiterte ONTAP-Operationen durchführen.
+
+
+
+[[update-the-password-for-link-authentication]]
+== Das Passwort für die Link-Authentifizierung aktualisieren
+
+Wenn das Administratorpasswort ungültig ist, ist eine Aktualisierung des Passworts erforderlich, um die Verbindung zu Ihrem Storage-System herzustellen.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* das Aktionsmenü des Dateisystems auswählen, dem ein Link zugeordnet werden soll, und anschließend *Verwalten* auswählen.
+. In der Dateisystemübersicht *Passwort aktualisieren* auswählen.
+. Auf der Seite „Authentifizierung“ wird das neue Passwort zweimal eingegeben.
+. *Anwenden* auswählen.
+
+
+--
+.OCI NetApp Storage Service
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage* > *OCI NetApp Storage Service* ist auszuwählen.
+. Im *OCI NetApp Storage Service* ist für den Storage-Pool, dem eine Verknüpfung zugeordnet werden soll, das Aktionsmenü und anschließend *Verwalten* auszuwählen.
+. In der Übersicht des Speicherpools kann *Kennwort aktualisieren* ausgewählt werden.
+. Auf der Seite „Authentifizierung“ wird das neue Passwort zweimal eingegeben.
+. *Anwenden* auswählen.
+
+
+--
+====
+.Ergebnis
+Das Passwort wurde aktualisiert, und die Verbindung ist jetzt mit dem Storage-System hergestellt.
+
+
+
+[[remove-a-link]]
+== Link entfernen
+
+Sie können eine Verknüpfung entfernen, die in Ihrer Umgebung nicht mehr verwendet wird. Storage-Systeme oder andere Ressourcen, die die Verknüpfung verwendet haben, können nach deren Entfernung bestimmte Funktionen nicht mehr nutzen.
+
+Der Link wird nur aus Workload Factory gelöscht und nicht aus Ihrer AWS- oder Oracle-Umgebung entfernt.
+
+* Für FSx for ONTAP müssen Sie die Lambda function aus Ihrem AWS-Konto löschen, nachdem Sie die Verknüpfung in Workload Factory entfernt haben.
+* Für OCI NetApp Storage Service müssen Sie die Function-Instanz aus Ihrem OCI-Konto löschen, nachdem Sie den Link in Workload Factory entfernt haben.
+
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] *Administration* > *Links*.
++
+Bestehende Links erscheinen auf der Seite „Links“.
+
+. Auf der Seite „Links“ im Aktionsmenü des zu entfernenden Links die Option *Entfernen* auswählen.
+. Wenn Sie sicher sind, wählen Sie erneut *Entfernen*.
+
+
+In der AWS-Dokumentation link:https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-delete-function["die Lambda-Funktion löschen"] finden sich weitere Informationen.
+
+--
+.OCI NetApp Storage Service
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] *Administration* > *Links*.
++
+Bestehende Links erscheinen auf der Seite „Links“.
+
+. Auf der Seite „Links“ im Aktionsmenü des zu entfernenden Links die Option *Entfernen* auswählen.
+. Wenn Sie sicher sind, wählen Sie erneut *Entfernen*.
+
+
+--
+====

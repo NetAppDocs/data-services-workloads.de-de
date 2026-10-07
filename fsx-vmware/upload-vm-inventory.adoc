@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/upload-vm-inventory.html 
+keywords: vm workloads, capture vm details 
+summary: Im Planning Center können Sie Informationen über Ihre aktuelle VMware-Umgebung hochladen. 
+---
+= Hochladen von VM-Inventardaten in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Bevor Sie einen Migrationsplan erstellen können, müssen Sie Ihre VM-Inventardaten hochladen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *VMware* auszuwählen.
++
+Das Planungszentrum wird angezeigt. Im Planungszentrum können Sie Ihre VM-Inventardaten hochladen, frühere Inventardaten-Uploads einsehen und eine Migration mithilfe beliebiger VM-Inventardatensätze planen.
+
+. Die Auswahl erfolgt über *Upload VM inventory*.
+. Es ist die zu verwendende Datenerfassungsmethode auszuwählen:
+
+
+[role="tabbed-block"]
+====
+.Verwendung von RVTools (Schnellbewertung)
+--
+RVTools ist eine Windows Applikation, die mit VCenter und ESX server (5.x bis 8.0) interagiert, um Informationen über Ihre virtuellen VMware-Umgebungen zu erfassen. Sie sammelt Informationen über VMs, CPU, Arbeitsspeicher, Festplatten, Cluster, ESX-Hosts, Datastores und mehr. Sie können diese Informationen in eine xlsx-Datei exportieren, um sie mit dem Migrationsberater zu verwenden.
+
+link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Weitere Informationen zu RVTools"^]
+
+.Schritte
+. Sie wählen die Kachel *RVTools* und anschließend *Weiter* aus.
++
+Die Seite *Prepare for AWS Cloud onboarding* wird angezeigt.
+
+. Geben Sie einen Namen für den VM-Inventar-Datensatz ein, den Sie erstellen werden.
+. RVTools 4.4.2 oder höher lässt sich von der link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["RVTools Website"^] herunterladen und installieren
+. RVTools wird gestartet, und die Anmeldung beim Ziel VCenter Server erfolgt.
++
+Damit werden Informationen zu diesem VCenter Server erfasst.
+
+. Der Export Ihrer VMware-Informationen in eine xlsx- oder xls-Datei ist möglich.
++
+Einzelheiten enthält das Kapitel „Befehlszeilenparameter“ in der link:https://www.dell.com/en-us/shop/vmware/sl/rvtools["Die RVTools Dokumentation befindet sich im Abschnitt „Ressourcen“"^].
+
+. Zunächst erfolgt die Auswahl von image:button-upload-file.png["die Upload-Schaltfläche"], anschließend die Auswahl der exportierten RVTools-Datei.
+. Die Option *Upload* auswählen.
+. Wählen Sie *Fertigstellen*.
+
+
+--
+.Datensammler verwenden (detaillierte Planung)
+--
+Das Skript NetApp Migration advisor VM collector sammelt VM-Konfigurationsinformationen aus Ihrem vCenter, ähnlich wie RVTools, erfasst jedoch aktuelle VM-Performance-Daten, um tatsächliche Lese- und Schreib-IOPS sowie Durchsatzstatistiken bereitzustellen. Das Skript kann in einem von zwei Modi verwendet werden:
+
+* Stündliche Datenerfassung
+* Tägliche Datenerfassung
+
+
+Zum Kopieren des VM-Collector-Skripts des Migration advisor aus dem Codebox-Fenster ist der Start des Migration advisor erforderlich.
+
+.Bevor Sie beginnen
+Das System, auf dem Sie das Collector-Skript ausführen, muss folgende Anforderungen erfüllen:
+
+* Microsoft PowerShell 7.0 oder höher muss installiert sein. Unter  https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4["Microsoft PowerShell Dokumentation"^] finden Sie Informationen, falls PowerShell installiert werden muss.
+* VMware PowerCLI muss installiert sein. Das https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.esxi.install.doc/GUID-F02D0C2D-B226-4908-9E5C-2E783D41FE2D.html["VMware PowerCLI Dokumentation"^] enthält Informationen, falls PowerCLI installiert werden muss.
+* Die SSL-Zertifikatsprüfung muss deaktiviert sein.
+* PowerShell muss die Ausführung unsignierter Skripte ermöglichen.
+
+
+Wenn Sie langfristige Statistiken von Ihren VMs erfassen möchten (tägliche Statistiken), müssen Sie in der vSphere Managementkonsole (VMware-Managementumgebung) Statistiken auf Level 3 oder höher aktiviert haben.
+
+.Schritte
+. Es erfolgt die Auswahl der Kachel *Datensammler* und anschließend von *Weiter*.
++
+Das Fenster Codebox wird auf der rechten Seite der Seite angezeigt.
+
+. Im Codebox-Fenster steht entweder image:button-download-codebox.png["die Download-Schaltfläche"] zum Speichern des Datenerfassungsskripts des Migration Advisor (mit dem Namen "list-vms.ps1") auf dem Zielsystem oder image:button-copy-codebox.png["die Kopiertaste"] zum Kopieren des Skripts zur Verfügung, damit es auf dem entsprechenden System eingefügt werden kann.
+. Mit den folgenden Schritten lassen sich die Konfigurationen Ihrer aktuellen VMs erfassen:
++
+.. Die Anmeldung erfolgt bei dem System, auf dem Sie den Datensammler heruntergeladen haben und auf dem PowerShell sowie PowerCLI installiert sind.
+.. Die Verbindung zu Ihrem VMware vCenter Server erfolgt durch Ausführen des folgenden Befehls:
++
+[source, console]
+----
+Connect-VIServer -server <server_IP>
+----
++
+Anstelle von <server_IP> ist die IP-Adresse oder der Hostname Ihres VMware-Servers anzugeben.
+
+.. Beim Ausführen des heruntergeladenen Datenerfassungsskripts ist die Datenerfassungsoption für stündliche oder tägliche VM-Statistiken anzugeben.
++
+[source, console]
+----
+./list-vms.ps1 -PerformanceStatisticsTimePeriod <LastHour | LastDay>
+----
++
+Dabei gilt:
+
++
+*** *LastHour* erfasst IOPS- und Durchsatzdaten der letzten 1 Stunde in 20-Sekunden-Intervallen.
+*** *LastDay* erfasst IOPS- und Durchsatzdaten der letzten 24 Stunden in 5-Minuten-Intervallen.
+
+
+
+
++
+Optional können Sie das Datenerfassungsskript auch ohne Angabe von Optionen ausführen; dadurch können Sie den Datenerfassungszeitraum im interaktiven Menü auswählen.
+
++
++ Das Skript erzeugt im aktuellen Arbeitsverzeichnis eine komprimierte Datei mit einem Zeitstempel im Namen. Die .zip-Datei enthält eine Liste aller VMs und ihrer Eigenschaften sowie deren IOPS- und Durchsatzdaten.
+
+. Die Option *Upload* auswählen.
+
+
+--
+.Verwendung von NetApp Data Infrastructure Insights (detaillierte Planung)
+--
+NetApp Data Infrastructure Insights ist ein Tool zur Überwachung von Cloud-Infrastrukturen, das Ihnen Transparenz in Ihre gesamte Infrastruktur bietet. Sie müssen die temporäre API-Kommunikation zwischen dem Migrationsberater und Data Infrastructure Insights aktivieren, damit der Migrationsberater Informationen über Ihre VMware-Infrastruktur erfassen kann.
+
+https://docs.netapp.com/us-en/data-infrastructure-insights/["Weitere Informationen zu Data Infrastructure Insights"^]
+
+.Schritte
+. Die Auswahl erfolgt über die Kachel *Data Infrastructure Insights* und anschließend über *Next*.
++
+Die Seite *Prepare for AWS Cloud onboarding* wird angezeigt.
+
+. Geben Sie einen Namen für den VM-Inventar-Datensatz ein, den Sie erstellen werden.
+. Eingabe des Tenant-Endpunkts für Data Infrastructure Insights.
++
+Dies sollte die URL sein, die Sie für den Zugriff auf Data Infrastructure Insights verwenden.
+
+. Falls Sie noch kein API-Zugriffstoken für Data Infrastructure Insights generiert haben, folgen Sie den Anweisungen auf der Seite, um eines zu erstellen. Andernfalls erfolgt die Eingabe Ihres API-Zugriffstokens in das Textfeld „API Access Token eingeben“.
+. Die Option *Upload* auswählen.
++
+Workload Factory sammelt Informationen aus Data Infrastructure Insights.
+
+
+
+--
+====
+.Was kommt als Nächstes?
+Im Planungszentrum lassen sich Ihre hochgeladenen VM-Inventardaten managen oder ein Deployment-Plan erstellen.
+
+* link:explore-planning-center.html["Das VMware workloads planning center erkunden"]
+* link:launch-onboarding-advisor.html["Erstellung eines Amazon VMware Cloud Deployment-Plans"]
+* link:launch-migration-advisor-evs.html["Erstellung eines Deployment-Plans für Amazon Elastic VMware Service"]
+* link:launch-onboarding-advisor-native.html["Erstellung eines Amazon EC2 Deployment-Plans"]
+* link:launch-migration-advisor-gcve.html["Erstellen Sie einen Google Cloud VMware Engine-Bereitstellungsplan"]
+

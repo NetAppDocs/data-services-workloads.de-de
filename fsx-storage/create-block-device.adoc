@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-block-device.html 
+keywords: create block device, create lun, iscsi protocol 
+summary: Blockgeräte können erstellt werden, um die Applikationsanforderungen Ihres Geschäftsbereichs zu unterstützen. 
+---
+= Erstellung eines Blockgeräts für ein Dateisystem in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Blockgeräte können erstellt werden, um die Applikationsanforderungen Ihres Geschäftsbereichs zu unterstützen. Blockgeräte können in einem bestehenden Volume erstellt, ein neues Volume für das neue Blockgerät angelegt oder ein neues Volume aus einem Snapshot für das neue Blockgerät erstellt werden.
+
+.Über diese Aufgabe
+Für Block-Devices in NetApp Workload Factory werden nur FlexVol Volumes unterstützt. Sie können Block-Devices mithilfe des iSCSI-Protokolls erstellen.
+
+Die Blockgröße muss kleiner sein als die verfügbare Größe des FlexVol volume.
+
+.Bevor Sie beginnen
+* Sie müssen eine Verknüpfung herstellen, um Blockgeräte zu erstellen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt zunächst die Auswahl des Dateisystems, für das ein Blockgerät erstellt werden soll, und anschließend die Auswahl der Registerkarte *Block devices*.
+. Anschließend ist *Blockgerät erstellen* auszuwählen.
+. Unter *Volume details* erfolgen die folgenden Schritte:
++
+.. *Volume-Name*: Zur Auswahl steht eine der folgenden Optionen.
++
+*** Neues Volume erstellen und den Namen des Volumes eingeben.
+*** Ein vorhandenes Volume auswählen.
+*** Aus einem Volume-Snapshot erstellen. Den Namen des Quellvolumes und den Snapshot-Namen auswählen. Nur Volumes ohne Blockgeräte sind verfügbar.
+
+
+.. *Aggregatname*: Wählen Sie das Aggregat aus, das das neue Volume aufnehmen soll.
+.. *Storage VM*: Auswahl einer Storage VM.
+.. *Volumestil*: Der standardmäßige Volumestil ist *FlexVol*.
+.. *Volumengröße*: Größe des Volumens eingeben und Einheit auswählen. Die maximale Größe pro FlexVol volume beträgt 100 TiB.
+.. *Automatische Volumenerweiterung*: Optional lässt sich die automatische Volumenerweiterung aktivieren, damit sich das Volumen automatisch vergrößert, wenn es seine Kapazitätsgrenze erreicht. Die maximale Erweiterungsgröße beträgt 300 TiB.
+.. *Tags*: Optional lassen sich Tags hinzufügen, um Ihr Blockgerät zu organisieren und zu kategorisieren.
+
+
+. Unter *Details zum Blockgerät* sind folgende Schritte erforderlich:
++
+.. *Blockgerätename*: Hier geben Sie einen Namen für das Blockgerät ein.
+.. *Blockgerätegröße*: Geben Sie die Größe des Blockgeräts ein und wählen Sie die Einheit aus. Die Blockgerätegröße muss kleiner als die verfügbare Volumegröße sein.
+
+
+. Unter *Zugriff* sind die folgenden Schritte auszuführen:
++
+.. *iSCSI Konfiguration*: Eine der folgenden Optionen ist auszuwählen.
++
+*** *Neue Initiatorgruppe erstellen*: Angabe des Host-Betriebssystems und des Namens der Initiatorgruppe sowie Hinzufügen eines oder mehrerer Host-Initiatoren mit iSCSI qualified name (IQN).
+*** *Vorhandene Initiatorgruppe zuordnen*: Auswahl einer vorhandenen Initiatorgruppe, Angabe des Host-Betriebssystems und Auswahl eines oder mehrerer iSCSI qualified name (IQN) Host-Initiatoren.
+
+
+
+
+. Unter *Effizienz und Schutz* ist Folgendes erforderlich:
++
+.. *Speichereffizienz*: Standardmäßig aktiviert. Mit dieser Option lässt sich die Funktion deaktivieren.
++
+ONTAP erreicht Storage-Effizienz durch Deduplizierung und Komprimierung. Deduplizierung entfernt doppelte Datenblöcke. Die Datenkomprimierung komprimiert die Datenblöcke, um den erforderlichen physischen Storage zu reduzieren.
+
+.. *Snapshot-Richtlinie*: Hier wird die Snapshot-Richtlinie ausgewählt, mit der die Häufigkeit und Aufbewahrungsdauer von Snapshots festgelegt werden.
++
+Im Folgenden sind die Standardrichtlinien von AWS aufgeführt. Vorhandene Snapshot-Richtlinien werden angezeigt, wenn link:create-link.html["einen Link verknüpfen"^].
+
++
+`default`:: Diese Richtlinie erstellt automatisch Snapshots nach folgendem Zeitplan, wobei die ältesten Snapshot-Kopien gelöscht werden, um Platz für neuere Kopien zu schaffen:
++
+--
+*** Maximal sechs stündliche Momentaufnahmen, die fünf Minuten nach der vollen Stunde erstellt werden.
+*** Maximal zwei tägliche Schnappschüsse, aufgenommen von Montag bis Samstag jeweils 10 Minuten nach Mitternacht.
+*** Maximal zwei wöchentliche Snapshots, die jeden Sonntag um 0:15 Uhr erstellt werden.
++
+
+NOTE: Die Snapshot-Zeitpunkte basieren auf der Zeitzone des Dateisystems, die standardmäßig auf koordinierte Weltzeit (UTC) eingestellt ist. Informationen zum Ändern der Zeitzone finden Sie link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["Anzeige und Einstellung der Systemzeitzone"^] in der NetApp Supportdokumentation.
+
+
+
+--
+`default-1weekly`:: Diese Richtlinie funktioniert auf die gleiche Weise wie die `default` vorherige Richtlinie, mit der Ausnahme, dass sie nur eine Momentaufnahme aus dem Wochenplan beibehält.
+`none`:: Diese Richtlinie erstellt keine Snapshots. Sie können diese Richtlinie Volumes zuweisen, um zu verhindern, dass automatisch Snapshots erstellt werden.
+
+
+.. *Tiering-Richtlinie*: Auswahl der Tiering-Richtlinie für die im Volume gespeicherten Daten.
++
+_Balanced (Auto)_ ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes mit der Workload Factory Konsole. Weitere Informationen zu Volume-Tiering-Richtlinien finden sich in link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] der AWS FSx for NetApp ONTAP Dokumentation. Zu beachten ist, dass Workload Factory in der Workload Factory Konsole anwendungsfallbasierte Namen für Tiering-Richtlinien verwendet und die FSx for ONTAP Tiering-Richtliniennamen in Klammern aufführt.
+
+.. *ARP/AI*: NetApp Autonomous Ransomware Protection with AI (ARP/AI) ist standardmäßig aktiviert, wenn ein Link mit dem Dateisystem verknüpft ist. link:ransomware-protection.html["Weitere Informationen zu ARP/KI"]. Voraussetzung zum Fortfahren ist die Zustimmung zu der Erklärung.
++
+Wenn die Funktion nicht verfügbar ist, liegt das aus einem der folgenden Gründe vor:
+
++
+*** Es ist kein Link mit dem Dateisystem verknüpft. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+*** ARP/AI unterstützt keine Volumes mit unveränderlichen Dateien und keine Volumes mit dem NVMe-Protokoll.
+*** Das Dateisystem verfügt bereits über eine ARP/AI-Richtlinie.
+
+
+
+
+. *Erstellen* auswählen.
+
+
+.Verwandte Informationen
+link:manage-block-storage.html["Verwalten des Blockspeichers für ein FSx for ONTAP file system"]

@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: setup/learn-about-permissions.html 
+keywords: permissions, actions 
+summary: Um die Funktionen und Services von NetApp Workload Factory zu nutzen, müssen Sie Berechtigungen erteilen, damit Workload Factory Operationen in Ihrer Cloud-Umgebung durchführen kann. 
+---
+= Berechtigungen für NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um die Funktionen und Services von NetApp Workload Factory zu nutzen, müssen Sie Berechtigungen erteilen, damit Workload Factory Operationen in Ihrer Cloud-Umgebung durchführen kann.
+
+
+
+[[why-use-permissions]]
+== Warum Berechtigungen verwenden
+
+Wenn Sie Berechtigungen erteilen, weist Workload Factory der Instanz eine Richtlinie mit Berechtigungen zum Managen von Ressourcen und Prozessen in Ihrem Konto beim Cloud-Provider zu. Dadurch kann Workload Factory verschiedene Vorgänge ausführen, von der Erkennung Ihrer Storage-Umgebungen bis hin zum Einsetzen von Cloud-Ressourcen wie Volumes im Storage-Management.
+
+Bei FSx for ONTAP Datenbank-Workloads beispielsweise scannt Workload Factory, wenn es über die erforderlichen Berechtigungen verfügt, alle EC2-Instanzen in einem bestimmten Konto und einer bestimmten Region und filtert alle Windows-basierten Maschinen. Wenn der AWS Systems Manager (SSM) Agent auf dem Host installiert ist und ausgeführt wird und die Netzwerkkonfiguration von System Manager korrekt ist, kann Workload Factory auf die Windows-Maschine zugreifen und überprüfen, ob die SQL Server-Software installiert ist.
+
+
+
+[[how-permissions-are-used]]
+== Wie Berechtigungen verwendet werden
+
+Workload Factory verwendet Berechtigungen, um bestimmte Aufgaben auszuführen. Berechtigungen sind in festgelegten Berechtigungsrichtlinien zusammengefasst. Berechtigungsrichtlinien werden in link:../admin/codebox-automation.html["die Codebox"] angezeigt und sind als JSON kopierbar. Jeder Cloud-Anbieter verfügt über eigene Berechtigungsrichtlinien, die auf die spezifischen Anforderungen und Funktionen dieser Cloud-Umgebung zugeschnitten sind. Diese Dokumentation enthält Berechtigungsreferenzen für jeden Cloud-Anbieter.
+
+
+
+[[permission-references-by-cloud-provider]]
+=== Berechtigungsverweise nach Cloud-Anbieter
+
+Auf den folgenden Seiten finden sich Informationen zu den Berechtigungsanforderungen Ihres Cloud-Anbieters:
+
+* link:../fsx-storage/permissions-reference-fsx.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/permissions-oci.html["OCI NetApp Storage Service"]
+

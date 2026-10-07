@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: Verwalten Sie die S3-Zugriffspunkte für ein Volume in NetApp Workload Factory. 
+---
+= Verwaltung der S3-Zugriffspunkte für ein Volume in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Aktualisierung der S3-Zugriffspunktdetails oder Löschen von S3-Zugriffspunkten für ein Volume in NetApp Workload Factory.
+
+Sie können die *Inventartabelle* für den Zugriffspunkt aktivieren oder deaktivieren. Die Inventartabelle generiert Metadaten für alle Objekte, auf die der S3-Zugriffspunkt zugreifen kann, und verursacht AWS S3-Anfragekosten. Weitere Informationen finden Sie unter link:https://aws.amazon.com/s3/pricing/["Amazon S3 Preisdokumentation"^].
+
+
+
+[[edit-the-s3-access-points-for-a-volume]]
+== S3 Zugriffspunkte für ein Volume bearbeiten
+
+Bearbeiten Sie die S3-Zugriffspunkte für ein Volume in NetApp Workload Factory.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume aus, für das Sie die S3-Zugriffspunkte bearbeiten möchten, dann *Erweiterte Aktionen* und anschließend *S3-Zugriffspunkte verwalten*.
+. Wählen Sie auf dem Bildschirm *S3-Zugriffspunkte verwalten* das Menü Aktionen und dann *Zugriffspunkt bearbeiten* aus.
+. Nehmen Sie Aktualisierungen vor und wählen Sie dann *Anwenden*.
++
+Um die Infrastruktur für die Journaltabellenfunktion einzurichten, müssen Sie *Internet* als Netzwerkkonfiguration für den S3-Zugriffspunkt auswählen. link:setup-journal-table.html["Erfahren Sie, wie Sie die Journaltabelleninfrastruktur für NetApp Workload Factory einrichten."].
+
+
+
+
+
+[[view-s3-access-point-details-for-a-volume]]
+== Details zum S3-Zugriffspunkt für ein Volume anzeigen
+
+Zeigen Sie Details zu S3-Zugriffspunkten wie Alias, ARN und S3-URI an. Mit aktivierten Inventar- und Journaltabellen können Sie Metadaten und Audit-Protokolle von Benutzerzugriffsereignissen und Objektoperationen über alle S3-Zugriffspunkte hinweg einsehen.
+
+.Über diese Aufgabe
+Wenn die Inventartabelle für das Volume aktiviert ist, können Sie Zugriffspunkt-, Inventartabellen- und Bucket-Details der vorhandenen S3-Zugriffspunkte, die mit dem Volume verbunden sind, anzeigen. Das System stellt außerdem einen Link zur Inventartabelle in der AWS Management Console bereit.
+
+Wenn die Protokolltabelle aktiviert ist, generiert Workload Factory Protokolle zu Zugriffspunkten in einer Tabelle, die Ihnen als Referenz dient. Die Tabelle enthält CloudTrail-Ereignisse, Trails (eine Aufzeichnung der AWS-Aktivitäten), CloudTrail-Filter, CloudWatch-Protokollgruppen und mehr.
+
+Sie können die Zugangspunktdetails kopieren, um sie in anderen Anwendungen zu verwenden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage* > *Volumes explorer*.
+. Im Aktionsmenü des Volumes, für das Details angezeigt werden sollen, erfolgt zunächst die Auswahl von *Erweiterte Aktionen* und anschließend *Details anzeigen*.
++
+Die Details werden unter vier Registerkarten angezeigt: *Zugriffspunkt*, *Inventartabelle*, *Journaltabelle* und *Table bucket*.
+
+. Wenn der Status für Inventar- oder Journaltabellen aktiviert ist, Ihnen aber die `get:Object` Berechtigung fehlt, folgen Sie den Anweisungen im Dialogfeld, um die erforderliche Berechtigung hinzuzufügen.
+. Wenn der Status der Journaltabelle „Ausstehend“ ist, müssen Sie die CloudTrail-ARN angeben, um die Journaltabelle mit der erstellten Infrastruktur zu verbinden. Befolgen Sie die Anweisungen zur Bereitstellung des CloudFormation-Stacks mithilfe der AWS CLI oder der AWS Management Console und kehren Sie anschließend zur Workload Factory Konsole zurück, um die CloudTrail-ARN einzugeben.
+
+
+
+
+[[delete-the-s3-access-points-for-a-volume-in-netapp-workload-factory]]
+== Löschen Sie die S3-Zugriffspunkte für ein Volume in NetApp Workload Factory
+
+Löschen Sie vorhandene S3-Zugriffspunkte von einem Volume in NetApp Workload Factory.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume aus, für das Sie S3-Zugriffspunkte verwalten möchten, dann *Erweiterte Aktionen* und anschließend *S3-Zugriffspunkte verwalten*.
+. Wählen Sie das Aktionsmenü für den S3-Zugriffspunkt, den Sie löschen möchten, und wählen Sie dann *Löschen*.
+. Im Dialogfeld *S3-Zugriffspunkt löschen* wählen Sie *Löschen*, um den S3-Zugriffspunkt vom Volume zu löschen.
++
+Workload Factory löscht weder die Inventar- noch die Journaltabelle, aber Sie können sie manuell über die AWS Management Console entfernen.
+
+
+
+.Verwandte Informationen
+* link:setup-journal-table.html["Einrichtung der Journaltabelleninfrastruktur"]
+

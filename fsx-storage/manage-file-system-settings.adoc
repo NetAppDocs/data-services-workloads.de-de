@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-file-system-settings.html 
+keywords: create fsx tags, create tags, edit fsx tags, fsx tags, reset fsx admin password 
+summary: Tags für ein Dateisystem in FSx for ONTAP lassen sich jederzeit hinzufügen, aktualisieren oder entfernen. 
+---
+= FSx for ONTAP Dateisystemeinstellungen in NetApp Workload Factory verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Einstellungen eines FSx for ONTAP Dateisystems in NetApp Workload Factory lassen sich verwalten. Tags für das Dateisystem können verwaltet, das fsxadmin Passwort bei Bedarf zurückgesetzt und die Durchsatzkapazität nach Bedarf aktualisiert werden.
+
+
+
+[[manage-fsx-for-ontap-file-system-tags]]
+== Verwaltung von FSx for ONTAP Dateisystem-Tags
+
+Tags können Ihnen bei der Kategorisierung Ihrer Ressourcen helfen. Sie können Tags für ein Dateisystem jederzeit in NetApp Workload Factory hinzufügen, bearbeiten und entfernen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im *Inventar* erfolgt die Auswahl von *Dateisystem-Tags verwalten* im Aktionsmenü des zu aktualisierenden Dateisystems.
+. Im Dialogfeld *Dateisystem-Tags verwalten* können Sie nach Bedarf Tags hinzufügen, bearbeiten oder entfernen.
++
+Die maximale Anzahl von Tags, die Sie einem Dateisystem zuweisen können, beträgt 50.
+
+. *Anwenden* auswählen.
+
+
+
+
+[[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
+== Das fsxadmin-Passwort eines FSx for ONTAP Dateisystems zurücksetzen
+
+Das fsxadmin-Passwort in NetApp Workload Factory wird bei Bedarf zurückgesetzt.
+
+Wenn Sie bei der Erstellung des Dateisystems einen alternativen Benutzer angegeben haben, können Sie das fsxadmin-Passwort nur in der AWS-Konsole zurücksetzen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im *Inventory* im Aktionsmenü des Dateisystems, für das das fsxadmin Passwort zurückgesetzt werden soll, *Manage* auswählen.
+. Die Auswahl des Menüs „Aktionen“ erfolgt in der Dateisystemübersicht.
++
+image:screenshot-reset-fsxadmin-password.png["Ein Screenshot des Aktionsmenüs auf der Registerkarte Übersicht für ein Dateisystem."]
+
+. Die Option *Reset fsxadmin password* ist auszuwählen.
+. Im Dialogfeld zum Zurücksetzen des fsxadmin Passworts wird ein neues fsxadmin Passwort eingegeben und zur Bestätigung erneut eingegeben.
+. *Anwenden* auswählen.
+
+
+
+
+[[update-throughput-capacity-for-an-fsx-for-ontap-file-system]]
+== Aktualisierung der Durchsatzkapazität für ein FSx for ONTAP Dateisystem
+
+Bei Bedarf lässt sich die Durchsatzkapazität für ein FSx for ONTAP Dateisystem in NetApp Workload Factory aktualisieren.
+
+Informationen zu den Durchsatzkapazitätsgrenzen sind link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["Kontingente"^] in der AWS FSx for NetApp ONTAP Dokumentation enthalten.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
+. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im *Inventory* erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems, für das die Durchsatzkapazität aktualisiert werden soll.
+. Unter „Informationen“ erfolgt die Auswahl des Stiftsymbols neben *Durchsatzkapazität*. Das Stiftsymbol wird neben dem Dropdown-Pfeil angezeigt, wenn sich der Mauszeiger über der Zeile *Durchsatzkapazität* befindet.
+. Im Dialogfeld „Durchsatzkapazität“ erfolgt die Auswahl der benötigten Durchsatzkapazität.
+. *Anwenden* speichert die Änderungen.
+

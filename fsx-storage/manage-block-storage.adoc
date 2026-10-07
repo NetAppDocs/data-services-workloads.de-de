@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-block-storage.html 
+keywords: block storage, manage block storage, igroups, block devices, view details, clone, client access, delete block device 
+summary: Blockspeicher für ein FSx for ONTAP-Dateisystem in NetApp Workload Factory verwalten. 
+---
+= Blockspeicher für ein Dateisystem in NetApp Workload Factory verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Verwenden Sie NetApp Workload Factory, um die Verwaltung Ihrer Blockspeicherressourcen, einschließlich Initiatorgruppen und Blockgeräten, zu vereinfachen und den Clientzugriff auf FSx for ONTAP Blockgeräte zu steuern, um optimale Leistung zu erzielen und die Kosten zu minimieren.
+
+.Über diese Aufgabe
+Über die Workload Factory-Konsole können Sie Initiatorgruppen (igroups) verwalten, um den Clientzugriff auf Blockgeräte zu steuern. Außerdem können Sie Details zu Blockgeräten anzeigen, die Kapazität erhöhen, Klone erstellen, den Clientzugriff verwalten, Daten inaktiver Blockgeräte archivieren und Blockgeräte löschen.
+
+Prüfen Sie das Blockspeicherdiagramm, um Folgendes zu überprüfen:
+
+* Clientverbindungen
+* Blockgerätestatus
+* Knoten-Client-Beziehung
+* Möglicherweise fehlerhafte Clientverbindungen
+
+
+.Bevor Sie beginnen
+* Sie müssen eine Verknüpfung herstellen, um Initiatorgruppen zu verwalten. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
+* Sie müssen über eine vorhandene Initiatorgruppe oder ein Blockgerät verfügen, um sie anzuzeigen und zu verwalten.
+
+
+
+
+[[manage-igroups]]
+== Initiatorgruppen verwalten
+
+Sie können Initiatorgruppen-Details anzeigen, den Clientzugriff verwalten und Initiatorgruppen löschen.
+
+
+
+[[manage-client-access-for-an-igroup]]
+=== Clientzugriff für eine Initiatorgruppe verwalten
+
+Verwalten Sie den Clientzugriff für eine bestehende Initiatorgruppe jederzeit.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Wählen Sie den Ressourcentyp *Initiator groups (igroups)* aus, um vorhandene Initiatorgruppen anzuzeigen.
+. Gehen Sie zum Aktionsmenü für das Blockgerät und wählen Sie *Clientzugriff verwalten*.
+. Überprüfen Sie die für die Initiatorgruppe angezeigten Client-Zugriffsdetails.
+. Um Änderungen am Clientzugriff vorzunehmen, wählen Sie *Clientzugriff bearbeiten*.
+. Im Dialogfeld *Clientzugriff bearbeiten* können Sie Folgendes bearbeiten:
++
+** *Initiatorgruppenname*
+** *Initiatorgruppe Beschreibung*
+** *Name der Storage-VM*
+** *Name des Blockgeräts*
+** *Betriebssystemtyp*
+** *Host-Initiatoren*
+
+
+. *Anwenden* auswählen.
+
+
+
+
+[[delete-an-igroup]]
+=== Eine Initiatorgruppe löschen
+
+Löschen Sie eine Initiatorgruppe, wenn sie nicht mehr benötigt wird.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Wählen Sie den Ressourcentyp *Initiator groups (igroups)* aus, um vorhandene Initiatorgruppen anzuzeigen.
+. Gehen Sie zum Aktionsmenü des Blockgeräts und wählen Sie dann *Initiatorgruppe löschen*.
+. Geben Sie im Dialogfeld „Initiatorgruppe (igroup) löschen“ „delete“ ein, um zu bestätigen, dass Sie die Initiatorgruppe löschen möchten, und wählen Sie dann *Löschen* aus.
+
+
+
+
+[[manage-block-devices-for-an-igroup]]
+== Blockgeräte für eine Initiatorgruppe verwalten
+
+Blockgeräte oder LUNs (logische Einheitennummern) sind Volumes mit Dateisystemen in einer SAN-Umgebung, die über ein Netzwerk für Hosts zugänglich sind.
+
+Sie können Blockgeräte für FSx for ONTAP Dateisysteme managen, die das iSCSI-Protokoll verwenden.
+
+
+
+[[view-block-device-details]]
+=== Details des Blockgeräts
+
+Die Details eines vorhandenen Blockgeräts lassen sich jederzeit anzeigen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Im Aktionsmenü für das Blockgerät kann anschließend *Details anzeigen* ausgewählt werden.
++
+Allgemeine Details sowie Informationen zu Verbrauch, Zugriff und Schutz für das Blockgerät werden angezeigt.
+
+
+
+
+
+[[manage-client-access-for-a-block-device]]
+=== Clientzugriff für ein Blockgerät managen
+
+Sie können den Clientzugriff für ein vorhandenes Blockgerät jederzeit managen, indem Sie Initiatorgruppen erstellen und Blockgeräte sowie Host-Initiatoren hinzufügen oder entfernen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Sie wechseln zum Aktionsmenü des Blockgeräts und wählen anschließend *Clientzugriff verwalten* aus.
+. Falls keine Initiatorgruppe existiert, erstellen Sie eine neue Initiatorgruppe, indem Sie *Map igroup > Create igroup* auswählen, und gehen Sie dann wie folgt vor:
++
+.. *Blockgerätename*: Unter diesem Feld wird ein Blockgerätename eingegeben. Mehrere Blockgeräte können zur Zuordnung zur Initiatorgruppe ausgewählt werden.
+.. *Betriebssystemtyp*: Der Betriebssystemtyp wird ausgewählt.
+.. *Name der Initiatorgruppe*: Hier wird ein Name der Initiatorgruppe eingegeben.
+.. *Beschreibung der Initiatorgruppe*: Optional ist die Eingabe einer Beschreibung der Initiatorgruppe möglich.
+.. *Host-Initiatoren*: Eingabe von einem oder mehreren Host-Initiatoren. Diese Initiatoren müssen dem Format iSCSI Qualified Name (IQN) entsprechen.
+.. *Erstellen* auswählen.
+
+
+. Wenn bereits eine Initiatorgruppe (igroup) existiert, wählen Sie *Initiatorgruppe zuordnen > Vorhandene Initiatorgruppe zuordnen*, um Blockgeräte und Host-Initiatoren zur Initiatorgruppe hinzuzufügen oder daraus zu entfernen, und wählen Sie dann *Zuordnen*.
+
+
+
+
+[[increase-the-capacity-of-a-block-device]]
+=== Erhöhung der Kapazität eines Blockgeräts
+
+Die Kapazität eines bestehenden Blockgeräts kann jederzeit erhöht werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Anschließend können Sie im Aktionsmenü des Blockgeräts *Kapazität erhöhen* auswählen.
+. Die neue Kapazität für das Blockgerät und die Einheit werden eingegeben.
+. Zum Anwenden der Änderungen *Erhöhen* auswählen.
+
+
+
+NOTE: Nach der Vergrößerung des Blockgeräts befolgen Sie die Vorgehensweise Ihres Host-Betriebssystems, um die neue Größe zu ermitteln und das Dateisystem zu erweitern.
+
+
+
+[[clone-a-block-device]]
+=== Klonen eines Blockgeräts
+
+Sie können jederzeit einen Klon eines bestehenden Blockgeräts erstellen. Ein Blockgeräte-Klon ist eine beschreibbare Kopie des Original-Blockgeräts, die dieselben Datenblöcke verwendet, bis Änderungen entweder am Original oder am Klon vorgenommen werden. Das Klonen eines Blockgeräts ist eine schnelle und effiziente Methode, um wiederverwendbare Kopien Ihrer Daten zu erstellen, ohne zusätzlichen Storage zu verbrauchen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Navigieren Sie zum Aktionsmenü des Blockgeräts und wählen Sie dann *Blockgerät klonen*.
+. Geben Sie im Dialogfeld „Blockgerät klonen“ einen Namen für das geklonte Blockgerät ein.
+. Optional kann die automatische Löschung aktiviert werden, um das geklonte Blockgerät automatisch zu löschen, wenn der Speicherplatz auf dem Volume knapp wird.
+. *iSCSI-Konfiguration*: Optional. Um den Blockgeräteklon mit Host-Initiatoren zu verbinden, erstellen Sie entweder eine neue Initiatorgruppe oder ordnen Sie ihn einer vorhandenen Initiatorgruppe zu.
++
+** *Neue Initiatorgruppe erstellen*: Wählen Sie diese Option, um eine neue Initiatorgruppe für den Klon des Blockgeräts zu erstellen. Geben Sie die folgenden Details ein:
++
+... *Host-Betriebssystem*: Wählen Sie den Typ des Host-Betriebssystems aus.
+... *Name der Initiatorgruppe*: Geben Sie einen Initiatorgruppen-Namen ein.
+... *Host-Initiatoren*: Eingabe von einem oder mehreren Host-Initiatoren. Diese Initiatoren müssen dem Format iSCSI Qualified Name (IQN) entsprechen.
+
+
+** *Zuordnung zu einer bestehenden Initiatorgruppe*: Wählen Sie diese Option, um den Klon des Blockgeräts einer bestehenden Initiatorgruppe zuzuordnen. Wählen Sie eine oder mehrere Initiatorgruppen aus, denen das Blockgerät zugeordnet werden soll.
+
+
+. Wählen Sie *Klonen*, um den Klon des Blockgeräts zu erstellen.
+
+
+
+
+[[archive-the-data-of-an-inactive-block-device]]
+=== Archivieren Sie die Daten eines inaktiven Blockgeräts
+
+Blockgeräte, die keinem Client mehr zugeordnet sind oder sieben Tage lang nicht verwendet wurden, werden als inaktive Blockgeräte eingestuft. Sie können die Daten eines inaktiven Blockgeräts in die Kapazitätspool-Ebene archivieren, um SSD-Kapazität zurückzugewinnen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Unter „Verwaiste Geräte“ erfolgt die Auswahl von „Kapazität anzeigen und zurückgewinnen“.
+. Auf dem Bildschirm „Speicherplatz für ungenutzte Blockgeräte freigeben“ können Sie ein oder mehrere Blockgeräte auswählen, um die Daten zu archivieren und die Kapazität zurückzugewinnen.
+. *Archiv* auswählen.
+
+
+
+
+[[delete-a-block-device]]
+=== Löschen eines Blockgeräts
+
+Blockgeräte, die keinem Client zugeordnet sind oder sieben Tage lang nicht verwendet wurden, sind inaktive Blockgeräte. Durch diesen Vorgang wird die Zuordnung des ausgewählten Blockgeräts aufgehoben und es gelöscht. Wenn das Host-FlexVol-Volume keine Blockgeräte enthält, wird es von Workload Factory gelöscht.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
+. Unter „Verwaiste Geräte“ erfolgt die Auswahl von „Kapazität anzeigen und zurückgewinnen“.
+. Auf dem Bildschirm „Speicherplatz für ungenutzte Blockgeräte freigeben“ können Sie ein oder mehrere Blockgeräte auswählen, um die Daten zu archivieren und die Kapazität zurückzugewinnen.
+. Wählen Sie *Delete*.
+
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+* link:create-igroup.html["Erstellen einer Initiatorgruppe für ein FSx for ONTAP file system"]
+* link:create-block-device.html["Erstellung eines Blockgeräts für ein FSx for ONTAP Dateisystem"]
+

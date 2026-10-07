@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/quick-start-eda.html 
+keywords: requirements, permissions, eda, builders, quick start, electronic design automation 
+summary: Legen Sie mit Workload Factory für EDA los, indem Sie Ihre Umgebung einrichten, Überwachungs-Dashboards aktivieren und die Latenzanalyse konfigurieren. 
+---
+= Schnellstart für Workload Factory für EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Beginnen Sie mit Workload Factory for EDA, indem Sie Ihre Umgebung einrichten, Überwachungs-Dashboards aktivieren und die Latenzanalyse konfigurieren, um die FSx for ONTAP Performance für Ihre EDA-Workloads zu optimieren.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldung bei Workload Factory
+[role="quick-margin-para"]
+Sie müssen sich link:../setup/sign-up-and-log-in.html["Registrieren und anmelden"] bei der NetApp Console anmelden.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Hinzufügen von Anmeldeinformationen und Berechtigungen für die EDA-Workload
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Manuelles Hinzufügen von Anmeldeinformationen zu einem Konto"] was die Auswahl der EDA Workload-Funktion und link:../fsx-storage/permissions-reference-fsx.html["Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen"] umfasst.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"] Einrichten Ihrer Umgebung zur Erfüllung der EDA-Anforderungen
+[role="quick-margin-para"]
+Sie benötigen ein bereitgestelltes und erkanntes FSx for ONTAP Dateisystem, das mindestens ein Volume enthält, das als NFS-Freigabe konfiguriert wurde.
+
+[role="quick-margin-para"]
+link:requirements.html["Weitere Informationen zu den EDA-Anforderungen"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"]Aktivieren Sie das Übersichts-Dashboard
+[role="quick-margin-para"]
+Aktivieren Sie das Übersichts-Dashboard, um den Zustand, die Kapazität und den Durchsatz Ihrer FSx for ONTAP Cluster zu überwachen. Bestätigen Sie die Zustimmungsanfrage, damit Workload Factory mit der Erfassung von CloudWatch Metriken beginnen kann.
+
+[role="quick-margin-para"]
+link:task-activate-overview-dashboard.html["Erfahren Sie, wie Sie das Übersichts-Dashboard aktivieren"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Fünf"]Konfigurieren Sie das Projects-Dashboard
+[role="quick-margin-para"]
+Konfigurieren Sie das Projects-Dashboard, um Systemzustand, Leistung und Speichernutzung zu überwachen und so Ihre EDA-Umgebung effektiv zu optimieren.
+
+[role="quick-margin-para"]
+link:task-configure-project-dashboard.html["Erfahren Sie, wie Sie das Projects-Dashboard konfigurieren."^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Sechs"]FSx für ONTAP Latenzanalyse konfigurieren
+[role="quick-margin-para"]
+Latenzschwellenwerte können eingerichtet werden, um Leistungsprobleme proaktiv zu identifizieren und zu beheben, bevor sie die Simulationslaufzeit beeinflussen. Warn- und kritische Benachrichtigungen lassen sich konfigurieren, E-Mail- oder SNS-Benachrichtigungen ermöglichen den Empfang von Echtzeit-Benachrichtigungen, automatisierte Basisanalysen können genutzt und optional KI-Analysen für komplexe Szenarien eingesetzt werden.
+
+[role="quick-margin-para"]
+link:task-configure-latency-monitoring.html["Erfahren Sie, wie Sie die Latenzüberwachung konfigurieren"^]. Sobald Ereignisse erkannt wurden, können Sie link:task-analyze-latency-trends.html["Latenztrends analysieren"^] das interaktive Diagramm verwenden.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Sieben"] Integrieren mit anderen Diensten
+[role="quick-margin-para"]
+Integrieren Sie EDA mit anderen Diensten wie einem Serviceportal oder Perforce Helix Core mithilfe der Workload Factory REST API.
+
+[role="quick-margin-para"]
+link:integrate-perforce.html["Informationen zur Integration von EDA in Perforce"^].
+
+
+
+[[whats-next]]
+== Was kommt als Nächstes?
+
+* link:task-configure-latency-monitoring.html["Latenzüberwachung für FSx für ONTAP konfigurieren"]
+* link:task-configure-project-dashboard.html["Konfigurieren Sie das Projects-Dashboard"]
+* link:learn-eda-workloads.html["Erfahren Sie mehr über EDA-Workloads"]
+* link:../get-help.html["Holen Sie sich Hilfe bei EDA"]
+

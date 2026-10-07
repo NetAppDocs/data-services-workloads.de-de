@@ -1,0 +1,420 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sql-database-server.html 
+keywords: create, server, Microsoft SQL, deploy, host, deploy a database host, database host 
+summary: Einen neuen Microsoft SQL Server in NetApp Workload Factory für Datenbanken erstellen. 
+---
+= Erstellen eines Microsoft SQL Servers in NetApp Workload Factory für Datenbanken
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Erstellung eines neuen Microsoft SQL Server oder Datenbankhosts in Workload Factory for Databases erfordert ein FSx for ONTAP Dateisystem Deployment und Ressourcen für Active Directory.
+
+
+
+[[about-this-task]]
+== Über diese Aufgabe
+
+Vor dem Erstellen eines Microsoft SQL Server aus Workload Factory sollten die verfügbaren Storage Deployment-Typen für die Datenbankhostkonfiguration, die Microsoft Multi-path I/O-Konfiguration, das Active Directory-Deployment, die Netzwerkdetails und die Anforderungen für den Abschluss dieses Vorgangs bekannt sein.
+
+Nach dem Deployment sind <<Schritt 2: Aktivierung der Remote-Verbindung auf dem Microsoft SQL Server,Aktivierung der Remoteverbindung auf dem Microsoft SQL Server>> erforderlich.
+
+.FSx for ONTAP Dateisystem Deployments
+Zum Erstellen eines neuen Microsoft SQL Server ist ein FSx for ONTAP Dateisystem als Storage-Backend erforderlich. Sie können ein vorhandenes FSx for ONTAP Dateisystem verwenden oder ein neues Dateisystem erstellen. Wenn Sie ein vorhandenes FSx for ONTAP Dateisystem als Storage-Backend für Ihren Datenbankserver auswählen, erstellen wir eine neue Storage VM für die Microsoft SQL Workloads.
+
+FSx for ONTAP-Dateisysteme verfügen über zwei Microsoft SQL Server Deployment-Modelle: _Failover Cluster Instance (FCI)_ oder _Standalone_. Je nach ausgewähltem FSx for ONTAP Deployment-Modell werden für das FSx for ONTAP-Dateisystem unterschiedliche Ressourcen erstellt.
+
+* *Failover Cluster Instance (FCI) Microsoft SQL Deployment*: Bei Auswahl eines neuen FSx for ONTAP Dateisystems für das FCI Deployment wird ein FSx for NetApp ONTAP Dateisystem mit Multiple Availability Zone bereitgestellt. Für ein FCI Deployment werden separate Volumes und LUNs für Daten-, Protokoll- und tempdb-Dateien erstellt. Für den Windows-Cluster werden zusätzlich ein weiteres Volume und eine weitere LUN als Quorum- oder Zeugendatenträger erstellt.
+* *Eigenständiges Microsoft SQL Deployment*: Beim Erstellen eines neuen Microsoft SQL Server wird ein FSx for ONTAP Dateisystem mit einer Single Availability Zone erstellt. Zusätzlich erstellt das System separate Volumes und LUNs für Daten-, Protokoll- und tempdb-Dateien.
+
+
+.Microsoft Multi-path I/O Konfiguration
+Beide Deployment Modelle für Microsoft SQL Server erfordern die Erstellung von LUNs mithilfe des iSCSI Storage Protokolls. Workload Factory konfiguriert Microsoft Multi-path I/O (MPIO) im Rahmen der Konfiguration von LUNs für SQL Server über FSx for ONTAP. MPIO wird auf der Grundlage von Best Practices von AWS und NetApp konfiguriert.
+
+Weitere Informationen sind unter link:https://aws.amazon.com/blogs/modernizing-with-aws/sql-server-high-availability-amazon-fsx-for-netapp-ontap/["SQL Server Hochverfügbarkeits-Deployments mit Amazon FSx for NetApp ONTAP"^] verfügbar.
+
+.Active Directory
+Für Active Directory (AD) tritt während des Deployments Folgendes auf:
+
+* Wenn kein vorhandenes SQL-Dienstkonto angegeben wird, wird in der Domäne ein neues Microsoft SQL-Dienstkonto erstellt.
+* Der Windows-Cluster, die Knotenhostnamen und der Microsoft SQL FCI-Name werden dem Microsoft SQL-Dienstkonto als verwaltete Computer hinzugefügt.
+* Dem Windows Clustereintrag werden Berechtigungen zum Hinzufügen von Computern zur Domäne zugewiesen.
+
+
+.Benutzerverwaltete Active Directory-Sicherheitsgruppen
+Wenn Sie während des Microsoft SQL Server Deployments in Workload Factory „user-managed Active Directory“ auswählen, müssen Sie eine Sicherheitsgruppe angeben, die den Datenverkehr zwischen den EC2-Instanzen und dem Verzeichnisdienst für das Deployment ermöglicht. Workload Factory ordnet die Sicherheitsgruppe für user-managed Active Directory nicht automatisch zu, wie dies bei AWS Managed Microsoft AD der Fall ist.
+
+.Rollback der Ressource
+Wenn Sie ein Rollback Ihrer Domain Name System (DNS)-Ressourcen durchführen, werden die Ressourceneinträge in AD und DNS nicht automatisch entfernt. Die Einträge können wie folgt vom DNS-Server und aus AD entfernt werden.
+
+* Bei benutzerverwaltetem AD zunächst link:https://learn.microsoft.com/en-us/powershell/module/activedirectory/remove-adcomputer?view=windowsserver2022-ps["Entfernen des AD-Computers"^]. Anschließend erfolgt über den DNS-Manager die Verbindung zum DNS-Server, und link:https://learn.microsoft.com/en-us/windows-server/networking/technologies/ipam/delete-dns-resource-records["Löschen der DNS-Ressourceneinträge"^].
+* Für AWS Managed Microsoft AD link:https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html["Installation der AD-Verwaltungstools"^]. Als Nächstes link:https://learn.microsoft.com/en-us/powershell/module/activedirectory/remove-adcomputer?view=windowsserver2022-ps["Entfernen des AD-Computers"^]. Zum Schluss erfolgt über den DNS-Manager die Verbindung mit dem DNS-Server und link:https://learn.microsoft.com/en-us/windows-server/networking/technologies/ipam/delete-dns-resource-records["Löschen der DNS-Ressourceneinträge"^].
+
+
+
+
+[[before-you-begin]]
+== Bevor Sie beginnen
+
+Vor der Erstellung eines neuen Datenbankhosts müssen die folgenden Voraussetzungen erfüllt sein.
+
+.Anmeldeinformationen und Berechtigungen
+Sie müssen link:../fsx-storage/add-credentials.html["Berechtigungen für die Erstellung des Datenbankhosts"^] in Ihrem AWS-Konto einen neuen Datenbankhost in Workload Factory erstellen.
+
+.Active Directory
+Für die Verbindung mit Active Directory benötigen Sie Administratorrechte mit folgenden Berechtigungen:
+
+* Beitritt zur Domäne
+* Erstellung von Computerobjekten
+* Objekte in der Standard-Organisationseinheit (OU) erstellen
+* Alle Eigenschaften auslesen
+* Der Domänenbenutzer muss auf den AD-Knoten über lokale Administratorrechte verfügen.
+* Erstellung eines Microsoft SQL Server-Dienstbenutzers in AD, falls noch keiner vorhanden ist
+
+
+
+
+[[step-1-create-a-database-server]]
+== Schritt 1: Einen Datenbankserver erstellen
+
+Zum Abschließen dieser Aufgabe in Workload Factory mit Berechtigungen für den Modus _Automate_ können die Deployment-Modi _Quick create_ oder _Advanced create_ verwendet werden. Außerdem können die folgenden in der Codebox verfügbaren Tools verwendet werden: REST API, AWS CLI, AWS CloudFormation und Terraform. link:../admin/codebox-automation.html["Informationen zur Verwendung von Codebox für die Automatisierung"^].
+
+
+NOTE: Wenn Sie Terraform aus Codebox verwenden, blendet der Code, den Sie kopieren oder herunterladen,  `fsxadmin` und `vsadmin` Passwörter aus. Bei der Ausführung des Codes müssen Sie die Passwörter erneut eingeben. Zusätzlich zu den Berechtigungen für den _Automate_-Modus benötigt das Benutzerkonto die folgenden Berechtigungen: `iam:TagRole` und `iam:TagInstanceProfile`. link:../admin/codebox-automation.html["Informationen zur Verwendung von Terraform aus Codebox"^].
+
+Während des Deployments aktiviert Workload Factory CredSSP für die Delegierung von Anmeldeinformationen an Skripte zur Provisionierung von SQL. Wenn die Gruppenrichtlinie die CredSSP-Delegierung für alle Domänencomputer blockiert, schlägt das Deployment fehl. Nach dem Deployment deaktiviert Workload Factory CredSSP.
+
+[role="tabbed-block"]
+====
+.Schnellerstellung
+--
+
+NOTE: In _Quick create_ ist FCI das standardmäßige Deployment-Modell, Windows 2016 die Standard-Windows-Version und SQL 2019 Standard Edition die Standard-SQL-Version.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. In der Datenbankübersicht erfolgt die Auswahl von *Deploy host* und anschließend von *Microsoft SQL Server* im Menü.
+. Die Option *Quick create* auswählen.
+. Unter *AWS settings* sind folgende Angaben erforderlich:
++
+.. *AWS-Anmeldeinformationen*: Auswahl von AWS-Anmeldeinformationen mit automatisierten Berechtigungen zum Einsetzen des neuen Datenbankhosts.
++
+AWS-Anmeldeinformationen mit Berechtigungen zum Erstellen von Datenbankhosts ermöglichen es Workload Factory, den neuen Datenbankhost über Ihr AWS-Konto innerhalb von workload factory einzusetzen und zu managen.
+
++
+AWS-Anmeldeinformationen mit den Berechtigungen _view, planning und analysis_ ermöglichen es Workload Factory, eine CloudFormation Vorlage zu generieren, die in der AWS CloudFormation Konsole verwendet werden kann.
+
++
+Wenn in Workload Factory keine AWS-Anmeldeinformationen verknüpft sind und der neue Server in Workload Factory erstellt werden soll, ist *Option 1* zu verwenden, um zur Seite „Anmeldeinformationen“ zu gelangen. Dort erfolgt das manuelle Hinzufügen der erforderlichen Anmeldeinformationen und der Berechtigungen für die _Erstellung von Datenbankhosts_ bei Datenbank-Workloads.
+
++
+Wenn Sie das Formular zum Erstellen eines neuen Servers in Workload Factory ausfüllen möchten, um eine vollständige YAML-Dateivorlage für das Deployment in AWS CloudFormation herunterzuladen, ist *Option 2* zu verwenden, damit die erforderlichen Berechtigungen zum Erstellen des neuen Servers in AWS CloudFormation vorhanden sind. Die erforderlichen Anmeldeinformationen sowie die Berechtigungen für _Ansicht, Planung und Analyse_ für Datenbank-Workloads sind manuell hinzuzufügen.
+
++
+Optional können Sie eine teilweise ausgefüllte YAML-Dateivorlage aus der Codebox herunterladen, um den Stack außerhalb von Workload Factory ohne Anmeldeinformationen oder Berechtigungen zu erstellen. Für den Download der YAML-Datei steht in der Codebox im Dropdown-Menü *CloudFormation* zur Auswahl.
+
+.. *Region & VPC*: Auswahl einer Region und eines VPC-Netzwerks.
++
+Es ist sicherzustellen, dass Deployment-Subnetze vorhandenen Schnittstellenendpunkten zugeordnet sind und dass Sicherheitsgruppen den Zugriff auf das HTTPS-Protokoll (443) für die ausgewählten Subnetze ermöglichen.
+
++
+AWS-Service-Schnittstellenendpunkte (SQS, FSx, EC2, CloudWatch, CloudFormation, SSM) und der S3-Gateway-Endpunkt werden während des Deployments erstellt, sofern sie nicht gefunden werden.
+
++
+VPC DNS Attribute `EnableDnsSupport` und `EnableDnsHostnames` werden so geändert, dass die Auflösung von Endpunktadressen aktiviert wird, falls sie nicht bereits auf `true` gesetzt sind.
+
++
+Bei Verwendung eines VPC-übergreifenden DNS muss die Sicherheitsgruppe für Endpunkte in der anderen VPC, in der sich das DNS befindet, Port 443 für Deployment Subnetze zulassen. Andernfalls ist beim Beitritt zu einem VPC-übergreifenden Active Directory ein DNS-Resolver aus der lokalen VPC bereitzustellen. In einer Umgebung mit mehreren replizierten Domain Controllers kann, wenn einige Domain Controllers vom Subnetz aus nicht erreichbar sind, *Zu CloudFormation umleiten* ausgewählt und `Preferred domain controller` eingegeben werden, um die Verbindung zu Active Directory herzustellen.
+
+.. *Verfügbarkeitszonen*: Verfügbarkeitszonen und Subnetze werden gemäß dem Failover Cluster Instance (FCI) Deployment-Modell ausgewählt.
++
+
+NOTE: FCI Deployments werden nur auf FSx for ONTAP Konfigurationen mit Multiple Availability Zone (MAZ) unterstützt.
+
++
+... Im Feld *Clusterkonfiguration - Knoten 1* erfolgt die Auswahl der primären Verfügbarkeitszone für die MAZ FSx for ONTAP Konfiguration aus dem Dropdown-Menü *Verfügbarkeitszone* sowie eines Subnetzes aus der primären Verfügbarkeitszone aus dem Dropdown-Menü *Subnetz*.
+... Im Feld *Clusterkonfiguration - Knoten 2* wird die sekundäre Availability Zone für die MAZ FSx for ONTAP Konfiguration im Dropdown-Menü *Availability zone* ausgewählt sowie ein Subnetz aus der sekundären Availability Zone im Dropdown-Menü *Subnet*.
+
+
+
+
+. Unter *Anwendungseinstellungen* werden ein Benutzername und ein Passwort für die *Datenbankzugangsdaten* eingegeben.
++
+Für GovCloud-Konten geben Sie den Wert für den AWS SSM Parameter-ARN im folgenden Format ein:
+`{fsx:{"username":"fsxadmin","password":"pass"}}`.
+
++
+Der Wert wird im Parameter Store unter Parameterdetails in der AWS Management Console bereitgestellt. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
+. Unter *Konnektivität* sind folgende Angaben erforderlich:
++
+.. *Schlüsselpaar*: Auswahl eines Schlüsselpaars.
+.. *Active Directory*:
++
+... Im Feld *Domänenname* wird ein Name für die Domäne ausgewählt oder eingegeben.
++
+.... Bei AWS-verwalteten Active Directories erscheinen Domänennamen im Dropdown-Menü.
+.... Bei einem benutzerverwalteten Active Directory erfolgt die Eingabe eines Namens im Feld *Suchen und Hinzufügen*; anschließend wird *Hinzufügen* ausgewählt.
+
+
+... Im Feld *DNS-Adresse* wird die DNS-IP-Adresse für die Domain eingegeben. Es können bis zu 3 IP-Adressen hinzugefügt werden.
++
+Bei von AWS verwalteten Active Directories werden die DNS-IP-Adressen im Dropdown-Menü angezeigt.
+
+... Im Feld *Benutzername* ist der Benutzername für die Active Directory-Domäne einzugeben.
+... Im Feld *Passwort* geben Sie ein Passwort für die Active Directory-Domäne ein.
++
+Für GovCloud-Konten geben Sie den AWS SSM Parameter-ARN-Wert für Active Directory-Anmeldeinformationen im folgenden Format ein: `{fsx:{"username":"fsxadmin","password":"pass"}}`. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
+
+
+
+
+. Unter *Infrastruktureinstellungen* sind die folgenden Angaben erforderlich:
++
+.. *FSx for ONTAP System*: Ein neues FSx for ONTAP Dateisystem erstellen oder ein vorhandenes FSx for ONTAP Dateisystem verwenden.
++
+... *Neues FSx for ONTAP erstellen*: Eingabe von Benutzername und Passwort.
++
+Für GovCloud-Konten geben Sie den AWS SSM Parameter-ARN-Wert für FSx for ONTAP-Anmeldeinformationen im folgenden Format ein: `{fsx:{"username":"fsxadmin","password":"pass"}}`. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
++
+Ein neues FSx for ONTAP Dateisystem kann die Installationszeit um 30 Minuten oder mehr verlängern.
+
+... *Vorhandenes FSx für ONTAP*: Wählen Sie den FSx für ONTAP Namen aus und geben Sie einen Benutzernamen und ein Passwort für das Dateisystem ein.
++
+Für bestehende FSx for ONTAP Dateisysteme sind die folgenden Punkte zu beachten:
+
++
+**** Die an FSx for ONTAP angehängte Routing-Gruppe ermöglicht, Routen zu den Subnetzen für das Deployment zu verwenden.
+**** Die Sicherheitsgruppe erlaubt Datenverkehr aus den für das Deployment verwendeten Subnetzen, insbesondere über die TCP-Ports HTTPS (443) und iSCSI (3260).
+
+
+
+
+.. *Datenträgergröße*: Die Kapazität des Datenträgers und die Kapazitätseinheit angeben.
+
+
+. Zusammenfassung:
++
+.. *Vorschau der Standardeinstellungen*: Prüfung der von Quick create festgelegten Standardkonfigurationen.
+.. *Geschätzte Kosten*: Enthält eine Schätzung der Kosten, die Ihnen entstehen könnten, wenn Sie die angezeigten Ressourcen einsetzen.
+
+
+. Klicken Sie auf *Create*.
++
+Alternativ können Sie, falls Sie eine dieser Standardeinstellungen jetzt ändern möchten, den Datenbankserver mit Advanced create erstellen.
+
++
+Sie können auch *Konfiguration speichern* auswählen, um den Host später einzusetzen.
+
+
+
+--
+.Erweiterte Erstellung
+--
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Datenbanken*.
+. In der Datenbankübersicht erfolgt die Auswahl von *Deploy host* und anschließend von *Microsoft SQL Server* im Menü.
+. *Advanced create* ist auszuwählen.
+. Für *Deployment-Modell* stehen *Failover Cluster Instance* oder *Single instance* zur Auswahl.
+. Unter *AWS settings* sind folgende Angaben erforderlich:
++
+.. *AWS-Anmeldeinformationen*: Auswahl von AWS-Anmeldeinformationen mit automatisierten Berechtigungen zum Einsetzen des neuen Datenbankhosts.
++
+AWS-Anmeldeinformationen mit Berechtigungen zum Erstellen von Datenbankhosts ermöglichen es Workload Factory, den neuen Datenbankhost über Ihr AWS-Konto innerhalb von workload factory einzusetzen und zu managen.
+
++
+AWS-Anmeldeinformationen mit den Berechtigungen _view, planning und analysis_ ermöglichen es Workload Factory, eine CloudFormation Vorlage zu generieren, die in der AWS CloudFormation Konsole verwendet werden kann.
+
++
+Wenn in Workload Factory keine AWS-Anmeldeinformationen verknüpft sind und der neue Server in Workload Factory erstellt werden soll, ist *Option 1* zu verwenden, um zur Seite „Anmeldeinformationen“ zu gelangen. Dort erfolgt das manuelle Hinzufügen der erforderlichen Anmeldeinformationen und der Berechtigungen für die _Erstellung von Datenbankhosts_ bei Datenbank-Workloads.
+
++
+Wenn Sie das Formular zum Erstellen eines neuen Servers in Workload Factory ausfüllen möchten, um eine vollständige YAML-Dateivorlage für das Deployment in AWS CloudFormation herunterzuladen, ist *Option 2* zu verwenden, damit die erforderlichen Berechtigungen zum Erstellen des neuen Servers in AWS CloudFormation vorhanden sind. Die erforderlichen Anmeldeinformationen sowie die Berechtigungen für _Ansicht, Planung und Analyse_ für Datenbank-Workloads sind manuell hinzuzufügen.
+
++
+Optional können Sie eine teilweise ausgefüllte YAML-Dateivorlage aus der Codebox herunterladen, um den Stack außerhalb von Workload Factory ohne Anmeldeinformationen oder Berechtigungen zu erstellen. Für den Download der YAML-Datei steht in der Codebox im Dropdown-Menü *CloudFormation* zur Auswahl.
+
+.. *Region & VPC*: Auswahl einer Region und eines VPC-Netzwerks.
++
+Sicherheitsgruppen für einen vorhandenen Schnittstellenendpunkt müssen den Zugriff über das HTTPS-Protokoll (443) auf die ausgewählten Subnetze zulassen.
+
++
+AWS Service-Schnittstellenendpunkte (SQS, FSx, EC2, CloudWatch, Cloud Formation, SSM) und der S3-Gateway-Endpunkt werden während des Deployment erstellt, wenn sie nicht gefunden werden.
+
++
+Die VPC-DNS-Attribute  `EnableDnsSupport` und  `EnableDnsHostnames` werden so geändert, dass die Auflösung von Endpunktadressen ermöglicht wird, falls sie nicht bereits auf  `true` festgelegt sind.
+
+.. *Verfügbarkeitszonen*: Verfügbarkeitszonen und Subnetze sind entsprechend dem ausgewählten Deployment-Modell auszuwählen. Subnetze sollten aus Gründen der Hochverfügbarkeit nicht dieselbe Routingtabelle verwenden.
++
+
+NOTE: FCI Deployments werden nur auf FSx for ONTAP Konfigurationen mit Multiple Availability Zone (MAZ) unterstützt.
+
++
+*** Für Einzelinstanzbereitstellungen:
++
+**** Im Feld *Clusterkonfiguration - Knoten 1* stehen im Dropdown-Menü *Verfügbarkeitszone* eine Verfügbarkeitszone und im Dropdown-Menü *Subnetz* ein Subnetz zur Auswahl.
+
+
+*** Für FCI Deployments:
++
+**** Im Feld *Clusterkonfiguration - Knoten 1* erfolgt die Auswahl der primären Verfügbarkeitszone für die MAZ FSx for ONTAP Konfiguration aus dem Dropdown-Menü *Verfügbarkeitszone* sowie eines Subnetzes aus der primären Verfügbarkeitszone aus dem Dropdown-Menü *Subnetz*.
+**** Im Feld *Clusterkonfiguration - Knoten 2* wird die sekundäre Availability Zone für die MAZ FSx for ONTAP Konfiguration im Dropdown-Menü *Availability zone* ausgewählt sowie ein Subnetz aus der sekundären Availability Zone im Dropdown-Menü *Subnet*.
+
+
+
+
+.. *Sicherheitsgruppe*: Eine Arbeitslast-Sicherheitsgruppe wird erstellt, um die für die Kommunikation zwischen Microsoft SQL und Windows-Cluster auf den Knoten erforderlichen Ports und Protokolle zuzulassen. Zusätzlich können Sie eine oder mehrere Sicherheitsgruppen auswählen.
+
+
+. Unter *Anwendungseinstellungen* sind folgende Angaben erforderlich:
++
+.. Unter *SQL Server Installationsart* erfolgt die Auswahl von *License included AMI* oder *Use custom AMI*.
++
+... Bei Auswahl von *License included AMI* sind folgende Angaben erforderlich:
++
+.... *Betriebssystem*: Zur Auswahl stehen *Windows server 2016*, *Windows server 2019* oder *Windows server 2022*.
+.... *Datenbankedition*: Zur Auswahl stehen *SQL Server Standard Edition* oder *SQL Server Enterprise Edition*.
+.... *Datenbankversion*: Zur Auswahl stehen *SQL Server 2016*, *SQL Server 2019* oder *SQL Server 2022*.
+.... *SQL Server AMI*: Auswahl eines SQL Server AMI aus dem Dropdown-Menü.
+
+
+... Wenn *Benutzerdefiniertes AMI verwenden* ausgewählt wird, erfolgt die Auswahl eines AMI im Dropdown-Menü.
+
+
+.. *SQL Server Sortierung*: Auswahl eines Sortierungssatzes für den Server.
++
+
+NOTE: Falls die ausgewählte Kollation für die Installation nicht kompatibel ist, empfehlen wir Ihnen, die Standardkollation „SQL_Latin1_General_CP1_CI_AS“ auszuwählen.
+
+.. *Datenbankname*: Eingabe des Namens des Datenbankclusters.
+.. *Datenbank-Anmeldeinformationen*: Eingabe eines Benutzernamens und Kennworts für ein neues Dienstkonto oder Verwendung der Anmeldedaten eines vorhandenen Dienstkontos im Active Directory.
++
+Optional: Auswahl von *Use managed service account* für das SQL Server-Dienstkonto. Diese Option eignet sich, wenn Ihre Umgebung MSA (Managed Service Account) oder Group Managed Service Accounts (gMSA) verwendet und die Kennwortverwaltung von Active Directory übernommen wird.
+
++
+Für GovCloud-Konten geben Sie den Wert für den AWS SSM Parameter-ARN im folgenden Format ein:
+`{fsx:{"username":"fsxadmin","password":"pass"}}`.
+
++
+Der Wert wird im Parameter Store unter Parameterdetails in der AWS Management Console bereitgestellt. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
+
+
+. Unter *Konnektivität* sind folgende Angaben erforderlich:
++
+.. *Schlüsselpaar*: Auswahl eines Schlüsselpaars für eine sichere Verbindung zu Ihrer Instanz.
+.. *Active Directory*: Folgende Angaben zu Active Directory sind erforderlich:
++
+... Im Feld *Domänenname* wird ein Name für die Domäne ausgewählt oder eingegeben.
++
+.... Bei AWS-verwalteten Active Directories erscheinen Domänennamen im Dropdown-Menü.
+.... Bei einem benutzerverwalteten Active Directory erfolgt die Eingabe eines Namens im Feld *Suchen und Hinzufügen*; anschließend wird *Hinzufügen* ausgewählt.
+
+
+... Im Feld *DNS-Adresse* wird die DNS-IP-Adresse für die Domain eingegeben. Es können bis zu 3 IP-Adressen hinzugefügt werden.
++
+Bei von AWS verwalteten Active Directories werden die DNS-IP-Adressen im Dropdown-Menü angezeigt.
+
+... Geben Sie den Benutzernamen und das Kennwort für die Active Directory-Domain ein.
++
+Für GovCloud-Konten geben Sie den AWS SSM Parameter-ARN-Wert für Active Directory-Anmeldeinformationen im folgenden Format ein: `{fsx:{"username":"fsxadmin","password":"pass"}}`. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
+... *Bevorzugter Domänencontroller*: Optional lässt sich der bevorzugte Domänencontroller angeben, der für den Beitritt zu Active Directory verwendet werden soll.
+... *Bevorzugter Pfad der Organisationseinheit*: Optional kann die bevorzugte Organisationseinheit (OU) im Active Directory angegeben werden, die für den Beitritt verwendet werden soll.
+... *Ziel Active Directory-Gruppe*: Optional kann die Ziel Active Directory-Gruppe angegeben werden, der die Computer hinzugefügt werden sollen.
+
+
+
+
+. Unter *Infrastruktureinstellungen* sind die folgenden Angaben erforderlich:
++
+.. *DB-Instanztyp*: Im Dropdown-Menü wird der Typ der Datenbankinstanz ausgewählt.
+.. *FSx for ONTAP System*: Ein neues FSx for ONTAP Dateisystem erstellen oder ein vorhandenes FSx for ONTAP Dateisystem verwenden.
++
+... *Neues FSx for ONTAP erstellen*: Eingabe von Benutzername und Passwort.
++
+Für GovCloud-Konten geben Sie den AWS SSM-Parameter-ARN-Wert für die FSx for ONTAP-Anmeldeinformationen im folgenden Format ein: `{fsx:{"username":"fsxadmin","password":"pass"}}`. Der AWS SSM-Parametertyp muss „Secure String“ sein, mit dem Namen im Format  `/netapp/wlmdb/<anyname>`. Weitere Informationen zum Abrufen von SSM-Parametern finden Sie unter link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud-Dokumentation"^].
+
++
+Ein neues FSx for ONTAP Dateisystem kann die Installationszeit um 30 Minuten oder mehr verlängern.
+
+... *Vorhandenes FSx for ONTAP auswählen*: Im Dropdown-Menü werden der Name von FSx for ONTAP ausgewählt sowie ein Benutzername und ein Passwort für das Dateisystem eingegeben.
++
+Für bestehende FSx for ONTAP Dateisysteme sind die folgenden Punkte zu beachten:
+
++
+**** Die an FSx for ONTAP angehängte Routing-Gruppe ermöglicht, Routen zu den Subnetzen für das Deployment zu verwenden.
+**** Die Sicherheitsgruppe erlaubt Datenverkehr aus den für das Deployment verwendeten Subnetzen, insbesondere über die TCP-Ports HTTPS (443) und iSCSI (3260).
+
+
+
+
+.. *Snapshot-Richtlinie*: Standardmäßig aktiviert. Snapshots werden täglich erstellt und 7 Tage lang aufbewahrt.
++
+Die Snapshots sind den Volumes zugewiesen, die für SQL-Workloads erstellt wurden.
+
+.. *Datenträgergröße*: Die Kapazität des Datenträgers und die Kapazitätseinheit angeben.
+.. *Provisionierte IOPS*: Zur Auswahl stehen *Automatisch* oder *vom Benutzer provisioniert*. Bei Auswahl von *vom Benutzer provisioniert* ist der IOPS-Wert anzugeben.
+.. *Durchsatzkapazität*: Die Durchsatzkapazität wird im Dropdown-Menü ausgewählt.
++
+In bestimmten Regionen können Sie eine Durchsatzkapazität von 4 GB/s auswählen. Zum Provisionieren einer Durchsatzkapazität von 4 GB/s muss Ihr FSx for ONTAP Dateisystem mit einer SSD Storage Kapazität von mindestens 5.120 GiB und 160.000 SSD IOPS konfiguriert sein.
+
+.. *Verschlüsselung*: Wählen Sie einen Schlüssel aus Ihrem Konto oder aus einem anderen Konto. Sie müssen den ARN des Verschlüsselungsschlüssels aus einem anderen Konto eingeben.
++
+Benutzerdefinierte Verschlüsselungsschlüssel für FSx for ONTAP werden basierend auf der Dienstkompatibilität nicht aufgeführt. Die Auswahl eines geeigneten FSx-Verschlüsselungsschlüssels ist erforderlich. Nicht-FSx-Verschlüsselungsschlüssel führen dazu, dass die Servererstellung fehlschlägt.
+
++
+Die von AWS verwalteten Schlüssel werden anhand ihrer Anwendbarkeit für den jeweiligen Dienst gefiltert.
+
+.. *Tags*: Optional lassen sich bis zu 40 Tags hinzufügen.
+.. *Simple Notification Service*: Optional können Sie den Simple Notification Service (SNS) für diese Konfiguration aktivieren, indem Sie im Dropdown-Menü ein SNS-Topic für Microsoft SQL Server auswählen.
++
+... Die Aktivierung des Simple Notification Service ist erforderlich.
+... Die Auswahl einer ARN erfolgt über das Dropdown-Menü.
+
+
+.. *CloudWatch Überwachung*: Optional können Sie die CloudWatch Überwachung aktivieren.
++
+Wir empfehlen, CloudWatch für die Fehlersuche im Fehlerfall zu aktivieren. Die Ereignisse, die in der AWS CloudFormation Konsole angezeigt werden, sind allgemein gehalten und geben nicht die eigentliche Ursache an. Alle detaillierten Protokolle werden im `C:\cfn\logs` Ordner in den EC2 Instanzen gespeichert.
+
++
+In CloudWatch wird eine Protokollgruppe mit dem Namen des Stacks erstellt. Unter der Protokollgruppe wird für jeden Validierungsknoten und SQL-Knoten ein Protokollstream angezeigt. CloudWatch zeigt den Skriptfortschritt an und liefert Informationen, anhand derer Sie erkennen können, ob und wann ein Deployment fehlschlägt.
+
+.. *Ressourcen-Rollback*: Für diese Funktion gibt es derzeit keine Unterstützung.
+
+
+. Zusammenfassung
++
+.. *Geschätzte Kosten*: Enthält eine Schätzung der Kosten, die Ihnen entstehen könnten, wenn Sie die angezeigten Ressourcen einsetzen.
+
+
+. Mit *Erstellen* wird der neue Datenbankhost eingesetzt.
++
+Alternativ können Sie die Konfiguration speichern.
+
+
+
+--
+====
+
+
+[[step-2-enable-remote-connection-on-the-microsoft-sql-server]]
+== Schritt 2: Aktivierung der Remote-Verbindung auf dem Microsoft SQL Server
+
+Nach der Serverbereitstellung aktiviert Workload Factory die Remote-Verbindung zum Microsoft SQL Server nicht. Die Aktivierung der Remote-Verbindung erfolgt in den folgenden Schritten.
+
+.Schritte
+. Die Verwendung der Computeridentität für NTLM ist in der Microsoft-Dokumentation unter link:https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/network-security-allow-local-system-to-use-computer-identity-for-ntlm["Netzwerksicherheit: Lokalem System die Verwendung der Computeridentität für NTLM erlauben"^] beschrieben.
+. Die dynamische Portkonfiguration lässt sich anhand von link:https://learn.microsoft.com/en-us/troubleshoot/sql/database-engine/connect/network-related-or-instance-specific-error-occurred-while-establishing-connection["Beim Herstellen einer Verbindung zu SQL Server ist ein netzwerkbezogener oder instanzspezifischer Fehler aufgetreten"] in der Microsoft-Dokumentation überprüfen.
+. Die Sicherheitsgruppe muss die erforderliche Client-IP oder das Subnetz zulassen.
+
+
+.Was kommt als Nächstes
+Jetzt können Sie link:create-sql-database.html["Erstellen einer Datenbank in Workload Factory for Databases"].

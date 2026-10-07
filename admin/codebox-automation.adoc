@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: admin/codebox-automation.html 
+keywords: codebox, automation 
+summary: 'Codebox ist ein Infrastructure as Code (IaC) Co-Pilot, der Entwickler und DevOps beim Generieren des Codes unterstützt, der für die Ausführung jeder von NetApp Workload Factory unterstützten Operation erforderlich ist.' 
+---
+= Informationen zur Codebox-Automatisierung in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Codebox ist ein Infrastructure as Code (IaC) Co-Pilot, der Entwicklern und DevOps dabei hilft, den Code zu generieren, der für die Ausführung beliebiger von NetApp Workload Factory unterstützter Operationen benötigt wird. Codebox ist auf die Berechtigungsrichtlinien von Workload Factory abgestimmt und schafft einen klaren Weg zur Ausführungsbereitschaft sowie einen Automatisierungskatalog für die schnelle spätere Wiederverwendung.
+
+
+
+[[codebox-capabilities]]
+== Codebox Funktionen
+
+Codebox bietet zwei wichtige IaC-Funktionen:
+
+* Codebox Viewer zeigt den durch einen bestimmten Job-Flow-Vorgang generierten IaC-Code an, indem Einträge und Auswahlen aus dem grafischen Assistenten oder aus der Chat-Oberfläche abgeglichen werden. Codebox Viewer unterstützt zwar die Farbcodierung zur einfacheren Navigation und Analyse, erlaubt aber keine Bearbeitung, sondern lediglich das Kopieren oder Speichern von Code im Automation Catalog.
+* Im _Codebox Automation Catalog_ werden alle gespeicherten IaC-Jobs angezeigt, sodass Sie zur späteren Verwendung einfach darauf verweisen können. Jobs aus dem Automation Catalog werden als Vorlagen gespeichert und im Kontext der Ressourcen angezeigt, die für sie gelten.
+
+
+Zusätzlich zeigt Codebox beim Einrichten der Anmeldeinformationen für Workload Factory dynamisch die AWS-Berechtigungen an, die zum Erstellen von IAM-Richtlinien erforderlich sind. Die Berechtigungen werden für jede Workload Factory-Funktion bereitgestellt, die Sie verwenden möchten (Datenbanken, AI, FSx for ONTAP usw.), und sie sind anpassbar. Die Berechtigungen lassen sich einfach aus Codebox kopieren und dann in die AWS Management Console einfügen, damit Workload Factory über die korrekten Berechtigungen zum Managen Ihrer Workloads verfügt.
+
+
+
+[[supported-code-formats]]
+== Unterstützte Codeformate
+
+Die unterstützten Codeformate umfassen:
+
+* Workload Factory REST-APIs
+* AWS CLI
+* AWS CloudFormation
+* Terraform
+
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+link:use-codebox.html["So verwenden Sie Codebox"].
+
+link:https://console.workloads.netapp.com/api-doc["Workload Factory REST API Dokumentation"^].

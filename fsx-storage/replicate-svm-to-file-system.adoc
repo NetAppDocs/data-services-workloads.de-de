@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/replicate-svm-to-file-system.html 
+keywords: storage VM, SVM, replication, FSx for ONTAP, Workload Factory 
+summary: Die Replikation einer Storage VM auf ein anderes FSx for ONTAP Dateisystem bietet eine zusätzliche Schutzebene für den Datenzugriff im Falle von Datenverlust. 
+---
+= Eine Storage VM auf ein anderes FSx for ONTAP Dateisystem replizieren
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Replikation einer Storage VM auf ein anderes FSx for ONTAP Dateisystem in NetApp Workload Factory bietet eine zusätzliche Schutzebene für den Datenzugriff im Falle eines Datenverlusts. Bei diesem Vorgang werden alle Volumes einer Storage VM auf ein anderes FSx for ONTAP Dateisystem repliziert.
+
+.Bevor Sie beginnen
+Um eine Storage-VM auf ein anderes FSx for ONTAP File System zu replizieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* wird im Aktionsmenü des Dateisystems mit der zu replizierenden Storage-VM die Option *Manage* ausgewählt.
+. In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
+. Auf dem Bildschirm „Storage VMs managen“ wird im Aktionsmenü der Storage VM, für die eine SVM repliziert werden soll, *Erweiterte Aktionen* > *Storage VM replizieren* ausgewählt.
+. Auf der Seite „Daten replizieren“ sind unter „Replikationsziel“ die folgenden Angaben erforderlich:
++
+.. *FSx for ONTAP file system*: Wählen Sie Anmeldeinformationen, Region und FSx for ONTAP file system name für das Ziel-FSx for ONTAP file system aus.
+.. *Name der Storage VM*: Die Auswahl der Storage VM erfolgt im Dropdown-Menü.
+.. *Volume-Name*: Der Name des Ziel-Volume wird automatisch im folgenden Format generiert `{OriginalVolumeName}_copy`.
+.. *Tiering-Richtlinie*: Auswahl der Tiering-Richtlinie für die im Ziel-Volume gespeicherten Daten.
++
+Auto ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes über die Workload Factory FSx for ONTAP Benutzeroberfläche. Weitere Informationen zu Volume-Tiering-Richtlinien enthält link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^]die AWS FSx for NetApp ONTAP Dokumentation.
+
+.. *Maximale Transferrate*: *Begrenzt* auswählen und das maximale Transferlimit in MB/s eingeben. Alternativ *Unbegrenzt* auswählen.
++
+Ohne Begrenzung könnte die Netzwerk- und Applikations-Performance nachlassen. Alternativ empfehlen wir für FSx for ONTAP Dateisysteme bei kritischen Workloads, zum Beispiel solchen, die in erster Linie für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate.
+
+
+
+. Unter Replikationseinstellungen sind die folgenden Angaben erforderlich:
++
+.. *Replikationsintervall*: Hier wird die Häufigkeit ausgewählt, mit der Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
+.. *Langzeitaufbewahrung*: Optional können Snapshots für die Langzeitaufbewahrung aktiviert werden.
++
+Wenn Sie die Langzeitaufbewahrung aktivieren, können Sie eine vorhandene Richtlinie auswählen oder eine neue Richtlinie erstellen, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
+
++
+... Für *Choose an existing policy* ist eine bestehende Richtlinie aus dem Dropdown-Menü auszuwählen.
+... Für *Neue Richtlinie erstellen* sind die folgenden Angaben erforderlich:
++
+.... *Richtlinienname*: Geben Sie einen Richtliniennamen ein.
+.... *Snapshot-Richtlinien*: Wählen Sie in der Tabelle die Häufigkeit der Snapshot-Richtlinie und die Anzahl der aufzubewahrenden Kopien aus. Sie können mehrere Snapshot-Richtlinien auswählen.
+
+
+
+
+
+
+. *Erstellen* auswählen.
+
+
+.Ergebnis
+Alle Volumes innerhalb der Storage VM werden auf das Zieldateisystem repliziert.

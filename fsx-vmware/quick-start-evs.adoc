@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/quick-start-evs.html 
+keywords: quick start 
+summary: Der Einstieg in den VMware migration advisor unterstützt die Migration Ihrer aktuellen Infrastruktur zu Amazon EVS unter Verwendung von Amazon FSx for ONTAP als externen NFS-Datenspeichern. 
+---
+= Schnellstart für die Migration zu Amazon EVS mithilfe des VMware workloads migration advisor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Der Einstieg in den VMware migration advisor unterstützt die Migration Ihrer aktuellen Infrastruktur zu Amazon EVS unter Verwendung von Amazon FSx for ONTAP als externen NFS-Datenspeichern.
+
+Bevor Sie beginnen, sollten Sie mit dem link:../fsx-storage/permissions-reference-fsx.html["Berechtigungen für NetApp Workload Factory"^] vertraut sein.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldung bei Workload Factory
+[role="quick-margin-para"]
+Sie müssen link:../setup/sign-up-and-log-in.html["ein Konto bei Workload Factory einrichten"^] und sich bei der NetApp Console anmelden.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Hinzufügen von Anmeldeinformationen und Berechtigungen
+[role="quick-margin-para"]
+Die Auswahl des Produkts link:../fsx-storage/permissions-reference-fsx.html["Berechtigungsrichtlinien"], das Ihren Anforderungen entspricht.
+
+[role="quick-margin-para"]
+Wenn Sie sich entscheiden, keine Berechtigungen zu erteilen, können Sie Workload Factory for Databases verwenden, um teilweise fertiggestellte Codebeispiele aus dem link:../fsx-storage/permissions-reference-fsx.html["Berechtigungsrichtlinien"^] zu kopieren.
+
+[role="quick-margin-para"]
+Wenn Sie Berechtigungen erteilen möchten, müssen Sie link:../fsx-storage/add-credentials.html["Anmeldeinformationen manuell zu einem Konto hinzufügen"] wobei Sie Workload-Funktionen wie Datenbanken und VMware auswählen und die IAM-Richtlinien für die erforderlichen Berechtigungen erstellen.
+
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Informationen zum Hinzufügen von Anmeldeinformationen und Berechtigungen"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"] Hochladen von VM Inventardaten
+[role="quick-margin-para"]
+Im Planungszentrum können Sie Inventardetails zu Ihrer aktuellen VM-Umgebung hochladen. Zum Erfassen Ihrer aktuellen VM-Konfiguration und zum Hochladen der Daten in das Planungszentrum stehen das Datenerfassungsskript, RVTools oder NetApp Data Infrastructure Insights zur Verfügung.
+
+[role="quick-margin-para"]
+link:upload-vm-inventory.html["So laden Sie VM-Inventardaten hoch"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"] Erstellung eines Deployment-Plans mit dem VMware migration advisor
+[role="quick-margin-para"]
+Der VMware migration advisor ermöglicht die manuelle Konfiguration der VM-Umgebung, die auf der Amazon Elastic VMWare Service Infrastruktur unter Verwendung eines Amazon FSx for ONTAP Dateisystems als externem NFS-Datenspeicher erstellt werden soll.
+
+[role="quick-margin-para"]
+link:launch-migration-advisor-evs.html["Es wird erläutert, wie der VMware migration advisor zum Erstellen eines Deployment-Plans verwendet wird."].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Fünf"]Einsetzen des empfohlenen FSx for ONTAP Dateisystems
+[role="quick-margin-para"]
+Das neue FSx for ONTAP Dateisystem wird eingesetzt, um die Datenspeicher für Ihre VMs in Ihrer Amazon EC2-Infrastruktur bereitzustellen.
+
+[role="quick-margin-para"]
+link:deploy-fsx-file-system-evs.html["Informationen dazu, wie Sie Ihr neues Dateisystem FSx for ONTAP einsetzen"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Sechs"] Überprüfen Sie gut strukturierte Erkenntnisse für Ihre EVS-Umgebung
+[role="quick-margin-para"]
+Wenn Ihre EVS-Umgebung erkannt wird, führt Workload Factory automatisch täglich Well-Architected-Scans durch, um Konfigurationsprobleme zu identifizieren und Empfehlungen zur Behebung bereitzustellen.
+
+[role="quick-margin-para"]
+link:view-evs-well-architected.html["Erfahren Sie, wie Sie gut strukturierte Konfigurationen implementieren"^].

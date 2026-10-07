@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/create-workspaces.html 
+keywords: manage, workspace, snapshot, project 
+summary: Ein Workspace in NetApp Workload Factory für EDA ist eine Perforce-Darstellung eines Projekts, die auf einem Projekt-Snapshot basiert. Sie können Workspaces als Teil eines EDA-Projekts erstellen. 
+---
+= Erstellung eines EDA-Arbeitsbereichs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ein Workspace in NetApp Workload Factory für EDA ist eine Perforce-Darstellung eines Projekts zu einem bestimmten Zeitpunkt. Workspaces werden auf Basis eines Projekt-Snapshots erstellt. Sie können neue Workspaces innerhalb eines EDA-Projekts erstellen. Die Erstellung von Workspaces ist über die Perforce-Benutzeroberfläche möglich.
+
+.Bevor Sie beginnen
+Voraussetzung ist, dass EDA in den Perforce Helix Visual Client integriert ist. Weitere Informationen finden Sie unter link:integrate-perforce.html["Integration von EDA mit Perforce"^].
+
+.Schritte
+. Bei Perforce anmelden.
+. Im Perforce-Menü erfolgt die Auswahl von *Ansicht* > *WF*.
++
+In der Perforce-Benutzeroberfläche erscheint der Anmeldebildschirm von Workload Factory.
+
+. Melden Sie sich mit einem der link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["Konsolenerlebnisse"^] an.
+. Wählen Sie das Menü image:workloads-menu-icon.png["Das Hamburger-Menü-Symbol wird verwendet, um zu Workloads wie Storage, eda, ai, databases, vmware und administration zu navigieren."] und wählen Sie dann *EDA* aus.
+. Hier wird *CI/CD* ausgewählt.
+. *Projekt erstellen* wird ausgewählt, anschließend *Arbeitsbereich erstellen*.
+. Auf der Seite „Arbeitsbereichsprojekt erstellen“ sind folgende Angaben erforderlich:
++
+.. Als Grundlage für den Arbeitsbereich ist ein Snapshot auszuwählen.
+.. Sie geben einen Namen für den Arbeitsbereich ein.
+.. Optional können Sie eine Benutzerkennung eingeben, um den Arbeitsbereich zu beanspruchen. Diese Kennung sollte mit der Perforce-Benutzer-ID des Entwicklers übereinstimmen, der diesen Arbeitsbereich verwenden wird.
+
+
+. *Erstellen* auswählen.
+
+
+.Ergebnis
+Der Arbeitsbereich wurde erstellt und erscheint in der Liste der Arbeitsbereiche auf der Seite „Workspaces“.

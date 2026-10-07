@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/learn-latency-monitoring.html 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis 
+summary: Die Latenzüberwachung in Workload Factory für EDA unterstützt die Erkennung und Analyse von Leistungsproblemen bei FSx for ONTAP Volumes mithilfe einer automatisierten Basisanalyse und einer optionalen KI-Analyse. 
+---
+= Erfahren Sie mehr über Latenzüberwachung in Workload Factory für EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Latenzüberwachung in Workload Factory für EDA unterstützt bei der Erkennung und Behebung von Leistungseinbußen in Ihren FSx for ONTAP Volumes. Dabei werden Lese- und Schreiblatenzen mithilfe von CloudWatch-Metriken erfasst und die Daten automatisch analysiert, um die Ursache von Leistungsproblemen zu identifizieren.
+
+
+
+[[how-latency-monitoring-works]]
+== Wie Latenzüberwachung funktioniert
+
+Die Latenzanalyse erfasst CloudWatch-Metriken für Lese- und Schreibaktivitäten auf allen mit Ihrem AWS-Konto verbundenen FSx for ONTAP Volumes. Diese Metriken werden kontinuierlich anhand definierter Grenzwerte überprüft, um Leistungsprobleme frühzeitig zu erkennen.
+
+Bei steigender Latenz überprüft Workload Factory automatisch die ONTAP QoS-Verzögerungsmetriken, um die Hauptursache der Verlangsamung zu identifizieren. Bei komplexeren Problemen mit Daten oder Cluster-Komponenten kann eine optionale KI-Analyse ausgeführt werden, die die wahrscheinliche Ursache liefert, betroffene Clients identifiziert und Schritte zur Problemlösung vorschlägt.
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und die KI-Analyse kann nicht genutzt werden. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"^].
+
+
+
+[[alert-generation]]
+=== Alarmgenerierung
+
+Eine Warnung wird nur dann ausgelöst, wenn diese Bedingungen für den gesamten ausgewählten Zeitraum zutreffen: Die Latenz bleibt über ihrem Schwellenwert und die IOPS bleiben über ihrem Schwellenwert. Die Anforderung beider Bedingungen reduziert Fehlalarme, da so sichergestellt wird, dass hohe Latenzzeiten auftreten, während das System eine tatsächliche Arbeitslast verarbeitet.
+
+Sie können separate Schwellenwerte konfigurieren für:
+
+* Leseoperationen
+* Schreiboperationen
+* Schweregrad
+* Kritischer Schweregrad
+
+
+Alle erkannten Ereignisse werden in der Tabelle der Latenzereignisse angezeigt. Wenn Benachrichtigungen eingerichtet sind, erhalten Sie außerdem eine E-Mail oder eine Amazon SNS Nachricht mit Details zu den betroffenen Volumes. Die Häufigkeit der Benachrichtigungen kann gesteuert werden, entweder täglich pro Dateisystem oder alle 20 Minuten.
+
+
+
+[[understanding-alerts]]
+== Warnmeldungen verstehen
+
+Das Verständnis, wie Warnmeldungen ausgelöst werden, hilft Ihnen, geeignete Schwellenwerte zu konfigurieren und die Ergebnisse zu interpretieren.
+
+
+
+[[metrics-collected]]
+=== Gesammelte Kennzahlen
+
+Das System erfasst die folgenden CloudWatch-Kennzahlen für jedes Volumen:
+
+* *Leselatenzschwelle*: Berechnet als 1000 * m2/(m1+0.000001), wobei m1 = DataReadOperations und m2 = DataReadOperationTime
+* *Schreiblatenzschwelle*: Berechnet als 1000 * m2/(m1+0.000001), wobei m1 = DataWriteOperations und m2 = DataWriteOperationTime
+
+
+
+
+[[alert-trigger-conditions]]
+=== Alarm-Auslösebedingungen
+
+Eine Warnung wird ausgelöst, wenn alle der folgenden Bedingungen erfüllt sind:
+
+* Der Latenzschwellenwert wird für den Operationstyp (Lesen oder Schreiben) überschritten.
+* Der IOPS-Schwellenwert wird für den Betriebstyp überschritten.
+* Beide Bedingungen bestehen für alle Datenpunkte innerhalb des konfigurierten Zeitraums fort.
+
+
+Bei voreingestellten Warnschwellenwerten wird beispielsweise eine Lesewarnung nur dann ausgelöst, wenn die Leselatenz 6 ms überschreitet UND die Lese-IOPS 100 Operationen/Sekunde für alle Datenpunkte innerhalb eines 10-minütigen Zeitraums übersteigt.
+
+
+
+[[event-severity]]
+=== Schweregrad
+
+* *Warnereignisse*: Weisen auf erhöhte Latenzzeiten hin, die möglicherweise Aufmerksamkeit erfordern
+* *Kritische Ereignisse*: Weisen auf eine erhebliche Latenz hin, die eine sofortige Untersuchung erfordert
+
+
+
+
+[[latency-analysis]]
+== Latenzanalyse
+
+Workload Factory bietet zwei Analyseebenen, die Ihnen bei der Behebung von Latenzproblemen helfen.
+
+
+
+[[basic-analysis]]
+=== Grundlagenanalyse
+
+Tritt ein Latenzereignis auf, führt Workload Factory automatisch eine Basisanalyse durch, um die Ursache zu ermitteln. Dabei werden ONTAP QoS Delay Center-Metriken genutzt, um die für die Verlangsamung verantwortliche Komponente zu identifizieren, beispielsweise FlexCache, den Kapazitätspool, QoS-Grenzwerte, Festplatten, Daten, den Cluster oder ein anderes Subsystem. Damit lässt sich die Quelle der Latenz schnell identifizieren, ohne dass eine manuelle Untersuchung erforderlich ist.
+
+
+NOTE: Eine detaillierte Komponentenübersicht ist nur dann sichtbar, wenn eine Verbindung mit dem FSx for ONTAP Dateisystem besteht. Wenn keine Verbindung besteht, können dennoch Diagramme für Latenz, IOPS und Durchsatz angezeigt werden.
+
+
+NOTE: Die Latenzwerte aus der ONTAP QoS-Analyse und CloudWatch können geringfügig abweichen, da die Daten auf unterschiedliche Weise erfasst werden. Die Basisanalyse verwendet ONTAP Daten, um die Ursache zu ermitteln.
+
+
+
+[[ai-analysis]]
+=== AI-Analyse
+
+Während grundlegende Analysen die Ursache von Latenzzeiten identifizieren können, erfordern komplexere Situationen mit Daten oder Clusterkomponenten oft eine tiefergehende Untersuchung. KI-Analysen ermöglichen diese detailliertere Fehlerbehebung, indem sie Probleme wie überlastete Volumes, fehlerhafte Konfigurationen oder den Bedarf an zusätzlicher Kapazität aufdecken, Probleme, die bei grundlegenden Analysen möglicherweise übersehen werden.
+
+Die Verfügbarkeit der KI-Analyse hängt von Ihren Kontoeinstellungen ab:
+
+* *NetApp-verwaltete KI-Credits aktiviert*: KI-Analysen sind ohne zusätzliche Bedrock-Einrichtung möglich.
+* *Vom Administrator deaktiviert*: KI-Optionen sind nicht verfügbar.
+
+
+Wenn NetApp-verwaltete KI-Guthaben aktiviert sind, Ihr monatliches Budget aber erreicht ist, steht keine KI-Analyse zur Verfügung und eine Meldung wird angezeigt.
+
+Bei der Durchführung einer KI-Analyse stellt das System Folgendes bereit:
+
+* *Mögliche Ursache*: Detaillierte Erklärung, was das Latenzproblem verursacht
+* *Betroffene Clients*: Liste der von der Latenz betroffenen EC2-Instanznamen
+* *Mögliche Abhilfemaßnahmen*: Zwei oder mehr konkrete Maßnahmen zur Behebung des Problems
+
+
+
+
+[[related-information]]
+== Verwandte Informationen
+
+* link:task-configure-latency-monitoring.html["Latenzüberwachung konfigurieren"]
+* link:task-analyze-latency-issues.html["Latenzprobleme analysieren"]
+* link:task-analyze-latency-trends.html["Latenztrends analysieren"]
+

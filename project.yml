@@ -1,0 +1,372 @@
+---
+settings:
+  name: Workload Factory for NetApp Console
+  internal:
+    pdf_enabled: true
+    termcheck_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  rss_page: whats-new.html
+  release_notes_autogen:
+    release_notes_repo: console-relnotes
+  langs: de-de,us-en,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: Workload Factory für NetApp Console
+    url: "/index.html"
+  - title: Versionshinweise
+    entries:
+    - title: Was ist neu
+      url: "/whats-new.html"
+    - title: Bekannte Einschränkungen für FSx for ONTAP in Workload Factory
+      url: "/known-limitations.html"
+  - title: Los geht's
+    entries:
+    - title: Informationen zu Workload Factory in NetApp Console
+      url: "/setup/learn-about-workload-factory.html"
+    - title: Schnellstart
+      url: "/setup/quick-start.html"
+    - title: Registrierung und Anmeldung bei Workload Factory
+      url: "/setup/sign-up-and-log-in.html"
+    - title: Informationen zu Links
+      url: "/setup/links-overview.html"
+    - title: Informationen zu Berechtigungen
+      url: "/setup/learn-about-permissions.html"
+  - title: Amazon FSx for NetApp ONTAP
+    entries:
+    - title: FSx for ONTAP für Storage-Workloads verwenden
+      entries:
+      - title: Informationen zu FSx for ONTAP
+        url: "/fsx-storage/learn-fsx-ontap.html"
+      - title: Einsparpotenziale
+        url: "/fsx-storage/explore-savings.html"
+      - title: Speicherressourcen erstellen
+        entries:
+        - title: Erstellung oder Ermittlung eines FSx for ONTAP Dateisystems
+          url: "/fsx-storage/create-discover-systems.html"
+        - title: Eine Storage VM erstellen
+          url: "/fsx-storage/create-storage-vm.html"
+        - title: Erstellen Sie ein Volumen
+          url: "/fsx-storage/create-volume.html"
+        - title: Erstellen Sie eine Initiatorgruppe
+          url: "/fsx-storage/create-igroup.html"
+        - title: Erstellen eines Blockgeräts
+          url: "/fsx-storage/create-block-device.html"
+      - title: Mit einem Link eine Verbindung zu einem Dateisystem herstellen
+        url: "/fsx-storage/create-link.html"
+      - title: Cache-Volumes entdecken und anzeigen
+        url: "/fsx-storage/discover-cache-volumes.html"
+      - title: Zugriff auf Ihre Daten
+        url: "/fsx-storage/access-data.html"
+    - title: Schutz Ihrer Daten
+      entries:
+      - title: Überblick über den Datenschutz
+        url: "/fsx-storage/data-protection-overview.html"
+      - title: Snapshots bieten Schutz für Daten.
+        entries:
+        - title: Snapshots bieten Schutz für Daten.
+          url: "/fsx-storage/use-snapshots.html"
+        - title: Managen von Snapshot-Richtlinien
+          url: "/fsx-storage/manage-snapshot-policy.html"
+        - title: Snapshots verwalten
+          url: "/fsx-storage/manage-snapshots.html"
+      - title: Backups in Object Storage verwenden
+        url: "/fsx-storage/use-backups.html"
+      - title: Replikation zum Schutz von Daten verwenden
+        entries:
+        - title: Daten replizieren
+          url: "/fsx-storage/create-replication.html"
+        - title: Replizieren von On-Premises ONTAP Daten auf FSx für ONTAP
+          url: "/fsx-storage/use-onprem-data.html"
+        - title: Eine Storage VM in ein anderes Dateisystem replizieren
+          url: "/fsx-storage/replicate-svm-to-file-system.html"
+        - title: Replikationsverzögerungen verfolgen
+          url: "/fsx-storage/track-replication-delays.html"
+        - title: Replikationsbeziehungen verwalten
+          url: "/fsx-storage/manage-replication.html"
+      - title: Datenschutz mit Autonomous Ransomware Protection
+        url: "/fsx-storage/ransomware-protection.html"
+      - title: Ein Volume klonen
+        url: "/fsx-storage/clone-volume.html"
+      - title: Erstellung eines Cyber-Vaults zum Schutz von Daten
+        url: "/fsx-storage/create-cyber-vault.html"
+    - title: FSx für ONTAP in Workload Factory verwalten
+      entries:
+      - title: FSx for ONTAP EMS-Ereignisse analysieren
+        url: "/fsx-storage/analyze-events.html"
+      - title: Best Practices für Dateisysteme implementieren
+        entries:
+        - title: Konfigurationsanalyse für FSx for ONTAP
+          url: "/fsx-storage/configuration-analysis.html"
+        - title: Gut strukturierte Dateisystemkonfigurationen implementieren
+          url: "/fsx-storage/improve-configurations.html"
+        - title: Benutzerdefinierte Regeln
+          entries:
+          - title: Informationen zu benutzerdefinierten Regeln
+            url: "/fsx-storage/learn-custom-rules.html"
+          - title: Eine benutzerdefinierte Regel erstellen
+            url: "/fsx-storage/create-custom-rule.html"
+          - title: Benutzerdefinierte Regeln verwalten
+            url: "/fsx-storage/manage-custom-rules.html"
+      - title: Kosten für FSx for ONTAP verfolgen und analysieren
+        url: "/fsx-storage/track-costs.html"
+      - title: Volumes verwalten
+        entries:
+        - title: Volumenkapazität verwalten
+          url: "/fsx-storage/manage-volume-capacity.html"
+        - title: Volume-Latenzschwellenwerte festlegen
+          url: "/fsx-storage/set-volume-latency-thresholds.html"
+        - title: Volume-Einstellungen verwalten
+          url: "/fsx-storage/manage-volume-settings.html"
+        - title: Verwalten von Cache Volumes
+          url: "/fsx-storage/manage-cache-volumes.html"
+        - title: Ändern einer Tiering-Richtlinie
+          url: "/fsx-storage/change-tiering-policy.html"
+        - title: NFS-Exportrichtlinien verwalten
+          url: "/fsx-storage/manage-nfs-export-policy.html"
+        - title: SMB/CIFS-Freigaben managen
+          url: "/fsx-storage/manage-cifs-share.html"
+        - title: Management von S3-Zugriffspunkten
+          entries:
+          - title: S3-Zugriffspunkte erstellen und anhängen
+            url: "/fsx-storage/create-s3-access-points.html"
+          - title: Management von S3-Zugriffspunkten
+            url: "/fsx-storage/manage-s3-access-points.html"
+          - title: Einrichtung der Journaltabelleninfrastruktur
+            url: "/fsx-storage/setup-journal-table.html"
+        - title: Ein geklontes Volume aufteilen
+          url: "/fsx-storage/split-cloned-volume.html"
+        - title: Ein Volume löschen
+          url: "/fsx-storage/delete-volume.html"
+      - title: Blockspeicher verwalten
+        entries:
+        - title: Blockspeicher verwalten
+          url: "/fsx-storage/manage-block-storage.html"
+        - title: Tags auf Blockgeräte anwenden
+          url: "/fsx-storage/apply-block-device-tags.html"
+      - title: Dateisysteme verwalten
+        entries:
+        - title: Dateisystemkapazität anpassen
+          url: "/fsx-storage/adjust-file-system-capacity.html"
+        - title: Dateisystemeinstellungen verwalten
+          url: "/fsx-storage/manage-file-system-settings.html"
+        - title: Bereitstellung von IOPS für ein Dateisystem
+          url: "/fsx-storage/provision-iops.html"
+        - title: Löschen eines Dateisystems
+          url: "/fsx-storage/delete-file-system.html"
+      - title: Storage-VMs verwalten
+        entries:
+        - title: Speicher-VM-Einstellungen verwalten
+          url: "/fsx-storage/manage-svm-settings.html"
+        - title: Löschen einer Storage VM
+          url: "/fsx-storage/delete-svm.html"
+    - title: FSx for ONTAP für Datenbank-Workloads
+      entries:
+      - title: Informationen zu Workload Factory for Databases
+        url: "/fsx-databases/learn-about-databases.html"
+      - title: Schnellstart für Workload Factory for Databases
+        url: "/fsx-databases/quick-start-databases.html"
+      - title: Einsparpotenziale
+        url: "/fsx-databases/explore-savings-databases.html"
+      - title: Datenbankressourcen erstellen
+        entries:
+        - title: Erstellen von Microsoft SQL Server
+          url: "/fsx-databases/create-sql-database-server.html"
+        - title: PostgreSQL Server erstellen
+          url: "/fsx-databases/create-postgresql-server.html"
+        - title: Erstellen einer Datenbank
+          url: "/fsx-databases/create-sql-database.html"
+        - title: Sandbox-Klon erstellen
+          url: "/fsx-databases/create-sandbox-clone.html"
+      - title: Ressourcen verwalten
+        entries:
+        - title: Ressourcenmanagement
+          url: "/fsx-databases/manage-resources.html"
+        - title: Registrierung von Ressourcen
+          url: "/fsx-databases/register-instance.html"
+        - title: Datenbankklone managen
+          url: "/fsx-databases/manage-clones.html"
+        - title: Ressourcen deregistrieren
+          url: "/fsx-databases/deregister-instance.html"
+      - title: Datenbankressourcen schützen, überwachen und optimieren
+        entries:
+        - title: Fehlerprotokolle analysieren
+          url: "/fsx-databases/analyze-error-logs.html"
+        - title: Bewährte Konfigurationsmethoden implementieren
+          entries:
+          - title: Konfigurationsanalyse für Datenbanken
+            url: "/fsx-databases/optimize-overview.html"
+          - title: Gut konzipierte Datenbankkonfigurationen implementieren
+            url: "/fsx-databases/optimize-configurations.html"
+        - title: Schutz von SQL Server-Datenbankressourcen
+          url: "/fsx-databases/protect-sql-server.html"
+    - title: Einsatz von FSx for ONTAP für EDA-Workloads
+      entries:
+      - title: Informationen zu NetApp Workload Factory für EDA
+        url: "/fsx-eda/learn-eda.html"
+      - title: Schnellstart
+        url: "/fsx-eda/quick-start-eda.html"
+      - title: Anforderungen
+        url: "/fsx-eda/requirements.html"
+      - title: EDA-Speicherübersicht
+        entries:
+        - title: Erfahren Sie mehr über das Overview Dashboard
+          url: "/fsx-eda/learn-overview-dashboard.html"
+        - title: Aktivieren Sie das Übersichts-Dashboard
+          url: "/fsx-eda/task-activate-overview-dashboard.html"
+        - title: Nutzen Sie das Übersichts-Dashboard
+          url: "/fsx-eda/task-use-overview-dashboard.html"
+      - title: Projektnutzungsanalyse
+        entries:
+        - title: Erfahren Sie mehr über das Projects-Dashboard
+          url: "/fsx-eda/learn-project-dashboard.html"
+        - title: Konfigurieren Sie das Projects-Dashboard
+          url: "/fsx-eda/task-configure-project-dashboard.html"
+        - title: Nutzen Sie das Projekt-Dashboard
+          url: "/fsx-eda/task-use-project-dashboard.html"
+      - title: Verwendung der Perforce Integration
+        entries:
+        - title: Informationen zur Perforce Integration
+          url: "/fsx-eda/learn-eda-workloads.html"
+        - title: Projekte managen
+          url: "/fsx-eda/manage-projects.html"
+        - title: Projektversionen managen
+          url: "/fsx-eda/version-projects.html"
+        - title: Einen Arbeitsbereich erstellen
+          url: "/fsx-eda/create-workspaces.html"
+        - title: Integration mit Perforce
+          url: "/fsx-eda/integrate-perforce.html"
+    - title: Einsatz von FSx for ONTAP für VMware Workloads
+      entries:
+      - title: Informationen zu NetApp Workload Factory für VMware
+        url: "/fsx-vmware/learn-about-vmware-workloads.html"
+      - title: Schnellstartanleitung für die Migration zu Amazon EVS
+        url: "/fsx-vmware/quick-start-evs.html"
+      - title: Schnellstartanleitung für die Migration zu Amazon EC2
+        url: "/fsx-vmware/quick-start-native.html"
+      - title: Schnellstart für die Migration zu VMware Cloud on AWS
+        url: "/fsx-vmware/quick-start-vmware.html"
+      - title: Schnellstart für die Migration zu Google Cloud VMware Engine
+        url: "/fsx-vmware/quick-start-gcve.html"
+      - title: Überblick über das VMware Planungszentrum
+        url: "/fsx-vmware/explore-planning-center.html"
+      - title: Verwendung des VMware Planungscenters
+        entries:
+        - title: VM-Inventardaten hochladen
+          url: "/fsx-vmware/upload-vm-inventory.html"
+        - title: Migration zu Amazon Elastic VMware Service
+          entries:
+          - title: Einsparpotenziale
+            url: "/fsx-vmware/calculate-evs-savings.html"
+          - title: Einen Deployment-Plan manuell erstellen
+            url: "/fsx-vmware/launch-migration-advisor-evs-manual.html"
+          - title: Einen Deployment-Plan mithilfe des Migrationsberaters erstellen
+            url: "/fsx-vmware/launch-migration-advisor-evs.html"
+          - title: Einsatz des empfohlenen FSx for ONTAP Dateisystems
+            url: "/fsx-vmware/deploy-fsx-file-system-evs.html"
+        - title: Migrieren zu Google Cloud VMware Engine
+          entries:
+          - title: Einen Deployment-Plan mithilfe des Migrationsberaters erstellen
+            url: "/fsx-vmware/launch-migration-advisor-gcve.html"
+        - title: Migration zu Amazon EC2
+          entries:
+          - title: Einen Deployment-Plan mithilfe des Migrationsberaters erstellen
+            url: "/fsx-vmware/launch-onboarding-advisor-native.html"
+          - title: Einsatz des empfohlenen FSx for ONTAP Dateisystems
+            url: "/fsx-vmware/deploy-fsx-file-system-native.html"
+        - title: Migration zu VMware Cloud on AWS
+          entries:
+          - title: Einen Deployment-Plan mithilfe des Migrationsberaters erstellen
+            url: "/fsx-vmware/launch-onboarding-advisor.html"
+          - title: Einsatz des empfohlenen FSx for ONTAP Dateisystems
+            url: "/fsx-vmware/deploy-fsx-file-system.html"
+          - title: FSx for ONTAP mit VMware Cloud on AWS verbinden
+            url: "/fsx-vmware/connect-sddc-to-fsx.html"
+          - title: Die Migration Ihrer Daten auf die neue Infrastruktur
+            url: "/fsx-vmware/migrate-data.html"
+        - title: Optimierung von VMware Workloads auf FSx for ONTAP
+          entries:
+          - title: Konfigurationsanalyse für EVS-Konfigurationen
+            url: "/fsx-vmware/configuration-analysis.html"
+          - title: Implementieren Sie gut strukturierte EVS-Konfigurationen
+            url: "/fsx-vmware/view-evs-well-architected.html"
+    - title: Referenz
+      entries:
+      - title: Leistung für FSx für ONTAP
+        url: "/fsx-storage/performance-reference.html"
+      - title: Sicherheit für FSx für ONTAP
+        url: "/fsx-storage/security-reference.html"
+  - title: Google Cloud NetApp Volumes
+    entries:
+    - title: Informationen zu Google Cloud NetApp Volumes
+      url: "/gcnv/learn-netapp-volumes.html"
+    - title: Schnellstart für Google Cloud NetApp Volumes
+      url: "/gcnv/quick-start-gcnv.html"
+    - title: Einrichtung von Google Cloud NetApp Volumes
+      url: "/gcnv/set-up.html"
+    - title: Zuweisung von Rollen für Google Cloud NetApp Volumes
+      url: "/gcnv/add-roles.html"
+    - title: Hinzufügen der Anmeldeinformationen für Google Cloud NetApp Volumes
+      url: "/gcnv/add-credentials.html"
+    - title: Konfigurationsanalyse für Google Cloud NetApp Volumes
+      url: "/gcnv/configuration-analysis.html"
+    - title: Speicherpoolkonfigurationen verbessern
+      url: "/gcnv/improve-configurations.html"
+  - title: OCI NetApp Storage Service
+    entries:
+    - title: Informationen zum OCI NetApp Storage Service
+      url: "/oci/learn-about-oci.html"
+    - title: Schnellstart für OCI NetApp Storage Service
+      url: "/oci/quick-start-oci.html"
+    - title: OCI-Anmeldeinformationen hinzufügen
+      url: "/oci/add-credentials.html"
+    - title: OCI Storage Systeme im Überblick
+      url: "/oci/create-discover-systems.html"
+    - title: Verbindung zu einem OCI Speichersystem herstellen
+      url: "/oci/create-link.html"
+    - title: Berechtigungsreferenz für OCI NetApp Storage Service
+      url: "/oci/permissions-oci.html"
+  - title: Workload Factory verwalten
+    entries:
+    - title: Gut strukturierte Workloads erstellen und betreiben
+      url: "/admin/well-architected-workloads.html"
+    - title: Benachrichtigungen konfigurieren
+      url: "/admin/configure-notifications.html"
+    - title: Überwachung von Vorgängen mit Tracker
+      url: "/admin/monitor-operations.html"
+    - title: Links verwalten
+      url: "/admin/manage-links.html"
+    - title: KI-Funktionen für FSx for ONTAP verwalten
+      url: "/admin/manage-genai-features.html"
+    - title: Benutzerdefinierte Dashboards für FSx für ONTAP
+      entries:
+      - title: Informationen zu benutzerdefinierten Dashboards für FSx für ONTAP
+        url: "/admin/learn-custom-dashboards-fsx.html"
+      - title: Ein benutzerdefiniertes Dashboard für FSx für ONTAP erstellen
+        url: "/admin/create-custom-dashboard-fsx.html"
+      - title: Verwaltung benutzerdefinierter Dashboards für FSx for ONTAP
+        url: "/admin/manage-custom-dashboards-fsx.html"
+      - title: Fehlerbehebung bei benutzerdefinierten Dashboards für FSx for ONTAP
+        url: "/admin/troubleshoot-custom-dashboards-fsx.html"
+    - title: Automatisierung von Aufgaben mit Codebox
+      entries:
+      - title: Informationen zu Codebox
+        url: "/admin/codebox-automation.html"
+      - title: Code kann mit Codebox generiert werden
+        url: "/admin/use-codebox.html"
+    - title: CloudShell verwenden
+      url: "/admin/use-cloudshell.html"
+    - title: Anmeldeinformationen entfernen
+      url: "/admin/manage-credentials.html"
+  - title: Wissen und Unterstützung
+    entries:
+    - title: Registrieren Sie sich für Support
+      url: "/register-support.html"
+    - title: Hilfe erhalten
+      url: "/get-help.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"
+product-family:
+  name: NetApp Data Services
+  repo: data-services-family

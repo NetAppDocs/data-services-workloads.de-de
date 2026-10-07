@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-svm-settings.html 
+keywords: edit storage vm settings, vm tags, svm tags, storage vm settings, storage vm password, svm password 
+summary: Sie können Storage VM Tags für eine Storage VM jederzeit hinzufügen, aktualisieren oder entfernen. 
+---
+= Speicher-VM-Einstellungen in NetApp Workload Factory verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Einstellungen einer Storage-VM in NetApp Workload Factory lassen sich verwalten. Die Konfiguration und Aktualisierung von Active Directory für eine Storage-VM, die Aktualisierung des Storage-VM-Kennworts sowie die Verwaltung von Tags für die Storage-VM sind möglich.
+
+
+
+[[configure-and-update-ad-for-a-storage-vm-in-netapp-workload-factory]]
+== AD für eine Storage-VM in NetApp Workload Factory konfigurieren und aktualisieren
+
+Konfigurieren und Aktualisieren von Active Directory für eine Storage VM in einem FSx for ONTAP Dateisystem in NetApp Workload Factory.
+
+Die gleichen Schritte gelten für die Konfiguration und Aktualisierung von Active Directory für eine Storage VM.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* wird im Aktionsmenü des Dateisystems mit der zu aktualisierenden storage VM *Manage* ausgewählt.
+. In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
+. Auf dem Bildschirm „Storage VMs managen“ ist im Aktionsmenü der Storage VM, für die Active Directory konfiguriert werden soll, *Basic actions* > *Manage AD configuration* auszuwählen.
+. Auf der Seite „AD Konfiguration managen“ sind die folgenden Angaben erforderlich:
++
+.. *Active Directory-Domäne für den Beitritt*: Als Wert dient der vollqualifizierte Domain-Name (FQDN) Ihres Active Directory.
+.. *DNS IP-Adressen*: Es können bis zu drei durch Kommas getrennte IP-Adressen eingegeben werden.
+.. *NetBIOS-Name des SMB-Servers*: Der NetBIOS-Name des SMB-Servers des für Ihre Storage VM zu erstellenden Active Directory-Computerobjekts. Dies ist der Name dieser SVM in Active Directory.
+.. *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
++
+Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+
+.. *Passwort*: Das Passwort für das Dienstkonto eingeben.
+.. *Organisationseinheit (OU)*: Eingabe der Organisationseinheit.
++
+Die OU ist der eindeutige Pfadname der Organisationseinheit, mit der Sie Ihr Dateisystem verbinden möchten.
+
+.. *Delegierte Administratorengruppe*: Optional ist die Eingabe der delegierten Dateisystemadministratorengruppe möglich.
++
+Die Gruppe der delegierten Administratoren ist der Name der Gruppe in Ihrem Active Directory, die Ihr Dateisystem verwalten kann.
+
++
+Wenn Sie AWS Managed Microsoft AD verwenden, müssen Sie eine Gruppe wie AWS Delegated FSx Administrators, AWS Delegated Administrators oder eine benutzerdefinierte Gruppe mit delegierten Berechtigungen für die Abteilung angeben.
+
++
+Wenn Sie eine Verbindung zu einem selbstverwalteten Active Directory herstellen, verwenden Sie den Namen der Gruppe in Ihrem Active Directory. Die Standardgruppe ist `Domain Admins`.
+
+
+
+. *Anwenden* auswählen.
+
+
+
+
+[[manage-storage-vm-tags]]
+== Managen von Storage VM-Tags
+
+Tags helfen Ihnen bei der Kategorisierung Ihrer Ressourcen. Sie können Tags für eine Storage VM jederzeit in NetApp Workload Factory hinzufügen, bearbeiten und entfernen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* wird im Aktionsmenü des Dateisystems mit der zu aktualisierenden storage VM *Manage* ausgewählt.
+. In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
+. Im Bildschirm „Manage storage VMs“ wird im Aktionsmenü der Storage VM, deren Tags bearbeitet werden sollen, *Basic actions* > *Edit storage VM tags* ausgewählt.
+. Auf der Seite „Storage VM-Tags bearbeiten“ können Sie Tags hinzufügen, bearbeiten oder entfernen.
++
+Die maximale Anzahl von Tags, die Sie einer storage VM zuweisen können, beträgt 50.
+
+. *Anwenden* auswählen.
+
+
+
+
+[[reset-the-storage-vm-password-in-netapp-workload-factory]]
+== Zurücksetzen des Storage VM Passworts in NetApp Workload Factory
+
+Das Kennwort für eine Storage-VM in NetApp Workload Factory lässt sich bei Bedarf zurücksetzen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In *FSx for ONTAP* wird im Aktionsmenü des Dateisystems mit dem zurückzusetzenden Storage VM Passwort *Manage* ausgewählt.
+. In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
+. Auf dem Bildschirm „Storage VMs managen“ erfolgt die Auswahl von *Grundlegende Aktionen* > *Kennwort zurücksetzen* im Aktionsmenü der Storage VM, für die das Kennwort zurückgesetzt werden soll.
+. Im Dialogfeld „Passwort zurücksetzen“ sind folgende Angaben erforderlich:
++
+.. *Neues Passwort*: Eingabe eines neuen Passworts für die Storage VM.
+.. *Passwort bestätigen*: Das neue Passwort zur Bestätigung erneut eingeben.
+
+
+

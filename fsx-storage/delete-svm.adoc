@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-svm.html 
+keywords: delete storage vm, delete svm, remove svm 
+summary: 'Eine Storage VM (SVM), die nicht mehr benötigt wird, kann aus einer FSx for ONTAP Dateisystemkonfiguration gelöscht werden.' 
+---
+= Löschen einer Storage VM in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Eine Storage VM (SVM), die nicht mehr benötigt wird, kann aus einer FSx for ONTAP Dateisystemkonfiguration gelöscht werden.
+
+.Bevor Sie beginnen
+Vor dem Löschen einer Storage VM sind folgende Punkte zu beachten:
+
+* Es muss sichergestellt sein, dass keine Applikationen auf die Daten in der SVM zugreifen.
+* Löschen aller Nicht-Root-Volumes, die an die SVM angehängt sind.
+
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Wählen Sie in *FSx for ONTAP* das Aktionsmenü des zu aktualisierenden Dateisystems und anschließend *Verwalten*.
+. In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
+. Auf dem Bildschirm „Storage-VMs verwalten“ erfolgt die Auswahl des Aktionsmenüs der zu löschenden Storage-VM.
+. Ausgewählt wird die Option *Storage VM löschen*.
+. Im Dialogfeld „Storage VM löschen“ ist zum Löschen der Storage VM „delete“ einzugeben.
+. Zur Bestätigung ist *Löschen* auszuwählen.
+

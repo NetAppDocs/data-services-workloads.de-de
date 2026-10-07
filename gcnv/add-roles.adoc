@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: gcnv/add-roles.html 
+keywords: setup, set up, add role, requirements, permissions, google cloud netapp volumes, gcnv, bluexp. netapp console,assign 
+summary: Die NetApp Console benötigt die korrekten Rollen, die Mitgliedern zugewiesen sind. 
+---
+= Zuweisung von Rollen für Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um mit Google Cloud NetApp Volumes arbeiten zu können, müssen Sie den Mitgliedern in NetApp Console die richtigen Rollen zuweisen. Details sind unter link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["Informationen zu NetApp Console Zugriffsrollen für alle Services"^] verfügbar.
+
+
+
+[[assign-roles-to-the-service-account-member]]
+== Zuweisen von Rollen zum Mitglied des Servicekontos
+
+. Sie melden sich bei der https://docs.netapp.com/us-en/console-setup-admin/task-logging-in.html["NetApp Console"^] an.
+. Auszuwählen sind *Administration* und anschließend *Identity and access*.
+. Wählen Sie das Aktionen-Menü image:screenshot_gallery_options.gif["Ein Symbol mit drei Punkten."] neben dem Mitglied, dem Sie eine Rolle zuweisen möchten, und wählen Sie *Rolle hinzufügen* aus.
+. Zum Hinzufügen einer Rolle sind die Schritte im Dialogfeld auszuführen:
++
+.. Ordner oder Projekt auswählen: Auswahl des Levels Ihrer Ressourcenhierarchie, für das das Mitglied Berechtigungen haben soll.
++
+Wenn Sie einen Ordner auswählen, hat das Mitglied Berechtigungen für alles, was sich in diesem Ordner befindet.
+
+.. Im Dropdown-Menü *Kategorie* erfolgt die Auswahl der Rollenkategorie *Anwendung*. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["Informationen zu Zugriffsrollen"^].
+.. Im Dropdown-Menü *Rolle* erfolgt die Auswahl einer Rolle, die dem Mitglied Berechtigungen für die Ressourcen zuweist, die dem ausgewählten Ordner oder Projekt zugeordnet sind.
++
+*Important:* Sie müssen eine oder beide dieser Rollen hinzufügen:
+
++
+*** _Google Cloud NetApp Volumes Administrator_ ODER
+*** _Google Cloud NetApp Volumes Viewer_
+
+
+.. Rolle hinzufügen: Wenn Sie Zugriff auf zusätzliche Ordner oder Projekte innerhalb Ihres Unternehmens bereitstellen möchten, wählen Sie *Rolle hinzufügen*, geben Sie einen weiteren Ordner, ein weiteres Projekt oder eine weitere Rollenkategorie an und wählen Sie dann eine Rollenkategorie und eine entsprechende Rolle aus.
+
+
+. *Neue Rollen hinzufügen* auswählen.
+
+
+.Was kommt als Nächstes?
+link:create-discover-systems.html["Ein NetApp Volumes System zu Google Cloud hinzufügen"].

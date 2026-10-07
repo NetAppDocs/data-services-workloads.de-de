@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-cache-volumes.html 
+keywords: cache volumes, manage cache, FSx for ONTAP cache 
+summary: Das Managen der Cache-Volumes für ein FSx for ONTAP Dateisystem in NetApp Workload Factory ist bei Bedarf möglich. 
+---
+= FSx for ONTAP Cache Volumes mit NetApp Workload Factory managen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die NetApp Workload Factory Konsole dient zum Managen von Cache-Volumes für FSx for ONTAP Dateisysteme. Caching, eine Methode zur temporären Speicherung von Daten, verbessert die Datenzugriffs-Performance durch die Verkürzung der Abrufzeit. Sie können den Cache-Namen bearbeiten, die Kapazität anpassen, die Exportrichtlinie ändern, eine Caching-Methode auswählen, den Cache vorab befüllen oder Cache-Volumes löschen.
+
+.Über diese Aufgabe
+In der NetApp Workload Factory Konsole können Sie Cache-Volumes managen, die mit Cache-Beziehungen verknüpft sind.
+
+.Bevor Sie beginnen
+* Sie müssen eine Verknüpfung herstellen, um Cache-Volumes und Beziehungen zu verwalten. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
+* Zum Bearbeiten ist ein vorhandenes Cache Volume erforderlich.
+
+
+
+
+[[edit-the-cache-volume-name]]
+== Den Namen des Cache-Volumes bearbeiten
+
+Sie können den Namen eines vorhandenen Cache-Volumes jederzeit ändern.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Im Aktionsmenü erfolgt die Auswahl des Cache-Volumes, das geändert werden soll; anschließend wird *Cache-Namen bearbeiten* ausgewählt.
+. Im Dialogfeld *Cache-Namen bearbeiten* wird der neue Name für das Cache-Volume eingegeben und anschließend *Anwenden* ausgewählt.
+
+
+
+
+[[adjust-the-capacity-of-a-cache-volume]]
+== Kapazität eines Cache-Volumes anpassen
+
+Sie können die Kapazität eines vorhandenen Cache-Volumes jederzeit anpassen.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Im Aktionsmenü für das Cache-Volume, das Sie ändern möchten, erfolgt anschließend die Auswahl von *Cache-Kapazität anpassen*.
+. Im Dialogfeld *Cache-Kapazität anpassen* kann die neue Kapazität für das Cache-Volume prozentual oder in Einheiten eingegeben und anschließend *Apply* ausgewählt werden.
+
+
+
+
+[[edit-the-cache-volume-export-policy]]
+== Bearbeiten der Exportrichtlinie für Cache-Volumes
+
+Der Mount-Pfad oder die Exportrichtlinie eines vorhandenen Cache-Volume kann geändert werden.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Für das Cache-Volume, das Sie ändern möchten, erfolgt im Aktionsmenü anschließend die Auswahl von *Exportrichtlinie bearbeiten*.
+. Im Dialogfeld *Exportrichtlinie bearbeiten* lässt sich der Mount-Pfad ändern oder eine andere Exportrichtlinie zur Zuweisung an das Cache-Volume auswählen.
+. *Anwenden* auswählen.
+
+
+
+
+[[change-the-caching-method-for-a-cache-volume]]
+== Ändern der Caching-Methode für ein Cache-Volume
+
+Sie können die Funktionsweise des Caches für ein bestehendes Cache-Volume auf Write-Around oder Write-Back ändern.
+
+Weitere Informationen zu link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-flexcache.html["Schreibmodi"^].
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Im Menü „Aktionen“ für das Cache-Volume, das geändert werden soll, erfolgt die Auswahl von *Caching-Methode ändern*.
+. Im Dialogfeld *Caching-Methode ändern* erfolgt die Auswahl der neuen Caching-Methode und anschließend von *Anwenden*.
+
+
+
+
+[[prepopulate-a-cache-volume]]
+== Vorbefüllen eines Cache-Volumes
+
+Es ist sinnvoll, das Cache-Volume vor der Verwendung mit Daten aus dem Ursprungsvolume zu füllen, damit zwischengespeicherte Daten schneller verfügbar sind.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Im Menü „Aktionen“ lässt sich für das Cache-Volume, das geändert werden soll, die Option *Cache vorbefüllen* auswählen.
+. Im Dialogfeld *Cache vorbefüllen* erfolgt die Angabe des Pfads zum Datensatz für die Vorbefüllung, anschließend die Auswahl von *Anwenden*.
+
+
+
+
+[[delete-a-cache-volume]]
+== Löschen eines Cache-Volumes
+
+Wenn Sie ein Cache-Volume löschen, heben Sie dessen Cache-Beziehung auf. Zwischengespeicherte Daten sind dann nicht mehr verfügbar.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. In FSx for ONTAP erfolgt die Auswahl von *Manage* im Aktionsmenü des Dateisystems mit dem Cache-Volume.
+. In der Dateisystemübersicht ist die Registerkarte *Cache-Beziehungen* zu wählen.
+. Im Aktionsmenü des Cache-Volumes, das Sie löschen möchten, erfolgt anschließend die Auswahl von *Cache-Volume löschen*.
+. Im Dialogfeld *Cache-Volume löschen* ist die Löschung zu bestätigen; anschließend ist *Löschen* auszuwählen.
+

@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-custom-rules.html 
+keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
+summary: Benutzerdefinierte Architekturregeln können im Regelkatalog angezeigt, aktiviert, deaktiviert und gelöscht werden. 
+---
+= Benutzerdefinierte Regeln für NetApp Workload Factory managen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Der Regelkatalog ist eine zentrale Anlaufstelle zum Managen all Ihrer benutzerdefinierten Regeln. Die Details jeder Regel, deren Ergebnisse sowie die Möglichkeit, sie zu aktivieren oder zu deaktivieren, sind einsehbar.
+
+
+
+[[view-the-rules-catalog]]
+== Regelkatalog anzeigen
+
+Der Regelkatalog zeigt alle von Ihnen erstellten Regeln, deren Status, Zeitplan und neuesten Ergebnisse an.
+
+.Schritte
+. Melden Sie sich mit einem der link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["Konsolenerlebnisse"^] an.
+. Wählen Sie das Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol"] und anschließend *Rule builder*.
+. *Ihre Regeln ansehen* öffnet den Regelkatalog.
+
+
+
+
+[[view-rule-results]]
+== Regelergebnisse anzeigen
+
+Die Ergebnisse zeigen, welche Ressourcen Ihrer Regel folgen und welche nicht.
+
+.Schritte
+. Im Regelkatalog auf die Regel klicken, die überprüft werden soll.
+. Die Registerkarte *Alle Laufergebnisse* auswählen.
+. Mit **Details anzeigen** werden die Ergebnisse für jeden Durchlauf angezeigt.
+
+
+Wenn die Überprüfung für einige Elemente fehlgeschlagen ist, zeigt die Fehlermeldung den Grund an. Häufige Gründe sind Verbindungsprobleme, fehlende Berechtigungen oder eine nicht eingerichtete Verknüpfung.
+
+
+
+[[edit-a-custom-rule]]
+== Benutzerdefinierte Regel bearbeiten
+
+Sie können die Logik, den Zeitplan oder andere Einstellungen einer Regel jederzeit ändern. Wenn Sie eine Regel bearbeiten, wird der Regel Errichter mit den aktuellen Einstellungen der Regel geöffnet.
+
+.Schritte
+. Im Regelkatalog wählen Sie die Regel aus, die Sie bearbeiten möchten.
+. Klicken Sie auf *Bearbeiten*.
++
+Die Regel wechselt in den Entwurfsmodus, und der Regel-Errichter öffnet sich.
+
+. Die Regelvorgabe kann bearbeitet oder das Gespräch genutzt werden, um die Regel zu verbessern.
+. Überprüfung der aktualisierten Interpretation und Regeldefinition der KI.
++
+Das System zeigt an, was sich gegenüber der aktuellen Regel geändert hat, einschließlich aller API-Aufrufe oder Logik.
+
+. Je nach den vorgenommenen Änderungen ist einer der folgenden Schritte auszuführen:
++
+** Bei nur geringfügigen Änderungen kann die Regel mit *Save* aktualisiert werden.
+** Wenn wesentliche Änderungen vorgenommen wurden, können die Änderungen mit *Regel validieren* getestet werden; anschließend kann mit *Planen* die Regel gespeichert und geplant oder mit *Als Entwurf speichern* ohne Planung gespeichert werden.
+** Zum Verwerfen der Änderungen ist *Zur vorherigen Version zurückkehren* auszuwählen. Die Regel kehrt zu ihrer ursprünglichen Definition zurück und verlässt den Bearbeitungsmodus.
+
+
+

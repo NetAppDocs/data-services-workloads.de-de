@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: admin/learn-custom-dashboards-fsx.html 
+keywords: custom dashboards, dashboards, personalized dashboards, AI dashboards, operational visibility, workload monitoring 
+summary: KI-gestützte Dashboards, die auf Ihre Arbeitslasten und Prioritäten zugeschnitten sind, ermöglichen eine verbesserte operative Transparenz, ohne durch vordefinierte Ansichten eingeschränkt zu werden. 
+---
+= Informationen zu benutzerdefinierten Dashboards für FSx for ONTAP in NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Als Cloud- und Storage-Administrator bieten benutzerdefinierte Dashboards einen klaren Überblick über die Systeme und Workloads, die Sie verwalten. Sie ermöglichen es, Ansichten zu erstellen und zu personalisieren, die Ihrer Arbeit, Ihren Prioritäten und Geschäftszielen entsprechen, anstatt auf vorgegebene Layouts beschränkt zu sein.
+
+Benutzerdefinierte Dashboards nutzen KI, um personalisierte Ansichten Ihrer Workload Factory Umgebung zu erstellen. Es genügt, in verständlicher Sprache zu beschreiben, was überwacht werden soll, und das System erstellt automatisch visuelle Diagramme basierend auf den jeweiligen Anforderungen.
+
+Alle Benutzer Ihres Workload Factory Kontos können alle benutzerdefinierten Dashboards einsehen. Diese gemeinsame Einrichtung unterstützt die Zusammenarbeit der Teams und ermöglicht es, dass in Ihrer Organisation dieselben betrieblichen Informationen angezeigt werden.
+
+
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und das Erstellen von Dashboards ist nicht möglich. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:manage-genai-features.html["Informationen zur KI-Administration"].
+
+
+
+[[why-use-custom-dashboards]]
+== Warum benutzerdefinierte Dashboards verwendet werden
+
+Workload Factory Nutzer verwalten zahlreiche Workloads, Umgebungen und Prioritäten, aber die Standard Dashboards zeigen nur vordefinierte Ansichten. Benutzerdefinierte Dashboards tragen zur Lösung verschiedener betrieblicher Herausforderungen bei:
+
+* *Wichtige Fragen schnell beantworten*: Der Fokus liegt auf den wichtigsten Fragen oder Wissenslücken statt auf allgemeinen Systemstatistiken.
+* *Überwachen Sie, was jetzt wichtig ist*: Verfolgen Sie die Kennzahlen, die Ihren aktuellen Prioritäten entsprechen, nicht einen festen Satz von Gesundheitsindikatoren.
+* *Technische Daten mit Geschäftsergebnissen verknüpfen*: Es wird dargestellt, wie sich die Systemleistung auf den Betrieb und die Geschäftsziele auswirkt.
+* *Vermeiden Sie das Wechseln zwischen verschiedenen Tools*: Alle relevanten Informationen sind an einem Ort verfügbar, ein Wechsel zwischen Tools, Seiten oder Exporten ist nicht erforderlich.
+
+
+
+
+[[what-you-can-do-with-custom-dashboards]]
+== Möglichkeiten mit benutzerdefinierten Dashboards
+
+Während der Einrichtung unterstützt Sie der KI-gestützte Dialog dabei, Folgendes zu definieren:
+
+* Zu überwachende Arbeitslasten und Ressourcen
+* Wichtige Kennzahlen für Ihre Arbeit
+* Zeitbereiche und Vergleichszeiträume
+* Ansichten nach Region, Arbeitslast oder anderen Kategorien
+* Regeln oder Anforderungen, die verfolgt und angezeigt werden müssen
+
+
+
+
+[[view-and-share-dashboards]]
+== Dashboards anzeigen und teilen
+
+Neue Dashboards sind standardmäßig privat, sodass nur Sie sie sehen können. Ein Dashboard kann jederzeit öffentlich gemacht werden, um es mit Ihrem Team zu teilen.
+
+* *Private Dashboards*: Nur Sie können diese Dashboards einsehen. Diese eignen sich für persönliche Überwachung, Tests oder laufende Arbeiten.
+* *Öffentliche Dashboards*: Alle Benutzer Ihres Workload Factory-Kontos können diese Dashboards einsehen. Damit lassen sich Überwachungsansichten teilen und das Team bleibt hinsichtlich Workloads, Prioritäten und Geschäftszielen auf dem gleichen Stand.
+
+
+Jede Dashboard-Karte zeigt an, ob das Dashboard privat oder öffentlich ist, sodass Sie schnell sehen können, welche Dashboards geteilt sind.
+
+link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
+
+
+
+[[considerations-and-limitations]]
+== Überlegungen und Einschränkungen
+
+
+
+[[aws-credentials-and-permissions]]
+=== AWS Anmeldeinformationen und Berechtigungen
+
+Zum Erstellen oder Anzeigen benutzerdefinierter Dashboards benötigen Sie die entsprechenden AWS IAM-Berechtigungen für die Ressourcen, die Sie überwachen möchten. Es ist sicherzustellen, dass das Workload Factory Konto über Lesezugriff auf die von den Dashboards verwendeten Datenquellen verfügt.
+
+Zum Erstellen von Dashboards verwendet Workload Factory schreibgeschützte AWS-Anmeldeinformationen. Diese Anmeldeinformationen erlauben nur Leseaktionen wie  `fsx:DescribeVolumes` und  `fsx:DescribeFileSystems`, für die folgenden Dienste: EC2, FSx, CloudWatch, Resource Groups Tagging API, Backup, CloudWatch Logs, KMS und EFS.
+
+link:../fsx-storage/add-credentials.html["Informationen zum Hinzufügen von AWS-Anmeldeinformationen und zum Einrichten von IAM-Berechtigungen"^].
+
+
+
+[[link-to-fsx-for-ontap]]
+=== Link zu FSx für ONTAP
+
+Workload Factory benötigt eine Verbindung zu FSx for ONTAP Dateisystemen. Eine Verbindung stellt eine Vertrauensbeziehung und Konnektivität zwischen Workload Factory und einem oder mehreren FSx for ONTAP Dateisystemen her. So ist es möglich, bestimmte Dateisystemfunktionen direkt über die ONTAP REST API-Aufrufe zu überwachen und zu verwalten, die über die Amazon FSx for ONTAP API nicht verfügbar sind.
+
+link:../fsx-storage/create-link.html["Informationen zum Erstellen eines Links"^].
+
+
+
+[[read-only-design]]
+=== Read-only-Design
+
+Benutzerdefinierte Dashboards sind schreibgeschützt. Sie können weder Ihre Speicher- noch Ihre Workload-Einstellungen ändern. Dadurch ist es möglich, das System zu überwachen, ohne versehentlich Änderungen vorzunehmen.
+
+
+
+[[limitations]]
+=== Einschränkungen
+
+Für benutzerdefinierte Dashboards gelten derzeit folgende Einschränkungen:
+
+* Dashboards können nicht außerhalb Ihres Workload Factory-Kontos geteilt werden. Die Freigabe von Dashboards ist auf Benutzer innerhalb desselben Workload Factory-Kontos beschränkt.
+
+
+
+
+[[demo-environment]]
+=== Demo Umgebung
+
+Wenn Sie ein Workload Factory Demoaccount verwenden, stehen einige vordefinierte Dashboards zur Verfügung. Diese helfen dabei, die Möglichkeiten benutzerdefinierter Dashboards zu erkennen. Jedes Dashboard zeigt einen typischen Überwachungsbedarf: Status der Notfallwiederherstellung, Kapazität und Kosten in verschiedenen Regionen sowie ob Speicherschutzregeln eingehalten werden.
+
+
+
+[[sample-prompts]]
+=== Beispiel-Eingabeaufforderungen
+
+Die folgenden Beispiele zeigen, wie sich Überwachungsanforderungen in einfacher Sprache beschreiben lassen:
+
+* *Überwachung der Notfallwiederherstellung*: „Ich richte eine Notfallwiederherstellungslösung in AWS für meine On-Premises-Systeme ein. Ich möchte eine vollständige Liste meiner On-Premises-Ressourcen und den Status jeder einzelnen Ressource am Notfallwiederherstellungsstandort in der Region US East sehen, einschließlich der Information, ob sie konfiguriert, aktiv und fehlerfrei ist.“
+* *Multiregionale Kapazität und Kosten*: „Ich verwalte Speicher über mehrere Cloud-Regionen und Anwendungen hinweg. Ich möchte einen klaren Überblick darüber, wie viel Speicherplatz ich zugewiesen habe, wie viel davon genutzt wird und wie hoch die Kosten sind, mit Details für jede Region und jede Anwendung.“
+* *Konformität mit den Speicherschutzrichtlinien*: „Ich richte eine neue Speicherschutzstrategie gemäß den Standards meiner Organisation ein. Alle Dateisysteme anzeigen und angeben, ob sie diese Anforderungen erfüllen:
++
+** Datenbank-Workloads: 12 tägliche Snapshots pro Volume und 2 manipulationssichere Snapshots pro Woche.
+** NFS und SMB Freigaben: 7 tägliche Snapshots pro Volume und 1 manipulationssicherer Snapshot pro Woche.
+** ARP muss auf allen Volumes aktiviert sein.
+
+
+
+
+
+
+[[next-steps]]
+== Nächste Schritte
+
+* link:create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"]
+* link:manage-custom-dashboards-fsx.html["Benutzerdefinierte Dashboards verwalten"]
+* link:troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
+
