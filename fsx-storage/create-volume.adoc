@@ -87,6 +87,7 @@ NOTE: Wenn Sie Terraform aus Codebox verwenden, werden im kopierten oder herunte
 . Auf der Seite „Volume erstellen“ werden unter „Allgemeine Details“ die folgenden Angaben gemacht:
 +
 .. *Volume-Name*: Ein Name für das Volume.
+.. *Workload*: Der dem Volume zugeordnete Workload wird ausgewählt.
 .. *Name der Storage VM*: Optional können Sie einen Namen für die Storage VM eingeben.
 .. *Volume-Stil*: Auswahl von *FlexVol* oder *FlexGroup* Volume.
 +

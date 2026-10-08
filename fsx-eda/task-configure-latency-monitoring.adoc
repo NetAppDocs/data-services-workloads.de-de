@@ -114,7 +114,7 @@ Benachrichtigungskanäle:
 * *Amazon SNS*: Veröffentlicht in Ihrem konfigurierten SNS-Thema zur Integration mit anderen Systemen
 
 
-Zum Aktivieren von Benachrichtigungen siehe link:../admin/configure-notifications.html#wf-console-email-notifications["Benachrichtigungseinstellungen konfigurieren"].
+Zum Aktivieren von Benachrichtigungen siehe link:../admin/configure-notifications.html["Benachrichtigungseinstellungen konfigurieren"].
 
 
 

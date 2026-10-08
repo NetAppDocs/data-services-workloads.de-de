@@ -11,7 +11,7 @@ summary: Tags für ein Dateisystem in FSx for ONTAP lassen sich jederzeit hinzuf
 
 
 [role="lead"]
-Die Einstellungen eines FSx for ONTAP Dateisystems in NetApp Workload Factory lassen sich verwalten. Tags für das Dateisystem können verwaltet, das fsxadmin Passwort bei Bedarf zurückgesetzt und die Durchsatzkapazität nach Bedarf aktualisiert werden.
+Die Einstellungen eines FSx for ONTAP Dateisystems in NetApp Workload Factory können verwaltet werden, damit Ihr Dateisystem übersichtlich, sicher und für Ihre Workload angemessen dimensioniert bleibt. Tags können jederzeit hinzugefügt oder bearbeitet, ONTAP-Zugangsdaten verwaltet, das fsxadmin-Passwort zurückgesetzt und die Durchsatzkapazität aktualisiert werden.
 
 
 
@@ -34,6 +34,44 @@ Die maximale Anzahl von Tags, die Sie einem Dateisystem zuweisen können, beträ
 
 
 
+[[manage-ontap-credentials]]
+== ONTAP Anmeldeinformationen verwalten
+
+Verwaltung der ONTAP-Anmeldeinformationen für ein FSx for ONTAP Dateisystem in NetApp Workload Factory. Workload Factory hat zwei Arten von Anmeldeinformationen: primäre und eingeschränkte. Standardmäßig verwendet das Dateisystem die primären ONTAP-Anmeldeinformationen. Eingeschränkte Anmeldeinformationen werden nur für KI-Operationen (AIOps) wie Ask Me, Rule builder und benutzerdefinierte Dashboards verwendet. Optional kann ein Satz eingeschränkter Anmeldeinformationen hinzugefügt werden, und jeder der beiden Sätze kann jederzeit aktualisiert werden.
+
+Folgende Aufgaben sind möglich:
+
+* Optional kann ein eingeschränkter Satz von Anmeldedaten hinzugefügt werden, entweder mit einem Benutzernamen und einem Passwort oder mit einem Secret ARN.
+* Vorhandene Zugangsdaten, einschließlich Benutzername und Passwort, nur das Passwort oder die Secret ARN, können geändert werden.
+
+
+Workload Factory unterstützt den Wechsel zwischen dem Workload Factory Anmeldeinformationsdienst (Benutzername und Passwort) und AWS Secrets Manager.
+
+Workload Factory verarbeitet eingeschränkte Anmeldeinformationen wie folgt:
+
+* Wenn Sie keine eingeschränkten Anmeldeinformationen für ein Dateisystem angegeben haben und anschließend benutzerdefinierte Regeln oder Dashboards erstellen oder Fragen an Ask Me stellen, erstellt Workload Factory schreibgeschützte ONTAP Anmeldeinformationen zur Verwendung als eingeschränkter Anmeldeinformationssatz.
+* Wenn Sie bereits eingeschränkte Zugangsdaten für ein Dateisystem angegeben haben, werden diese Zugangsdaten für AIOps verwendet.
+
+
+.Bevor Sie beginnen
+Sie müssen einen Link zum Verwalten der ONTAP Anmeldeinformationen verknüpfen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im FSx for ONTAP Menü erfolgt die Auswahl von *Inventar*.
+. Im *Inventar* erfolgt die Auswahl von *Verwalten* im Aktionsmenü des Dateisystems, für das die Anmeldeinformationen gemanagt werden sollen.
+. Die Auswahl des Menüs „Aktionen“ erfolgt in der Dateisystemübersicht.
++
+image:screenshot-manage-ontap-credentials.png["Ein Screenshot des Aktionsmenüs auf der Registerkarte Übersicht für ein Dateisystem."]
+
+. *Manage ONTAP credentials* ist auszuwählen.
+. Die primären oder eingeschränkten ONTAP Zugangsdaten werden aktualisiert.
+. *Anwenden* auswählen.
+
+
+
+
 [[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
 == Das fsxadmin-Passwort eines FSx for ONTAP Dateisystems zurücksetzen
 
@@ -43,8 +81,8 @@ Wenn Sie bei der Erstellung des Dateisystems einen alternativen Benutzer angegeb
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
-. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Storage*.
-. Im Menü „Storage“ erfolgt die Auswahl von *Inventory*.
+. Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
+. Im FSx for ONTAP Menü erfolgt die Auswahl von *Inventar*.
 . Im *Inventory* im Aktionsmenü des Dateisystems, für das das fsxadmin Passwort zurückgesetzt werden soll, *Manage* auswählen.
 . Die Auswahl des Menüs „Aktionen“ erfolgt in der Dateisystemübersicht.
 +
