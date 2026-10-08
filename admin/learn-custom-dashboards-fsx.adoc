@@ -4,7 +4,7 @@ permalink: admin/learn-custom-dashboards-fsx.html
 keywords: custom dashboards, dashboards, personalized dashboards, AI dashboards, operational visibility, workload monitoring 
 summary: KI-gestützte Dashboards, die auf Ihre Arbeitslasten und Prioritäten zugeschnitten sind, ermöglichen eine verbesserte operative Transparenz, ohne durch vordefinierte Ansichten eingeschränkt zu werden. 
 ---
-= Informationen zu benutzerdefinierten Dashboards für FSx for ONTAP in NetApp Workload Factory
+= Informationen zu benutzerdefinierten Dashboards in NetApp Workload Factory
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -18,7 +18,7 @@ Benutzerdefinierte Dashboards nutzen KI, um personalisierte Ansichten Ihrer Work
 Alle Benutzer Ihres Workload Factory Kontos können alle benutzerdefinierten Dashboards einsehen. Diese gemeinsame Einrichtung unterstützt die Zusammenarbeit der Teams und ermöglicht es, dass in Ihrer Organisation dieselben betrieblichen Informationen angezeigt werden.
 
 
-NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und das Erstellen von Dashboards ist nicht möglich. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:manage-genai-features.html["Informationen zur KI-Administration"].
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine entsprechende Meldung angezeigt, und Sie können keine Dashboards erstellen oder bearbeiten. Eine Kontaktaufnahme ist über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"] möglich.
 
 
 
@@ -47,6 +47,11 @@ Während der Einrichtung unterstützt Sie der KI-gestützte Dialog dabei, Folgen
 * Regeln oder Anforderungen, die verfolgt und angezeigt werden müssen
 
 
+Sie können Dashboards aus dem Katalog bearbeiten und den Dashboard-Namen, die Beschreibung, die Kategorie oder die Monitoring-Anfrage aktualisieren, bevor Sie entscheiden, ob Sie die überarbeitete Version speichern möchten.
+
+
+NOTE: Nur der Ersteller des Dashboards kann das Dashboard bearbeiten. Während der Bearbeitung sind Ihre Änderungen für andere Nutzer erst sichtbar, nachdem Sie sie gespeichert haben.
+
 
 
 [[view-and-share-dashboards]]
@@ -60,7 +65,7 @@ Neue Dashboards sind standardmäßig privat, sodass nur Sie sie sehen können. E
 
 Jede Dashboard-Karte zeigt an, ob das Dashboard privat oder öffentlich ist, sodass Sie schnell sehen können, welche Dashboards geteilt sind.
 
-link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
+link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
 
 
 
@@ -85,7 +90,7 @@ link:../fsx-storage/add-credentials.html["Informationen zum Hinzufügen von AWS-
 
 Workload Factory benötigt eine Verbindung zu FSx for ONTAP Dateisystemen. Eine Verbindung stellt eine Vertrauensbeziehung und Konnektivität zwischen Workload Factory und einem oder mehreren FSx for ONTAP Dateisystemen her. So ist es möglich, bestimmte Dateisystemfunktionen direkt über die ONTAP REST API-Aufrufe zu überwachen und zu verwalten, die über die Amazon FSx for ONTAP API nicht verfügbar sind.
 
-link:../fsx-storage/create-link.html["Informationen zum Erstellen eines Links"^].
+link:../fsx-storage/create-link.html["Informationen zum Erstellen eines Links"].
 
 
 
@@ -134,7 +139,7 @@ Die folgenden Beispiele zeigen, wie sich Überwachungsanforderungen in einfacher
 [[next-steps]]
 == Nächste Schritte
 
-* link:create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"]
-* link:manage-custom-dashboards-fsx.html["Benutzerdefinierte Dashboards verwalten"]
-* link:troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
+* link:../admin/create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"]
+* link:../admin/manage-custom-dashboards-fsx.html["Benutzerdefinierte Dashboards verwalten"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
 

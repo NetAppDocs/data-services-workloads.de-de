@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/create-custom-rule.html 
-keywords: create custom rule, custom rules, fsx, ontap, well architected, rule builder 
+keywords: create custom rule, byor, custom rules, fsx, ontap, well architected, rule builder 
 summary: Eine benutzerdefinierte Architekturregel in natürlicher Sprache erstellen, um die Organisationsstandards für FSx für ONTAP durchzusetzen. 
 ---
-= Benutzerdefinierte Regel in NetApp Workload Factory erstellen
+= Erstellung einer benutzerdefinierten Regel für Workload Factory in NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,68 +14,18 @@ summary: Eine benutzerdefinierte Architekturregel in natürlicher Sprache erstel
 
 
 [role="lead"]
-Benutzerdefinierte Regeln können durch Beschreibungen in einfacher Sprache erstellt werden. Der KI-Errichter in NetApp Workload Factory wandelt Ihre Anfrage in eine validierte Regel um, die Ihre FSx for ONTAP Ressourcen prüft.
+In Workload Factory lassen sich benutzerdefinierte Regeln erstellen, um Ihre FSx for ONTAP Ressourcen zu prüfen. Die Regeln können in einfacher Sprache beschrieben werden, und der KI-Regelerrichter wandelt Ihre Anfrage in eine validierte Regel um.
+
+.Über diese Aufgabe
+Der Prozess zum Einrichten von Regeln führt Sie durch jeden Schritt: die Erstellung der Regel, die Überprüfung, wie die KI sie verstanden hat, und die Kontrolle der Ergebnisse vor der Planung regelmäßiger Überprüfungen. Sie behalten während des gesamten Prozesses die Kontrolle. Das System schlägt auf Grundlage Ihres Prompt eine Regel vor, aber es geschieht nichts, bis Sie sie genehmigen.
 
 
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird Ihnen eine Meldung angezeigt, und Sie können keine benutzerdefinierten Regeln erstellen oder bearbeiten. Eine Kontaktaufnahme ist über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"^] möglich.
 
-[[about-this-task]]
-== Über diese Aufgabe
-
-Der Regelerstellungsprozess führt Sie Schritt für Schritt durch die Regeldefinition, die Überprüfung der KI-Interpretation und die Ergebniskontrolle vor der Planung regelmäßiger Auswertungen. Sie behalten dabei in jedem Schritt die Kontrolle. Das System schlägt basierend auf Ihrer Eingabe eine Regel vor, aber nichts wird umgesetzt, bevor Sie sie bestätigen.
-
-
-NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, können Sie keine benutzerdefinierten Regeln erstellen. Eine Kontaktaufnahme ist über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"^] möglich.
-
-
-
-[[limitations]]
-=== Einschränkungen
-
-Für benutzerdefinierte Regeln gelten folgende Einschränkungen:
-
-* Automatische Korrekturen sind nicht verfügbar. Nicht konforme Ressourcen sind anhand der bereitgestellten Anleitung selbst zu korrigieren.
-* Jede Regel kann nur einen Ressourcentyp prüfen. Um mehrere Ressourcentypen zu prüfen, sind separate Regeln zu erstellen.
-* Das kürzeste Auswertungsintervall beträgt 1 Stunde, um übermäßiges Scannen zu vermeiden.
-* Regeln haben nur Lesezugriff und können keine Änderungen an Ihrer Umgebung vornehmen.
-
-
-
-
-[[custom-rule-examples]]
-=== Beispiele für benutzerdefinierte Regeln
-
-Die folgenden Beispiele veranschaulichen gängige benutzerdefinierte Regeln:
-
-*Schutz des Produktionsvolumens*:: „Alle Volumes mit dem Tag ‚Prod‘ müssen über eine Snapshot-Richtlinie verfügen.“
-+
---
-Diese Regel erstellt automatisch Snapshots zum Schutz der Produktionsvolumina gemäß den Unternehmensanforderungen.
-
---
-*Archivvolumen Tiering*:: „Allen Volumes mit dem Tag ‚Archive‘ sollte die Tiering-Richtlinie auf ‚All‘ gesetzt sein.“
-+
---
-Diese Regel senkt die Kosten, indem archivierte Daten automatisch in kostengünstigeren Speicher verschoben werden.
-
---
-*Namensstandards für Dateisysteme*:: „Alle Dateisysteme müssen der Namenskonvention 'fsx-{environment}-{application}' folgen.“
-+
---
-Diese Regel validiert, dass Dateisysteme den organisatorischen Namenskonventionen entsprechen, was eine einfachere Verwaltung und Kostenverteilung ermöglicht.
-
---
-
-
-
-
-[[before-you-begin]]
-== Bevor Sie beginnen
-
-Bevor Sie benutzerdefinierte Regeln erstellen und ausführen können, müssen Sie Folgendes haben:
-
-* Sie haben AWS-Anmeldeinformationen mit Lesezugriff konfiguriert. link:add-credentials.html["AWS-Anmeldeinformationen zur Workload Factory hinzufügen"^].
-* Sie verfügen über ONTAP Zugangsdaten mit Anzeigeberechtigungen. link:add-credentials.html["ONTAP-Anmeldeinformationen zur Workload Factory hinzufügen"^].
-* Sie haben einen Link oder einen Console Agent für die Konnektivität zum Cloud Storage-System konfiguriert. link:create-link.html["Link erstellen und zuordnen"] oder link:https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["einen Console Agent einsetzen"^].
+.Bevor Sie beginnen
+* Sie haben AWS-Anmeldeinformationen mit Lesezugriff konfiguriert.
+* Sie verfügen über ONTAP Zugangsdaten mit Anzeigeberechtigungen.
+* Sie haben einen Link oder Agenten für FSx für ONTAP Konnektivität konfiguriert.
 * Sie verstehen, dass die Erstellung benutzerdefinierter Regeln den Bedrock AI-Dienst von NetApp verwendet.
 
 
@@ -84,12 +34,9 @@ Bevor Sie benutzerdefinierte Regeln erstellen und ausführen können, müssen Si
 [[create-a-rule]]
 == Regel erstellen
 
-Mit dem Rule Errichter lassen sich benutzerdefinierte Best-Practice-Regeln in einfacher Sprache erstellen. Diese Regeln werden für alle Ihre Ressourcen geprüft.
-
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
-. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Well-architected*.
-. Im Menü „Well-architected“ die Option *Rule builder* auswählen.
+. Die Auswahl erfolgt über das Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol"] und anschließend über Workloads > Well-architected > Rule Errichter.
 +
 Wenn Sie den Errichter öffnen, werden Beispielaufforderungen angezeigt, die beim Schreiben Ihrer benutzerdefinierten Regel unterstützen. Es besteht die Möglichkeit, *Aufforderung kopieren* auszuwählen, um eine Beispielaufforderung in das Textfeld des KI-Dialogs zu übernehmen.
 
@@ -114,16 +61,20 @@ Die KI analysiert Ihre Eingabeaufforderung und generiert eine Regeldefinition.
 
 Der Regelgenerator zeigt Folgendes an:
 
-* *Interpretation (geparst)*: Wie die KI Ihre Eingabeaufforderung in einfacher Sprache verstanden hat.
-* *Regeldefinition*: Die strukturierte Regel einschließlich Ressourcentyp, Bedingungslogik und Auswertungskriterien.
-* *Begründung*: Warum die KI Ihre Eingabeaufforderung auf diese Weise interpretiert hat.
-* *Konfidenzindikator*: Wie sicher das System in der Interpretation ist.
+Geparste Interpretation:: Wie die KI Ihre Eingabe in einfacher Sprache verstanden hat.
+Regeldefinition:: Die strukturierte Regel umfasst Ressourcentyp, Bedingungslogik und Bewertungskriterien.
+Argumentation:: Warum die KI Ihren Prompt so interpretiert hat.
+Vertrauensindikator:: Wie sicher das System bei der Interpretation ist.
 
 
 .Schritte
 . Die Interpretation sollte überprüft werden, um sicherzustellen, dass sie der beabsichtigten Bedeutung entspricht.
+. Zu prüfen ist, ob die Regeldefinition korrekt ist. Ist die Auslegung unklar oder fehlerhaft, stellt das System möglicherweise Fragen wie:
 +
-Zu prüfen ist, ob die Regeldefinition korrekt ist. Falls die Auslegung unklar oder fehlerhaft ist, kann das System Fragen stellen wie: * Welche Ressource sollte geprüft werden? * Welcher Wert oder Grenzwert definiert die Einhaltung? * Wie häufig sollte die Regel ausgeführt werden?
+** Welche Ressource sollte überprüft werden?
+** Welcher Wert oder Grenzwert definiert Compliance?
+** Wie oft soll die Regel ausgeführt werden?
+
 
 . Antworten auf die klärenden Fragen der KI.
 +
@@ -137,7 +88,7 @@ Die KI bittet Sie möglicherweise, aus mehreren Optionen auszuwählen, um Ihre B
 [[test-the-rule]]
 == Testen der Regel
 
-Vor der Planung der Regel kann ein einmaliger Test durchgeführt werden, um zu sehen, welche Ressourcen davon betroffen sind.
+Bevor Sie die Regel speichern oder planen, sollten Sie einen Test ausführen, um festzustellen, welche Ressourcen davon betroffen sein werden.
 
 .Schritte
 . *Regel validieren* auswählen.
@@ -146,17 +97,10 @@ Das System bewertet alle Ressourcen im Geltungsbereich anhand Ihrer Regellogik.
 
 . Validierungsergebnisse anzeigen:
 +
-** *Bewertete Ressourcen*: Gesamtzahl der überprüften Ressourcen
-** *Konform*: Ressourcen, die die Regelkriterien erfüllen
-** *Nicht konform*: Ressourcen, die die Kriterien nicht erfüllen
-** *Fehlgeschlagene Auswertungen*: Ressourcen, die nicht ausgewertet werden konnten (mit Fehlerdetails)
-
-
-. Wenn einige Ressourcen die Auswertung nicht bestanden haben, können die Fehlerursachen eingesehen werden:
-+
-** *AWS-Anmeldeinformationsfehler*: Leseberechtigungen reichen für bestimmte Ressourcen möglicherweise nicht aus
-** *Verbindungsfehler*: Die Verbindung oder der Agent ist möglicherweise nicht für bestimmte Dateisysteme konfiguriert
-** *ONTAP-Berechtigungsfehler*: Der Viewer-Benutzer hat möglicherweise keinen Zugriff auf bestimmte Ressourcen
+** Bewertete Ressourcen: Gesamtzahl der geprüften Ressourcen
+** Konform: Ressourcen, die die Regelkriterien erfüllen
+** Nicht konform: Ressourcen, die die Kriterien nicht erfüllen
+** Fehlgeschlagene Auswertungen: Ressourcen, die nicht ausgewertet werden konnten (mit Fehlerdetails)
 
 
 
@@ -166,36 +110,24 @@ Das System bewertet alle Ressourcen im Geltungsbereich anhand Ihrer Regellogik.
 [[save-or-schedule-the-rule]]
 == Regel speichern oder planen
 
-Nachdem Sie Ihre Regel getestet haben, können Sie sie als Entwurf speichern oder so festlegen, dass sie regelmäßig ausgeführt wird.
+Nachdem Sie Ihre Regel validiert haben, können Sie sie als Entwurf speichern oder für eine regelmäßige Ausführung festlegen.
 
 .Schritte
 . Führen Sie einen der folgenden Schritte aus:
 +
-** Um eine regelmäßige Auswertung zu planen, die Auswertungshäufigkeit festlegen (mindestens 1 Stunde, Standard 24 Stunden) und *Planen* auswählen. Die Regel ist aktiviert und wird gemäß dem definierten Zeitplan ausgeführt.
-** Um ohne Terminplanung zu speichern, *Als Entwurf speichern* auswählen. Die Regel wird gespeichert, aber nicht ausgewertet, bis sie geplant wird.
-** Um die Regel zu verwerfen, *Verwerfen* auswählen, um die Regelerstellung abzubrechen und neu zu beginnen.
+** Zum Planen einer regelmäßigen Auswertung werden die Auswertungshäufigkeit festgelegt und *Schedule* ausgewählt. Die Regel ist aktiviert und wird gemäß dem definierten Zeitplan ausgeführt.
+** Zum Speichern nach der Validierung ohne Planung wählen Sie *Save as draft*. Die Regel wird gespeichert, aber nicht ausgewertet, bis sie geplant wird.
+** Die Regel wird durch Auswahl von *Löschen* gelöscht.
 
 
 
 
 .Ergebnis
-Ihre benutzerdefinierte Regel wurde erstellt und ist im Regelkatalog aufgeführt. Wenn Sie einen Zeitplan festlegen, werden Ihre FSx for ONTAP Ressourcen mit der angegebenen Häufigkeit geprüft.
-
-
-
-[[troubleshooting]]
-== Fehlerbehebung
-
-Keine Dateisysteme verfügbar:: Richten Sie Ihre AWS-Zugangsdaten ein und stellen Sie sicher, dass Ihre Umgebung mindestens ein FSx for ONTAP Dateisystem enthält. Der Rule Builder benötigt ein Dateisystem, um Regeln anzuwenden.
-Interpretation mit geringer Sicherheit:: Es werden weitere Informationen benötigt. Die Fragen können beantwortet oder die Aufgabenstellung mit klaren Details zu Ressourcentyp, Einschränkungen und Bedingungen neu formuliert werden.
-Teilweise Validierungsfehler:: Überprüfen Sie, welche Ressourcen fehlgeschlagen sind und warum. Häufige Ursachen sind fehlende Link- oder Agenteneinstellungen oder unzureichende Berechtigungen. Das Problem beheben und anschließend erneut validieren.
-Mehrdeutige Eingabeaufforderung:: Beschreiben Sie genauer, was Sie prüfen möchten. Geben Sie den Ressourcentyp, die Bedingung und den Schwellenwert an. Zur Unterstützung dienen die Beispiele für Eingabeaufforderungen.
-Die Regel zielt auf mehrere Ressourcentypen ab:: Für jeden Ressourcentyp ist eine separate Regel zu erstellen. Pro Regel wird nur ein Ressourcentyp unterstützt.
-
+Ihre benutzerdefinierte Regel wurde erstellt und ist im Regelkatalog aufgeführt. Wenn Sie einen Zeitplan festlegen, werden Ihre FSx for ONTAP Ressourcen mit der angegebenen Häufigkeit geprüft. Wenn Sie die Regel später bearbeiten, führt Sie das System durch dieselben Schritte, Chat, Überprüfung, Genehmigung und Validierung, bevor Sie die aktualisierte Version speichern.
 
 
 
 [[what-to-do-next]]
 == Nächste Schritte
 
-link:manage-custom-rules.html["Benutzerdefinierte Regeln verwalten"]
+link:../fsx-storage/manage-custom-rules.html["Benutzerdefinierte Regeln verwalten"]

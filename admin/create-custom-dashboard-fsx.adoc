@@ -21,7 +21,7 @@ Nach der Erstellung kann das Dashboard aktualisiert werden, um die aktualisierte
 Beachten Sie, dass benutzerdefinierte Dashboards standardmäßig schreibgeschützt sind und keine Änderungen an Ihren Speicher- oder Workload-Konfigurationen vornehmen können.
 
 
-NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und das Erstellen von Dashboards ist nicht möglich. Die Kontaktaufnahme erfolgt über Ihren Administrator oder link:manage-genai-features.html["Informationen zur KI-Administration"].
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine Meldung angezeigt und das Erstellen von Dashboards ist nicht möglich. Eine Kontaktaufnahme ist über Ihren Administrator oder link:../admin/manage-genai-features.html["Informationen zur KI-Administration"] möglich.
 
 
 
@@ -30,7 +30,7 @@ NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, wird eine M
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
-. Im Menü der NetApp Console erfolgt die Auswahl über *Workloads* > *Workloads Overview* > *Custom dashboards*.
+. Wählen Sie das Menü image:workloads-menu-icon.png["Das Hamburger-Menü-Symbol wird verwendet, um zu Workloads wie Storage, eda, ai, databases, vmware und administration zu navigieren."] und dann *Workloads Overview* > *Custom dashboards*.
 +
 Wenn dies Ihr erstes Dashboard ist, sehen Sie einen leeren Bildschirm mit Beispielaufforderungen, die Ihnen den Einstieg erleichtern. Es besteht die Möglichkeit, *Aufforderung kopieren* auszuwählen, um eine Beispielaufforderung in das Textfeld des KI-Dialogs zu übernehmen.
 
@@ -50,15 +50,16 @@ Die KI bittet Sie möglicherweise, aus mehreren Optionen auszuwählen, um Ihre B
 Ihr Dashboard wird erstellt. Dies kann einen Moment dauern.
 
 .Ergebnis
-Ihr benutzerdefiniertes Dashboard wurde erstellt und dem Dashboard Katalog hinzugefügt. Standardmäßig ist das Dashboard privat und nur für Sie sichtbar. Die Sichtbarkeit kann auf öffentlich geändert werden, wenn eine Freigabe für andere Benutzer Ihres Workload Factory Kontos gewünscht ist. link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
+Ihr benutzerdefiniertes Dashboard wurde erstellt und dem Dashboard Katalog hinzugefügt. Standardmäßig ist das Dashboard privat und nur für Sie sichtbar. Die Sichtbarkeit kann auf öffentlich geändert werden, wenn eine Freigabe für andere Benutzer Ihres Workload Factory Kontos gewünscht ist. link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["Informationen zum Ändern der Dashboard-Sichtbarkeit"].
 
-Sie erhalten eine Benachrichtigung, sobald Ihr Dashboard fertig ist. Falls es nicht erstellt werden kann, erhalten Sie eine Benachrichtigung mit einem Link, um es erneut zu versuchen. link:configure-notifications.html["Informationen zur Konfiguration von Benachrichtigungen"].
+Sie erhalten eine Benachrichtigung, sobald Ihr Dashboard fertig ist. Falls es nicht erstellt werden kann, erhalten Sie eine Benachrichtigung mit einem Link, um es erneut zu versuchen. link:../admin/configure-notifications.html["Informationen zur Konfiguration von Benachrichtigungen"].
 
 .Was kommt als Nächstes
 Nach der Erstellung können Sie:
 
 * Die Dashboard-Sichtbarkeit kann geändert werden, sodass sie mit dem Team geteilt wird.
 * Dashboard-Daten werden aktualisiert, damit die neuesten Informationen angezeigt werden.
+* In Dashboards lassen sich Anzeigeinhalte wie Kennzahlen, Diagramme und Zeiträume ändern
 * Dashboards, die nicht mehr benötigt werden, können gelöscht werden.
 * Dashboard-Details anzeigen, einschließlich des Erstellers und des Zeitpunkts der letzten Aktualisierung
 
@@ -68,6 +69,6 @@ Nach der Erstellung können Sie:
 [[related-information]]
 == Verwandte Informationen
 
-* link:manage-custom-dashboards-fsx.html["Eigene benutzerdefinierte Dashboards verwalten"]
-* link:troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
+* link:../admin/manage-custom-dashboards-fsx.html["Eigene benutzerdefinierte Dashboards verwalten"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Fehlerbehebung bei benutzerdefinierten Dashboards"]
 

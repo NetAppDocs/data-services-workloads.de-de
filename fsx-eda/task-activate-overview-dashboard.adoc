@@ -60,8 +60,8 @@ Workload Factory beginnt mit der Erfassung von CloudWatch Metriken für alle FSx
 
 Nach der Aktivierung des Dashboards können Sie:
 
-* link:task-use-overview-dashboard.html["Nutzen Sie das Übersichts-Dashboard"]um den Zustand und die Kapazität des Clusters zu überwachen
-* link:task-use-overview-dashboard.html#change-ssd-management-mode["SSD-Kapazitätsmanagementmodi aktivieren und konfigurieren"] (Empfehlen, Automatisieren oder Keine)
-* link:task-use-overview-dashboard.html#change-throughput-management-mode["Durchsatzmanagementmodi aktivieren und konfigurieren"] (Empfehlen, Automatisieren oder Keine)
+* link:../fsx-eda/task-use-overview-dashboard.html["Nutzen Sie das Übersichts-Dashboard"]um den Zustand und die Kapazität des Clusters zu überwachen
+* link:../fsx-eda/task-use-overview-dashboard.html#change-ssd-management-mode["SSD-Kapazitätsmanagementmodi aktivieren und konfigurieren"] (Empfehlen, Automatisieren oder Keine)
+* link:../fsx-eda/task-use-overview-dashboard.html#change-throughput-management-mode["Durchsatzmanagementmodi aktivieren und konfigurieren"] (Empfehlen, Automatisieren oder Keine)
 * Richten Sie Filter ein, um sich auf bestimmte Regionen oder AWS accounts zu konzentrieren.
 

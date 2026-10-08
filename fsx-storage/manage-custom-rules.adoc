@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/manage-custom-rules.html 
-keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
-summary: Benutzerdefinierte Architekturregeln können im Regelkatalog angezeigt, aktiviert, deaktiviert und gelöscht werden. 
+keywords: manage rules, edit rules, disable rules, delete rules, rule catalog, byor 
+summary: Benutzerdefinierte Architekturregeln können im Regelkatalog angezeigt, bearbeitet, aktiviert, deaktiviert und gelöscht werden. 
 ---
-= Benutzerdefinierte Regeln für NetApp Workload Factory managen
+= Verwaltung benutzerdefinierter Regeln für Workload Factory in NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Benutzerdefinierte Architekturregeln können im Regelkatalog angezeigt,
 
 
 [role="lead"]
-Der Regelkatalog ist eine zentrale Anlaufstelle zum Managen all Ihrer benutzerdefinierten Regeln. Die Details jeder Regel, deren Ergebnisse sowie die Möglichkeit, sie zu aktivieren oder zu deaktivieren, sind einsehbar.
+Der Regelkatalog ist eine zentrale Anlaufstelle zum Managen all Ihrer benutzerdefinierten Regeln. Sie können Regeldetails einsehen, Regeln bearbeiten, Ergebnisse überprüfen und festlegen, ob Regeln nach einem Zeitplan ausgeführt werden.
 
 
 
@@ -49,24 +49,94 @@ Wenn die Überprüfung für einige Elemente fehlgeschlagen ist, zeigt die Fehler
 [[edit-a-custom-rule]]
 == Benutzerdefinierte Regel bearbeiten
 
-Sie können die Logik, den Zeitplan oder andere Einstellungen einer Regel jederzeit ändern. Wenn Sie eine Regel bearbeiten, wird der Regel Errichter mit den aktuellen Einstellungen der Regel geöffnet.
+Sie können eine Regel jederzeit umbenennen. Außerdem können Sie die Beschreibung, den Ressourcentyp, den Zeitplan, den Schweregrad, die Bedingungslogik, den Auswertungsbereich und die Abhilfehinweise einer Regel bearbeiten.
+
+Sie können eine Regel entweder im Regelkatalog oder auf der Regeldetailseite umbenennen. Andere Regeleinstellungen lassen sich über den Regelkatalog bearbeiten.
 
 .Schritte
 . Im Regelkatalog wählen Sie die Regel aus, die Sie bearbeiten möchten.
-. Klicken Sie auf *Bearbeiten*.
+. Führen Sie einen der folgenden Schritte aus:
 +
-Die Regel wechselt in den Entwurfsmodus, und der Regel-Errichter öffnet sich.
-
-. Die Regelvorgabe kann bearbeitet oder das Gespräch genutzt werden, um die Regel zu verbessern.
-. Überprüfung der aktualisierten Interpretation und Regeldefinition der KI.
+** Die Umbenennung der Regel erfolgt durch Aktualisieren des Regelnamens im Katalog oder auf der Detailkarte der Regel.
+** Andere Regeleinstellungen lassen sich über *Edit* bearbeiten.
 +
-Das System zeigt an, was sich gegenüber der aktuellen Regel geändert hat, einschließlich aller API-Aufrufe oder Logik.
+Die Regel öffnet sich im Chat-Modus mit ihrem vollständigen Verlauf.
 
-. Je nach den vorgenommenen Änderungen ist einer der folgenden Schritte auszuführen:
+
+
+. Sie können die gewünschten Änderungen anfordern oder die Anfrage im Chat aktualisieren.
 +
-** Bei nur geringfügigen Änderungen kann die Regel mit *Save* aktualisiert werden.
-** Wenn wesentliche Änderungen vorgenommen wurden, können die Änderungen mit *Regel validieren* getestet werden; anschließend kann mit *Planen* die Regel gespeichert und geplant oder mit *Als Entwurf speichern* ohne Planung gespeichert werden.
-** Zum Verwerfen der Änderungen ist *Zur vorherigen Version zurückkehren* auszuwählen. Die Regel kehrt zu ihrer ursprünglichen Definition zurück und verlässt den Bearbeitungsmodus.
+Wenn das Erstellen der Regel zuvor fehlgeschlagen ist, können Sie bei dieser Regel fortfahren und Ihre Anfrage im Chat aktualisieren.
+
+. Die aktualisierte Erläuterung und die Zusammenfassung der Änderungen werden geprüft.
++
+Das System zeigt vor dem Speichern an, was sich gegenüber der aktuellen Regel geändert hat.
+
+. Wenn sich die Regel im Entwurfsmodus befindet, können Sie *Regel validieren* auswählen, um die aktualisierte Logik zu testen.
+. Führen Sie einen der folgenden Schritte aus:
++
+** Zum Beibehalten der Änderungen dient *Speichern* zum Ersetzen der aktuellen Regel. Bei einer Änderung des Zeitplans ist der aktualisierte Zeitplan zu speichern. Ohne Änderung des Zeitplans bleibt er unverändert.
+** Zum Verwerfen der Änderungen ist *Änderungen verwerfen* auszuwählen. Die Regel kehrt zu ihrer vorherigen Version zurück und beendet den Bearbeitungsmodus.
 
 
 
+
+Während der Bearbeitung einer Regel wird sie Ihnen als „Wird bearbeitet“ angezeigt. Andere Benutzer sehen weiterhin die aktuell geplante Regel, und geplante Ausführungen werden normal fortgesetzt, bis Sie die Änderungen speichern.
+
+
+
+[[pause-a-rule]]
+== Eine Regel pausieren
+
+Pausieren Sie eine Regel, um Auswertungen zu stoppen, ohne die Regel zu löschen. Pausierte Regeln bleiben im Katalog und können jederzeit neu gestartet werden.
+
+.Schritte
+. Im Regelkatalog auf die Regel klicken, die pausiert werden soll.
+. Führen Sie einen der folgenden Schritte aus:
++
+** Um eine geplante Regel anzuhalten, auf *Pause* klicken und anschließend bestätigen. Die Regel wird nicht mehr gemäß Zeitplan ausgeführt.
+** Um eine pausierte Regel fortzusetzen, auf *Fortsetzen* klicken und anschließend bestätigen. Die Regel nimmt die regulären Auswertungen wieder auf.
+
+
+
+
+
+
+[[delete-a-custom-rule]]
+== Eine benutzerdefinierte Regel löschen
+
+Eine Regel kann dauerhaft gelöscht werden, wenn sie nicht mehr benötigt wird. Diese Aktion kann nicht rückgängig gemacht werden.
+
+.Schritte
+. Im Regelkatalog auf die Regel klicken, die gelöscht werden soll.
+. Klicken Sie auf *Delete*.
+. Bestätigen Sie, dass die Regel dauerhaft gelöscht werden soll.
+
+
+.Ergebnis
+Die Regel wurde aus dem Katalog entfernt. Der gesamte Auswertungsverlauf wird gelöscht.
+
+
+
+[[run-a-quick-test]]
+== Ein Schnelltest kann durchgeführt werden
+
+Ein Schnelltest kann jederzeit ausgeführt werden, um die aktuelle Konformität zu überprüfen, ohne auf den nächsten geplanten Lauf warten zu müssen.
+
+.Schritte
+. Im Regelkatalog auf die Regel klicken, die ausgewertet werden soll.
+. Klicken Sie auf *Validate*.
++
+Das System bewertet alle Ressourcen im Geltungsbereich anhand der Regellogik.
+
+. Die Ergebnisse zeigen den aktuellen Compliance-Status.
+
+
+Tests werden geprüft und erscheinen in der Bewertungshistorie der Regel.
+
+
+
+[[what-to-do-next]]
+== Nächste Schritte
+
+link:../fsx-storage/learn-custom-rules.html["Weitere Informationen zu benutzerdefinierten Regeln"]

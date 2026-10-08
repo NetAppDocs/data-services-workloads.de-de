@@ -44,6 +44,8 @@ indexpage:
     links:
     - title: Benachrichtigungen konfigurieren
       url: "/admin/configure-notifications.html"
+    - title: KI-Agenten
+      url: "/admin/learn-agent.html"
     - title: KI-Funktionen verwalten
       url: "/admin/manage-genai-features.html"
     - title: Automatisierung von Aufgaben mit Codebox

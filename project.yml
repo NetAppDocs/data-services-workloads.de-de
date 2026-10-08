@@ -339,6 +339,12 @@ sidebar:
       url: "/admin/manage-links.html"
     - title: KI-Funktionen für FSx for ONTAP verwalten
       url: "/admin/manage-genai-features.html"
+    - title: Workload Factory AIOps
+      entries:
+      - title: Informationen zu KI-Agenten
+        url: "/admin/learn-agent.html"
+      - title: Verwaltung der Einstellungen für KI-Agenten
+        url: "/admin/manage-agent-settings.html"
     - title: Benutzerdefinierte Dashboards für FSx für ONTAP
       entries:
       - title: Informationen zu benutzerdefinierten Dashboards für FSx für ONTAP

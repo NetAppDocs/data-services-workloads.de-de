@@ -25,7 +25,7 @@ Diese Informationen helfen bei der Behebung häufiger Probleme, die beim Erstell
 **Lösung:** Folgendes kann versucht werden:
 
 * Formulieren Sie Ihre Anfrage mit klareren Details dazu, was Sie überwachen möchten.
-* Mit einer der Beispielaufforderungen in link:create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"] kann begonnen werden.
+* Mit einer der Beispielaufforderungen in link:../admin/create-custom-dashboard-fsx.html["Ein benutzerdefiniertes Dashboard erstellen"] kann begonnen werden.
 * Komplexe Überwachungsanforderungen können in mehrere einfachere Dashboards unterteilt werden.
 * Die Arbeitslasten, Metriken, Zeitbereiche oder Dimensionen, die verfolgt werden sollen, können angegeben werden.
 
@@ -41,8 +41,8 @@ Diese Informationen helfen bei der Behebung häufiger Probleme, die beim Erstell
 
 **Lösung:**
 
-* **Berechtigungen prüfen:** Stellen Sie sicher, dass Ihr Workload Factory-Konto Lesezugriff auf die vom Dashboard verwendeten Workloads und Ressourcen hat. Die Berechtigungsanforderungen sind in link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["AWS Anmeldeinformationen und Berechtigungen"] zu finden.
-* **Anmeldeinformationen überprüfen:** Bestätigen Sie, dass Ihre AWS-Anmeldeinformationen gültig sind und nicht abgelaufen sind. Details sind unter link:../fsx-storage/add-credentials.html["AWS-Anmeldeinformationen hinzufügen"] verfügbar.
+* **Berechtigungen prüfen:** Stellen Sie sicher, dass Ihr Workload Factory-Konto Lesezugriff auf die vom Dashboard verwendeten Workloads und Ressourcen hat. Lesen Sie die link:../admin/learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["Berechtigungsanforderungen"].
+* **Anmeldeinformationen überprüfen:** Bestätigen Sie, dass Ihre AWS-Anmeldeinformationen gültig sind und nicht abgelaufen sind. Einzelheiten sind in link:../fsx-storage/add-credentials.html["AWS-Anmeldeinformationen hinzufügen"] beschrieben.
 
 
 
