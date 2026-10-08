@@ -6811,4 +6811,5 @@
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">Um nach AWS-Zuordnungs-Tags zu filtern, muss sichergestellt sein, dass Ihren FSx for ONTAP Dateisystemen Tags zugewiesen sind.</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">Es wird ein CSV-Bericht generiert, der heruntergeladen werden kann.</block>
+  <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">Komponentenaufschlüsselung für Latenzereignisse</block>
 </blocks>
