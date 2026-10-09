@@ -24,7 +24,7 @@ Mit benutzerdefinierten Regeln können Sie im Dashboard für gut strukturierte A
 Mit dem Errichter lassen sich benutzerdefinierte Regeln in einfacher Sprache erstellen. Diese Regeln werden für alle Ihre Ressourcen geprüft. Benutzerdefinierte Regeln helfen dabei, die Standards, Risikogrenzen und betrieblichen Anforderungen Ihres Unternehmens durchzusetzen, die von Standardregeln möglicherweise nicht abgedeckt werden.
 
 
-NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, können Sie keine neuen Regeln erstellen oder bestehende Regeln bearbeiten. Alle bereits geplanten Regeln werden weiterhin ausgeführt. link:../admin/manage-genai-features.html.["Informationen zur Verwaltung von KI-Funktionen"^].
+NOTE: Wenn Ihr Kontoadministrator die KI-Funktionen deaktiviert hat, können Sie keine neuen Regeln erstellen oder bestehende Regeln bearbeiten. Alle bereits geplanten Regeln werden weiterhin ausgeführt. link:../admin/manage-genai-features.html["Informationen zur Verwaltung von KI-Funktionen"].
 
 
 
@@ -46,9 +46,9 @@ Benutzerdefinierte Regeln nutzen KI, um Anweisungen in einfacher Sprache in klar
 
 Bevor Sie benutzerdefinierte Regeln erstellen und ausführen können, müssen Sie Folgendes haben:
 
-AWS Zugangsdaten:: Schreibgeschützter Zugriff auf Ihre AWS-Umgebung. Benutzerdefinierte Regeln erfordern schreibgeschützte Berechtigungen als Sicherheitsgrenze. link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["AWS-Anmeldeinformationen zur Workload Factory hinzufügen"^].
+AWS Zugangsdaten:: Schreibgeschützter Zugriff auf Ihre AWS-Umgebung. Benutzerdefinierte Regeln erfordern schreibgeschützte Berechtigungen als Sicherheitsgrenze. link:add-credentials.html["AWS-Anmeldeinformationen zur Workload Factory hinzufügen"].
 ONTAP Zugangsdaten:: FSx Viewer Benutzer mit schreibgeschützten Berechtigungen. Workload Factory erstellt auf jedem FSx for ONTAP Dateisystem einen schreibgeschützten Benutzer, falls noch keiner vorhanden ist, sodass Auswertungen durchgeführt werden können.
-Link oder Agent:: Nur für Regeln erforderlich, die eine direkte Verbindung zu ONTAP herstellen müssen, um Einstellungen zu überprüfen, auf die AWS-APIs nicht zugreifen können. link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Mit einem Link eine Verbindung zu einem FSx for ONTAP Dateisystem herstellen"^].
+Link oder Agent:: Nur für Regeln erforderlich, die eine direkte Verbindung zu ONTAP herstellen müssen, um Einstellungen zu überprüfen, auf die AWS-APIs nicht zugreifen können. link:create-link.html["Mit einem Link eine Verbindung zu einem FSx for ONTAP Dateisystem herstellen"].
 
 
 
@@ -110,4 +110,4 @@ Diese Regel validiert, dass Dateisysteme den organisatorischen Namenskonventione
 [[what-to-do-next]]
 == Nächste Schritte
 
-link:../fsx-storage/create-custom-rule.html["Eine benutzerdefinierte Regel erstellen"] link:../fsx-storage/manage-custom-rules.html["Benutzerdefinierte Regeln verwalten"]
+link:create-custom-rule.html["Eine benutzerdefinierte Regel erstellen"] link:manage-custom-rules.html["Benutzerdefinierte Regeln verwalten"]
