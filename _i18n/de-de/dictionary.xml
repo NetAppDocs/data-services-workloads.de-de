@@ -380,7 +380,6 @@
   <block id="b26a5fa549c938ffb56d20623c3f69c0" category="list-text">Bestätigen Sie die Löschung.</block>
   <block id="22e8351c82677bcc78bd23d6fb170bc8" category="paragraph">Das Dashboard wird dauerhaft aus Ihrem Workload Factory-Konto entfernt und alle Benutzer verlieren den Zugriff darauf.</block>
   <block id="9537d9160ef701530bdd875698475957" category="inline-link-macro">Zusätzliche benutzerdefinierte Dashboards erstellen</block>
-  <block id="f7b22a19823cae9bc6664fece0b96115" category="summary">Zugriff auf Bedrock-basierte KI-Funktionen in Workload Factory steuern. Es besteht die Möglichkeit, KI-Funktionen zu deaktivieren oder NetApp-verwaltetes AWS Bedrock zu nutzen.</block>
   <block id="00e95115c994386ef85f1864db952bca" category="section-title">Über KI-Funktionen</block>
   <block id="46918c8c585299e7a785eed266de3f97" category="paragraph">Als Administrator von Workload Factory kann auf der Seite „KI-Einstellungen“ gesteuert werden, wie diese Funktionen KI nutzen.</block>
   <block id="50f33d14f129e4548c1c270fd6725a78" category="section-title">Konfigurationsoptionen</block>
@@ -393,10 +392,7 @@
   <block id="1ee78c04d8b078adcb0fca6be60af5a2" category="list-text">GenAI Funktionen deaktiviert</block>
   <block id="396640080b08108896efb48796063406" category="list-text">Es wird empfohlen, dass ein Kontoadministrator die KI-Funktionen einrichtet.</block>
   <block id="6b7af6c72f84f0f7380106617c11be78" category="section-title">KI-Funktionen konfigurieren</block>
-  <block id="ef1f959eefc1f11cf2aec294261e066f" category="list-text">Auf der Seite *KI-Einstellungen* kann die bevorzugte Konfiguration ausgewählt werden:</block>
   <block id="7530dc640ec2dd92a9e70b8484867369" category="list-text">*NetApp-verwaltetes Bedrock (Empfohlen)*: NetApp-verwaltetes AWS Bedrock verwenden.</block>
-  <block id="053d266af64b45b2a2fbc0eeccc99297" category="list-text">*Gen AI-Funktionen deaktiviert*: Alle KI-Funktionen sind deaktiviert.</block>
-  <block id="cbab3ffec133396f2f907f9faa5a4337" category="list-text">*Einstellungen speichern* auswählen.</block>
   <block id="1f19237677d2459e3c32c18ad28d89c4" category="paragraph">Ihre Einstellungen werden gespeichert und sofort auf alle KI-Funktionen in Workload Factory angewendet. Im Tracker ist ersichtlich, wer die Einstellungen zuletzt aktualisiert hat und wann.</block>
   <block id="e8d0b42b043c438b67550c55202181fe" category="paragraph">Wenn KI-Funktionen deaktiviert sind, sehen Nutzer eine Meldung, wenn sie versuchen, KI-gestützte Funktionen zu verwenden. Die Benutzeroberfläche bleibt sichtbar und zeigt deutlich, dass die Funktion nicht verfügbar ist.</block>
   <block id="c5a072ef0376df4bfe60ecf20f43c427" category="section-title">Budgetkontrolle und Kreditlimits</block>
@@ -5104,7 +5100,6 @@
   <block id="07413029412abf4b07d59a7418a48d98" category="doc">Verbindung Ihrer FSx for ONTAP Dateisysteme mit VMware Cloud on AWS</block>
   <block id="ff8452c1f30c7c23563874f41490c4aa" category="paragraph">Nach dem Einsatz von FSx for ONTAP Dateisystemen müssen Sie dieses System mit Ihrer VMware Cloud on AWS Infrastruktur verbinden. Ihr Software-Defined Data Center (SDDC) bietet Netzwerkoptionen für die Verbindung mit dem FSx for ONTAP Dateisystem, indem die VPC-Peering-Funktion genutzt wird, um die Netzwerkkonnektivität auf die externen NFS-Storage-Volumes zu erweitern.</block>
   <block id="36789903991e7a805b64dce62ee3cb41" category="inline-link">Einzelheiten enthält die Dokumentation zu Amazon VPC peering.</block>
-  <block id="3f44cc30db3785a317875ea3b608f92d" category="paragraph"><block ref="3f44cc30db3785a317875ea3b608f92d" category="inline-link-rx"></block></block>
   <block id="35e4dc1372c9892d7d45c118016255bf" category="paragraph">Das folgende Diagramm zeigt die Verwendung von VPC Peering, um SDDC Cluster in einer einzelnen Availability Zone (AZ) mit FSx for ONTAP Single-AZ-Deployments zu verbinden.</block>
   <block id="40c5156ee08f8bf4b4ba3c18de0844d9" category="inline-image-macro">Ein Diagramm, das die Verwendung von VPC Peering zur Verbindung von Single-AZ SDDC-Clustern mit Single-AZ Deployments von FSx for ONTAP zeigt.</block>
   <block id="9d06593ee15f520ce9a945a1bbad4daf" category="paragraph"><block ref="9d06593ee15f520ce9a945a1bbad4daf" category="inline-image-macro-rx" type="image"></block></block>
@@ -6760,10 +6755,8 @@
   <block id="89806ea6a9ed9b0bb6cb322f912aff65" category="paragraph">Das Dashboard wird mit Ihren Änderungen aktualisiert. Das Datum der letzten Änderung wird ebenfalls aktualisiert.</block>
   <block id="665b56adc96ec0ae170583f2c939549f" category="list-text"><block ref="665b56adc96ec0ae170583f2c939549f" category="inline-link-macro-rx"></block></block>
   <block id="dbc831d32bec483a9698bd8ffbae773b" category="doc">KI-Funktionen in NetApp Workload Factory verwalten</block>
-  <block id="13bb649429b18adc1dadc0ed391c5bc2" category="paragraph">Den Zugriff auf KI-Funktionen in Workload Factory steuern. Es ist möglich, KI-Funktionen zu deaktivieren oder AWS Bedrock zu verwenden, das von NetApp verwaltet wird.</block>
   <block id="17f306dd010c4f9182635b5f5e336fa1" category="paragraph">Workload Factory umfasst mehrere KI-gestützte Funktionen, die Ihre Benutzererfahrung verbessern, wie z. B. Ask Me, KI-Agenten, benutzerdefinierte Dashboards, Rule Errichter und Analysetools für EMS, Datenbankprotokolle und Latenz.</block>
   <block id="cbdbc1bacc2d0ff55d93219e225f857a" category="list-text">Alle KI-Funktionen werden deaktiviert. Benutzer können „Ask Me“, den KI-Agenten, Analysetools, benutzerdefinierte Dashboards, den Regel-Errichter oder andere KI-gestützte Tools nicht mehr verwenden.</block>
-  <block id="3f0879fc8845a02f07ea71a0a584847e" category="list-text">Im Menü *Administration* und anschließend *AI settings* auswählen.</block>
   <block id="d558bf5c801444e8a41fb205b6481939" category="list-text"><block ref="d558bf5c801444e8a41fb205b6481939" category="inline-link-macro-rx"></block></block>
   <block id="7822184101da98dc9a2f973bcc0b1e57" category="list-text">Mit einer der Beispielaufforderungen in <block ref="e353446964aabeb4012c8f3074fb20a4" category="inline-link-macro-rx"></block> kann begonnen werden.</block>
   <block id="1d66ae30886d42b24d56159b752d6ad9" category="inline-link-macro">Berechtigungsanforderungen</block>
@@ -6913,4 +6906,20 @@
   <block id="22941004ec8c49f5d8a764461a973801" category="list-text">Schreibgeschützter Zugriff auf Ihre AWS-Umgebung. Benutzerdefinierte Regeln erfordern schreibgeschützte Berechtigungen als Sicherheitsgrenze. <block ref="8e1e3c879b9dae9bf3456eb51959b906" category="inline-link-macro-rx"></block>.</block>
   <block id="8af9128504255d95219d06192a7427f2" category="list-text">Nur für Regeln erforderlich, die eine direkte Verbindung zu ONTAP herstellen müssen, um Einstellungen zu überprüfen, auf die AWS-APIs nicht zugreifen können. <block ref="c8334f2cb013f0b691325d2b949f8312" category="inline-link-macro-rx"></block>.</block>
   <block id="ef517711d9a5dee55f2bb56046d3fd70" category="paragraph"><block ref="385442535e80145b437f6d2ceb94114a" category="inline-link-macro-rx"></block> <block ref="f571cd95e32f7c421382198bc0dd0eae" category="inline-link-macro-rx"></block></block>
+  <block id="55c9e8516766e9331175c24a58463351" category="summary">Der Zugriff auf Bedrock-basierte KI-Funktionen in Workload Factory lässt sich steuern. Sie können die KI-Funktionen deaktivieren oder von NetApp verwaltetes bzw. kundenseitig verwaltetes Bedrock verwenden.</block>
+  <block id="fdb1959aef23285e43fe2cdcd4f28fee" category="paragraph">Zugriff auf KI-Funktionen in Workload Factory steuern. Sie können KI-Funktionen deaktivieren oder AWS Bedrock verwenden, das von NetApp oder Ihrem Unternehmen verwaltet wird.</block>
+  <block id="6f5403c75b81b8b52cd43cae97fcf772" category="list-text">Vom Kunden verwaltetes Bedrock</block>
+  <block id="c18ad30e2ef4050c256483f9a51ad2de" category="list-text">Ihre eigene AWS Bedrock Konfiguration wird verwendet.</block>
+  <block id="edf60b9bc6b08bdb2aa52c67c9ff0924" category="list-text">Für optimale Ergebnisse empfiehlt NetApp die Verwendung von Anthropic Claude Sonnet 4.5 oder 4.6 mit Ihrer Amazon Bedrock Konfiguration.</block>
+  <block id="4580e55cbed2076f7b001c4793810627" category="list-text">Wenn Sie kundenverwaltetes Bedrock verwenden, ist eine Aktualisierung der AWS-Richtlinie für die mit der Workload Factory IAM-Rolle verknüpften Anmeldeinformationen erforderlich.</block>
+  <block id="42f8e0cc53973b95fb8c5ab1b1940d45" category="admonition">Die AWS-Richtlinie muss um die erforderlichen Berechtigungen für die Anmeldeinformationen ergänzt werden, die mit der Workload Factory IAM-Rolle verknüpft sind.</block>
+  <block id="d8180f5e900b1f6f9e24a34bcc5df784" category="list-text">Im Menü erfolgt die Auswahl von *Administration* &gt; *Einstellungen* &gt; *KI-Tools*.</block>
+  <block id="e63e52d33b8423358a13ed6f555c8f70" category="list-text">Auf der Seite *AI tools* erfolgt die Auswahl der bevorzugten Konfiguration:</block>
+  <block id="cd805e2fc37a5ef0e58d5bcce3784800" category="list-text">*Kundenseitig verwaltetes Bedrock*:</block>
+  <block id="21311647ca0330ee847f5cb2e10ea926" category="list-text">Auswahl der AWS-Anmeldeinformationen und der Region, die der Workload Factory IAM-Rolle zugeordnet sind</block>
+  <block id="f531442bfdac6ffe5ebf928d9259db20" category="list-text">Das Inferenzprofil angeben, das Sie verwenden möchten</block>
+  <block id="ca232c88bdf38a766c6b82ced2c60df3" category="list-text">*Konfiguration validieren* auswählen.</block>
+  <block id="5a79cccf92e71cd2b96cbbe67a02e898" category="paragraph">Workload Factory zeigt eine Benachrichtigung an, die angibt, ob die Verbindung erfolgreich war oder fehlgeschlagen ist</block>
+  <block id="43d91f7086bfc8e0d64b9a83a049c1f0" category="list-text">*GenAI Funktionen deaktiviert*: Alle KI-Funktionen sind ausgeschaltet.</block>
+  <block id="5853c70be1c7abb4619f6f0a6696316e" category="paragraph"><block ref="5853c70be1c7abb4619f6f0a6696316e" category="inline-link-rx"></block></block>
 </blocks>
