@@ -11,7 +11,7 @@ summary: Der Einstieg in NetApp Workload Factory for Databases ermöglicht die N
 
 
 [role="lead"]
-Mit NetApp Workload Factory for Databases können Sie sofort mit den Berechtigungen für Ansicht, Planung und Analyse beginnen. Wenn Sie Workload Factory zum Ermitteln von Hosts, zum Managen von Ressourcen und für weitere Funktionen nutzen möchten, können Sie in wenigen Schritten beginnen.
+Mit NetApp Workload Factory for Databases können Sie sofort und ohne Berechtigungen loslegen. Wenn Sie Workload Factory verwenden möchten, um Hosts zu erkennen, Ressourcen zu managen und mehr, können Sie in wenigen Schritten starten.
 
 Sie benötigen ein AWS-Konto, um Databases nutzen zu können.
 
@@ -19,7 +19,7 @@ Die folgenden Schritte erleichtern den Einstieg.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Anmeldung bei NetApp Workload Factory
 [role="quick-margin-para"]
-Sie müssen link:../setup/sign-up-and-log-in.html["Registrierung"^] und sich bei der NetApp Console anmelden.
+Sie müssen link:https://console.netapp.com["bei der NetApp Console anmelden"^]. Wenn Sie kein Konto haben, link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["Registrierung"^] Sie sich zunächst bei NetApp Console an und melden sich dann an.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Hinzufügen von Anmeldeinformationen und Berechtigungen für die Datenbank-Workload
 [role="quick-margin-para"]

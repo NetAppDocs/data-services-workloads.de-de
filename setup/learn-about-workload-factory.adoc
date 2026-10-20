@@ -75,7 +75,7 @@ Workload Factory ist über die link:https://console.netapp.com["NetApp Console"^
 
 Für die Nutzung von NetApp Console ist eine Anmeldung mit Ihren NetApp Support Site Zugangsdaten oder die Erstellung eines NetApp Console Logins erforderlich. Der erste Benutzer wird zum Unternehmensadministrator und verwaltet Benutzerkonten und Berechtigungen. Rollen können später aktualisiert und weitere Administratoren hinzugefügt werden.
 
-* link:sign-up-and-log-in.html["Es wird erläutert, wie Sie sich bei NetApp Console registrieren und anmelden."]
+* link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["Registrierung"^] zur NetApp Console.
 * link:https://docs.netapp.com/us-en/console-setup-admin/concept-identity-and-access-management.html["Informationen zu NetApp Console Identity Access Management"^]
 
 

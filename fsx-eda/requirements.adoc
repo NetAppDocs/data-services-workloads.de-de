@@ -13,7 +13,7 @@ summary: Vor der Nutzung von NetApp Workload Factory für EDA ist sicherzustelle
 [role="lead"]
 Vor der Verwendung von NetApp Workload Factory für EDA sollten NetApp Workload Factory und AWS ordnungsgemäß eingerichtet sein. Dazu gehören Ihre AWS-Anmeldeinformationen, ein bereitgestelltes FSx for ONTAP-Dateisystem und weitere Voraussetzungen.
 
-Workload Factory-Anmeldung und -Konto:: Sie müssen link:../setup/sign-up-and-log-in.html["bei NetApp Console registrieren und anmelden."]
+Workload Factory-Anmeldung und -Konto:: Sie müssen link:https://console.netapp.com["bei der NetApp Console anmelden"^]. Wenn Sie kein Konto haben, link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["Registrierung"^] Sie sich zunächst bei NetApp Console an und melden sich dann an.
 AWS Anmeldeinformationen und Berechtigungen:: Sie müssen AWS-Zugangsdaten mit lesen/schreiben-Berechtigungen zu Workload Factory hinzufügen, was bedeutet, dass Sie Workload Factory für EDA im Modus _lesen/schreiben_ verwenden werden.
 
 
