@@ -4968,7 +4968,6 @@
   <block id="dfb1565e1ec2734dcbcb24e6b43c9919" category="paragraph">Im Feld *Name des wiederhergestellten Volumes* ist ein eindeutiger Name für das wiederherzustellende Volume einzugeben.</block>
   <block id="2321232f7bb400db057064cec47f4904" category="list-text">Wiederherstellung von Daten aus einem Snapshot in ein vorhandenes Volume. Dieser Vorgang löscht endgültig alle Daten, die nach dem Erstellungszeitpunkt des Snapshots geändert wurden.</block>
   <block id="89737fdc47d2ffa6f11712bb340e2a19" category="summary">So lässt sich berechnen, wie viel Sie durch die Verwendung von Amazon EVS mit FSx for ONTAP sparen können.</block>
-  <block id="122a56eb4649431a7f2dbb8886f047cc" category="doc">Einsparungen für Amazon Elastic VMware Service mit NetApp Workload Factory</block>
   <block id="c99c39a5824ae2c9be487d0de19febcd" category="paragraph">Sie erhalten einen Überblick über potenzielle Einsparungen bei der Migration Ihrer VMware-Workloads zu Amazon Elastic VMware Service (EVS). Der Kostenrechner ermöglicht den Vergleich der Kosten für die Nutzung von Amazon EVS mit und ohne Amazon FSx for NetApp ONTAP als Storage.</block>
   <block id="85f9ebcaf90aa1d0aea8e19f23446085" category="paragraph">Wenn der Kostenrechner ermittelt, dass der kostengünstigste Storage FSx for ONTAP ist, können Sie eine detaillierte Bewertung erstellen, die einen Migrationsplan bereitstellt, den Sie vor der Verwendung prüfen können. Anschließend können Sie mit der Codebox Infrastructure-as-Code-Vorlagen generieren.</block>
   <block id="b23b05aa1d44c04b2da76aa4c7408d6c" category="section-title">Einsparpotenziale für EVS-Umgebungen</block>
@@ -4988,7 +4987,6 @@
   <block id="74ce259d0d76a9e0cd46f6300bcc2371" category="list-text">Zur Verwendung des Migrationsberaters <block ref="9c54a102b37172c71de5c1a9f4ba94d1" category="inline-link-macro-rx"></block> für eine Amazon EVS Umgebung ist *Plan EVS migration* auszuwählen.</block>
   <block id="27cecac020f0eb3b6379d7eaa39d9edb" category="list-text">Die Option *Schließen* schließt den TCO-Rechner.</block>
   <block id="495f22292688acea8c30ad6ad16b09d3" category="summary">Sie können das Migration advisor VM collector script oder RVTools verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es wird empfohlen, das Migration advisor VM collector script zu verwenden, da es sowohl VM-Konfigurations- als auch Performance-Daten für die präziseste Planung erfasst.</block>
-  <block id="f292a76e9c79b833f21da297f0ad751c" category="doc">Erfassung Ihrer VM-Konfigurationen vor der Migration von VMware-Workloads zu Amazon EC2</block>
   <block id="f8e901b31808cd5fdd45bae1bb1b5200" category="paragraph">Sie können das Skript „Migration advisor VM data collector“, RVTools oder NetApp Data Infrastructure Insights verwenden, um Ihre aktuellen VM-Konfigurationen zu erfassen. Es empfiehlt sich, das Skript „Migration advisor VM data collector“ oder Data Infrastructure Insights zu verwenden, da diese Optionen sowohl VM-Konfigurations- als auch Performance-Daten erfassen und damit die genaueste Planung ermöglichen.</block>
   <block id="22a28a767d70781d263ac5d0d07edaf6" category="open-title">Verwendung von RVTools (Schnellbewertung)</block>
   <block id="18498b95c15ee1034dbf55a71b7c7b9d" category="paragraph">RVTools ist eine Windows Applikation, die mit VCenter und ESX server (5.x bis 8.0) interagiert, um Informationen über Ihre virtuellen VMware-Umgebungen zu erfassen. Sie sammelt Informationen über VMs, CPU, Arbeitsspeicher, Festplatten, Cluster, ESX-Hosts, Datastores und mehr. Sie können diese Informationen in eine xlsx-Datei exportieren, um sie mit dem Migrationsberater zu verwenden.</block>
@@ -5053,7 +5051,6 @@
   <block id="d5db9fed5445fd6da0101158bde40fad" category="list-text">Für die spätere Verwendung mit dem Workload Factory migration advisor sollte dieses Token gespeichert werden.</block>
   <block id="bf9f27fc21322ff6302a870d86e2e722" category="inline-link-macro">Erstellung eines Amazon EC2 Deployment-Plans mithilfe des Migrationsberaters</block>
   <block id="414196819b55791be7e7314c3ef3e1cb" category="paragraph"><block ref="256f57bc6446332fd4641ea86650235a" category="inline-link-macro-rx"></block>.</block>
-  <block id="3a23349f8d161f7653f1e95b602af0f5" category="doc">Erfassung Ihrer VM-Konfigurationen vor der Migration zu VMware Cloud mit VMware Workloads</block>
   <block id="c423127be094663f098066c3efa8a37a" category="open-title">Verwendung des VM-Collector-Skripts des Migration Advisor</block>
   <block id="e7bc9976408bfbd315fb5cead8d7c4e2" category="paragraph">Das NetApp Migration advisor VM collector script sammelt VM-Konfigurationsinformationen aus Ihrem vCenter, ähnlich wie RVTools. Es erfasst jedoch aktuelle VM-Performance-Daten, um tatsächliche IOPS- und Durchsatzstatistiken für Lesen/Schreiben bereitzustellen.</block>
   <block id="45f41cadcd45c9728fa28d6a1cb8d206" category="list-text">Im VMware-Menü erfolgt die Auswahl von *Bewerten und planen* und anschließend von *Migration zu VMware Cloud on AWS*.</block>
@@ -5093,7 +5090,6 @@
   <block id="a409bb04787a5ddb8911b653d035c75e" category="summary">Nachdem Sie ein FSx for ONTAP Dateisystem eingesetzt haben, müssen Sie dieses mit Ihrer VMware Cloud on AWS Infrastruktur verbinden. Ihr SDDC bietet Netzwerkoptionen für die Verbindung mit dem FSx for ONTAP Dateisystem, wobei die VPC Peering Funktion verwendet wird, um die Netzwerkkonnektivität auf die externen NFS Storage Volumes zu erweitern.</block>
   <block id="07413029412abf4b07d59a7418a48d98" category="doc">Verbindung Ihrer FSx for ONTAP Dateisysteme mit VMware Cloud on AWS</block>
   <block id="ff8452c1f30c7c23563874f41490c4aa" category="paragraph">Nach dem Einsatz von FSx for ONTAP Dateisystemen müssen Sie dieses System mit Ihrer VMware Cloud on AWS Infrastruktur verbinden. Ihr Software-Defined Data Center (SDDC) bietet Netzwerkoptionen für die Verbindung mit dem FSx for ONTAP Dateisystem, indem die VPC-Peering-Funktion genutzt wird, um die Netzwerkkonnektivität auf die externen NFS-Storage-Volumes zu erweitern.</block>
-  <block id="36789903991e7a805b64dce62ee3cb41" category="inline-link">Einzelheiten enthält die Dokumentation zu Amazon VPC peering.</block>
   <block id="35e4dc1372c9892d7d45c118016255bf" category="paragraph">Das folgende Diagramm zeigt die Verwendung von VPC Peering, um SDDC Cluster in einer einzelnen Availability Zone (AZ) mit FSx for ONTAP Single-AZ-Deployments zu verbinden.</block>
   <block id="40c5156ee08f8bf4b4ba3c18de0844d9" category="inline-image-macro">Ein Diagramm, das die Verwendung von VPC Peering zur Verbindung von Single-AZ SDDC-Clustern mit Single-AZ Deployments von FSx for ONTAP zeigt.</block>
   <block id="9d06593ee15f520ce9a945a1bbad4daf" category="paragraph"><block ref="9d06593ee15f520ce9a945a1bbad4daf" category="inline-image-macro-rx" type="image"></block></block>
@@ -5273,7 +5269,6 @@
   <block id="7bf67785b343875942142dd8baf52a33" category="paragraph">Standardmäßig speichert das Planungscenter den Migrationsplan automatisch in der Liste der Pläne.</block>
   <block id="ac9813d9f42d076342006c3cf93e8674" category="list-text">Wenn Sie bereit sind, mit dem Plan fortzufahren, wählen Sie *Provision*, um mit dem Deployment des empfohlenen Amazon FSx for NetApp ONTAP Dateisystems zu beginnen.</block>
   <block id="7f23e40eb3340fde04d9926b7462c830" category="summary">Vom VMware Planning Center aus können Sie den Google Cloud VMware Engine Migration Advisor starten, um einen auf Ihre Bedürfnisse zugeschnittenen Migrationsplan zu erstellen.</block>
-  <block id="5e50f9be4f1e626bb755e71b6ef9feec" category="doc">Erstellen Sie einen Bereitstellungsplan für Google Cloud VMware Engine mithilfe des Migrationsberaters</block>
   <block id="bdef3354bb4b315740e7e8854254495b" category="paragraph">Sie können einen Bereitstellungsplan erstellen, um virtuelle Maschinen zu Google Cloud VMware Engine zu migrieren und angepasste Google Cloud NetApp Volumes als externe NFS-Datenspeicher zu verwenden. Die Optionen im Migrationsberater können je nach dem Tool, das zur Erfassung der VM-Inventardaten verwendet wurde, variieren.</block>
   <block id="1ce5704c4651f821ecc5d74310e8a79c" category="inline-link-macro">VM-Inventar hochgeladen</block>
   <block id="f9f0670df28d68f5721b685831be446f" category="list-text">Sie müssen <block ref="07dde87656a21cbf828fade241eb2346" category="inline-link-macro-rx"></block> haben.</block>
@@ -5402,7 +5397,6 @@
   <block id="4c9e1a6d5098db9ed0d8724f69b55509" category="paragraph">In einer Codebox wird der generierte Terraform-Code angezeigt. Sie können den Code in Ihre Zwischenablage kopieren oder als Datei herunterladen, um ihn in Ihrer eigenen Terraform-Umgebung auszuführen.</block>
   <block id="98eb3550d72a811f20fc4046f149ca3c" category="list-text">Wählen Sie *Erstellen*, um die Google Cloud NetApp Volumes NFS-Datenspeicher zu erstellen.</block>
   <block id="2559e4d6b9e2e602a91b8df995b458c8" category="summary">Die Anmeldung bei der NetApp Workload Factory ermöglicht den Zugriff auf den VMware migration advisor. Anschließend werden die Schritte im Assistenten befolgt, um einen Deployment- oder Migrationsplan zu erstellen, der an Ihre Anforderungen angepasst ist.</block>
-  <block id="d426ad1d2770909e76d9ec998753048e" category="doc">Erstellung eines Deployment-Plans für Amazon EC2 mit dem VMware workloads migration advisor</block>
   <block id="3980b900d127875dc01add3ae6aa636c" category="paragraph">Beachten Sie, dass Sie für den Zugriff auf Workload Factory einen Benutzernamen und ein Passwort benötigen. Falls Sie noch keinen Zugriff haben, können Sie jetzt ein Konto erstellen. Die Anweisungen <block ref="20e355b0b2171a42f3631b73a7284e27" category="inline-link-macro-rx"></block> stehen zur Verfügung.</block>
   <block id="8209a613eadf680eb0da074479c79a0b" category="section-title">Erstellung eines Deployment-Plans auf Basis einer lokalen vSphere Umgebung</block>
   <block id="12108488b525984a76d1a39aeb4948cb" category="paragraph">Sie können Ihre aktuellen Konfigurationen virtueller Maschinen aus lokalen vSphere Umgebungen auf virtuelle Maschinen in Amazon EC2 migrieren und angepasste Amazon FSx for NetApp ONTAP Dateisysteme als externe Datastores verwenden.</block>
@@ -5424,7 +5418,6 @@
   <block id="6f5daac1f5bc785aa2a651e3d291c894" category="list-text">Über *Plan herunterladen &gt; Bericht herunterladen* lässt sich der Deployment-Plan im .pdf-Format herunterladen, sodass er zur Überprüfung verteilt werden kann.</block>
   <block id="a3c29e0a60c7e00d242210d6b449287f" category="list-text">Über *Download plan &gt; Download instance storage deployment* kann der externe Datastore-Deployment-Plan im .csv-Format heruntergeladen und zum Erstellen Ihrer neuen Cloud-basierten intelligenten Dateninfrastruktur verwendet werden.</block>
   <block id="1c541639432de5d11ef7e76941c43a49" category="list-text">Mit *Provision* beginnt das Deployment des empfohlenen Amazon FSx for NetApp ONTAP Dateisystems.</block>
-  <block id="9aed60fda8e95affae05b540b6cbe03a" category="doc">Erstellung eines Deployment Plans für VMware Cloud on AWS mit dem VMware workloads migration advisor</block>
   <block id="1e884770040a1369dfb00ff9fba06330" category="paragraph">Bei der Migration zu VMware Cloud können Sie den Migrationsberater verwenden, um Ihre aktuelle lokale vSphere Umgebung zu VMWare cloud zu migrieren.</block>
   <block id="c9ff8945d5f4f913ea03f4ded22549da" category="paragraph">Sie können Ihre aktuellen Konfigurationen virtueller Maschinen aus lokalen vSphere-Umgebungen zu virtuellen Maschinen in VMware Cloud on AWS migrieren und angepasste Amazon FSx for NetApp ONTAP Dateisysteme als externe Datenspeicher verwenden.</block>
   <block id="b315d9d256afa359134156c4a3ba121a" category="list-text">Sie müssen die Inventardatei aus Ihren bestehenden Systemen mithilfe des migration advisor VM collector (.csv-Datei) oder von RVTools (.xlsx-Datei) erstellt haben.</block>
@@ -5513,7 +5506,6 @@
   <block id="63f2f07c0a027b7cde1cfd93d37fcb19" category="paragraph">Für die Nutzung von Workload Factory for VMware sind keine speziellen Lizenzen von NetApp erforderlich.</block>
   <block id="df3078cbf2344fdc96564c4276d42b3a" category="paragraph">Workload Factory wird in allen kommerziellen Regionen unterstützt, in denen FSx for ONTAP unterstützt wird.<block ref="54b85ac4e794c565ea8c7aad421e6e67" category="inline-link-rx"></block></block>
   <block id="2281d47edbe43f0701ce273bb95a9f2f" category="summary">Mit einem Tool wie VMware Hybrid Cloud Extension lassen sich Ihre Daten vom alten Storage virtueller Maschinen auf die FSx for NetApp ONTAP Volumes verschieben, die mit Ihren neuen virtuellen Maschinen verbunden sind. Die Kernfunktionalität von VMware HCX ermöglicht die transparente Migration von Workloads aus Ihrem lokalen Datacenter in Ihr SDDC.</block>
-  <block id="734e5b74e7595424d4721589d572eda7" category="doc">Migration Ihrer Daten in die neue Infrastruktur mit NetApp Workload Factory for VMware</block>
   <block id="63796ed0675a30eed387ff515fb4109d" category="paragraph">Mit einem Tool wie VMware Hybrid Cloud Extension (HCX) lassen sich Ihre Daten von Ihrem alten Storage virtueller Maschinen auf die FSx for NetApp ONTAP Volumes verschieben, die mit Ihren neuen virtuellen Maschinen verbunden sind. Die Kernfunktionalität von VMware HCX ermöglicht die transparente Migration von Workloads aus Ihrem lokalen Datacenter in Ihr Software-Defined Data Center (SDDC).</block>
   <block id="5cf77a6cd1a6546f96141615c376acb2" category="inline-link-macro">Die Dokumentation zu VMware HCX</block>
   <block id="317f09ce19b2835b1bdf12dc348b13e6" category="paragraph"><block ref="d8d3c9bf824a50b78a380a9590ebdc5e" category="inline-link-macro-rx"></block> für Details.</block>
@@ -5521,7 +5513,6 @@
   <block id="cc788b7e72b2a734dd0985bd1e0e9fe3" category="inline-link-macro">Amazon FSx for NetApp ONTAP Dokumentation</block>
   <block id="2dca7322750e45308224cf132177438c" category="paragraph">Informationen zur Verwaltung Ihres FSx for ONTAP Dateisystems finden Sie unter <block ref="6a6b306e3cf90244d491bc0b8984c080" category="inline-link-macro-rx"></block>, wo die verfügbaren Sicherungs- und Schutzfunktionen angezeigt werden.</block>
   <block id="c0c3ffedc4190adc07720bcef4541cf4" category="summary">Der Einstieg in den VMware migration advisor unterstützt die Migration Ihrer aktuellen Infrastruktur zu Amazon EVS unter Verwendung von Amazon FSx for ONTAP als externen NFS-Datenspeichern.</block>
-  <block id="97735cf08bc8cd1817cf2dbadd06154d" category="doc">Schnellstart für die Migration zu Amazon EVS mithilfe des VMware workloads migration advisor</block>
   <block id="546393155194873f3731142e84a340fd" category="inline-link-macro">Berechtigungen für NetApp Workload Factory</block>
   <block id="3c32ee37a43b7a6669516fbe2facf360" category="paragraph">Bevor Sie beginnen, sollten Sie mit dem <block ref="eacf1b6c3c9c77b3898392ba00c514e5" category="inline-link-macro-rx"></block> vertraut sein.</block>
   <block id="27c19be9febabd1e2fb82d7a39784f2d" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Hinzufügen von Anmeldeinformationen und Berechtigungen</block>
@@ -5548,7 +5539,6 @@
   <block id="849b694f18d5f2f0d81dfe44c89029ea" category="inline-link-macro">Erfahren Sie, wie Sie gut strukturierte Konfigurationen implementieren</block>
   <block id="5dc782d436d94215ab9c41482cff8c02" category="paragraph"><block ref="f09015d4a26b2878c118305ce478ca5f" category="inline-link-macro-rx"></block>.</block>
   <block id="2556da08e11585b605626929beefd4ce" category="summary">Beginnen Sie mit dem VMware Migration Advisor, um Ihre aktuelle Infrastruktur zu Google Cloud VMware Engine zu migrieren und dabei Google Cloud NetApp Volumes als externe NFS-Datenspeicher zu verwenden.</block>
-  <block id="9e8284342c75f48a25dde90d2f2d0588" category="doc">Schnellstart für die Migration zu Google Cloud VMware Engine mit dem VMware workloads migration advisor</block>
   <block id="5dd6304d07a3d3656cc0cb1da35717c6" category="inline-link-macro">Berechtigungen für FSx for ONTAP für NetApp Workload Factory</block>
   <block id="fc9a3e0a22cf9ed4293cf5b83f0be069" category="paragraph">Bevor Sie beginnen, sollten Sie mit dem <block ref="0530b59db9b2bb40a8cf989b1aecc30a" category="inline-link-macro-rx"></block> vertraut sein.</block>
   <block id="b53d94934411cf1f04ae399b5c11817c" category="paragraph">Wenn Sie keine Berechtigungen erteilen, können Sie Workload Factory für VMware verwenden, um teilweise fertiggestellte Codebeispiele zu kopieren.</block>
@@ -5556,14 +5546,12 @@
   <block id="175be206f8668945b45511179609ebe3" category="paragraph">Starten Sie den VMware Migration Advisor und konfigurieren Sie die VM-Umgebung, die Sie auf der Google Cloud VMware Engine-Infrastruktur unter Verwendung von Google Cloud NetApp Volumes als externe NFS-Datenspeicher erstellen möchten.</block>
   <block id="020b682c9f65d6f17439d2cb0cf964bf" category="paragraph"><block ref="e3624573fd74cf60ac70575f2c86dc70" category="inline-link-macro-rx"></block>.</block>
   <block id="e893ba46613a19a9294b7b151c4df83e" category="summary">Mit dem VMware migration advisor kann Ihre aktuelle Infrastruktur mithilfe von Amazon FSx for ONTAP als externen NFS-Datastores zu Amazon EC2 migriert werden.</block>
-  <block id="09bf5c9e5640bf75b6e024bb49783cc9" category="doc">Schnellstart für die Migration zu Amazon EC2 mit dem VMware workloads migration advisor</block>
   <block id="611dad37557a2cb5ae289c5e019aed4c" category="paragraph">Wenn Sie keine Berechtigungen erteilen, können Sie Workload Factory for Databases verwenden, um teilweise fertiggestellte Codebeispiele zu kopieren.</block>
   <block id="d5238004bed35bc175e904048ad83ece" category="paragraph">Wenn Sie Berechtigungen erteilen möchten, müssen Sie <block ref="1019599d15b10a8952c651273f27ed8e" category="inline-link-macro-rx"></block>, einschließlich der Auswahl von Workload-Funktionen wie Databases und AI sowie der Erstellung der IAM-Richtlinien für die erforderlichen Berechtigungen.</block>
   <block id="d645e6b9cc715485914696dcaeed7e40" category="paragraph">Nach dem Start des VMware migration advisor wählen Sie die VMs aus, die Sie mithilfe eines Amazon FSx for ONTAP Dateisystems als externe NFS-Datastores in die Amazon EC2 Infrastruktur migrieren möchten. Vor dem Speichern des Plans sind noch einige Änderungen möglich.</block>
   <block id="362f02ec410356642b41d807749588d9" category="paragraph"><block ref="d6918f6a6163624fe27be3a8b64bdb49" category="inline-link-macro-rx"></block>.</block>
   <block id="65b67cfacaf9f942b7e72202ad4253cf" category="paragraph"><block ref="f440c867abbb2e895fda5fc4c7c4b4d3" category="inline-link-macro-rx"></block>.</block>
   <block id="b7c19b7e4e8df7fa64586112497c63f5" category="summary">Erste Schritte mit dem VMware migration advisor, um Ihre aktuelle Infrastruktur mithilfe von Amazon FSx for ONTAP als externe NFS-Datenspeicher in VMware Cloud on AWS zu migrieren.</block>
-  <block id="ecdd552e8f9e5da2a61e6db8b8030056" category="doc">Schnellstart für die Migration zu VMware Cloud on AWS mithilfe des VMware workloads migration advisor</block>
   <block id="14f4f353ef5e3c4a3673476c525c538d" category="paragraph">Im VMware migration advisor lassen sich die VMs auswählen, die mithilfe eines Amazon FSx for ONTAP Dateisystems als externe NFS Datastores in die neue VMware Cloud on AWS Infrastruktur migriert werden sollen. Vor dem Speichern des Plans können noch einige Änderungen vorgenommen werden.</block>
   <block id="8d7795534dfe29f84396c92c8d0a4dcd" category="paragraph"><block ref="a837f3781560502a9640d7db10536ff7" category="inline-link-macro-rx"></block>.</block>
   <block id="f52c9ba96cd69f0216a683d029eb830e" category="paragraph">Sie setzen das neue FSx for ONTAP Dateisystem ein, das die Datenspeicher für Ihre VMs in Ihrer VMware Cloud on AWS Infrastruktur bereitstellt.</block>
@@ -5577,7 +5565,6 @@
   <block id="03f4cd7af088de0b86d1c9f3c79648d1" category="inline-link-macro">Weitere Informationen zur Migration Ihrer Daten</block>
   <block id="ed2864ba6212a6975c8039c89029a916" category="paragraph"><block ref="19e3683b716b5e111f0f1f9ccf094dd2" category="inline-link-macro-rx"></block>.</block>
   <block id="01e556e9ed381ddad48f5f248ea8c853" category="summary">Im Planning Center können Sie Informationen über Ihre aktuelle VMware-Umgebung hochladen.</block>
-  <block id="549db19de828407c882fab2f54c0d91b" category="doc">Hochladen von VM-Inventardaten in NetApp Workload Factory</block>
   <block id="549d0e83e0f77a058ecb115d751ef72a" category="paragraph">Bevor Sie einen Migrationsplan erstellen können, müssen Sie Ihre VM-Inventardaten hochladen.</block>
   <block id="034ce347094f8e8ed94fd4499edd6a02" category="paragraph">Das Planungszentrum wird angezeigt. Im Planungszentrum können Sie Ihre VM-Inventardaten hochladen, frühere Inventardaten-Uploads einsehen und eine Migration mithilfe beliebiger VM-Inventardatensätze planen.</block>
   <block id="6c2c52acb8ece2370c8022ea7c978cb0" category="list-text">Die Auswahl erfolgt über *Upload VM inventory*.</block>
@@ -6507,10 +6494,6 @@
   <block id="585b016fb4d762098f713d093667d688" category="sidebar">Verwendung der Perforce Integration</block>
   <block id="38929f60770d1a358e1351986015fff6" category="sidebar">Informationen zur Perforce Integration</block>
   <block id="94f08ecfe6af387606dd2dac771208c5" category="sidebar">Einsatz von FSx for ONTAP für VMware Workloads</block>
-  <block id="e4358de2a09588cec13214adc031a6e1" category="sidebar">Schnellstartanleitung für die Migration zu Amazon EVS</block>
-  <block id="8ca85249d2f6a1036c376d3281e10cd7" category="sidebar">Schnellstartanleitung für die Migration zu Amazon EC2</block>
-  <block id="aaa94acfa678f349154ecc14f4c48e40" category="sidebar">Schnellstart für die Migration zu VMware Cloud on AWS</block>
-  <block id="ef1fc06261bcd9214fd9546ba1a3d6f6" category="sidebar">Schnellstart für die Migration zu Google Cloud VMware Engine</block>
   <block id="93ba13882942e9f41461a4867481e012" category="sidebar">Verwendung des VMware Planungscenters</block>
   <block id="b217f7353b9ad5ed58a9d5b9ee531f78" category="sidebar">Migration zu Amazon Elastic VMware Service</block>
   <block id="cd7f9479e1a150985f71ae0c23d536b2" category="sidebar">Einen Deployment-Plan manuell erstellen</block>
@@ -6880,7 +6863,6 @@
   <block id="ca232c88bdf38a766c6b82ced2c60df3" category="list-text">*Konfiguration validieren* auswählen.</block>
   <block id="5a79cccf92e71cd2b96cbbe67a02e898" category="paragraph">Workload Factory zeigt eine Benachrichtigung an, die angibt, ob die Verbindung erfolgreich war oder fehlgeschlagen ist</block>
   <block id="43d91f7086bfc8e0d64b9a83a049c1f0" category="list-text">*GenAI Funktionen deaktiviert*: Alle KI-Funktionen sind ausgeschaltet.</block>
-  <block id="5853c70be1c7abb4619f6f0a6696316e" category="paragraph"><block ref="5853c70be1c7abb4619f6f0a6696316e" category="inline-link-rx"></block></block>
   <block id="f0ae5dab2d6ea2ffbd20c9563519edf2" category="paragraph">Mit NetApp Workload Factory for Databases können Sie sofort und ohne Berechtigungen loslegen. Wenn Sie Workload Factory verwenden möchten, um Hosts zu erkennen, Ressourcen zu managen und mehr, können Sie in wenigen Schritten starten.</block>
   <block id="e8fa42224c1549b42b010324f9a01216" category="inline-link-macro">bei der NetApp Console anmelden</block>
   <block id="d230a33ac93525f8dedc1d4d45abbfab" category="paragraph">Sie müssen <block ref="534b2604f29302955349bba67822cd62" category="inline-link-macro-rx"></block>. Wenn Sie kein Konto haben, <block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block> Sie sich zunächst bei NetApp Console an und melden sich dann an.</block>
@@ -6892,4 +6874,21 @@
   <block id="bbd3bc24a9cc71ad8a2822b80bf70ff9" category="paragraph">Bevor Sie beginnen, sollten Sie ein Verständnis von <block ref="64c9dffcd52d81154557ee623279261c" category="inline-link-macro-rx"></block> haben. Sie sollten sich auch <block ref="65487489906fbce15e307f471fda380c" category="inline-link-macro-rx"></block> mit NetApp Console vertraut machen.</block>
   <block id="80655929466b53d4ebd339eb11bdf59d" category="section-title">Die Anmeldung bei Workload Factory erfolgt über NetApp Console.</block>
   <block id="12f44e4fd5c579fdafc7776b94e934d6" category="list-text">Melden Sie sich bei der<block ref="9fa63571706fcef6edc9d423212e6d10" category="inline-link-rx"></block>an.</block>
+  <block id="07f5c2034d44eea983ae24e8a3e62629" category="doc">Einsparungen bei Amazon EVS mit Workload Factory für VMware</block>
+  <block id="e1b7641d7064a40c5bbdee2b40540b74" category="doc">Erfassung von VM-Konfigurationen für Amazon EC2</block>
+  <block id="7b3bc3990d7543aaf66980f87335767a" category="doc">Erfassen von VM-Konfigurationen für VMware Cloud on AWS</block>
+  <block id="b1980e2ec22c1bd0d98ba755ec8c6e01" category="inline-link">Informationen zu VPC Peering für Amazon FSx for NetApp ONTAP mit VMware Cloud on AWS</block>
+  <block id="0ced83efbc83d6325bf854e3d9ff902a" category="paragraph"><block ref="0ced83efbc83d6325bf854e3d9ff902a" category="inline-link-rx"></block></block>
+  <block id="3f8584ff413956319742ef138ff950bf" category="doc">FSx for ONTAP für Amazon EVS bereitstellen</block>
+  <block id="2fbb7c9787ea3032a156a07d1f132418" category="doc">FSx for ONTAP für Amazon EC2 bereitstellen</block>
+  <block id="a559ec50a8770c8e1d80a75962409463" category="doc">FSx for ONTAP für VMware Cloud on AWS bereitstellen</block>
+  <block id="4adccbbed5a316b4a1a113e8e0d5ba4b" category="doc">Erstellung eines Deployment-Plans für Google Cloud VMware Engine</block>
+  <block id="138dc8298502101ab4b1dab76473550a" category="doc">Erstellung eines Deployment-Plans für Amazon EC2</block>
+  <block id="098db62d0eacef295355b49bfd3f685d" category="doc">Erstellung eines Deployment Plans für VMware Cloud on AWS</block>
+  <block id="e139e2a548f33074a05788b33d073ed1" category="doc">Migration von VM-Daten zu VMware Cloud on AWS</block>
+  <block id="7f2dbecda0f9bd37e40d03689b14c2fa" category="doc">Schnellstart für die Amazon EVS Migration</block>
+  <block id="0fcf95e364a521f58f982192fa0a45e6" category="doc">Schnellstart für die Migration zu Google Cloud VMware Engine</block>
+  <block id="ea627ccca5e145e4ce43781ebdf2e6f4" category="doc">Schnellstart für die Amazon EC2 Migration</block>
+  <block id="38641132a022c702ed8584dd18675ff9" category="doc">Schnellstart für die Migration zu VMware Cloud on AWS</block>
+  <block id="53d93e9fac55ddfe7c501887d49a96ea" category="doc">Hochladen von VM-Inventardaten in Workload Factory for VMware</block>
 </blocks>

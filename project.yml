@@ -239,9 +239,9 @@ sidebar:
       entries:
       - title: Informationen zu NetApp Workload Factory für VMware
         url: "/fsx-vmware/learn-about-vmware-workloads.html"
-      - title: Schnellstartanleitung für die Migration zu Amazon EVS
+      - title: Schnellstart für die Amazon EVS Migration
         url: "/fsx-vmware/quick-start-evs.html"
-      - title: Schnellstartanleitung für die Migration zu Amazon EC2
+      - title: Schnellstart für die Amazon EC2 Migration
         url: "/fsx-vmware/quick-start-native.html"
       - title: Schnellstart für die Migration zu VMware Cloud on AWS
         url: "/fsx-vmware/quick-start-vmware.html"

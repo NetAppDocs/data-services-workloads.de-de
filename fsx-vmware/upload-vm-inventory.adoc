@@ -4,7 +4,7 @@ permalink: fsx-vmware/upload-vm-inventory.html
 keywords: vm workloads, capture vm details 
 summary: Im Planning Center können Sie Informationen über Ihre aktuelle VMware-Umgebung hochladen. 
 ---
-= Hochladen von VM-Inventardaten in NetApp Workload Factory
+= Hochladen von VM-Inventardaten in Workload Factory for VMware
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
