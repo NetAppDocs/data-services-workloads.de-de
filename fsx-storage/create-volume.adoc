@@ -20,7 +20,7 @@ Nach der Einrichtung Ihres FSx for ONTAP Dateisystems ist es in Workload Factory
 
 FSx for ONTAP Volumes gruppieren Daten virtuell, bestimmen, wie Daten gespeichert werden, und legen die Art des Zugriffs auf Ihre Daten fest. Volumes verbrauchen keine Dateisystem-Storage-Kapazität. Die Daten, die in einem Volume gespeichert sind, verbrauchen in erster Linie SSD-Storage. Abhängig von der Tiering-Richtlinie des Volumes können die Daten auch Capacity Pool Storage verbrauchen. Die Größe eines Volumes wird bei der Erstellung festgelegt und kann später geändert werden.
 
-Für Ihre Volumes kommen möglicherweise die folgenden Protokolle zum Einsatz:
+Sie können die folgenden Protokolle für Ihre Volumes verwenden:
 
 * SMB/CIFS: Dateispeicherprotokoll für Windows-Betriebssysteme
 * NFS: Dateispeicherprotokoll für Unix-Betriebssysteme
@@ -39,7 +39,7 @@ Diese Funktion, auch bekannt als SnapLock, ist standardmäßig deaktiviert. Die 
 
 * *Aufbewahrungsmodi*: Sie können zwischen zwei Aufbewahrungsmodi wählen - _Enterprise_ oder _Compliance_.
 +
-** Im _Enterprise_-Modus kann ein Administrator für unveränderliche Dateien oder SnapLock eine Datei während ihrer Aufbewahrungsfrist löschen.
+** Im _Enterprise_-Modus kann ein SnapLock Administrator eine Datei während ihrer Aufbewahrungsfrist löschen.
 ** Im _Compliance_-Modus kann eine WORM-Datei erst nach Ablauf ihrer Aufbewahrungsfrist gelöscht werden. Ebenso kann das unveränderliche Volume erst gelöscht werden, nachdem die Aufbewahrungsfristen aller darin enthaltenen Dateien abgelaufen sind.
 
 
@@ -48,9 +48,9 @@ Diese Funktion, auch bekannt als SnapLock, ist standardmäßig deaktiviert. Die 
 
 NOTE: Auch nach Ablauf der Aufbewahrungsfrist können Sie eine WORM-Datei nicht mehr ändern. Sie können sie nur löschen oder eine neue Aufbewahrungsfrist festlegen, um den WORM-Schutz wieder zu aktivieren.
 
-* *Autocommit*: Sie haben die Möglichkeit, die Autocommit-Funktion zu aktivieren. Die Autocommit-Funktion überführt eine Datei auf einem SnapLock Volume in den WORM-Status, wenn die Datei für die Dauer des Autocommit-Zeitraums nicht geändert wurde. Die Autocommit-Funktion ist standardmäßig deaktiviert. Die Dateien, für die Autocommit verwendet werden soll, müssen sich auf einem SnapLock Volume befinden.
+* *Autocommit*: Die Autocommit-Funktion kann aktiviert werden. Die Autocommit-Funktion überführt eine Datei auf einem SnapLock Volume in den WORM-Status, wenn die Datei sich für die Dauer des Autocommit-Zeitraums nicht geändert hat. Die Autocommit-Funktion ist standardmäßig deaktiviert. Es muss sichergestellt werden, dass die Dateien, die per Autocommit übertragen werden sollen, sich auf einem SnapLock Volume befinden.
 * *Privilegiertes Löschen*: Ein SnapLock Administrator kann das privilegierte Löschen auf einem SnapLock Enterprise Volume aktivieren, um das Löschen einer Datei vor Ablauf ihrer Aufbewahrungsfrist zu ermöglichen. Diese Funktion ist standardmäßig deaktiviert.
-* *Volume-Append-Modus*: Vorhandene Daten in einer WORM-geschützten Datei können nicht geändert werden. Unveränderliche Dateien ermöglichen jedoch die Aufrechterhaltung des Schutzes vorhandener Daten mithilfe von WORM-anhängbaren Dateien. Beispielsweise können Protokolldateien generiert oder Audio- oder Videostreaming-Daten bewahrt werden, während Daten inkrementell in diese Dateien geschrieben werden. link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append["Weitere Informationen zum Volume-append-Modus"^] in der Amazon FSx for NetApp ONTAP Dokumentation.
+* *Volume-Append-Modus*: Vorhandene Daten in einer WORM-geschützten Datei lassen sich nicht ändern. Unveränderliche Dateien ermöglichen jedoch die Aufrechterhaltung des Schutzes vorhandener Daten mithilfe von WORM-anhängbaren Dateien. Beispielsweise lassen sich Protokolldateien erstellen oder Audio- oder Videostreaming-Daten aufbewahren, während Daten inkrementell in sie geschrieben werden. link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/worm-state.html#worm-state-append["Weitere Informationen zum Volume-append-Modus"^] in der Amazon FSx for NetApp ONTAP Dokumentation.
 
 
 
@@ -104,7 +104,7 @@ Optional können Sie die automatische Vergrößerung des Volumes aktivieren. Die
 
 .. *Automatische Volume-Erweiterung*: Optional lässt sich die automatische Volume-Erweiterung aktivieren, um die Kapazität des Volumes automatisch zu erweitern, bis das Volume die maximale Größe erreicht. Diese Funktion trägt einem steigenden Datenaufkommen Rechnung und gewährleistet einen unterbrechungsfreien Betrieb.
 +
-Die maximale Größe und Einheit für das Volumenwachstum werden angegeben. Die maximale Wachstumsgröße darf nicht kleiner als die aktuelle Volumengröße sein.
+Die maximale Größe und Einheit für das Volume-Wachstum werden angegeben. Die maximale Wachstumsgröße darf nicht kleiner als die aktuelle Volume-Größe sein.
 
 .. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
 
@@ -119,7 +119,7 @@ Die folgenden Felder sind auszufüllen, um den Dateizugriff auf das Volume einzu
 
 
 
-.. *NFS-Exportrichtlinie*: Folgende Angaben sind für die Bereitstellung des NFS-Zugriffs erforderlich:
+.. *NFS-Exportrichtlinie*: Für die Konfiguration des NFS-Zugriffs sind folgende Angaben erforderlich:
 +
 ... *Zugriffskontrolle*: Im Dropdown-Menü kann eine *Benutzerdefinierte Exportrichtlinie*, eine *Vorhandene Exportrichtlinie* oder *Kein Zugriff auf das Volume* ausgewählt werden.
 ... *Name der Exportrichtlinie*:
@@ -157,7 +157,7 @@ Zum Einrichten des Blockzugriffs auf das Volume sind die folgenden Felder auszuf
 
 
 
-.. *S3-Zugriffspunkt*: Optional können Sie einen S3-Zugriffspunkt anbinden, um auf FSx for ONTAP-Dateisystemdaten zuzugreifen, die sich auf NFS- oder SMB/CIFS-Volumes befinden, über die AWS S3-APIs. Nur der Dateizugriffstyp wird unterstützt. Folgende Details sind anzugeben:
+.. *S3-Zugriffspunkt*: Optional können Sie einen S3-Zugriffspunkt anbinden, um auf FSx for ONTAP-Dateisystemdaten zuzugreifen, die sich auf NFS- oder SMB/CIFS-Volumes befinden, über die AWS S3-APIs. Nur der Dateizugriffstyp wird unterstützt. Folgende Details sind erforderlich:
 +
 *** *Name des S3 access point*: Geben Sie den Namen des S3 access point ein.
 *** *Benutzer*: Wählen Sie einen vorhandenen Benutzer mit Zugriff auf das Volume aus oder erstellen Sie einen neuen Benutzer.
@@ -230,7 +230,7 @@ _Balanced (Auto)_ ist die Standard-Tiering-Richtlinie beim Erstellen eines Volum
 
 .. *ARP/AI*: NetApp Autonomous Ransomware Protection with AI (ARP/AI) ist standardmäßig aktiviert, wenn ein Link mit dem Dateisystem verknüpft ist. link:ransomware-protection.html["Weitere Informationen zu ARP/KI"]. Voraussetzung zum Fortfahren ist die Zustimmung zu der Erklärung.
 +
-Wenn die Funktion nicht verfügbar ist, liegt das aus einem der folgenden Gründe vor:
+Die Funktion ist möglicherweise aus einem der folgenden Gründe nicht verfügbar:
 
 +
 *** Es ist kein Link mit dem Dateisystem verknüpft. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.

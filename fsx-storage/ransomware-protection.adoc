@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: fsx-storage/ransomware-protection.html 
 keywords: ransomware, arp, autonomous protection, protect, security, detect, detection, restore, recover, threat, attack, suspect, anti-ransomware, entropy, abnormal volume activity, anti-ransomware, extension conformity, ransomware protection strategy 
-summary: 'NetApp Autonomous Ransomware Protection mit KI (ARP/AI) nutzt Workload-Analyse in NAS- und SAN-Umgebungen, um ungewöhnliche Aktivitäten zu erkennen und davor zu warnen, die auf einen möglichen Ransomware-Angriff hindeuten.' 
+summary: Die Aktivierung von NetApp Autonomous Ransomware Protection with AI ermöglicht die Erkennung ungewöhnlicher Volume-Aktivitäten, die Validierung vermuteter Angriffe und die Wiederherstellung von Daten aus Snapshots. 
 ---
-= Schützen Sie Ihre FSx for ONTAP Daten mit NetApp Autonomous Ransomware Protection mit KI.
+= Schutz von FSx for ONTAP Daten mit NetApp Autonomous Ransomware Protection with AI
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -45,7 +45,7 @@ Wenn das System eine Dateierweiterung als ungewöhnlich kennzeichnet, sollte die
 
 Wenn Sie eine Warnung als Fehlalarm markieren, aktualisiert das System seine Warnungseinstellungen. Wenn beispielsweise eine neue Dateierweiterung eine Warnung auslöst und Sie diese als Fehlalarm markieren, erhalten Sie beim nächsten Auftreten dieser Dateierweiterung keine Warnung.
 
-Nicht unterstützte Konfigurationen:: Die folgenden Konfigurationen unterstützen die Verwendung von ARP/AI nicht.
+Nicht unterstützte Konfigurationen:: ARP/AI unterstützt diese Konfigurationen nicht.
 +
 --
 * NVMe Volumes
@@ -65,7 +65,7 @@ Durch die Aktivierung von ARP/AI für ein Dateisystem werden automatisch alle ak
 Wenn ARP/AI nach der Aktivierung einen tatsächlichen Angriff erkennt, erstellt Workload Factory automatisch eine Snapshot-Richtlinie. Diese Richtlinie kann bis zu sechs Snapshots alle vier Stunden erstellen. Jeder Snapshot ist für 2-5 Tage gesperrt.
 
 .Bevor Sie beginnen
-Um ARP/AI für ein Dateisystem oder ein Volume zu aktivieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Um ARP/AI für ein Dateisystem oder ein Volume zu aktivieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 [role="tabbed-block"]
 ====

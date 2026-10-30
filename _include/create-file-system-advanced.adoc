@@ -33,7 +33,7 @@ Sie können auch eine gespeicherte Konfiguration laden.
 
 
 
-.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+.. *Tags*: Optional lassen sich bis zu 50 Tags hinzufügen.
 
 
 . Unter Dateisystemdetails sind die folgenden Angaben erforderlich:
@@ -47,8 +47,8 @@ Sie können auch eine gespeicherte Konfiguration laden.
 .. *Durchsatzkapazität pro HA-Paar*: Auswahl der Durchsatzkapazität entsprechend der Anzahl der HA-Paare. Dateisysteme der ersten Generation unterstützen nur ein HA-Paar.
 .. *Bereitgestellte IOPS*: Zur Auswahl steht eine der folgenden Optionen:
 +
-*** *Automatisch*: Bei der automatischen Einstellung werden für jedes erstellte GiB 3 IOPS hinzugefügt.
-*** *Benutzerseitig bereitgestellt*: Für „Benutzerseitig bereitgestellt“ wird der IOPS-Wert eingegeben.
+*** *Automatisch*: Für jedes erstellte GiB werden 3 IOPS hinzugefügt.
+*** *Vom Benutzer bereitgestellt*: Eingabe des IOPS-Werts.
 
 
 .. *ONTAP-Zugangsdaten*: Optional. In diesem Schritt werden Ihr ONTAP-Benutzername und Ihr Passwort eingegeben. Das Passwort kann jetzt oder später festgelegt werden.
@@ -63,7 +63,7 @@ Falls der von Ihnen angegebene Benutzer nicht der fsxadmin-Benutzer ist und Sie 
 ... *SMB Server NetBIOS-Name*: Der SMB Server NetBIOS-Name des Active Directory-Computerobjekts, das für Ihre Storage VM erstellt werden soll. Dies ist der Name dieser Storage VM im Active Directory.
 ... *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
 +
-Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+Ein Domänenpräfix oder -suffix darf nicht enthalten sein. Für `EXAMPLE\ADMIN` ist  `ADMIN` zu verwenden.
 
 ... *Passwort*: Das Passwort für das Dienstkonto eingeben.
 ... *Abteilung*: Optional können Sie den Namen der Abteilung eingeben, in der Sie das Computerkonto für FSx for ONTAP erstellen möchten. Die OU ist der eindeutige Pfadname der Abteilung, mit der Sie das Dateisystem verknüpfen möchten.

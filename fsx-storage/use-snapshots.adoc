@@ -71,7 +71,7 @@ Standardmäßig ist jedes Volume der  `default`Snapshot-Richtlinie des Dateisyst
 Durch die Anpassung einer Richtlinie können Sie festlegen, wann Snapshots erstellt werden, wie viele Kopien aufbewahrt werden und wie sie benannt werden.
 
 .Bevor Sie beginnen
-* Sobald eine Snapshot-Richtlinie erstellt wurde, kann ihre Zuordnung zu den Storage VM(s) nicht mehr geändert werden, die Richtlinie kann jedoch jederzeit zu Volumes hinzugefügt oder von diesen entfernt werden.
+* Sobald eine Snapshot-Richtlinie erstellt wurde, kann ihre Zuordnung zu den Storage VM(s) nicht mehr geändert werden, die Richtlinie kann jedoch jederzeit Volumes hinzugefügt oder daraus entfernt werden.
 * Vor der Verwendung von Snapshots sind folgende Aspekte bezüglich der Snapshot-Kapazität zu berücksichtigen:
 +
 ** Für die meisten Datensätze reichen zusätzliche 20 % Kapazität aus, um Snapshots bis zu vier Wochen lang aufzubewahren. Mit zunehmendem Alter der Daten sinkt die Wahrscheinlichkeit ihrer Verwendung für Wiederherstellungen.

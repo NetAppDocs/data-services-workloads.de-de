@@ -23,7 +23,7 @@ Diese Konfiguration mit einem einzelnen HA-Paar wird für Workloads empfohlen, d
 
 
 
-.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+.. *Tags*: Optional lassen sich bis zu 50 Tags hinzufügen.
 
 
 . Unter *Dateisystemdetails* sind die folgenden Angaben erforderlich:
@@ -45,7 +45,7 @@ Falls der von Ihnen angegebene Benutzer nicht der fsxadmin-Benutzer ist und Sie 
 ... *SMB Server NetBIOS-Name*: Der SMB Server NetBIOS-Name des Active Directory-Computerobjekts, das für Ihre Storage VM erstellt werden soll. Dies ist der Name dieser Storage VM im Active Directory.
 ... *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
 +
-Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+Ein Domänenpräfix oder -suffix darf nicht enthalten sein. Für `EXAMPLE\ADMIN` ist  `ADMIN` zu verwenden.
 
 ... *Passwort*: Das Passwort für das Dienstkonto eingeben.
 ... *Abteilung*: Optional können Sie den Namen der Abteilung eingeben, in der Sie das Computerkonto für FSx for ONTAP erstellen möchten. Die OU ist der eindeutige Pfadname der Abteilung, mit der Sie das Dateisystem verknüpfen möchten.

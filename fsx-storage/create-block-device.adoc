@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/create-block-device.html 
 keywords: create block device, create lun, iscsi protocol 
-summary: Blockgeräte können erstellt werden, um die Applikationsanforderungen Ihres Geschäftsbereichs zu unterstützen. 
+summary: Erstellen von iSCSI-Blockgeräten in einem vorhandenen oder neuen Volume, Konfigurieren des Zugriffs der Initiatorgruppe sowie Festlegen von Storage-Effizienz- und Schutzoptionen für FSx for ONTAP. 
 ---
 = Erstellung eines Blockgeräts für ein Dateisystem in NetApp Workload Factory
 :allow-uri-read: 
@@ -90,7 +90,7 @@ NOTE: Die Snapshot-Zeitpunkte basieren auf der Zeitzone des Dateisystems, die st
 
 .. *Tiering-Richtlinie*: Auswahl der Tiering-Richtlinie für die im Volume gespeicherten Daten.
 +
-_Balanced (Auto)_ ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes mit der Workload Factory Konsole. Weitere Informationen zu Volume-Tiering-Richtlinien finden sich in link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] der AWS FSx for NetApp ONTAP Dokumentation. Zu beachten ist, dass Workload Factory in der Workload Factory Konsole anwendungsfallbasierte Namen für Tiering-Richtlinien verwendet und die FSx for ONTAP Tiering-Richtliniennamen in Klammern aufführt.
+Balanced (Auto) ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes über die Workload Factory Managementplattform. Weitere Informationen zu Volume-Tiering-Richtlinien enthält link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] in der Dokumentation zu AWS FSx for NetApp ONTAP. Workload Factory verwendet in der Workload Factory Managementplattform anwendungsfallbasierte Namen für Tiering-Richtlinien und fügt die FSx for ONTAP Tiering-Richtliniennamen in Klammern hinzu.
 
 .. *ARP/AI*: NetApp Autonomous Ransomware Protection with AI (ARP/AI) ist standardmäßig aktiviert, wenn ein Link mit dem Dateisystem verknüpft ist. link:ransomware-protection.html["Weitere Informationen zu ARP/KI"]. Voraussetzung zum Fortfahren ist die Zustimmung zu der Erklärung.
 +

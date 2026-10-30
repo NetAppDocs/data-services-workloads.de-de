@@ -16,7 +16,7 @@ Verwenden Sie NetApp Workload Factory, um die Verwaltung Ihrer Blockspeicherress
 .Über diese Aufgabe
 Über die Workload Factory-Konsole können Sie Initiatorgruppen (igroups) verwalten, um den Clientzugriff auf Blockgeräte zu steuern. Außerdem können Sie Details zu Blockgeräten anzeigen, die Kapazität erhöhen, Klone erstellen, den Clientzugriff verwalten, Daten inaktiver Blockgeräte archivieren und Blockgeräte löschen.
 
-Prüfen Sie das Blockspeicherdiagramm, um Folgendes zu überprüfen:
+Im Blockspeicherdiagramm ist Folgendes zu prüfen:
 
 * Clientverbindungen
 * Blockgerätestatus
@@ -100,9 +100,9 @@ Die Details eines vorhandenen Blockgeräts lassen sich jederzeit anzeigen.
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
 . Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
 . In *FSx for ONTAP* die Registerkarte *Blockgeräte* auswählen.
-. Im Aktionsmenü für das Blockgerät kann anschließend *Details anzeigen* ausgewählt werden.
+. Sie können zum Aktionsmenü des Blockgeräts navigieren und dann *Details anzeigen* auswählen.
 +
-Allgemeine Details sowie Informationen zu Verbrauch, Zugriff und Schutz für das Blockgerät werden angezeigt.
+Workload Factory zeigt allgemeine Details sowie Informationen zu Verbrauch, Zugriff und Schutz für das Blockgerät an.
 
 
 

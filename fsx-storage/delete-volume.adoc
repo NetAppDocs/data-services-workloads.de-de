@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/delete-volume.html 
 keywords: delete volume, volume deletion 
-summary: Ein nicht mehr benötigtes Volume in Ihrem FSx for ONTAP Dateisystem kann gelöscht werden, um Speicherplatz freizugeben. Dieser Vorgang ist unumkehrbar. 
+summary: Das Löschen eines nicht mehr benötigten Volume aus einem FSx for ONTAP Dateisystem gibt Speicherplatz frei. Dieser Vorgang ist irreversibel. 
 ---
 = Löschen eines Volumes in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Ein nicht mehr benötigtes Volume in Ihrem FSx for ONTAP Dateisystem ka
 
 
 [role="lead"]
-Ein nicht mehr benötigtes Volume in Ihrem FSx for ONTAP Dateisystem kann gelöscht werden, um Speicherplatz freizugeben. Dieser Vorgang ist unumkehrbar.
+Das Löschen eines nicht mehr benötigten Volume aus einem FSx for ONTAP Dateisystem gibt Speicherplatz frei. Dieser Vorgang ist irreversibel.
 
 .Bevor Sie beginnen
 Vor dem Löschen eines Volume ist Folgendes zu berücksichtigen:

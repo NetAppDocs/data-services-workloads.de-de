@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/edit-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: Aktualisierung der Details des S3-Zugriffspunkts, Management von Tags sowie Aktivierung oder Deaktivierung der Inventartabelle für ein Volume in FSx for ONTAP. 
+---
+= Bearbeiten der S3-Zugriffspunkte für ein FSx for ONTAP Volume in NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Aktualisierung von S3-Zugriffspunktdetails und Managen von Tags für ein FSx for ONTAP-Volume in NetApp Console.
+
+Sie können die *Inventartabelle* für den Zugriffspunkt aktivieren oder deaktivieren. Die Inventartabelle generiert Metadaten für alle Objekte, auf die der S3-Zugriffspunkt zugreifen kann, und verursacht AWS S3-Anfragekosten. Weitere Informationen finden Sie unter link:https://aws.amazon.com/s3/pricing/["Amazon S3 Preisdokumentation"^].
+
+.Schritte
+. Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
+. Die Auswahl erfolgt im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"], *Workloads* > *Volumes explorer*.
+. Wählen Sie das Aktionsmenü für das Volume aus, für das Sie die S3-Zugriffspunkte bearbeiten möchten, dann *Erweiterte Aktionen* und anschließend *S3-Zugriffspunkte verwalten*.
+. Wählen Sie auf dem Bildschirm *S3-Zugriffspunkte verwalten* das Menü Aktionen und dann *Zugriffspunkt bearbeiten* aus.
+. Nehmen Sie Aktualisierungen vor und wählen Sie dann *Anwenden*.
++
+Um die Infrastruktur für die Journaltabellenfunktion einzurichten, müssen Sie *Internet* als Netzwerkkonfiguration für den S3-Zugriffspunkt auswählen. link:setup-journal-table.html["Informationen zum Einrichten der Journaltabelleninfrastruktur"].
+
+

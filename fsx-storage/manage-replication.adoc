@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-replication.html 
 keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
-summary: Replikationsbeziehungen in NetApp Workload Factory verwalten. 
+summary: Replikationsbeziehungen anhalten, fortsetzen, umkehren, stoppen und löschen, den Replikationszeitplan ändern und die Transferrate in NetApp Workload Factory begrenzen. 
 ---
 = Verwalten Sie Ihre Replikationsbeziehungen in NetApp Workload Factory
 :allow-uri-read: 
@@ -20,7 +20,7 @@ Verwalten Sie Ihre Replikationsbeziehungen in NetApp Workload Factory. Sie könn
 
 Änderung des Replikationszeitplans des Quell-Volumes in einer Replikationsbeziehung in NetApp Workload Factory.
 
-Die Häufigkeit der Übertragung von Snapshots vom Quell-Volume auf das replizierte Volume richtet sich nach den erforderlichen Recovery Point Objectives (RPOs).
+Die Häufigkeit der Übertragung von Snapshots vom Quell-Volume auf das replizierte Volume sollte so gewählt werden, dass sie Ihren Recovery Point Objectives (RPOs) entspricht.
 
 Wenn ein lokaler ONTAP Cluster das Ziel der Replikationsbeziehung ist, kann der Replikationszeitplan nicht geändert werden.
 
@@ -32,7 +32,7 @@ Wenn ein lokaler ONTAP Cluster das Ziel der Replikationsbeziehung ist, kann der 
 . Wählen Sie in der Dateisystemübersicht die Registerkarte *Replikationsbeziehungen* aus.
 . Auf der Registerkarte „Replikationsbeziehungen“ können Sie das Aktionsmenü des Zeitplans der Replikationsbeziehung auswählen, der geändert werden soll.
 . Die Auswahl erfolgt über *Replikationsintervall bearbeiten*.
-. Im Dialogfeld „Replikationsintervall bearbeiten“ lässt sich die Häufigkeit der Snapshot-Übertragung vom Quell-Volume auswählen. Zur Auswahl stehen die folgenden Häufigkeiten:
+. Im Dialogfeld „Replikationsintervall bearbeiten“ wird die Häufigkeit der Snapshot-Übertragung vom Quell-Volume ausgewählt. Zur Auswahl steht eine der folgenden Häufigkeiten:
 +
 ** Alle 5 Minuten
 ** Stündlich
@@ -51,7 +51,7 @@ Wenn ein lokaler ONTAP Cluster das Ziel der Replikationsbeziehung ist, kann der 
 
 Die Begrenzung der maximalen Transferrate ist optional, aber empfehlenswert. Ohne eine Begrenzung könnten die Netzwerk- und Applikations-Performance sinken.
 
-Alternativ empfehlen wir für kritische Workloads, beispielsweise solche, die primär für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate für FSx for ONTAP Dateisysteme.
+Für kritische Workloads, wie z. B. FSx for ONTAP Dateisysteme, die hauptsächlich für die Notfallwiederherstellung verwendet werden, wird eine unbegrenzte Transferrate empfohlen.
 
 .Bevor Sie beginnen
 Dabei ist zu berücksichtigen, wie viel Bandbreite für die Replikation zugewiesen werden soll.
@@ -118,7 +118,7 @@ Die Beziehung wird angehalten, und ihr Status lautet „Pausiert“.
 [[resume-a-paused-replication-relationship]]
 == Eine pausierte Replikationsbeziehung fortsetzen
 
-Wenn Sie eine Replikationsbeziehung wiederherstellen, werden alle Änderungen am Ziel-Volume, die während der Unterbrechung der Replikation vorgenommen wurden, gelöscht. Das Ziel-Volume wechselt vom lesen/schreiben in den Nur-Lese-Modus und empfängt wieder Aktualisierungen vom Quell-Volume im geplanten Replikationsintervall.
+Wenn eine Replikationsbeziehung fortgesetzt wird, werden alle Änderungen am Ziel-Volume gelöscht, die vorgenommen wurden, während die Replikation angehalten war. Das Ziel-Volume wechselt von lesen/schreiben zu schreibgeschützt und empfängt wieder Aktualisierungen vom Quell-Volume im geplanten Replikationsintervall.
 
 
 NOTE: Alle Daten, die zwischen der letzten Datenreplizierung und dem Zeitpunkt, zu dem das ursprüngliche Quell-Volume deaktiviert wird, auf das ursprüngliche Quell-Volume geschrieben werden, bleiben nicht erhalten.
@@ -152,7 +152,7 @@ Folgende umgekehrte Operationen werden unterstützt:
 
 Nachdem Sie die Replikation angehalten und Änderungen am Ziel-Volume vorgenommen haben, können Sie diese Änderungen zurück auf das Quell-Volume replizieren. Dieser Vorgang ist in einem Disaster-Recovery-Szenario üblich, in dem Sie eine Zeit lang auf dem Ziel-Volume arbeiten und anschließend die Rollen der Volumes wechseln möchten.
 
-Wenn Sie eine Replikation umkehren und fortsetzen, werden die Quell- und Zielrollen Ihrer Volumes vertauscht; das Ziel-Volume wird zum neuen Quell-Volume und das Quell-Volume zum neuen Ziel-Volume. Der Umkehrvorgang überschreibt außerdem den Inhalt des neuen Ziel-Volumes mit dem Inhalt des neuen Quell-Volumes. Wenn Sie eine Replikation zweimal umkehren, stellt sich die ursprüngliche Replikationsrichtung wieder her.
+Wenn Sie eine Replikation umkehren und fortsetzen, werden die Quell- und Zielrollen Ihrer Volumes getauscht; das Ziel-Volume wird zum neuen Quell-Volume und das Quell-Volume zum neuen Ziel-Volume. Der Umkehrvorgang überschreibt außerdem den Inhalt des neuen Ziel-Volumes mit dem Inhalt des neuen Quell-Volumes. Wenn Sie eine Replikation zweimal umkehren, stellt sich die ursprüngliche Replikationsrichtung wieder her.
 
 []
 ====
@@ -203,7 +203,7 @@ Der Replikationsstatus des Volumes ändert sich in *Broken*. Das Ziel-Volume wir
 [[delete-a-replication-relationship]]
 == Eine Replikationsbeziehung löschen
 
-Löschen einer Replikationsbeziehung in NetApp Workload Factory. Beim Löschen einer Replikationsbeziehung wird die Replikationsbeziehung zwischen dem Quell- und dem Ziel-Volume entfernt. Nach dem Löschen der Replikationsbeziehung existieren beide Volumes weiterhin unabhängig voneinander mit den aktuell enthaltenen Daten.
+Löschen einer Replikationsbeziehung in NetApp Workload Factory. Beim Löschen einer Replikationsbeziehung wird die Verbindung zwischen dem Quell- und dem Ziel-Volume entfernt. Nach dem Löschen der Beziehung existieren beide Volumes weiterhin unabhängig voneinander mit den jeweils enthaltenen Daten.
 
 Wenn Sie eine Replikationsbeziehung löschen, löscht FSx for ONTAP auch die gemeinsamen Replikations-Snapshots des Quell- und Ziel-Volume.
 

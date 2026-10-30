@@ -130,7 +130,7 @@ sidebar:
           - title: S3-Zugriffspunkte erstellen und anhängen
             url: "/fsx-storage/create-s3-access-points.html"
           - title: Management von S3-Zugriffspunkten
-            url: "/fsx-storage/manage-s3-access-points.html"
+            url: "/fsx-storage/edit-s3-access-points.html"
           - title: Einrichtung der Journaltabelleninfrastruktur
             url: "/fsx-storage/setup-journal-table.html"
         - title: Ein geklontes Volume aufteilen

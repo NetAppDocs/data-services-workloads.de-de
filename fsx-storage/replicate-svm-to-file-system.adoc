@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/replicate-svm-to-file-system.html 
 keywords: storage VM, SVM, replication, FSx for ONTAP, Workload Factory 
-summary: Die Replikation einer Storage VM auf ein anderes FSx for ONTAP Dateisystem bietet eine zusätzliche Schutzebene für den Datenzugriff im Falle von Datenverlust. 
+summary: Die Replizierung einer Storage-VM auf ein anderes FSx for ONTAP Dateisystem bietet eine zusätzliche Schutzebene für den Datenzugriff im Falle von Datenverlust. 
 ---
 = Eine Storage VM auf ein anderes FSx for ONTAP Dateisystem replizieren
 :allow-uri-read: 
@@ -14,35 +14,35 @@ summary: Die Replikation einer Storage VM auf ein anderes FSx for ONTAP Dateisys
 Die Replikation einer Storage VM auf ein anderes FSx for ONTAP Dateisystem in NetApp Workload Factory bietet eine zusätzliche Schutzebene für den Datenzugriff im Falle eines Datenverlusts. Bei diesem Vorgang werden alle Volumes einer Storage VM auf ein anderes FSx for ONTAP Dateisystem repliziert.
 
 .Bevor Sie beginnen
-Um eine Storage-VM auf ein anderes FSx for ONTAP File System zu replizieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Um eine Storage-VM auf ein anderes FSx for ONTAP File System zu replizieren, muss eine Verknüpfung hergestellt werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
 . Im Menü image:workloads-menu-icon.png["Das Hamburger-Menüsymbol wird für die Navigation zu Workloads, dem Menüpunkt für Workload Factory, verwendet"] ist *Workloads* > *Storage* > *FSx for ONTAP* auszuwählen.
 . In *FSx for ONTAP* wird im Aktionsmenü des Dateisystems mit der zu replizierenden Storage-VM die Option *Manage* ausgewählt.
 . In der Dateisystemübersicht erfolgt unter Storage VMs die Auswahl von *Manage*.
-. Auf dem Bildschirm „Storage VMs managen“ wird im Aktionsmenü der Storage VM, für die eine SVM repliziert werden soll, *Erweiterte Aktionen* > *Storage VM replizieren* ausgewählt.
+. Auf dem Bildschirm „Manage storage VMs“ erfolgt die Auswahl von *Advanced actions* > *Replicate storage VM* im Aktionsmenü der zu replizierenden storage VM.
 . Auf der Seite „Daten replizieren“ sind unter „Replikationsziel“ die folgenden Angaben erforderlich:
 +
 .. *FSx for ONTAP file system*: Wählen Sie Anmeldeinformationen, Region und FSx for ONTAP file system name für das Ziel-FSx for ONTAP file system aus.
 .. *Name der Storage VM*: Die Auswahl der Storage VM erfolgt im Dropdown-Menü.
-.. *Volume-Name*: Der Name des Ziel-Volume wird automatisch im folgenden Format generiert `{OriginalVolumeName}_copy`.
+.. *Volume name*: Der Name des Ziel-Volume wird automatisch im Format `{OriginalVolumeName}_copy` generiert.
 .. *Tiering-Richtlinie*: Auswahl der Tiering-Richtlinie für die im Ziel-Volume gespeicherten Daten.
 +
-Auto ist die Standard-Tiering-Richtlinie beim Erstellen eines Volumes über die Workload Factory FSx for ONTAP Benutzeroberfläche. Weitere Informationen zu Volume-Tiering-Richtlinien enthält link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^]die AWS FSx for NetApp ONTAP Dokumentation.
+_Auto_ ist die standardmäßige Tiering-Richtlinie, wenn Sie ein Volume in der Workload Factory Managementplattform erstellen. Weitere Informationen zu Volume-Tiering-Richtlinien sind unter link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] in der Dokumentation zu Amazon FSx for NetApp ONTAP verfügbar.
 
-.. *Maximale Transferrate*: *Begrenzt* auswählen und das maximale Transferlimit in MB/s eingeben. Alternativ *Unbegrenzt* auswählen.
+.. *Maximale Transferrate*: Für *Begrenzt* ist das maximale Transferlimit in MB/s anzugeben. Alternativ steht *Unbegrenzt* zur Auswahl.
 +
-Ohne Begrenzung könnte die Netzwerk- und Applikations-Performance nachlassen. Alternativ empfehlen wir für FSx for ONTAP Dateisysteme bei kritischen Workloads, zum Beispiel solchen, die in erster Linie für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate.
+Ohne eine Begrenzung könnten Netzwerk- und Applikations-Performance sinken. Wir empfehlen jedoch eine unbegrenzte Transferrate für FSx for ONTAP Dateisysteme für kritische Workloads, beispielsweise solche, die primär für die Notfallwiederherstellung verwendet werden.
 
 
 
 . Unter Replikationseinstellungen sind die folgenden Angaben erforderlich:
 +
-.. *Replikationsintervall*: Hier wird die Häufigkeit ausgewählt, mit der Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
+.. *Replikationsintervall*: Bestimmt, wie oft Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
 .. *Langzeitaufbewahrung*: Optional können Snapshots für die Langzeitaufbewahrung aktiviert werden.
 +
-Wenn Sie die Langzeitaufbewahrung aktivieren, können Sie eine vorhandene Richtlinie auswählen oder eine neue Richtlinie erstellen, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
+Wenn Sie die Langzeitaufbewahrung aktivieren, erfolgt die Auswahl einer vorhandenen Richtlinie oder die Erstellung einer neuen Richtlinie, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
 
 +
 ... Für *Choose an existing policy* ist eine bestehende Richtlinie aus dem Dropdown-Menü auszuwählen.

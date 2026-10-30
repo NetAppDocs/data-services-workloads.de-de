@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/use-onprem-data.html 
 keywords: use, detect, replicate, remove, on-premises, ONTAP cluster, on-premises cluster, ONTAP 
-summary: Lokale ONTAP Daten in der NetApp Workload Factory erkennen und replizieren, sodass sie als Backup in der Cloud genutzt werden können. 
+summary: Lokale ONTAP Cluster in NetApp Workload Factory erkennen, replizieren und entfernen, um Volume-Daten in FSx for ONTAP File-Systemen in der Cloud zu sichern. 
 ---
 = Replikation von On-Premises ONTAP Clusterdaten in NetApp Workload Factory
 :allow-uri-read: 
@@ -34,12 +34,12 @@ Anwendungsfälle::
 Die Erkennung eines lokalen ONTAP Clusters in NetApp Workload Factory ermöglicht die Replizierung der Daten in ein Amazon FSx for NetApp ONTAP Dateisystem.
 
 .Bevor Sie beginnen
-Vor Beginn sollte Folgendes vorhanden sein:
+Folgendes ist erforderlich:
 
 * Ein FSx for ONTAP Dateisystem zur Replikation.
 * Eine verbundene Verbindung, die mit dem erkannten lokalen Cluster verknüpft wird. Wenn keine Verbindung vorhanden ist, ist es erforderlich, link:create-link.html["einen erstellen"^].
 * ONTAP Benutzeranmeldeinformationen mit erforderlichen Berechtigungen.
-* On-premises ONTAP Version 9.8 und höher.
+* On-premises ONTAP Version 9.8 oder höher.
 * Die Konnektivität zeigt das folgende Diagramm.
 +
 image:screenshot-on-prem-connectivity.png["Screenshot, der zeigt, wie ein ONTAP Cluster vor Ort für den Managementpfad und Datenpfad mit Amazon Web Services Cloud verbunden sein sollte"]
@@ -85,7 +85,7 @@ Volume-Daten aus einem lokalen ONTAP Cluster werden in ein FSx for ONTAP Dateisy
 .Bevor Sie beginnen
 * Sie müssen einen lokalen ONTAP Cluster ermitteln, um seine Volume-Daten zu replizieren.
 * Für die Replikation als Ziel ist ein verfügbares FSx for ONTAP Dateisystem erforderlich.
-* Sowohl der lokale ONTAP Cluster als auch das FSx for ONTAP Dateisystem, das Sie für die Replikationsbeziehung verwenden, müssen über eine zugeordnete Verbindung verfügen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+* Sowohl der lokale ONTAP Cluster als auch das FSx for ONTAP Dateisystem, das Sie für die Replikationsbeziehung verwenden, müssen über eine zugeordnete Verbindung verfügen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 
 .Schritte
@@ -109,13 +109,13 @@ Volume-Daten aus einem lokalen ONTAP Cluster werden in ein FSx for ONTAP Dateisy
 Einige Tiering-Richtlinien haben eine zugehörige Mindestkühlzeit, die festlegt, wie lange, also wie viele _cooling days_, Benutzerdaten in einem Volume inaktiv bleiben müssen, damit die Daten als „kalt“ gelten und in den Capacity Pool Storage-Tier verschoben werden. Die Kühlzeit beginnt, wenn Daten auf die Festplatte geschrieben werden.
 
 +
-Weitere Informationen zu Volume-Tiering-Richtlinien bietet link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^]die AWS FSx for NetApp ONTAP Dokumentation.
+Weitere Informationen zu Volume-Tiering-Richtlinien enthält link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Volume-Speicherkapazität"^] in der Dokumentation zu AWS FSx for NetApp ONTAP.
 
 
 
 .. *Maximale Transferrate*: Bei Auswahl von *Begrenzt* ist die maximale Transferrate in MiB/s einzugeben. Alternativ steht *Unbegrenzt* zur Auswahl.
 +
-Ohne Begrenzung könnte die Netzwerk- und Applikations-Performance nachlassen. Alternativ empfehlen wir für FSx for ONTAP Dateisysteme bei kritischen Workloads, zum Beispiel solchen, die in erster Linie für die Notfallwiederherstellung verwendet werden, eine unbegrenzte Transferrate.
+Ohne eine Begrenzung könnten Netzwerk- und Applikations-Performance sinken. Wir empfehlen jedoch eine unbegrenzte Transferrate für FSx for ONTAP Dateisysteme für kritische Workloads, beispielsweise solche, die primär für die Notfallwiederherstellung verwendet werden.
 
 
 
@@ -124,7 +124,7 @@ Ohne Begrenzung könnte die Netzwerk- und Applikations-Performance nachlassen. A
 .. *Replikationsintervall*: Hier wird die Häufigkeit ausgewählt, mit der Snapshots vom Quell-Volume auf das Ziel-Volume übertragen werden.
 .. *Langzeitaufbewahrung*: Optional können Snapshots für die Langzeitaufbewahrung aktiviert werden.
 +
-Wenn Sie die Langzeitaufbewahrung aktivieren, können Sie eine vorhandene Richtlinie auswählen oder eine neue Richtlinie erstellen, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
+Wenn Sie die Langzeitaufbewahrung aktivieren, erfolgt die Auswahl einer vorhandenen Richtlinie oder die Erstellung einer neuen Richtlinie, um die zu replizierenden Snapshots und die Anzahl der aufzubewahrenden Snapshots festzulegen.
 
 +
 *** Für eine vorhandene Richtlinie ist *Vorhandene Richtlinie auswählen* auszuwählen, und anschließend ist die vorhandene Richtlinie im Dropdown-Menü auszuwählen.

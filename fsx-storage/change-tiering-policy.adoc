@@ -31,11 +31,11 @@ Die verfügbaren Tiering-Richtlinien sollten vor dem Ändern der Tiering-Richtli
 
 * *Ausgewogen (Automatisch)*: Standardmäßige Tiering-Richtlinie beim Erstellen eines Volumes über die Benutzeroberfläche. Häufig genutzte Daten verbleiben im SSD Storage-Tier, selten genutzte Daten und Snapshots werden nach Ablauf der Abkühlphase in das Kapazitätspool Storage-Tier verschoben. Empfohlen für allgemeine primäre Workloads.
 * *Kostenoptimiert (Alle)*: Lagert alle Snapshots und Daten in den Storage-Tier des Kapazitätspools aus. Empfohlen für sekundäre Ziele.
-* *Leistungsoptimiert (nur Snapshots)*: Tiers speichern nur Snapshot-Daten im Storage-Tier des Kapazitätspools. Empfohlen für Workloads mit niedriger Latenz, wie z. B. unternehmenskritische Datenbanken.
+* *Performance-optimiert (nur Snapshots)*: Tiers speichern Snapshot-Daten nur im Capacity-Pool-Storage-Tier. Empfohlen für Workloads mit niedriger Latenz, wie z. B. geschäftskritische Datenbanken.
 * *Keine*: Behält die Volumendaten im SSD Storage-Tier und verhindert, dass sie in das Kapazitätspool Storage-Tier verschoben werden.
 
 
-Einige Tiering-Richtlinien haben eine zugehörige Mindestkühlzeit, die festlegt, wie lange, also wie viele _cooling days_, Benutzerdaten in einem Volume inaktiv bleiben müssen, damit die Daten als „kalt“ gelten und in den Capacity Pool Storage-Tier verschoben werden. Die Kühlzeit beginnt, wenn Daten auf die Festplatte geschrieben werden.
+Einige Tiering-Richtlinien haben eine zugeordnete Mindestkühlzeit, die die Zeit bzw. die _Kühltage_ festlegt, während der Benutzerdaten in einem Volume inaktiv bleiben müssen, damit die Daten als „kalt“ betrachtet und in den Capacity Pool Storage-Tier verschoben werden. Die Kühlzeit beginnt, wenn Daten auf die Festplatte geschrieben werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.

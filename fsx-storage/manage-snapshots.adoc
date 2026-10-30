@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshots.html 
 keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
-summary: Das Bearbeiten der Snapshot-Einstellungen, das Aktivieren des Verzeichniszugriffs und das Löschen von Snapshots dienen dazu, Ihre Snapshots und den Datenschutz in Workload Factory zu managen. 
+summary: Bearbeitung von Snapshot-Namen, Labels und Aufbewahrungsfristen, Festlegen von Snapshots als unveränderlich, Aktivieren des Zugriffs auf das Snapshot-Verzeichnis und Löschen von Snapshots von FSx for ONTAP Volumes. 
 ---
 = Snapshots eines FSx for ONTAP Volume managen
 :allow-uri-read: 
@@ -26,7 +26,7 @@ Sie können den Namen, die Bezeichnung und die Aufbewahrungsdauer eines Snapshot
 . Wählen Sie das Aktionsmenü für das Volume mit dem Snapshot aus, das bearbeitet werden soll.
 . Die Auswahl erfolgt über *Datenschutzmaßnahmen* und anschließend *Snapshots verwalten*.
 . Auf der Seite „Snapshots verwalten“ steht im Aktionsmenü des zu bearbeitenden Snapshots die Option *Bearbeiten* zur Verfügung.
-. Im Dialogfeld „Snapshot bearbeiten“ können Sie Folgendes bearbeiten:
+. Im Dialogfeld „Snapshot bearbeiten“ lassen sich die folgenden Einstellungen bearbeiten:
 +
 .. Den Namen ändern.
 .. Die Bezeichnung ändern.
@@ -48,7 +48,7 @@ Die Aussage zu unveränderlichen Snapshots akzeptieren.
 [[access-a-snapshot]]
 == Zugriff auf eine Momentaufnahme
 
-Durch Aktivieren des Zugriffs auf das Snapshot-Verzeichnis erhalten Benutzer die Möglichkeit, selbstständig auf Snapshots zuzugreifen.
+Der Zugriff auf das Snapshot-Verzeichnis kann aktiviert werden, damit Benutzer selbstständig auf Snapshots zugreifen können.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
@@ -56,7 +56,7 @@ Durch Aktivieren des Zugriffs auf das Snapshot-Verzeichnis erhalten Benutzer die
 . Wählen Sie das Aktionsmenü für das Volume mit dem Snapshot aus, auf das zugegriffen werden soll.
 . Die Auswahl erfolgt über *Datenschutzmaßnahmen* und anschließend *Snapshots verwalten*.
 . Auf der Seite „Manage snapshots“ lässt sich im Aktionsmenü des gewünschten Snapshots *Access* auswählen.
-. Im Dialogfeld „Snapshot-Zugriff“ ermöglicht die Auswahl von *Zugriff auf das Snapshot-Verzeichnis aktivieren* den Zugriff auf diesen Volume-Snapshot und alle Snapshots des Volumes.
+. Im Dialogfeld „Zugriff auf Snapshots“ ermöglicht die Auswahl von *Zugriff auf Snapshot-Verzeichnis aktivieren* den Zugriff auf diesen Volume-Snapshot und alle Snapshots des Volumes.
 +
 ** Für NFS Volumes: Unter *NFS access path* ist der NFS-Pfad für den Snapshot zu sehen.
 ** Für SMB/CIFS Volumes: Unter *SMB access path* ist der SMB-Pfad für den Snapshot zu sehen.
@@ -71,7 +71,7 @@ Durch Aktivieren des Zugriffs auf das Snapshot-Verzeichnis erhalten Benutzer die
 [[restore-data-from-a-snapshot]]
 == Daten aus einem Snapshot wiederherstellen
 
-Sie haben die Möglichkeit, Daten aus einem Snapshot in ein vorhandenes Volume oder in ein neues Volume wiederherzustellen.
+Sie können Daten aus einem Snapshot auf ein vorhandenes Volume oder auf ein neues Volume wiederherstellen.
 
 link:use-snapshots.html["Wiederherstellung eines Volumes aus einem Snapshot"]
 

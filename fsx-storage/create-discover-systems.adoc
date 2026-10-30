@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/create-discover-systems.html 
 keywords: Amazon FSx for NetApp ONTAP, fsx, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console 
-summary: Cloud Storage-Systeme erstellen oder entdecken, um Volumes und zusätzliche Datenservices über die NetApp Console hinzuzufügen und zu managen. 
+summary: In der NetApp Console können Sie FSx for ONTAP Dateisysteme erstellen oder identifizieren, um Volumes und zusätzliche Datenservices hinzuzufügen und zu managen. 
 ---
 = Cloud Storage-Systeme in NetApp Console erstellen oder erkennen
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Cloud Storage-Systeme erstellen oder entdecken, um Volumes und zusätzl
 
 
 [role="lead"]
-Cloud Storage-Systeme erstellen oder entdecken, um Volumes und zusätzliche Datenservices über die NetApp Console hinzuzufügen und zu managen.
+Mit der NetApp Console lassen sich FSx for ONTAP Dateisysteme der ersten und zweiten Generation erstellen oder identifizieren sowie Volumes und zusätzliche Datenservices managen.
 
 
 
@@ -74,7 +74,7 @@ Diese Konfiguration mit einem einzelnen HA-Paar wird für Workloads empfohlen, d
 
 
 
-.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+.. *Tags*: Optional lassen sich bis zu 50 Tags hinzufügen.
 
 
 . Unter *Dateisystemdetails* sind die folgenden Angaben erforderlich:
@@ -96,7 +96,7 @@ Falls der von Ihnen angegebene Benutzer nicht der fsxadmin-Benutzer ist und Sie 
 ... *SMB Server NetBIOS-Name*: Der SMB Server NetBIOS-Name des Active Directory-Computerobjekts, das für Ihre Storage VM erstellt werden soll. Dies ist der Name dieser Storage VM im Active Directory.
 ... *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
 +
-Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+Ein Domänenpräfix oder -suffix darf nicht enthalten sein. Für `EXAMPLE\ADMIN` ist  `ADMIN` zu verwenden.
 
 ... *Passwort*: Das Passwort für das Dienstkonto eingeben.
 ... *Abteilung*: Optional können Sie den Namen der Abteilung eingeben, in der Sie das Computerkonto für FSx for ONTAP erstellen möchten. Die OU ist der eindeutige Pfadname der Abteilung, mit der Sie das Dateisystem verknüpfen möchten.
@@ -116,7 +116,7 @@ Wenn Sie einem selbstverwalteten AD beitreten, verwenden Sie den Namen der Grupp
 
 
 .Ergebnis
-Wenn Sie das Dateisystem erstellt haben, erscheint die neue FSx for ONTAP Konfiguration auf der Seite „Systeme“.
+Nachdem Sie das Dateisystem erstellt haben, können Sie es auf der Seite „Systems“ anzeigen.
 
 Es gibt verschiedene Möglichkeiten, Ihre FSx for ONTAP Dateisysteme zu managen, etwa über Workloads in der NetApp Console, mit ONTAP System Manager und mit AWS CloudFormation.
 
@@ -160,7 +160,7 @@ Sie können auch eine gespeicherte Konfiguration laden.
 
 
 
-.. *Tags*: Optional können Sie bis zu 50 Tags hinzufügen.
+.. *Tags*: Optional lassen sich bis zu 50 Tags hinzufügen.
 
 
 . Unter Dateisystemdetails sind die folgenden Angaben erforderlich:
@@ -174,8 +174,8 @@ Sie können auch eine gespeicherte Konfiguration laden.
 .. *Durchsatzkapazität pro HA-Paar*: Auswahl der Durchsatzkapazität entsprechend der Anzahl der HA-Paare. Dateisysteme der ersten Generation unterstützen nur ein HA-Paar.
 .. *Bereitgestellte IOPS*: Zur Auswahl steht eine der folgenden Optionen:
 +
-*** *Automatisch*: Bei der automatischen Einstellung werden für jedes erstellte GiB 3 IOPS hinzugefügt.
-*** *Benutzerseitig bereitgestellt*: Für „Benutzerseitig bereitgestellt“ wird der IOPS-Wert eingegeben.
+*** *Automatisch*: Für jedes erstellte GiB werden 3 IOPS hinzugefügt.
+*** *Vom Benutzer bereitgestellt*: Eingabe des IOPS-Werts.
 
 
 .. *ONTAP-Zugangsdaten*: Optional. In diesem Schritt werden Ihr ONTAP-Benutzername und Ihr Passwort eingegeben. Das Passwort kann jetzt oder später festgelegt werden.
@@ -190,7 +190,7 @@ Falls der von Ihnen angegebene Benutzer nicht der fsxadmin-Benutzer ist und Sie 
 ... *SMB Server NetBIOS-Name*: Der SMB Server NetBIOS-Name des Active Directory-Computerobjekts, das für Ihre Storage VM erstellt werden soll. Dies ist der Name dieser Storage VM im Active Directory.
 ... *Benutzername*: Hier wird der Benutzername des Dienstkontos in Ihrem bestehenden Active Directory eingegeben.
 +
-Die Eingabe erfolgt ohne Domänenpräfix oder -suffix. Für `EXAMPLE\ADMIN` kommt `ADMIN` zum Einsatz.
+Ein Domänenpräfix oder -suffix darf nicht enthalten sein. Für `EXAMPLE\ADMIN` ist  `ADMIN` zu verwenden.
 
 ... *Passwort*: Das Passwort für das Dienstkonto eingeben.
 ... *Abteilung*: Optional können Sie den Namen der Abteilung eingeben, in der Sie das Computerkonto für FSx for ONTAP erstellen möchten. Die OU ist der eindeutige Pfadname der Abteilung, mit der Sie das Dateisystem verknüpfen möchten.
@@ -237,7 +237,7 @@ Informationen zu den Sicherheitsgruppenprotokollen, Ports und Rollen einer neuen
 
 
 .Ergebnis
-Wenn Sie das Dateisystem erstellt haben, erscheint die neue FSx for ONTAP Konfiguration auf der Seite „Systeme“.
+Nachdem Sie das Dateisystem erstellt haben, können Sie es auf der Seite „Systems“ anzeigen.
 
 Es gibt verschiedene Möglichkeiten, Ihre FSx for ONTAP Dateisysteme zu managen, etwa über Workloads in der NetApp Console, mit ONTAP System Manager und mit AWS CloudFormation.
 
@@ -245,27 +245,27 @@ Es gibt verschiedene Möglichkeiten, Ihre FSx for ONTAP Dateisysteme zu managen,
 ====
 
 
-[[discover-an-existing-cloud-storage-system]]
-== Ein vorhandenes Cloud Storage-System entdecken
+[[discover-an-existing-fsx-for-ontap-file-system]]
+== Ein vorhandenes FSx for ONTAP Dateisystem identifizieren
 
-Wenn Sie Ihre Zugangsdaten für Ihren Cloud-Storage-Anbieter zuvor in Workload Factory angegeben haben, können Sie Ihre Storage-Systeme auf der Seite Discoverable systems automatisch erkennen. Dort können Sie auch verfügbare Datenservices prüfen.
+Wenn Sie Ihre Anmeldeinformationen für Ihren Cloud-Storage-Anbieter zuvor in Workload Factory angegeben haben, können Sie Ihre FSx for ONTAP Dateisysteme automatisch auf der Seite Discoverable systems identifizieren. Außerdem können Sie die verfügbaren Datenservices prüfen.
 
 .Über diese Aufgabe
-Sie können ein Cloud Storage-System innerhalb eines Kontos nur einmal erkennen und es einem Arbeitsbereich zuordnen. Das Storage-System kann später entfernt und einem anderen Arbeitsbereich neu zugeordnet werden.
+Ein FSx for ONTAP Dateisystem kann innerhalb eines Kontos nur einmal identifiziert und einem Arbeitsbereich zugeordnet werden. Das Dateisystem kann später entfernt und einem anderen Arbeitsbereich erneut zugeordnet werden.
 
 .Schritte
 . Im Menü NetApp Console erfolgt die Auswahl von *Storage*, dann *Management* und anschließend *Discoverable systems*.
-. Die Anzahl der ermittelten Cloud Storage-Systeme wird angezeigt. Die Auswahl erfolgt über *Discover*.
+. Die Anzahl der identifizierten FSx for ONTAP Dateisysteme wird angezeigt. *Identifizieren* auswählen.
 . Zum Hinzufügen zur Seite „Systeme“ ist die Auswahl eines oder mehrerer Storage-Systeme und von *Discover* erforderlich.
 
 
 [NOTE]
 ====
-* Wenn Sie ein unbenanntes Storage-System auswählen, erhalten Sie eine Aufforderung, einen Namen für das System einzugeben.
-* Wenn Sie ein Storage-System auswählen, für dessen Management über die Console nicht die erforderlichen Anmeldeinformationen vorhanden sind, wird eine Aufforderung angezeigt, Anmeldeinformationen mit den erforderlichen Berechtigungen auszuwählen.
+* Wenn Sie ein unbenanntes Dateisystem auswählen, erhalten Sie die Aufforderung, einen Namen für das System einzugeben.
+* Wenn Sie ein Dateisystem auswählen, für dessen Managen über die Console die erforderlichen Anmeldeinformationen fehlen, werden Sie aufgefordert, Anmeldeinformationen mit den erforderlichen Berechtigungen auszuwählen.
 * Für die Erkennung werden die folgenden Regionen nicht unterstützt: Regionen in China, GovCloud (US) Regionen, Secret Cloud und Top Secret Cloud.
 
 
 ====
 .Ergebnis
-Die Console zeigt Ihr erkanntes System auf der Seite „Systeme“ an. Sie können Ihre Storage-Systeme auf verschiedene Weise managen, beispielsweise über Workloads in der NetApp Console sowie mit ONTAP System Manager oder mit den Storage-Management-Tools Ihres Cloud-Providers.
+Die Console zeigt Ihr identifiziertes Dateisystem auf der Seite „Systeme“ an. Sie können Ihre Dateisysteme auf verschiedene Weise managen, z. B. über Workloads in der NetApp Console, mit ONTAP System Manager und mit den Storage-Management-Tools Ihres Cloud-Providers.

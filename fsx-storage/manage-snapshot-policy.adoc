@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshot-policy.html 
 keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
-summary: Die Verwaltung von Snapshot-Richtlinien für FSx for ONTAP Volumes in Workload Factory. Eine Snapshot-Richtlinie definiert, wie das System Snapshots für ein Volume erstellt. 
+summary: Snapshot-Richtlinien zuweisen, ändern, entfernen und löschen sowie unveränderliche Snapshots und die Langzeitaufbewahrung für FSx for ONTAP Volumes in Workload Factory aktivieren. 
 ---
 = Verwalten von Snapshot-Richtlinien für Volumes in NetApp Workload Factory
 :allow-uri-read: 
@@ -27,7 +27,7 @@ Standardmäßig ist jedes Volume der  `default`Snapshot-Richtlinie des Dateisyst
 Sie können einem einzelnen Volume eine Snapshot-Richtlinie zuweisen, um geplante Snapshots für das Volume zu erstellen.
 
 .Bevor Sie beginnen
-Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zuzuweisen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zuzuweisen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
@@ -39,7 +39,7 @@ Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zuzuweisen. link
 . Auf der Seite „Snapshot-Richtlinienverwaltung“ erfolgt die Auswahl von *Richtlinie dem Volume zuweisen* über das Aktionsmenü der Snapshot-Richtlinie.
 . Im Dialogfeld „Snapshot-Richtlinie zuweisen“ erfolgt die Auswahl einer Snapshot-Richtlinie für das Volume sowie die Überprüfung des Richtlinienzeitplans.
 +
-Wenn die Richtlinie unveränderliche Snapshots enthält und Sie sie verwenden möchten, müssen Sie die Erklärung akzeptieren.
+Wenn die Richtlinie unveränderliche Snapshots enthält und Sie diese verwenden möchten, ist die Erklärung zu akzeptieren.
 
 . *Assign* ist auszuwählen.
 
@@ -52,10 +52,10 @@ Die Snapshot-Richtlinie ist dem Volume zugewiesen.
 [[change-a-snapshot-policy]]
 == Ändern einer Snapshot-Richtlinie
 
-Sie können den Namen, den Zeitplan und die Anzahl der aufzubewahrenden Kopien der Snapshot-Richtlinie ändern sowie unveränderliche Snapshots aktivieren oder deaktivieren. Die gemeinsame Nutzung von Richtlinien über Storage VMs hinweg kann nicht aktiviert oder deaktiviert werden. Diese Option ist nur bei der Erstellung der Snapshot-Richtlinie verfügbar.
+Sie können den Namen der Snapshot-Richtlinie, den Zeitplan und die Anzahl der aufzubewahrenden Kopien ändern sowie unveränderliche Snapshots aktivieren oder deaktivieren. Die gemeinsame Nutzung von Richtlinien über Storage VMs hinweg kann nicht aktiviert oder deaktiviert werden. Diese Option kann nur beim Erstellen einer Snapshot-Richtlinie festgelegt werden.
 
 .Bevor Sie beginnen
-Um vorhandene Snapshot-Richtlinien anzuzeigen, muss ein Link zugeordnet werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Um vorhandene Snapshot-Richtlinien anzuzeigen, muss ein Link zugeordnet werden. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
@@ -80,7 +80,7 @@ Die Snapshot-Richtlinie wurde aktualisiert.
 Snapshots sperren, damit sie während der Aufbewahrungsfrist nicht gelöscht werden.
 
 .Bevor Sie beginnen
-Sie müssen eine Verknüpfung herstellen, um unveränderliche Snapshots zu aktivieren. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Sie müssen eine Verknüpfung herstellen, um unveränderliche Snapshots zu aktivieren. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
@@ -148,7 +148,7 @@ NOTE: Die Bearbeitung der Langzeitaufbewahrung ist beim Replizieren von Storage-
 Eine Snapshot-Richtlinie kann von einem Volume entfernt werden, wenn keine Snapshots des Volumes mehr benötigt werden oder wenn eine Snapshot-Richtlinie gelöscht werden soll, die mehreren Volumes zugewiesen ist. Um <<Löschen einer Snapshot-Richtlinie,eine Snapshot-Richtlinie löschen>>, muss eine solche Richtlinie, die mehr als einem Volume zugewiesen ist, manuell aus allen Volumes entfernt werden.
 
 .Bevor Sie beginnen
-Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zu entfernen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung ist eine Rückkehr zu diesem Vorgang erforderlich.
+Sie müssen einen Link verknüpfen, um eine Snapshot-Richtlinie zu entfernen. link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"^]. Nach der Verknüpfung kann zu diesem Vorgang zurückgekehrt werden.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.

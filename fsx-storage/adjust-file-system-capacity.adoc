@@ -50,7 +50,7 @@ Um die Kapazität eines Dateisystems anzupassen, müssen Sie zuerst <<Automatisc
 [[enable-automatic-capacity-and-inode-management]]
 == Automatische Kapazitäts- und Inode-Verwaltung aktivieren
 
-Die Aktivierung von Kapazitätsmanagement und Inode-Management ermöglicht es der NetApp Workload Factory, automatisch inkrementellen Storage, ein FSx for ONTAP File System und Inodes (Dateien) zu einem Volume hinzuzufügen, wenn sich der Kapazitätsbedarf im Laufe der Zeit ändert. Diese Funktionen machen die manuelle Überwachung von Kapazität und Inodes überflüssig.
+Mit der Aktivierung des Kapazitäts- und Inode-Managements kann NetApp Workload Factory bei sich im Laufe der Zeit änderndem Kapazitätsbedarf automatisch inkrementeller Storage zu einem FSx for ONTAP-Dateisystem und Inodes (Dateien) zu einem Volume hinzufügen. Diese Funktionen machen die manuelle Überwachung von Kapazität und Inodes überflüssig.
 
 Nur ein Konto kann diese Funktionen verwalten.
 
@@ -146,7 +146,7 @@ Vor Beginn ist Folgendes zu beachten:
 . Auf der Seite „FSx for ONTAP“ erfolgt die Auswahl von *Inventory*.
 . Im *Inventar* können Sie das Aktionsmenü des Dateisystems auswählen, für das die automatische Inode-Verwaltung aktiviert werden soll.
 . Auswahl von *Manage*.
-. Unter „Informationen“ befindet sich neben *Automatische Inode-Verwaltung* das Stiftsymbol. Das Stiftsymbol erscheint neben dem Dropdown-Pfeil, wenn sich der Mauszeiger über der Zeile *Automatische Inode-Verwaltung* befindet.
+. Unter Informationen das Stiftsymbol neben *Automatische Inode-Verwaltung* auswählen. Das Stiftsymbol erscheint neben dem Dropdown-Pfeil, wenn sich der Mauszeiger über der Zeile *Automatische Inode-Verwaltung* befindet.
 . Im Dialogfeld *Automatische Inode-Verwaltung* sind folgende Angaben erforderlich:
 +
 .. *Anmeldeinformationen*: Im Dropdown-Menü werden Anmeldeinformationen mit _Automate_-Berechtigungen ausgewählt.

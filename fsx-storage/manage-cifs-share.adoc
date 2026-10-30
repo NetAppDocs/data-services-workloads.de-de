@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-cifs-share.html 
 keywords: cifs, smb, SMB, CIFS, cifs share, change, update, modify, delete, create 
-summary: Die Verwaltung einer SMB- oder CIFS-Freigabe eines Volumes in Workload Factory umfasst die Erstellung, die Festlegung des Benutzer- und Gruppenzugriffs sowie die Löschung. 
+summary: In Workload Factory können Sie eine SMB/CIFS-Freigabe für ein Volume erstellen, ändern oder löschen und festlegen, welche Benutzer und Gruppen darauf zugreifen können. 
 ---
 = Verwalten der SMB/CIFS-Freigabe für ein Volume in NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Die Verwaltung einer SMB- oder CIFS-Freigabe eines Volumes in Workload 
 
 
 [role="lead"]
-Die Verwaltung einer SMB/CIFS-Freigabe eines Volumes in Workload Factory umfasst das Erstellen und Löschen von SMB/CIFS-Freigaben sowie das Festlegen der Benutzer und Gruppen, denen Zugriff gewährt wird, und des Levels der Berechtigungen, die ihnen erteilt werden.
+In Workload Factory kann eine SMB/CIFS-Freigabe für ein Volume erstellt, geändert oder gelöscht werden. Es lässt sich steuern, welche Benutzer und Gruppen auf die Freigabe zugreifen können und über welches Berechtigungslevel sie verfügen.
 
 .Bevor Sie beginnen
 Bevor Sie beginnen, sind die folgenden Schritte auszuführen:
@@ -25,7 +25,7 @@ Bevor Sie beginnen, sind die folgenden Schritte auszuführen:
 [[create-an-smbcifs-share-for-a-volume]]
 == Erstellen einer SMB/CIFS-Freigabe für ein Volume
 
-Die folgenden Schritte dienen zum Erstellen einer SMB/CIFS-Freigabe für ein Volume.
+Erstellung einer SMB/CIFS-Freigabe für ein Volume.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
@@ -36,7 +36,7 @@ Die folgenden Schritte dienen zum Erstellen einer SMB/CIFS-Freigabe für ein Vol
 . Im Dialogfeld „SMB/CIFS-Freigabe erstellen“ sind folgende Angaben erforderlich:
 +
 .. *Name*: Feld für den Namen der SMB/CIFS-Freigabe.
-.. *Pfad*: Es ist möglich, den Pfad entweder mit dem Standard-Volumenamen zu definieren oder eine Freigabe für ein internes Verzeichnis anzugeben.
+.. *Pfad*: Definition des Pfads mithilfe des Standard-Volume-Namens oder Angabe einer Freigabe für ein internes Verzeichnis.
 +
 Gültige Pfadeingaben für den Volume-Namen, zum Beispiel "avocado", lauten wie folgt:
 
@@ -64,7 +64,7 @@ Gültige Pfadeingaben für den Freigabenamen, zum Beispiel „Server“, lauten 
 [[change-an-smbcifs-share-for-a-volume]]
 == SMB/CIFS-Freigabe für ein Volume ändern
 
-Nachfolgend sind die Schritte zum Ändern der SMB/CIFS-Freigabeeinstellungen für ein Volume beschrieben.
+Sie können die SMB/CIFS-Freigabeeinstellungen für ein Volume ändern.
 
 .Schritte
 . Melden Sie sich bei der link:https://console.netapp.com["NetApp Console"^] an.
