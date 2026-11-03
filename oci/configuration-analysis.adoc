@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: oci/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, OCI NSS, recommendation, recommendations 
+summary: NetApp Workload Factory analysiert regelmäßig die OCI NSS-Systemkonfigurationen, um festzustellen, ob Konfigurationsprobleme vorliegen. 
+---
+= Konfigurationsanalyse für OCI NSS Systeme
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory analysiert regelmäßig OCI NSS-Systemkonfigurationen, um festzustellen, ob Konfigurationsprobleme vorliegen. Wenn Probleme gefunden werden, zeigt Workload Factory, worin diese bestehen, und erläutert, was geändert werden muss, damit Ihre Storage-Umgebung optimale Performance, Kosteneffizienz und Compliance mit Best Practices erreicht.
+
+Zu den wichtigsten Fähigkeiten gehören:
+
+* Tägliche Konfigurationsanalyse
+* Automatische Best-Practice-Validierungen
+* Proaktive Beobachtbarkeit
+* Erkenntnisse in die Praxis umsetzen
+* OCI Well-Architected Framework Berater
+
+
+
+
+[[how-it-works]]
+== So funktioniert es
+
+Workload Factory analysiert Ihre Workloads auf unterstützten Cloud-Speicherbereitstellungen jeden Tag. Die Analyse liefert den Status einer Well-Architected-Architektur, Erkenntnisse und Empfehlungen.
+
+Nach Abschluss der täglichen Analyse werden die Konfigurationen im Well-architected Dashboard für das Deployment als "optimiert" oder "nicht optimiert" angezeigt. Konfigurationsprobleme werden dort zusammen mit Empfehlungen nach Kategorie geordnet angezeigt. Workload Factory stellt detaillierte Anleitungen bereit, die bei der Implementierung der empfohlenen Änderungen helfen.
+
+Sie können die Analyse von Konfigurationen, die für Ihre Umgebungen nicht relevant sind, ausblenden. Dadurch werden unnötige Warnmeldungen und ungenaue Optimierungsergebnisse vermieden.
+
+
+
+[[why-it-matters]]
+== Warum es wichtig ist
+
+Workload Factory wendet Best Practices auf große Storage-, Datenbank- und VMware-Umgebungen an, indem kontinuierliche Bewertungen mit Empfehlungseinblicken und Fehlerbehebungen kombiniert werden. Automatisierte Korrekturen reduzieren menschliche Fehler, gewährleisten einheitliches Management und erhalten Leistung und Zuverlässigkeit über Ihre Workload-Infrastrukturen hinweg.
+
+
+
+[[analysis-requirements]]
+== Analyseanforderungen
+
+Für eine vollständige Dateisystemanalyse sind die folgenden Schritte erforderlich:
+
+* Zuordnung einer Verknüpfung. Die Link-Konnektivität ermöglicht Workload Factory die Analyse aller OCI NSS-Systemkonfigurationen wie Datenschutz und Performance.
++
+link:create-link.html["Erfahren Sie, wie Sie einen bestehenden Link verknüpfen oder einen neuen Link erstellen und verknüpfen"].
+
+* Gewähren Sie _view, planning, and analysis_-Berechtigungen in Ihrem OCI-Konto.
++
+link:add-credentials-oci.html["Erfahren Sie, wie Sie einem OCI-Konto Berechtigungen erteilen"].
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== Bewährte Verfahren und Empfehlungen für Speicher-Workloads
+
+Das gut strukturierte Dashboard bewertet Speicherkonfigurationen anhand der ONTAP Best Practices und des AWS Well-Architected Framework. Die Bewertung empfiehlt außerdem Verbesserungen und Fehlerbehebungen.
+
+Die gut strukturierte Analyse kategorisiert Konfigurationen in den folgenden Säulen des Rahmenwerks: _Zuverlässigkeit_, _Sicherheit_, _operative Exzellenz_, _Kostenoptimierung_ und _Leistungseffizienz_.
+
+
+NOTE: Derzeit bietet Workload Factory nicht für alle Konfigurationen workloadspezifische Empfehlungen. Die Konfigurationen sollten an die spezifischen Anforderungen der Workload angepasst werden.
+
+
+
+[[reliability]]
+=== Zuverlässigkeit
+
+Zuverlässigkeit gewährleistet, dass Arbeitslasten ihre beabsichtigten Funktionen korrekt und konsistent erfüllen, selbst wenn es zu Störungen kommt.
+
+* *Dateiobjektkapazität*
++
+Um die Speicherkapazitätsgrenze des Volumes nicht zu erreichen, sollte der Schwellenwert für die Dateikapazität erhöht werden. Eine niedrige Dateikapazität (Inodes) verhindert das Schreiben zusätzlicher Daten auf das Volume. Workload Factory empfiehlt, die Dateikapazitätsauslastung unter 80 % zu halten, um die Erstellung neuer Dateien zu ermöglichen.
+
+* *Snapshot Policy*
++
+Lokale Snapshots für effiziente Datensicherung und schnelle Wiederherstellung einplanen. Snapshots sind sofortige, zeitpunktgenaue Abbilder Ihrer Volumes. Diese Empfehlung gilt nicht für Datenbankumgebungen.
+
+* *SSD-Kapazitätsreserve*
++
+Die SSD-Speicherebene sollte eine Auslastung von maximal 80 % nicht überschreiten. Dies kann sich auf Lese- und Schreibvorgänge auf Ihrer Kapazitätspool-Speicherebene auswirken und die Durchsatzkapazität Ihres Dateisystems beeinträchtigen. Wenn die Kapazität erschöpft ist, werden Datenvolumes schreibgeschützt. Dienste, die versuchen, neue Daten zu schreiben, schlagen ebenfalls fehl.
+
+
+
+
+
+[[operational-excellence]]
+=== Operative Exzellenz
+
+Operative Exzellenz gewährleistet, dass Workloads effektiv betrieben und überwacht werden und die Anforderungen ihrer Benutzer erfüllen können.
+
+* *Für den Host sichtbare Kapazitätsberichterstattung*
++
+Die host-sichtbare Kapazitätsberichterstattung ermöglicht eine bessere Transparenz der Speichernutzung auf Volume-Ebene.
+
+* *Freier Volumenkapazitätsspielraum*
++
+Der freie Kapazitätspuffer des Volumes sollte auf 10 % festgelegt werden, um Wachstum zu ermöglichen und unerwartete Kapazitätsprobleme zu vermeiden.
+
+
+
+
+
+[[cost-optimization]]
+=== Kostenoptimierung
+
+Kostenoptimierung hilft Ihnen, den größtmöglichen Nutzen für Ihr Unternehmen zu erzielen und gleichzeitig die Kosten niedrig zu halten.
+
+* *Tiering kalter Daten* Zum Einsatz kommt die Tiering-Richtlinie nur für Snapshots, bei der nur Snapshot-Daten auf die Kapazitätsebene verschoben werden, während aktive Daten auf der SSD-Ebene verbleiben. Dieser Ansatz erhält die Performance mit niedriger Latenz für Datenbank-Workloads und senkt gleichzeitig die Storage-Kosten. Das Tiering von Snapshot-Daten erfolgt nach einer Abkühlphase von 7 Tagen.
+* *Snapshot Bereinigung*
++
+Alte oder manuell erstellte Snapshots, die nicht mehr benötigt werden, können gelöscht werden. Das Entfernen dieser Snapshots kann Kosten senken und die Datenmenge reduzieren, insbesondere wenn sie nicht für die SLA oder Wiederherstellungsanforderungen erforderlich sind.
+
+* *Speichereffizienzen*
++
+Speichereffizienzmaßnahmen wie Verdichtung, Komprimierung und Deduplizierung ermöglichen eine optimierte Speicherauslastung und eine Reduzierung der Kosten der SSD-Ebene.
+
+
+
+.Was kommt als Nächstes
+link:improve-configurations.html["Implementierung gut strukturierter OCI NSS-Konfigurationen"]

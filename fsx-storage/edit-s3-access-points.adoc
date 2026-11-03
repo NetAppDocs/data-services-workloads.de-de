@@ -7,7 +7,7 @@ summary: Aktualisierung der Details des S3-Zugriffspunkts, Management von Tags s
 = Bearbeiten der S3-Zugriffspunkte für ein FSx for ONTAP Volume in NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]
