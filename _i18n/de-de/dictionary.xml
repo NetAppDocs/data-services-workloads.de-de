@@ -2875,7 +2875,6 @@
   <block id="75ef547803457d883c1ab7eec9dd8c12" category="paragraph">Amazon FSx for NetApp ONTAP wird als Cyber-Vault-Quelle und -Ziel unterstützt.</block>
   <block id="b672f52ade975e864ae6b58722c03689" category="paragraph-title">Implementierung</block>
   <block id="e8e8dcbe97676a6fe5760aae822c6e61" category="paragraph">Workload Factory unterstützt Sie bei der Erstellung einer Cyber-Vault-Architektur. Nachdem Sie NetApp kontaktiert haben, um Ihr Interesse an der Implementierung eines Cyber-Vault auszudrücken, nimmt ein NetApp Spezialist Kontakt mit Ihnen auf, um Ihre Anforderungen zu besprechen.</block>
-  <block id="9577a31ea32e2c5b58950150698f2a07" category="paragraph">Zum Einstieg senden Sie eine E-Mail an ng-FSx-CyberVault@netapp.com.</block>
   <block id="a9541230016fd9f6de7895f1a32b75fb" category="inline-link-macro">ONTAP Cyber-Vault-Dokumentation</block>
   <block id="9241eb0a9aab7657dc2b300da8931da7" category="paragraph">Weitere Informationen zu Cyber-Vaults und zur Einrichtung dieser Architektur finden Sie im <block ref="5ee11ce3f9bfc218d47e808a1ac01a55" category="inline-link-macro-rx"></block>.</block>
   <block id="21b32a5531b6213c6f49c70cd4ba55c2" category="summary">Cloud Storage-Systeme erstellen oder entdecken, um Volumes und zusätzliche Datenservices über die NetApp Console hinzuzufügen und zu managen.</block>
@@ -7072,4 +7071,12 @@
   <block id="8b253c1d4259c21c8314fc85adcb31d6" category="section-title">01. November 2026</block>
   <block id="b6109a32079ec6b1674d08deef3b061a" category="sidebar">Konfigurationsanalyse für den OCI NetApp Storage Service</block>
   <block id="ccffb8af48fec4f0b06bcd53e8686fea" category="sidebar">Konfigurationen des OCI NetApp Storage Service verbessern</block>
+  <block id="a2e83c1dd25f125287b17739cb38fd88" category="paragraph">Die Kapazität des SSD Storage-Tier sollte 80 % Auslastung nicht überschreiten. Eine Überschreitung dieses Schwellenwerts kann Lese- und Schreibvorgänge auf Ihrem Capacity Pool Storage-Tier beeinträchtigen und die Durchsatzkapazität Ihres Dateisystems verringern. Wenn die Kapazität ausgeschöpft ist, werden Daten-Volumes schreibgeschützt. Auch Services, die versuchen, neue Daten zu schreiben, schlagen dann fehl.</block>
+  <block id="1e1ba6e3e89c5c46a8b08f6bb7ca5b1e" category="paragraph">Zum Einstieg senden Sie eine E-Mail an ng-CyberVault@netapp.com.</block>
+  <block id="377ba154ccba26a0c8629b61ddb6ed8e" category="doc">Schutz Ihrer OCI NetApp Storage Service Daten mit einem Cyber-Vault</block>
+  <block id="065ce2bbd0b2c80480729cc2db24ecf0" category="section-title">OCI NetApp Storage Service Cyber-Vaults</block>
+  <block id="1d36752b389e26db7ea175cfa8c55520" category="paragraph">OCI NetApp Storage Service wird als Cyber-Vault Quelle und -Ziel unterstützt.</block>
+  <block id="aef8b94004154212084538bcd066fcd4" category="sidebar">Berechtigungen für FSx für ONTAP</block>
+  <block id="84dd6c967c118d2d788a5e553796a8d0" category="sidebar">Verwendung des OCI NetApp Storage Service in Workload Factory</block>
+  <block id="ce58205871372f591193549c18437f34" category="sidebar">Verwaltung von OCI NetApp Storage Service Ressourcen</block>
 </blocks>

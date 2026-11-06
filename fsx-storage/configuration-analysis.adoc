@@ -96,7 +96,7 @@ Die regionsübergreifende Replikation stellt sicher, dass Ihre Daten in eine and
 
 * *SSD-Kapazitätsreserve*
 +
-Die SSD-Speicherebene sollte eine Auslastung von maximal 80 % nicht überschreiten. Dies kann sich auf Lese- und Schreibvorgänge auf Ihrer Kapazitätspool-Speicherebene auswirken und die Durchsatzkapazität Ihres Dateisystems beeinträchtigen. Wenn die Kapazität erschöpft ist, werden Datenvolumes schreibgeschützt. Dienste, die versuchen, neue Daten zu schreiben, schlagen ebenfalls fehl.
+Die Kapazität des SSD Storage-Tier sollte 80 % Auslastung nicht überschreiten. Eine Überschreitung dieses Schwellenwerts kann Lese- und Schreibvorgänge auf Ihrem Capacity Pool Storage-Tier beeinträchtigen und die Durchsatzkapazität Ihres Dateisystems verringern. Wenn die Kapazität ausgeschöpft ist, werden Daten-Volumes schreibgeschützt. Auch Services, die versuchen, neue Daten zu schreiben, schlagen dann fehl.
 
 * *Replikationsrichtlinienbezeichnungen*
 +
