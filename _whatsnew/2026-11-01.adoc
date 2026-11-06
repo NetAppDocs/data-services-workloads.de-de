@@ -19,7 +19,7 @@ Wenn neue Daten verfügbar sind, kann im Benachrichtigungsbanner *Load it now* a
 
 Sowohl *Daten aktualisieren* als auch *Jetzt laden* erzeugen Datenerfassungsereignisse in Tracker.
 
-link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Informationen zum Aktualisieren benutzerdefinierter Dashboard-Daten"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Informationen zum Aktualisieren benutzerdefinierter Dashboard-Daten"]
 
 
 
@@ -27,7 +27,7 @@ link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Information
 
 Benutzerdefinierte Dashboards fordern nun zur Auswahl einer oder mehrerer Regionen auf, wenn diese nicht in der Anfrage enthalten sind. Die Dashboard-Daten sind auf die ausgewählten Regionen beschränkt.
 
-link:admin/create-custom-dashboard-fsx.html["Informationen zum Erstellen eines benutzerdefinierten Dashboards"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/create-custom-dashboard-fsx.html["Informationen zum Erstellen eines benutzerdefinierten Dashboards"]
 
 
 
@@ -35,7 +35,7 @@ link:admin/create-custom-dashboard-fsx.html["Informationen zum Erstellen eines b
 
 Die CloudFormation Vorlage und der Terraform Code zum Erstellen von Links verwenden nun eine IAM-Richtlinie anstelle von Inline-Lambda-Berechtigungen.
 
-link:fsx-storage/create-link.html["Informationen zum Erstellen eines Links"]
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/create-link.html["Informationen zum Erstellen eines Links"]
 
 
 
@@ -45,7 +45,7 @@ Mit Tracker können Sie jetzt Änderungen an den Einstellungen des KI-Agenten ü
 
 Ressourcenänderungen, die über Workload Factory APIs vorgenommen werden, protokolliert der Workload Factory Dienst, der den Vorgang ausführt.
 
-link:admin/learn-agent.html#audit-and-tracking-for-agent-actions["Informationen zu Audit und Nachverfolgung von Agentenaktionen"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/learn-agent.html["Informationen zu Audit und Nachverfolgung von Agentenaktionen"]
 
 
 
@@ -213,4 +213,4 @@ Für die folgenden Säulen des OCI Well-Architected Frameworks sind Konfiguratio
 * Kostenoptimierung: Kaltdaten-Tiering, Snapshot-Bereinigung und Storage-Effizienz
 
 
-Weitere Informationen zu link:oci/configuration-analysis.html["die Well-Architected-Analyse für OCI NSS Systeme"] und zu link:oci/improve-configurations.html["Implementierung gut architekturierter Konfigurationen"].
+Weitere Informationen zu link:https://docs.netapp.com/us-en/data-services-workloads/oci/add-credentials-oci.html["die Well-Architected-Analyse für OCI NSS Systeme"] und zu link:https://docs.netapp.com/us-en/data-services-workloads/oci/improve-configurations.html["Implementierung gut architekturierter Konfigurationen"].

@@ -254,5 +254,5 @@ Die Funktion ist möglicherweise aus einem der folgenden Gründe nicht verfügba
 .Verwandte Informationen
 * link:manage-volume-capacity.html["Anpassen der Volumenkapazität in Workload Factory"]
 * link:change-tiering-policy.html["Ändern der Volume-Tiering-Richtlinie in Workload Factory"]
-* link:manage-s3-access-points.html["Verwalten von S3-Zugriffspunkten in Workload Factory"]
+* link:edit-s3-access-points.html["Verwalten von S3-Zugriffspunkten in Workload Factory"]
 

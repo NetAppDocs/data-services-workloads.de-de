@@ -39,7 +39,7 @@ Workload Factory analysiert den Well-Architected-Status der folgenden Konfigurat
 [[before-you-begin]]
 == Bevor Sie beginnen
 
-* Sie müssen link:add-credentials.html["Berechtigungen für Operationen und Behebung gewähren"] in Ihrem OCI-Konto angemeldet sein.
+* Sie müssen link:add-credentials-oci.html["Berechtigungen für Operationen und Behebung gewähren"] in Ihrem OCI-Konto angemeldet sein.
 * link:create-link.html["Verbindung zu einem OCI NSS-System über einen Link herstellen"] für die umfassendste Analyse Ihrer Dateisystemressourcen.
 
 

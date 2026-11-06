@@ -21,7 +21,7 @@ Mit der NetApp Console lassen sich FSx for ONTAP Dateisysteme der ersten und zwe
 [[create-a-storage-system]]
 == Ein Storage-System erstellen
 
-Der erste Schritt besteht darin, ein Storage-System zu erstellen. Wenn Sie bereits ein Storage-System in der Konsole Ihres Cloud-Anbieters erstellt haben, können Sie <<Ein vorhandenes Cloud Storage-System entdecken,es mit der NetApp Console entdecken>>.
+Der erste Schritt besteht darin, ein Storage-System zu erstellen. Wenn Sie bereits ein Storage-System in der Konsole Ihres Cloud-Anbieters erstellt haben, können Sie <<discover-system,es mit der NetApp Console entdecken>>.
 
 .Über diese Aufgabe
 Eine Storage VM wird erstellt, wenn Sie ein Dateisystem erstellen.
@@ -246,6 +246,7 @@ Es gibt verschiedene Möglichkeiten, Ihre FSx for ONTAP Dateisysteme zu managen,
 
 
 [[discover-an-existing-fsx-for-ontap-file-system]]
+[[discover-system]]
 == Ein vorhandenes FSx for ONTAP Dateisystem identifizieren
 
 Wenn Sie Ihre Anmeldeinformationen für Ihren Cloud-Storage-Anbieter zuvor in Workload Factory angegeben haben, können Sie Ihre FSx for ONTAP Dateisysteme automatisch auf der Seite Discoverable systems identifizieren. Außerdem können Sie die verfügbaren Datenservices prüfen.

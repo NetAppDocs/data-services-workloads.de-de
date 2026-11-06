@@ -114,5 +114,5 @@ Unveränderliche Dateien können nur während link:create-volume.html["Volume-Er
 * link:create-volume.html["Erstellung eines Volume in Workload Factory"]
 * link:manage-volume-capacity.html["Kapazität von Volumes in Workload Factory verwalten"]
 * link:change-tiering-policy.html["Ändern der Volume-Tiering-Richtlinie in Workload Factory"]
-* link:manage-s3-access-points.html["Verwalten von S3-Zugriffspunkten in Workload Factory"]
+* link:edit-s3-access-points.html["Verwalten von S3-Zugriffspunkten in Workload Factory"]
 

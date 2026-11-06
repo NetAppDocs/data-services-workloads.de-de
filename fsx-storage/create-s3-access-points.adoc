@@ -52,4 +52,4 @@ Optional können Sie die Journaltabellenfunktion mit S3-Zugriffspunkten in Workl
 
 Weitere verwandte Themen:
 
-link:manage-s3-access-points.html["Bearbeiten oder Löschen von S3-Zugriffspunkten für ein Volume in NetApp Workload Factory"]
+link:edit-s3-access-points.html["Bearbeiten oder Löschen von S3-Zugriffspunkten für ein Volume in NetApp Workload Factory"]
